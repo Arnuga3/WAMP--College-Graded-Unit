@@ -42,10 +42,15 @@
 			
 			<!--Font Awesome Icons, Styles-->
 			<link type="text/css" rel="stylesheet" href="frameworks/font-awesome-4.4.0/css/font-awesome.min.css" />
-			<link type ="text/css" rel="stylesheet" href="styles.css" />
 			
 			<!--JQ-UI-->
 			<link type ="text/css" rel="stylesheet" href="frameworks/jquery-ui-1.11.4/jquery-ui.theme.min.css">
+			
+			<!--zSlider-->
+			<link type="text/css" rel="stylesheet" href="css/slider_z.css" />
+			
+			<!--Css-->
+			<link type="text/css" rel="stylesheet" href="css/styles.css" />
 <?php
 		}
 		
@@ -75,7 +80,15 @@
 		}
 		public function displayMain() {
 ?>
-
+			<div class="sliderContainer">
+				<div class="sliderImages">
+					<img id="img1" src="img/1.jpg" />
+					<img id="img2" src="img/2.jpg" />
+					<img id="img3" src="img/3.jpg" />
+					<img id="img4" src="img/4.jpg" />
+				</div>
+				<div class="sliderControl"></div>
+			</div>
 <?php
 		}
 		public function connectJS() {
@@ -86,6 +99,7 @@
 			<script src=\"frameworks/jquery-ui-1.11.4/jquery-ui.min.js\"></script>
 			<!--Scripts-->
 			<script src=\"scripts/zScript.js\"></script>
+			<script src=\"scripts/zSliderPlugin.js\"></script>
 			";
 		}
 	}

@@ -11,5 +11,8 @@ $(document).ready(function () {
 	
 	//parallax
 	$('.parallax').parallax();
-
+	
+	$(".sliderImages img:last").load(function() {
+		$(".sliderImages").slider_z();
+	});
 });
