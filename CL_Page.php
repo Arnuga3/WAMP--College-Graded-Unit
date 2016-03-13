@@ -6,6 +6,7 @@
 		public $keywords = "default";
 		
 		public function displayPage() {
+			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
 			echo "<head>\n";
 			$this->displayPageInfo();
@@ -51,6 +52,9 @@
 			
 			<!--Css-->
 			<link type="text/css" rel="stylesheet" href="css/styles.css" />
+			
+			<!--JQ-UI-->
+			<link type ="text/css" rel="stylesheet" href="Frameworks/jquery-ui-1.11.4/jquery-ui.theme.min.css">
 <?php
 		}
 		
@@ -87,7 +91,7 @@
 					<img id="img3" src="img/3.jpg" />
 					<img id="img4" src="img/4.jpg" />
 				</div>
-				<div class="sliderControl"></div>
+				<div class="sliderControl grey darken-4"></div>
 			</div>
 <?php
 		}
@@ -98,8 +102,8 @@
 			<script type=\"text/javascript\" src=\"frameworks/materialize-v0.97.5/materialize/js/materialize.min.js\"></script>
 			<script src=\"frameworks/jquery-ui-1.11.4/jquery-ui.min.js\"></script>
 			<!--Scripts-->
-			<script src=\"scripts/zScript.js\"></script>
 			<script src=\"scripts/zSliderPlugin.js\"></script>
+			<script src=\"scripts/zScript.js\"></script>
 			";
 		}
 	}

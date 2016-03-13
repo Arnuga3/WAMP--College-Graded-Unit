@@ -1,25 +1,27 @@
-$.fn.slider_z = function() {
+$.fn.slider_z = function(navbarHeight) {
 	
 	/*############### ADD CSS #################*/
-	
+
 	//number of images
 	var imgAmount = $(this).children().length;
 	var screenWidth = $(window).width();
 	var screenHeight = $(window).height();
-	//width of scrollbar (tested in chrome)
-	var scrollBar = 20;
 	//define gallery width variable
 	var galleryWidth = 0;
-	//width of controller
+	//height of controller
 	var controllerHeight = 80;
+	//width of scrollbar (tested in chrome)
+	var scrollBar = 20;
 	var currentOnScreen = 0;
 	var afterTap = false;
 	var scrollSpeed = 800;
 	//var mouseScrollSpeed = 800;
+	var navbarHeight = navbarHeight;
 	var imgArr = [];
 	
-	function Slide(left, width) {
+	function Slide(left, right, width) {
 		this.left = left;
+		this.right = right;
 		this.width = width;
 	}
 	
@@ -27,11 +29,14 @@ $.fn.slider_z = function() {
 	//Set Controller
 	$('.sliderControl').css({"position": "absolute", "background-color": "white", "z-index": "10",
 	"padding-left": "20px", "width": screenWidth + "px", "height": controllerHeight + "px"});
-
+	
+		//set each image to the full width (vertical bar width problem - hidden but take up space)
+	if ($("body").height() > $(window).height()) {
+		$('.sliderControl').css({"width": screenWidth + scrollBar + "px"});
+    }
+	
 	//Set the height of gallery to the window height minus controller width
-	$(this).children().css({"height": (screenHeight - controllerHeight) + "px", "float": "left"});
-	alert(screenHeight);
-	alert(screenHeight - controllerHeight);
+	$(this).children().css({"height": (screenHeight - controllerHeight - navbarHeight) + "px", "float": "left"});
 	
 	//read the width of each picture and make up the gallery width
 	$(this).children().each(function() {
@@ -46,24 +51,21 @@ $.fn.slider_z = function() {
 	$(this).children().each(function(ind, val) {
 		
 		var img = $(this).attr('id', img + (ind + 1));
-		var leftPosition = $(this).position().left;
 		var width = $(this).width();
+		var leftPosition = $(this).position().left;
+		var rightPosition = $(this).position().left + width;
 		
 		var imgPath = $(this).attr('src');
 		$('.sliderControl').append("<img class='sd23423sdfsd' id='imgControl" + (ind + 1) + "' src='" + imgPath + "' />");
 
-		imgArr.push(new Slide(leftPosition, width));
+		imgArr.push(new Slide(leftPosition, rightPosition, width));
 	});
 	
-		//set each image to the full width (vertical bar width problem - hidden but take up space)
 	if ($("body").height() > $(window).height()) {
-        var scrolls = scrollBar * imgAmount;
-		galleryWidth += scrolls;
 		//set the gallery container
-		$(this).css({"width": galleryWidth + "px"});
+		//firefox bug correction 1px
+		$(this).css({"width": (galleryWidth + 1) +"px"});
     }
-
-	
 			/*////////////////////////////
 			///////    CONTORLS    ///////
 			////////////////////////////*/
@@ -91,7 +93,12 @@ $.fn.slider_z = function() {
 		//center the image
 		var widthDiff = screenWidth - imgArr[num - 1].width;
 		var correction = widthDiff / 2;
-		$('.sliderContainer').animate({scrollLeft: (imgArr[num - 1].left - correction) + "px"}, scrollSpeed);
+		
+		if (num == imgAmount) {
+			$('.sliderContainer').animate({scrollLeft: (galleryWidth - screenWidth) + "px"}, scrollSpeed);
+		} else {
+			$('.sliderContainer').animate({scrollLeft: (imgArr[num - 1].left - correction) + "px"}, scrollSpeed);
+		}
 	});
 
 /*/Mouse scroll

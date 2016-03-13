@@ -17,5 +17,15 @@ html, body {
 	height: 60px;
 	max-width: 25%;
 	margin: 10px -2px;
-    /*transform: skewX(-15deg);*/
+    transform: skewX(-15deg);
+	border-top: 2px solid #ccc;
+	border-bottom: 2px solid #ccc;
+}
+.sliderControl img:last-child {
+	border-bottom-right-radius: 10px;
+	border-right: 2px solid #ccc;
+}
+.sliderControl img:first-child {
+	border-top-left-radius: 10px;
+	border-left: 2px solid #ccc;
 }
