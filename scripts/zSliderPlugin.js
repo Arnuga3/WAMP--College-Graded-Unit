@@ -1,6 +1,5 @@
 $.fn.slider_z = function(navbarHeight) {
 	
-	/*############### ADD CSS #################*/
 	$('html').css({'overflow-x': 'hidden'});
 	$('body').css({'overflow-x': 'hidden'});
 	$('.sliderContainer').css({'overflow-x': 'auto', 'padding-bottom': '20px'});
@@ -21,15 +20,14 @@ $.fn.slider_z = function(navbarHeight) {
 	var navbarHeight = navbarHeight;
 	var imgArr = [];
 	
-	function Slide(left, right, width) {
+	function Slide(left, width) {
 		this.left = left;
-		this.right = right;
 		this.width = width;
 	}
 	
 		
 	//Set Controller
-	$('.sliderControl').css({"position": "absolute", "background-color": "white", "z-index": "10",
+	$('.sliderControl').css({"position": "absolute", "z-index": "10",
 	"padding-left": "20px", "width": screenWidth + "px", "height": controllerHeight + "px"});
 	
 	//Set each image to the full width (vertical bar width problem - hidden but take up space)
@@ -39,6 +37,7 @@ $.fn.slider_z = function(navbarHeight) {
 	
 	//Set the height of gallery to the window height minus controller width
 	$(this).children().css({"height": (screenHeight - controllerHeight - navbarHeight) + "px", "float": "left"});
+	$(this).children(':last').css({'box-shadow': '5px 5px 1px 3px #111'});
 	
 	//Read the width of each picture and make up the gallery width
 	$(this).children().each(function() {
@@ -55,19 +54,12 @@ $.fn.slider_z = function(navbarHeight) {
 		var img = $(this).attr('id', img + (ind + 1));
 		var width = $(this).width();
 		var leftPosition = $(this).position().left;
-		var rightPosition = $(this).position().left + width;
 		
 		var imgPath = $(this).attr('src');
 		$('.sliderControl').append("<img class='sd23423sdfsd' id='imgControl" + (ind + 1) + "' src='" + imgPath + "' />");
 
-		imgArr.push(new Slide(leftPosition, rightPosition, width));
+		imgArr.push(new Slide(leftPosition, width));
 	});
-	
-	if ($("body").height() > $(window).height()) {
-		//Set the gallery container
-		//Firefox bug correction 1px
-		$(this).css({"width": (galleryWidth + 1) +"px"});
-    }
 	
 /*////////////////////////////
 ///////    CONTORLS    ///////
@@ -89,6 +81,7 @@ $.fn.slider_z = function(navbarHeight) {
 		var correction = widthDiff / 2;
 		
 		if (num == imgAmount) {
+			//issue in firefox with centering of last slide(scrolls to first)
 			$('.sliderContainer').animate({scrollLeft: (galleryWidth - screenWidth) + "px"}, scrollSpeed);
 		} else {
 			$('.sliderContainer').animate({scrollLeft: (imgArr[num - 1].left - correction) + "px"}, scrollSpeed);

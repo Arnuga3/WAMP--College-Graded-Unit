@@ -2,9 +2,9 @@
 /*
 This script creates the first page of the website.
 */
-	include ("CL_Page.php");
+	include ("page classes/CL_SlidingGallery.php");
 	
-	$landingPage = new Page();
+	$landingPage = new SlidingGallery();
 	$landingPage -> title = "Jamie Rodden";
 	$landingPage -> description = "Jamie Rodden";
 	$landingPage -> keywords = "Jamie, Rodden, actor, musician, singer, web portfolio";

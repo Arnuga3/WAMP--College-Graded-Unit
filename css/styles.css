@@ -1,3 +1,33 @@
+/*/////////////////
+    scrollbar
+/////////////////*/
+::-webkit-scrollbar {
+    width: 0.2em;
+}
+::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0);
+}
+::-webkit-scrollbar-button {
+	opacity: 0;
+	height: 0.5em;
+}
+
 body {
-	background-image: url('img/city.jpg');
+	background-image: url('../img/city.jpg');
+}
+nav {
+	background-color: rgba(10,10,10,.8);
+}
+nav span {
+	padding-left: 15px;
+}
+.sliderControl {
+	background-color: rgba(10,10,10,1);
+	box-shadow: 0px 5px 1px 3px rgba(13,13,13,1);
+}
+.button-collapse {
+	padding-right: 15px;
 }
