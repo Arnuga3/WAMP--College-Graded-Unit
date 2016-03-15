@@ -1,6 +1,5 @@
 $.fn.slider_z = function(navbarHeight) {
-	
-	$('html').css({'overflow-x': 'hidden'});
+
 	$('body').css({'overflow-x': 'hidden'});
 	$('.sliderContainer').css({'overflow-x': 'auto', 'padding-bottom': '20px'});
 	$('.sliderImages').css({'overflow-x': 'auto', 'z-index': '9'});
@@ -79,13 +78,8 @@ $.fn.slider_z = function(navbarHeight) {
 		//Center the image
 		var widthDiff = screenWidth - imgArr[num - 1].width;
 		var correction = widthDiff / 2;
-		
-		if (num == imgAmount) {
-			//issue in firefox with centering of last slide(scrolls to first)
-			$('.sliderContainer').animate({scrollLeft: (galleryWidth - screenWidth) + "px"}, scrollSpeed);
-		} else {
-			$('.sliderContainer').animate({scrollLeft: (imgArr[num - 1].left - correction) + "px"}, scrollSpeed);
-		}
+
+		$('.sliderContainer').stop().animate({scrollLeft: (imgArr[num - 1].left - correction) + "px"}, scrollSpeed);
 	});
 
 };

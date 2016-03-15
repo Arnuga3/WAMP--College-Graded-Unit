@@ -33,10 +33,7 @@
 			
 			<!--JQ-UI-->
 			<link type ="text/css" rel="stylesheet" href="frameworks/jquery-ui-1.11.4/jquery-ui.theme.min.css">
-			
-			<!--zSlider-->
-			<link type="text/css" rel="stylesheet" href="css/slider_z.css" />
-			
+
 			<!--Css-->
 			<link type="text/css" rel="stylesheet" href="css/styles.css" />
 			

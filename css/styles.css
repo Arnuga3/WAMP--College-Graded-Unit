@@ -15,6 +15,11 @@
 	height: 0.5em;
 }
 
+* {
+	padding: 0;
+	margin: 0;
+}
+
 body {
 	background-image: url('../img/city.jpg');
 }
@@ -23,6 +28,9 @@ nav {
 }
 nav span {
 	padding-left: 15px;
+}
+.side-nav {
+	height: inherit;
 }
 .sliderControl {
 	background-color: rgba(10,10,10,1);
