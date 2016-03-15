@@ -35,6 +35,7 @@
 			<!--GOOGLE Fonts-->
 			
 			<!--Import materialize.css-->
+			<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 			<link type="text/css" rel="stylesheet" href="frameworks/materialize-v0.97.5/materialize/css/materialize.min.css"  media="screen,projection"/>
 			
 			<!--Was here as Materialize suggestion-->
@@ -58,19 +59,25 @@
 ?>
 			<div class="navbar-fixed">
 				<nav>
+					<ul id="dropdown1" class="dropdown-content">
+						<li><a href="acting_shots.php">ACTING SHOTS</a></li>
+						<li><a href="gig_shots.php">GIG SHOTS</a></li>
+					</ul>
 					<div class="nav-wrapper">
 						<a href="index.php" class="brand-logo left"><span class="bold">Jamie Rodden</span></a>
 						<ul class="right hide-on-med-and-down">
-							<li><a id="home" class="menu_link waves-effect waves-light" href="showreel.php">SHOWREEL</a></li>
-							<li><a id="projects" class="menu_link waves-effect waves-light" href="cv.php">CV</a></li>
-							<li><a id="links" class="menu_link waves-effect waves-light" href="media.php">MEDIA</a></li>
-							<li><a id="contacts" class="menu_link waves-effect waves-light" href="songs.php">SONGS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="showreel.php">SHOWREEL</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="cv.php">CV</a></li>
+							<li><a class="dropdown-button" href="#!" data-activates="dropdown1">MEDIA<i class="material-icons right">arrow_drop_down</i></a></li>
+							<li><a class="menu_link waves-effect waves-light" href="songs.php">SONGS</a></li>
 						</ul>
 						<ul id="slide-out" class="side-nav">
-							<li><a id="home" class="menu_link waves-effect waves-light" href="showreel.php">SHOWREEL</a></li>
-							<li><a id="projects" class="menu_link waves-effect waves-light" href="cv.php">CV</a></li>
-							<li><a id="links" class="menu_link waves-effect waves-light" href="media.php">MEDIA</a></li>
-							<li><a id="contacts" class="menu_link waves-effect waves-light" href="songs.php">SONGS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="showreel.php"><i class="fa fa-youtube-play"></i>SHOWREEL</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="cv.php"><i class="fa fa-file-text"></i>CV</a></li>
+							<li><span><i class="fa fa-video-camera"></i>MEDIA :</i></span></li>
+							<li><a class="menu_link waves-effect waves-light" href="acting_shots.php"><i class="fa fa-arrow-right"></i>ACTING SHOTS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="gig_shots.php"><i class="fa fa-arrow-right"></i>GIG SHOTS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="songs.php"><i class="fa fa-music"></i>SONGS</a></li>
 						</ul>
 						<a href="#" data-activates="slide-out" class="button-collapse right paddingSide"><i class="mdi-navigation-menu"></i></a>
 					</div>

@@ -23,6 +23,7 @@
 			<!--GOOGLE Fonts-->
 			
 			<!--Import materialize.css-->
+			<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 			<link type="text/css" rel="stylesheet" href="frameworks/materialize-v0.97.5/materialize/css/materialize.min.css"  media="screen,projection"/>
 			
 			<!--Was here as Materialize suggestion-->
