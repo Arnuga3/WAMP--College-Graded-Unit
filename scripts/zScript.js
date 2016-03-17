@@ -11,5 +11,8 @@ $(document).ready(function () {
 	
 	//parallax
 	$('.parallax').parallax();
+	
+	//materialbox
+	$('.materialboxed').materialbox();
 
 });
