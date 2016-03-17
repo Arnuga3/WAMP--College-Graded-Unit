@@ -60,8 +60,8 @@
 			<div class="navbar-fixed">
 				<nav>
 					<ul id="dropdown1" class="dropdown-content">
-						<li><a href="acting_shots.php">ACTING SHOTS</a></li>
-						<li><a href="gig_shots.php">GIG SHOTS</a></li>
+						<li><a href="acting.php">ACTING SHOTS</a></li>
+						<li><a href="gig.php">GIG SHOTS</a></li>
 					</ul>
 					<div class="nav-wrapper">
 						<a href="index.php" class="brand-logo left"><span class="bold">Jamie Rodden</span></a>
@@ -74,9 +74,10 @@
 						<ul id="slide-out" class="side-nav">
 							<li><a class="menu_link waves-effect waves-light" href="showreel.php"><i class="fa fa-youtube-play"></i>SHOWREEL</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="cv.php"><i class="fa fa-file-text"></i>CV</a></li>
-							<li><span><i class="fa fa-video-camera"></i>MEDIA :</i></span></li>
-							<li><a class="menu_link waves-effect waves-light" href="acting_shots.php"><i class="fa fa-arrow-right"></i>ACTING SHOTS</a></li>
-							<li><a class="menu_link waves-effect waves-light" href="gig_shots.php"><i class="fa fa-arrow-right"></i>GIG SHOTS</a></li>
+							<hr />
+							<li><a class="menu_link waves-effect waves-light" href="acting.php"><i class="fa fa-video-camera"></i>ACTING SHOTS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="gig.php"><i class="fa fa-video-camera"></i>GIG SHOTS</a></li>
+							<hr />
 							<li><a class="menu_link waves-effect waves-light" href="songs.php"><i class="fa fa-music"></i>SONGS</a></li>
 						</ul>
 						<a href="#" data-activates="slide-out" class="button-collapse right paddingSide"><i class="mdi-navigation-menu"></i></a>
