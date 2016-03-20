@@ -33,32 +33,34 @@
 							<img width="100" src="img/Places-folder-black-icon.png" />
 						</div>
 						<div class="col s12 m6 valign-wrapper">
-							<div class="valign-wrapper">
+							<div class="z-depth-2 valign-wrapper">
 								<img class="materialboxed valign" data-caption="Black and white picture!" width="100" src="img/2.jpg" />
 							</div>
+							<p>Image name: Black & White</p>
 						</div>
 						<div class="col s12 m6 valign-wrapper">
-							<div class="valign-wrapper">
+							<div class="z-depth-2 valign-wrapper">
 								<img class="materialboxed valign" width="100" src="img/3.jpg" />
-							</div>	
+							</div>
+							<p>Image name: Some text will be displayed here</p>
 						</div>
 						<div class="col s12 m6 valign-wrapper">
-							<div class="valign-wrapper">
+							<div class="z-depth-2 valign-wrapper">
 								<img class="materialboxed valign" width="100" src="img/4.jpg" />
 							</div>	
 						</div>
 						<div class="col s12 m6 valign-wrapper">
-							<div class="valign-wrapper">
+							<div class="z-depth-2 valign-wrapper">
 								<img class="materialboxed valign" width="100" src="img/5.jpg" />
 							</div>	
 						</div>
 						<div class="col s12 m6 valign-wrapper">
-							<div class="valign-wrapper">
+							<div class="z-depth-2 valign-wrapper">
 								<img class="materialboxed valign" width="100" src="img/2.jpg" />
 							</div>	
 						</div>
 						<div class="col s12 m6 valign-wrapper">
-							<div class="valign-wrapper">
+							<div class="z-depth-2 valign-wrapper">
 								<img class="materialboxed valign" width="100" src="img/3.jpg" />
 							</div>	
 						</div>

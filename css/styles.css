@@ -99,12 +99,58 @@ hr {
 	height: 180px;
 	margin: 10px 0;
 }
+#contCont > div > div p {
+	margin-left: 20px;
+	color: #777;
+	font-weight: bold;
+}
 #contCont > div > div > div {
 	height: 180px;
 	width: 100px;
 	background-color: #ddd;
+	border-radius: 1px;
 }
-.materialboxed {
+
+/*----------------Songs-----------------*/
+
+#contField_s {
+	padding: 20px 5px;
+	color: black;
+	background-color: rgba(255,255,255,.9);
+}
+#contField_s a > p {
+	font-size: 1.2em;
+	margin: 10px;
+	color: #333;
+}
+#contField_s a > p {
+	font-size: 1.2em;
+	margin: 10px;
+	color: #333;
+}
+#contCont_s {
+	border-radius: 20px;
+	background-color: rgba(255,255,255,1);	
+}
+#contCont_s > div > div > div img {
+	width: 80px;
+	height: 80px;
+	margin-top: 15px;
+}
+#contCont_s > div > div > div p {
+	color: #777;
+	font-weight: bold;
+	margin-top: 20px;
+}
+#contCont_s > div > div > div audio {
+	margin-top: 10px;
+	background: white;
+}
+.song_icon {
+	float: left;
+}
+.song_player {
+	float: left;
 }
 
 /*------------Media queries-------------*/
@@ -119,7 +165,7 @@ hr {
 }
 /*large*/
 @media screen and (min-width: 991px) {
-	#contField {
+	#contField, #contField_s {
 		padding: 25px;
 		border-radius: 20px;
 		margin-top: 50px;
