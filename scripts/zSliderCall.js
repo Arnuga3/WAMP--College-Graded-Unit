@@ -4,7 +4,6 @@ $(window).load(function() {
 	//param is the navbar height of the page
 	$(".sliderImages").slider_z(65);
 });
-
 $(window).resize(function(){
 	location.reload();
 });

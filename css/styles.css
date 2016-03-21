@@ -36,6 +36,14 @@ nav span {
 	font-size: .8em;
 	color: #333;
 }
+.fa-lock {
+	color: #888;
+}
+/*------------------Modal-----------------*/
+
+.modal, .modal-footer {
+	background-color: white;
+}
 
 /*Mobile sliding menu panel*/
 .side-nav {
@@ -136,6 +144,7 @@ hr {
 	width: 80px;
 	height: 80px;
 	margin-top: 15px;
+	text-align: center;
 }
 #contCont_s > div > div > div p {
 	color: #777;
@@ -170,6 +179,72 @@ hr {
 		border-radius: 20px;
 		margin-top: 50px;
 	}
+	.modal, .modal-footer {
+		width: 30%;
+	}
+}
+
+/*-----------Forms Materialize----------*/
+
+.form {
+	padding: 0 0px;
+}
+/* label color */
+.input-field label {
+	color: white;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+	color: white;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+	border-bottom: 1px solid white;
+	box-shadow: 0 1px 0 0 white;
+}
+/* valid color */
+.input-field input[type=text].valid {
+	border-bottom: 1px solid #999;
+	box-shadow: 0 0px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+	border-bottom: 1px solid #999;
+	box-shadow: 0 0px 0 0 #000;
+}
+/* label underline focus color */
+.input-field input[type=password]:focus {
+	border-bottom: 1px solid white;
+	box-shadow: 0 1px 0 0 white;
+}
+/* valid color */
+.input-field input[type=password].valid {
+	border-bottom: 1px solid #999;
+	box-shadow: 0 0px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=password].invalid {
+	border-bottom: 1px solid #999;
+	box-shadow: 0 0px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+	color: grey;
+}
+/* textarea, materialize form */
+#p_description:focus {
+	border-bottom: 1px solid white;
+	-webkit-box-shadow: 0 1px 0 0 white;
+	-moz-box-shadow: 0 1px 0 0 white;
+	box-shadow: 0 1px 0 0 white;
+}
+#labelTextarea {
+	color: white;
+}
+
+.checkbox-orange[type="checkbox"].filled-in:checked + label:after {
+    border: 2px solid white;
+    background-color: white;
 }
 
 /*------------Help classes-------------*/

@@ -14,5 +14,8 @@ $(document).ready(function () {
 	
 	//materialbox
 	$('.materialboxed').materialbox();
+	
+	//modal
+	$('.modal-trigger').leanModal();
 
 });
