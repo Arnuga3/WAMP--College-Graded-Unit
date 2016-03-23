@@ -44,26 +44,26 @@
 		public function displayNavbar() {
 ?>	
 			<div class="navbar-fixed">
-				<nav class="light-blue darken-4">
+				<nav class="blue darken-4">
 					<div class="nav-wrapper">
-						<a href="index.php" class="brand-logo center"><span class="bold">Admin Control Panel</span></a>
+						<a href="index.php" class="brand-logo center"><span>Control Panel</span></a>
 						<ul class="right hide-on-med-and-down">
 							<li><a class="menu_link waves-effect waves-light" href="showreel.php">LOG OUT</a></li>
 						</ul>
 						
 						<!--Mobile sliding menu-->
 						<ul id="slide-out" class="side-nav">
-							<li><a class="menu_link waves-effect waves-light" href="#"><i class="fa fa-youtube-play"></i>SHOWREEL</a></li>
-							<li><a class="menu_link waves-effect waves-light" href="#"><i class="fa fa-file-text"></i>CV</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/ClapBoard.png" />SHOWREEL</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/File_Text.png" />CV</a></li>
 							<hr />
-							<li><a class="menu_link waves-effect waves-light" href="#"><i class="fa fa-picture-o"></i>ACTING PHOTOS</a></li>
-							<li><a class="menu_link waves-effect waves-light" href="#"><i class="fa fa-video-camera"></i>ACTING VIDEOS</a></li>
-							<li><a class="menu_link waves-effect waves-light" href="#"><i class="fa fa-picture-o"></i>GIG PHOTOS</a></li>
-							<li><a class="menu_link waves-effect waves-light" href="#"><i class="fa fa-video-camera"></i>GIG VIDEOS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/Photo-icon.png" />ACTING PHOTOS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/movies-icon.png" />ACTING VIDEOS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/Photo-icon.png" />GIG PHOTOS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/movies-icon.png" />GIG VIDEOS</a></li>
 							<hr />
-							<li><a class="menu_link waves-effect waves-light" href="#"><i class="fa fa-music"></i>SONGS</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/song_icon.png" />SONGS</a></li>
 						</ul>
-						<a href="#" class="hide-on-large-only right"><i class="fa fa-sign-out"></i></a>
+						<a href="#" class="hide-on-large-only right"><img src="img/cpIcons/door-in-icon.png" /></a>
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 					</div>
 				</nav>
@@ -71,9 +71,27 @@
 <?php
 		}
 	
-		public function displayMain() {
+		function displayMain() {
 ?>
-			
+		<div class="row hide-on-med-and-down">
+			<div id="contField" class="col s12 l10 offset-l1 z-depth-4">
+				<div class="col s12 l3">
+					<ul id="desktop_menu">
+						<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/ClapBoard.png" />SHOWREEL</a></li>
+						<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/File_Text.png" />CV</a></li>
+						<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/Photo-icon.png" />ACTING PHOTOS</a></li>
+						<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/movies-icon.png" />ACTING VIDEOS</a></li>
+						<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/Photo-icon.png" />GIG PHOTOS</a></li>
+						<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/movies-icon.png" />GIG VIDEOS</a></li>
+						<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/song_icon.png" />SONGS</a></li>
+					</ul>
+				</div>
+				<div id="contCont" class="col s12 l9 z-depth-1">
+					<div class="row">
+					</div>
+				</div>
+			</div>
+		</div>
 <?php
 		}
 		

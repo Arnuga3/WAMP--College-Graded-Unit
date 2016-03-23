@@ -20,8 +20,6 @@ This script validates admin's username and password.
 		
 		if ($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
-				echo $row["usr_name"]."   ".$userName."\n";
-				echo $row["usr_psswd"]."   ".$userPassword."\n";
 				if ($row["usr_name"] == $userName and crypt($userPassword, $row["usr_psswd"]) == $row["usr_psswd"]) {
 					//I do transfer to another file here to prevent the form resubmission when back and forward buttons are pressed, like pages A B and C, this is a page B and it is used for this purpose
 					header("Location: control_panel.php");

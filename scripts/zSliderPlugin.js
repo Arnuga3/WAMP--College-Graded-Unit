@@ -8,8 +8,8 @@ $.fn.slider_z = function(navbarHeight) {
 	var imgAmount = $(this).children().length;
 	var screenWidth = $(window).width();
 	var screenHeight = $(window).height();
-	//Define gallery width variable
-	var galleryWidth = 0;
+	//Define gallery width variable(.5 is set as there is a strange behaviour in mobile browsers)
+	var galleryWidth = .5;
 	//Height of controller
 	var controllerHeight = 80;
 	//Width of scrollbar (tested in chrome)
@@ -27,16 +27,11 @@ $.fn.slider_z = function(navbarHeight) {
 		
 	//Set Controller
 	$('.sliderControl').css({"position": "absolute", "z-index": "10",
-	"padding-left": "20px", "width": screenWidth + "px", "height": controllerHeight + "px"});
-	
-	//Set each image to the full width (vertical bar width problem - hidden but take up space)
-	if ($("body").height() > $(window).height()) {
-		$('.sliderControl').css({"width": screenWidth + scrollBar + "px"});
-    }
+	"padding-left": "20px", "width": "100%", "height": controllerHeight + "px"});
 	
 	//Set the height of gallery to the window height minus controller width
 	$(this).children().css({"height": (screenHeight - controllerHeight - navbarHeight) + "px", "float": "left"});
-	$(this).children(':last').css({'box-shadow': '5px 5px 1px 3px #111'});
+	//$(this).children(':last').css({'box-shadow': '5px 5px 1px 3px #111'});
 	
 	//Read the width of each picture and make up the gallery width
 	$(this).children().each(function() {

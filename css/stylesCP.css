@@ -18,33 +18,60 @@
 * {
 	padding: 0;
 	margin: 0;
+	font-family: consolas;
+	font-weight: bold;
 }
 
 /*------------Navigation bar--------------*/
 
 nav span {
-	padding-left: 15px;
+	font-size: .8em;
 }
 
 /*Mobile sliding menu panel*/
-.side-nav {
+#slide-out {
 	height: inherit;
 }
-.side-nav li:hover {
-    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+#slide-out li {
+	padding: 0;
 }
-#slide-out > li a,
-#slide-out > li i {
-	color: #01579b;
+#slide-out a {
+	padding: 0 25px;
 }
-.fa {
+#slide-out li:hover {
+    background-color: #03a9f4;
+	padding: 0;
+}
+#slide-out a:hover {
+	color: white;
+}
+#slide-out img {
 	padding-right: 15px;
+	vertical-align: middle;
+	width: 50px;
+	height: 32px;
+}
+.nav-wrapper img {
+	padding-right: 15px;
+	vertical-align: middle;
+	width: 50px;
+	height: 32px;
 }
 hr {
 	border: 1px solid #eee;
 }
 .button-collapse {
 	padding: 0 15px;
+}
+#contField {
+	padding: 20px 5px;
+}
+#desktop_menu img {
+	padding-right: 15px;
+	margin-bottom: 15px;
+	vertical-align: middle;
+	width: 50px;
+	height: 32px;
 }
 
 /*------------Media queries-------------*/
@@ -59,7 +86,10 @@ hr {
 }
 /*large*/
 @media screen and (min-width: 991px) {
-	
+	#contField {
+		padding: 25px;
+		margin-top: 50px;
+	}
 }
 
 /*-----------Forms Materialize----------*/
