@@ -3,6 +3,10 @@
 	
 	class ControlPanel extends Page {
 		
+		public function __construct($result) {
+			$this->result = $result;
+		}
+		
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -12,7 +16,7 @@
 			echo "</head>\n";
 			echo "<body>\n";
 			$this->displayNavbar();
-			$this->displayMain();
+			$this->displayMain($this->result);
 			$this->connectJS();
 			echo "</body>\n";
 			echo "</html>";
@@ -58,11 +62,11 @@
 							<hr />
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/File_Text.png" />CV</a></li>
 							<hr />
-							<p>ACTING SHOTS:</p>
+							<p class="lightText">ACTING SHOTS:</p>
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/Photo-icon.png" />Acting photos</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/movies-icon.png" />Acting videos</a></li>
 							<hr />
-							<p>GIG SHOTS:</p>
+							<p class="lightText">GIG SHOTS:</p>
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/Photo-icon.png" />Gig photos</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/movies-icon.png" />Gig videos</a></li>
 							<hr />
@@ -76,7 +80,7 @@
 <?php
 		}
 	
-		function displayMain() {
+		function displayMain($result) {
 ?>
 		<div class="row">
 			<div id="contField" class="col l3 hide-on-med-and-down">
@@ -85,11 +89,11 @@
 					<hr />
 					<a class="waves-effect waves-light" href="#"><img src="img/cpIcons/File_Text.png" /><span>CV</span></a>
 					<hr />
-					<p>ACTING SHOTS:</p>
+					<p class="lightText">ACTING SHOTS:</p>
 					<a class="waves-effect waves-light" href="#"><img src="img/cpIcons/Photo-icon.png" /><span>Acting photos</span></a>
 					<a class="waves-effect waves-light" href="#"><img src="img/cpIcons/movies-icon.png" /><span>Acting videos</span></a>
 					<hr />
-					<p>GIG SHOTS:</p>
+					<p class="lightText">GIG SHOTS:</p>
 					<a class="waves-effect waves-light" href="#"><img src="img/cpIcons/Photo-icon.png" /><span>Gig photos</span></a>
 					<a class="waves-effect waves-light" href="#"><img src="img/cpIcons/movies-icon.png" /><span>Gig videos</span></a>
 					<hr />
@@ -97,12 +101,53 @@
 				</div>
 			</div>
 			<div id="mainContent" class="col s12 l9 offset-l3">
+				<!--
 				<div id="desktop_flex_top">
 					<a class="waves-effect waves-light" href="#"><img src="img/cpIcons/Add.png" /><span>add new</span></a>
 					<a class="waves-effect waves-light" href="#"><img src="img/cpIcons/Trash.png" /><span>delete</span></a>
 				</div>
 				<hr />
-				<h4>Selected Group:</h4>
+				-->
+				<h5 class="infoText">Selected Group:<span class="margLeft"><?php echo $result["video_group"]; ?></span></h5>
+				
+				<p class="infoText margTop">Video preview</p>
+				<div class="row">
+					<div class="col s12 l10">
+						<div class="video-container margTop">
+							<iframe width="853" height="480" src="<?php echo $result["video_path"]; ?>" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>
+				</div>
+				
+				<p class="helperText"><img id="shwrl_warn" src="img/cpIcons/Warning_2.png" />Only 1 video is allowed in this group. Just add, change or remove the information below and click a "save" button.</p>
+				
+				<p class="infoText margTop">Video information</p>
+				
+				<form id="showreel">
+					<div class="input-field">
+						<img src="img/cpIcons/Pencil_2.png" class="prefix" />
+						<input id="showrl_title" type="text" name="showrl_title" class="validate" length="255" value="<?php echo str_replace('"',"&quot;", $result["video_title"]);?>" />
+						<label for="showrl_title">video title</label>
+					</div>
+					<div class="input-field">
+						<img src="img/cpIcons/Pencil_2.png" class="prefix" />
+						<input id="showrl_location" type="text" name="showrl_location" class="validate" length="255" value="<?php echo str_replace('"',"&quot;", $result["video_alloc"]);?>" />
+						<label for="showrl_location">video location</label>
+					</div>
+					<div class="input-field">
+						<img src="img/cpIcons/Pencil_2.png" class="prefix" />
+						<textarea id="showrl_path" type="text" name="showrl_path" class="materialize-textarea" length="255"><?php echo str_replace('"',"&quot;", $result["video_path"]);?></textarea>
+						<label id="matr_descrLb" for="showrl_path">video path</label>
+					</div>
+					<div class="input-field">
+						<img src="img/cpIcons/Pencil_2.png" class="prefix" />
+						<textarea id="showrl_description" name="showrl_description" class="materialize-textarea" length="1000"><?php echo $result["video_descr"];?></textarea>
+						<label id="matr_descrLb" for="showrl_description">video description</label>
+					</div>
+					
+					<a class="waves-effect waves-light btn green darken-3 margBot"><i class="fa fa-floppy-o left"></i>save</a>
+				</form>
+				
 			</div>
 		</div>
 <?php
