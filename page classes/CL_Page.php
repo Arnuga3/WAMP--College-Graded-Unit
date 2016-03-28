@@ -99,14 +99,12 @@
 							<p>Admin Panel:</p>
 							<div class="row">
 								<div class="input-field col s12">
-									<label class="labelAdmin" for="adminName">Name</label>
-									<input id="adminName" name="adminName" type="text">
+									<input placeholder="Name" id="adminName" name="adminName" type="text">
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<label class="labelAdmin" for="adminPass">Password</label>
-									<input id="adminPass" name="adminPassword" type="password">
+									<input placeholder="Password" id="adminPass" name="adminPassword" type="password">
 								</div>
 							</div>
 						</div>

@@ -223,7 +223,11 @@ METHODS DESCRIPTION AND USAGE:
 						}
 					}
 					
-					$query = "UPDATE ".$table." SET ".$colValStr." WHERE ".$targetCol."=".$targetVal;
+					if (is_string($targetVal)) {
+						$query = "UPDATE ".$table." SET ".$colValStr." WHERE ".$targetCol." LIKE '%".$targetVal."%'";
+					} else {
+						$query = "UPDATE ".$table." SET ".$colValStr." WHERE ".$targetCol."=".$targetVal;
+					}
 				}
 			}
 			
@@ -232,7 +236,7 @@ METHODS DESCRIPTION AND USAGE:
 			}
 		
 			if ($this->result === TRUE) {
-				echo "Updated";
+				//echo "Updated";
 			} else {
 				echo "Error updating record: " . $this->myConn->error;
 			}
@@ -261,7 +265,6 @@ METHODS DESCRIPTION AND USAGE:
 			
 			//Get number of arguments passed
 			$numargs = func_num_args();
-			echo "Number of arguments: $numargs \n";
 			
 			//Get array of arguments
 			$arg_list = func_get_args();

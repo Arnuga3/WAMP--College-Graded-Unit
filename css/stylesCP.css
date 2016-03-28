@@ -29,6 +29,9 @@ nav span {
 }
 
 /*Mobile sliding menu panel*/
+.material-icons {
+	padding-right: 15px;
+}
 #slide-out {
 	height: inherit;
 }
@@ -140,7 +143,8 @@ hr {
 #showreel img {
 	width: 20px;
 }
-#shwrl_warn {
+#shwrl_warn, 
+#shwrl_pencil {
 	width: 15px;
 	margin: 0 5px;
 }
@@ -148,7 +152,16 @@ form {
 	margin-top: 15px;
 	border: 1px solid white;
 }
-
+#radio_flex {
+	display: -webkit-flex;
+    display: flex;
+}
+#radio_flex p {
+	margin-right: 15px;
+}
+#radio_flex label {
+	color: black;
+}
 
 /*------------Media queries-------------*/
 
@@ -213,16 +226,16 @@ form {
 }
 /* label color */
 .input-field label {
-	color: #0d47a1;
+	color: orange;
 }
 /* label focus color */
 .input-field input[type=text]:focus + label {
-	color: #0d47a1;
+	color: orange;
 }
 /* label underline focus color */
 .input-field input[type=text]:focus {
-	border-bottom: 1px solid #0d47a1;
-	box-shadow: 0 1px 0 0 #0d47a1;
+	border-bottom: 1px solid orange;
+	box-shadow: 0 1px 0 0 orange;
 }
 /* valid color */
 .input-field input[type=text].valid {
@@ -236,8 +249,8 @@ form {
 }
 /* label underline focus color */
 .input-field input[type=password]:focus {
-	border-bottom: 1px solid #0d47a1;
-	box-shadow: 0 1px 0 0 #0d47a1;
+	border-bottom: 1px solid orange;
+	box-shadow: 0 1px 0 0 orange;
 }
 /* valid color */
 .input-field input[type=password].valid {
@@ -256,18 +269,22 @@ form {
 /* textarea, materialize form */
 #showrl_description:focus,
 #showrl_path:focus {
-	border-bottom: 1px solid #0d47a1;
-	-webkit-box-shadow: 0 1px 0 0 #0d47a1;
-	-moz-box-shadow: 0 1px 0 0 #0d47a1;
-	box-shadow: 0 1px 0 0 #0d47a1;
+	border-bottom: 1px solid orange;
+	-webkit-box-shadow: 0 1px 0 0 orange;
+	-moz-box-shadow: 0 1px 0 0 orange;
+	box-shadow: 0 1px 0 0 orange;
 }
 #matr_descrLb {
-	color: #0d47a1;
+	color: orange;
 }
 
-.checkbox-orange[type="checkbox"].filled-in:checked + label:after {
-    border: 2px solid #0d47a1;
-    background-color: #0d47a1;
+.checkbox-orange[type="checkbox"]:checked + label:after {
+    border: 2px solid orange;
+    background-color: orange;
+}
+.orange-radio[type="radio"]:checked + label:after {
+	border: 2px solid orange;
+    background-color: orange;
 }
 
 /*------------Help classes-------------*/
@@ -293,6 +310,9 @@ form {
 .infoText {
 	color: #1a237e;
 }
+.titleText {
+	color: orange;
+}
 .margLeft {
 	margin-left: 15px;
 }
@@ -301,4 +321,10 @@ form {
 }
 .margBot {
 	margin-bottom: 15px;
+}
+.margBotExtra {
+	margin-bottom: 30px;
+}
+.textShadow {
+	text-shadow: 3px 3px black;
 }

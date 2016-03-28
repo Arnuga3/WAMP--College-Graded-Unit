@@ -161,6 +161,12 @@ hr {
 .song_player {
 	float: left;
 }
+#shwrl_ui_title {
+	font-size: 2.5em;
+}
+#shwrl_ui_title_helper {
+	font-size: 1.5em;
+}
 
 /*------------Media queries-------------*/
 
@@ -170,7 +176,12 @@ hr {
 }
 /*medium*/
 @media screen and (max-width: 992px) and (min-width: 600px) {
-
+	#shwrl_ui_title {
+		font-size: 3.2em;
+	}
+	#shwrl_ui_title_helper {
+		font-size: 1.8em;
+	}
 }
 /*large*/
 @media screen and (min-width: 991px) {
@@ -181,6 +192,12 @@ hr {
 	}
 	.modal, .modal-footer {
 		width: 30%;
+	}
+	#shwrl_ui_title {
+		font-size: 3.6em;
+	}
+	#shwrl_ui_title_helper {
+		font-size: 2em;
 	}
 }
 
@@ -257,4 +274,32 @@ hr {
 }
 .absolute {
 	position: absolute;
+}
+.lightText {
+	opacity: .8;
+}
+.helperText {
+	color: #bbb;
+}
+.helperText:hover {
+	color: orange;
+}
+.infoText {
+	color: #1a237e;
+}
+.center {
+	margin: 0 auto;
+	text-align: center;
+}
+.margLeft {
+	margin-left: 15px;
+}
+.margTop {
+	margin-top: 15px;
+}
+.margBot {
+	margin-bottom: 15px;
+}
+.textShadow {
+	text-shadow: 0 10px 20px black;
 }

@@ -53,7 +53,7 @@
 					<div class="nav-wrapper">
 						<a href="index.php" class="brand-logo center"><span>Control Panel</span></a>
 						<ul class="right hide-on-med-and-down">
-							<li><a class="menu_link waves-effect waves-light" href="index.php">LOG OUT</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="php_tasks/close_session.php">LOG OUT</a></li>
 						</ul>
 						
 						<!--Mobile sliding menu-->
@@ -72,7 +72,7 @@
 							<hr />
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="img/cpIcons/song_icon.png" />Songs</a></li>
 						</ul>
-						<a href="index.php" class="hide-on-large-only right"><img src="img/cpIcons/door-in-icon.png" /></a>
+						<a href="php_tasks/close_session.php" class="hide-on-large-only right"><i class="material-icons">input</i></a>
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 					</div>
 				</nav>
@@ -108,7 +108,7 @@
 				</div>
 				<hr />
 				-->
-				<h5 class="infoText">Selected Group:<span class="margLeft"><?php echo $result["video_group"]; ?></span></h5>
+				<h5 class="titleText">Selected Group:<span class="margLeft"><?php echo $result["video_group"]; ?></span></h5>
 				
 				<p class="infoText margTop">Video preview</p>
 				<div class="row">
@@ -119,33 +119,36 @@
 					</div>
 				</div>
 				
-				<p class="helperText"><img id="shwrl_warn" src="img/cpIcons/Warning_2.png" />Only 1 video is allowed in this group. Just add, change or remove the information below and click a "save" button.</p>
+				<p class="helperText"><img id="shwrl_warn" src="img/cpIcons/Warning_2.png" />Only 1 video is allowed in this group.</p>
+				<p class="helperText"><img id="shwrl_pencil" src="img/cpIcons/Pencil_2.png" />Just add, change or remove the information below and click a "save" button.</p>
 				
 				<p class="infoText margTop">Video information</p>
 				
 				<form id="showreel">
+
 					<div class="input-field">
-						<img src="img/cpIcons/Pencil_2.png" class="prefix" />
 						<input id="showrl_title" type="text" name="showrl_title" class="validate" length="255" value="<?php echo str_replace('"',"&quot;", $result["video_title"]);?>" />
 						<label for="showrl_title">video title</label>
 					</div>
 					<div class="input-field">
-						<img src="img/cpIcons/Pencil_2.png" class="prefix" />
-						<input id="showrl_location" type="text" name="showrl_location" class="validate" length="255" value="<?php echo str_replace('"',"&quot;", $result["video_alloc"]);?>" />
-						<label for="showrl_location">video location</label>
-					</div>
-					<div class="input-field">
-						<img src="img/cpIcons/Pencil_2.png" class="prefix" />
-						<textarea id="showrl_path" type="text" name="showrl_path" class="materialize-textarea" length="255"><?php echo str_replace('"',"&quot;", $result["video_path"]);?></textarea>
-						<label id="matr_descrLb" for="showrl_path">video path</label>
-					</div>
-					<div class="input-field">
-						<img src="img/cpIcons/Pencil_2.png" class="prefix" />
 						<textarea id="showrl_description" name="showrl_description" class="materialize-textarea" length="1000"><?php echo $result["video_descr"];?></textarea>
 						<label id="matr_descrLb" for="showrl_description">video description</label>
 					</div>
+					<div class="input-field">
+						<textarea id="showrl_path" type="text" name="showrl_path" class="materialize-textarea" length="255"><?php echo str_replace('"',"&quot;", $result["video_path"]);?></textarea>
+						<label id="matr_descrLb" for="showrl_path">video path</label>
+					</div>
 					
-					<a class="waves-effect waves-light btn green darken-3 margBot"><i class="fa fa-floppy-o left"></i>save</a>
+					<div id="error"></div>
+					
+					<!-- Showreel SAVE button, LOGIC: Toast is shown on a screen for 2 sec with SAVED message, AJAX is updating a record in DB, page is refreshed to apply changes-->
+					<div class="center margTop">
+						<a class="waves-effect waves-light btn indigo darken-4 margBotExtra" onclick="Materialize.toast('Saved', 2000, 'rounded', 
+							function() {
+								saveChanges('php_tasks/showreel_update.php', getShowreelData());
+								$('#showreel').submit();
+							})">save</a>
+					</div>
 				</form>
 				
 			</div>
@@ -161,6 +164,7 @@
 			<script src=\"frameworks/jquery-ui-1.11.4/jquery-ui.min.js\"></script>
 			<!--Scripts-->
 			<script src=\"scripts/zScriptCP.js\"></script>
+			<script src=\"scripts/zAjax.js\"></script>
 			";
 		}
 	}
