@@ -93,7 +93,7 @@
 			<!-- Modal Structure -->
 			<div id="modal1" class="modal">
 				<!-- Form for submission of admin name and password -->
-				<form action="adminLogin.php" method="post">
+				<form action="php tasks/admin_login.php" method="post">
 					<div class="modal-content">
 						<div class="form col s12">
 							<p>Admin Panel:</p>

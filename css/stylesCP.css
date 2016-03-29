@@ -163,6 +163,10 @@ form {
 	color: black;
 }
 
+.cp_acting a:hover {
+	background-color: #bbdefb;
+}
+
 /*------------Media queries-------------*/
 
 /*small*/
@@ -298,6 +302,16 @@ form {
 .absolute {
 	position: absolute;
 }
+.flex {
+	display: -webkit-flex;
+    display: flex;
+}
+.flex_col {
+	display: -webkit-flex;
+    display: flex;
+	-webkit-flex-direction: column;
+    flex-direction: column;
+}
 .lightText {
 	opacity: .8;
 }
@@ -315,6 +329,12 @@ form {
 }
 .margLeft {
 	margin-left: 15px;
+}
+.marg15 {
+	margin: 15px;
+}
+.pad15 {
+	padding: 15px;
 }
 .margTop {
 	margin-top: 15px;
