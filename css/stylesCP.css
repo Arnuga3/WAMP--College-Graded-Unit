@@ -108,37 +108,6 @@ hr {
 	margin-top: 5px;
 	padding: 0 30px;
 }
-#desktop_flex_top {
-	top: 45px;
-	display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: flex-end;
-    justify-content: flex-end;
-	margin-bottom: 5px;
-	padding: 5px 0;
-}
-#desktop_flex_top a {
-	display: -webkit-flex;
-    display: flex;
-	padding: 0 20px;
-	border-radius: 30px;
-	height: 35px;
-}
-#desktop_flex_top a:hover {
-	background-color: #bbdefb;
-}
-#desktop_flex_top img {
-	height: 25px;
-	-webkit-align-self: center;
-    align-self: center;
-}
-#desktop_flex_top span {
-	padding: 0 7px;
-	-webkit-align-self: center;
-    align-self: center;
-	color: #333;
-	font-size: 1.2em;
-}
 
 #showreel img {
 	width: 20px;
@@ -163,8 +132,24 @@ form {
 	color: black;
 }
 
-.cp_acting a:hover {
+.imgContainer:hover {
 	background-color: #bbdefb;
+}
+
+#cpCont > div > div {
+	margin: 5px 5px 5px 15px;
+	padding: 15px;
+}
+#cpCont > div > div input {
+	padding-left: 5px;
+}
+#cpCont > div > div {
+	height: 200px;
+	width: 167px;	/*2px for borders and 20px for padding and 45px for checkbox*/
+	border: 1px dotted #ccc;
+}
+#cpCont > div > div:hover {
+	background-color: rgba(200,200,200,.2);
 }
 
 /*------------Media queries-------------*/
@@ -189,36 +174,6 @@ form {
 		margin-top: 25px;
 		padding: 0 30px;
 		border-left: 2px solid #7986cb;
-	}
-	#desktop_flex_top {
-		display: -webkit-flex;
-		display: flex;
-		-webkit-justify-content: flex-start;
-		justify-content: flex-start;
-		margin-left: 25px;
-		margin-bottom: 25px;
-	}
-	#desktop_flex_top a {
-		display: -webkit-flex;
-		display: flex;
-		padding: 0 20px;
-		border-radius: 30px;
-		height: 55px;
-	}
-	#desktop_flex_top a:hover {
-		background-color: #bbdefb;
-	}
-	#desktop_flex_top img {
-		height: 40px;
-		-webkit-align-self: center;
-		align-self: center;
-	}
-	#desktop_flex_top span {
-		padding: 0 15px;
-		-webkit-align-self: center;
-		align-self: center;
-		color: #333;
-		font-size: 1.2em;
 	}
 }
 
@@ -347,4 +302,26 @@ form {
 }
 .textShadow {
 	text-shadow: 3px 3px black;
+}
+.smImage {
+	width: 100px;
+}
+.textCenter {
+	text-align: center;
+}
+.flexVertCenter {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+}
+.flexToRows {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-flex-wrap: wrap;
+   flex-wrap: wrap;
+   -webkit-justify-content: center;
+   justify-content: center;
 }

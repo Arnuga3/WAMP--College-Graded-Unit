@@ -188,21 +188,38 @@
 					<!--ACTING PHOTOS-->
 					<div class="cp_acting">
 						<h5 class="titleText">Selected Group:<span class="margLeft">Acting Photos</span></h5>
-						<div class="flex_col">
+						<div id="cpCont" class="flexToRows pad15 margTop">
 <?php
 							//Display folders
 							foreach ($folders_indexed as $i) {
 ?>
-								<a class="waves-effect waves-light flex pad15" href="#"><img src="../img/cpIcons/Folder.png" /><span class="margLeft infoText"><?php echo $i; ?></span></a>
+								<div>
+									<div class="flexVertCenter imgContainer">
+										<input type="checkbox" class="filled-in checkbox-orange" id="<?php echo $i; ?>" />
+										<label for="<?php echo $i; ?>"></label>
+										
+										<a class="waves-effect waves-light flex_col" href="#"><img class="smImage" src="../img/cpIcons/Folder.png" /><span class="infoText textCenter"><?php echo $i; ?></span></a>
+									</div>
+								</div>
 <?php
 							}
+							mysqli_data_seek($result, 0);
 							//Display photos without folders
 							if ($result->num_rows > 0) {
 								while($row = $result->fetch_assoc()) {
-									echo"<p>And now it's done.</p>";
-									if (in_array($row["image_folder"], $folders_indexed)) {
+									if (!in_array($row["image_folder"], $folders_indexed)) {
 ?>
-										<div><img src="<?php echo $row["image_path"]; ?>" /><?php echo $row["image_title"]; ?></div>
+										<div>
+											<div class="flexVertCenter imgContainer">
+												<input type="checkbox" class="filled-in checkbox-orange" id="<?php echo $row["image_ID"]; ?>" />
+												<label for="<?php echo $row["image_ID"]; ?>"></label>
+												
+												<div class="flex_col">
+													<img class="materialboxed" data-caption="<?php echo $row["image_descr"]; ?>" width="100" src="<?php echo $row["image_path"]; ?>" />
+													<span class="infoText"><?php echo $row["image_title"]; ?></span>
+												</div>
+											</div>
+										</div>
 <?php
 									}
 								}
