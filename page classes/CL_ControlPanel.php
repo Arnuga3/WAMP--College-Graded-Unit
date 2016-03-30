@@ -150,8 +150,7 @@
 							<div class="center margTop">
 								<a class="waves-effect waves-light btn indigo darken-4 margBotExtra" onclick="Materialize.toast('Saved', 2000, 'rounded', 
 									function() {
-										saveChanges('php tasks/showreel_update.php', getShowreelData());
-										$('#showreel').submit();
+										saveChanges('../php tasks/showreel_update.php', getShowreelData());
 									})">save</a>
 							</div>
 						</form>

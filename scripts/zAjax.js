@@ -28,7 +28,6 @@ function saveChanges(url, vars) {
 
 //Showreel variables for ajax post request
 function getShowreelData() {
-	
 	var title = $('#showrl_title').val();
 	var description = $('#showrl_description').val();
 	var path = $('#showrl_path').val();
