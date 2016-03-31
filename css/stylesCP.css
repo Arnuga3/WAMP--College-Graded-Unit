@@ -28,6 +28,45 @@ nav span {
 	font-size: .8em;
 }
 
+.sub_nav {
+	position: fixed;
+	top: 56px;
+	width: 100%;
+	z-index: 100;
+	display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+	margin-bottom: 5px;
+	padding: 5px 0;
+	background-color: rgba(255,205,35,1);
+}
+.sub_nav a {
+	display: -webkit-flex;
+    display: flex;
+	padding: 0 20px;
+	border-radius: 10px;
+	border: 1px dashed #1a237e;
+	height: 35px;
+	margin: 1px;
+}
+.sub_nav a:hover {
+	background-color: #f1f8e9;
+	border: 1px dotted #f1f8e9;
+}
+.sub_nav img {
+	height: 25px;
+	-webkit-align-self: center;
+    align-self: center;
+}
+.sub_nav span {
+	padding: 0 7px;
+	-webkit-align-self: center;
+    align-self: center;
+	color: #333;
+	font-size: 1.2em;
+}
+
 /*Mobile sliding menu panel*/
 .material-icons {
 	padding-right: 15px;
@@ -128,38 +167,6 @@ form {
 	color: black;
 }
 
-#desktop_flex_top {
-	display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    justify-content: center;
-	margin-bottom: 5px;
-	padding: 5px 0;
-	background-color: rgba(255,205,35,1);
-}
-#desktop_flex_top a {
-	display: -webkit-flex;
-    display: flex;
-	padding: 0 20px;
-	border-radius: 30px;
-	height: 35px;
-}
-#desktop_flex_top a:hover {
-	background-color: #f1f8e9;
-}
-#desktop_flex_top img {
-	height: 25px;
-	-webkit-align-self: center;
-    align-self: center;
-}
-#desktop_flex_top span {
-	padding: 0 7px;
-	-webkit-align-self: center;
-    align-self: center;
-	color: #333;
-	font-size: 1.2em;
-}
-
 #cpCont div {
 	height: 90px;
 }
@@ -180,9 +187,6 @@ form {
 .imgRow {
 	padding-left: 10px;
 }
-.cp_content {
-	padding: 0px;
-}
 #mainContent {
 	padding: 0;
 }
@@ -191,11 +195,28 @@ form {
 
 /*small*/
 @media screen and (max-width: 600px) {
-
+	.sub_nav span {
+		font-size: .9em;
+	}
+	.sub_nav a {
+		padding: 0 10px;
+		height: 30px;
+	}
+	.sub_nav img {
+		height: 20px;
+	}
 }
 /*medium*/
 @media screen and (max-width: 992px) and (min-width: 600px) {
-
+	.sub_nav {
+		position: fixed;
+		top: 64px;
+		width: 100%;
+		z-index: 100;
+	}
+	.cp_content {
+		padding: 0 25px;
+	}
 }
 /*large*/
 @media screen and (min-width: 991px) {
@@ -206,9 +227,16 @@ form {
 	}
 	#mainContent {
 		position: absolute;
-		margin-top: 25px;
-		padding: 0 30px;
 		border-left: 2px solid #7986cb;
+	}
+	.sub_nav {
+		position: fixed;
+		top: 64px;
+		width: 100%;
+		z-index: 100;
+	}
+	.cp_content {
+		padding: 0 25px;
 	}
 }
 
@@ -326,11 +354,17 @@ form {
 .marg15 {
 	margin: 15px;
 }
+.pad10 {
+	padding: 10px;
+}
 .pad15 {
 	padding: 15px;
 }
 .margTop {
 	margin-top: 15px;
+}
+.margTopX {
+	margin-top: 70px;
 }
 .margBot {
 	margin-bottom: 15px;

@@ -104,56 +104,62 @@
 			<div id="mainContent" class="col s12 l9 offset-l3">
 <?php
 				if ($group == "showreel") {
-?>					<!--SHOWREEL GROUP-->
+?>					
+					
+					<!--SHOWREEL GROUP-->
+					<!--SUBNAV-->
+					<!-- Showreel SAVE button, LOGIC: Toast is shown on a screen for 2 sec with SAVED message, AJAX is updating a record in DB, page is refreshed to apply changes-->
+					<div class="sub_nav">
+						<a class="waves-effect waves-light" onclick="Materialize.toast('Saved', 2500, 'rounded', 
+							function() {
+								saveChanges('../php tasks/showreel_update.php', getShowreelData());
+							})"><img src="../img/cpIcons/Checkmark.png" /><span>save</span></a>
+					</div>
+					
 					<div class="cp_content">
-						<h5 class="titleText">Selected Group:<span class="margLeft"><?php echo $result["video_group"]; ?></span></h5>
-												
-						<p class="infoText margTop">Video preview</p>
-						<div class="row">
-							<div class="col s12 l10">
-								<div class="video-container margTop">
-									<iframe width="853" height="480" src="<?php echo $result["video_path"]; ?>" frameborder="0" allowfullscreen></iframe>
+					
+						<h5 class="margLeft margTopX titleText">Selected Group:<span class="margLeft"><?php echo $result["video_group"]; ?></span></h5>
+							
+						<div class="pad10">
+							<p class="infoText margTop">Video preview</p>
+							<div class="row">
+								<div class="col s12 l10">
+									<div class="video-container margTop">
+										<iframe width="853" height="480" src="<?php echo $result["video_path"]; ?>" frameborder="0" allowfullscreen></iframe>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<p class="helperText"><img id="shwrl_warn" src="../img/cpIcons/Warning_2.png" />Only 1 video is allowed in this group.</p>
-						<p class="helperText"><img id="shwrl_pencil" src="../img/cpIcons/Pencil_2.png" />Just add, change or remove the information below and click a "save" button.</p>
-						
-						<p class="infoText margTop">Video information</p>
-						
-						<form id="showreel">
+							
+							<p class="helperText"><img id="shwrl_warn" src="../img/cpIcons/Warning_2.png" />Only 1 video is allowed in this group.</p>
+							<p class="helperText"><img id="shwrl_pencil" src="../img/cpIcons/Pencil_2.png" />Just add, change or remove the information below and click a "save" button.</p>
+							
+							<p class="infoText margTop">Video information</p>
+							
+							<form id="showreel">
 
-							<div class="input-field">
-								<input id="showrl_title" type="text" name="showrl_title" class="validate" length="255" value="<?php echo str_replace('"',"&quot;", $result["video_title"]);?>" />
-								<label for="showrl_title">video title</label>
-							</div>
-							<div class="input-field">
-								<textarea id="showrl_description" name="showrl_description" class="materialize-textarea" length="1000"><?php echo $result["video_descr"];?></textarea>
-								<label id="matr_descrLb" for="showrl_description">video description</label>
-							</div>
-							<div class="input-field">
-								<textarea id="showrl_path" type="text" name="showrl_path" class="materialize-textarea" length="255"><?php echo str_replace('"',"&quot;", $result["video_path"]);?></textarea>
-								<label id="matr_descrLb" for="showrl_path">video path</label>
-							</div>
-							
-							<div id="error"></div>
-							
-							<!-- Showreel SAVE button, LOGIC: Toast is shown on a screen for 2 sec with SAVED message, AJAX is updating a record in DB, page is refreshed to apply changes-->
-							<div class="center margTop">
-								<a class="waves-effect waves-light btn indigo darken-4 margBotExtra" onclick="Materialize.toast('Saved', 2000, 'rounded', 
-									function() {
-										saveChanges('../php tasks/showreel_update.php', getShowreelData());
-									})">save</a>
-							</div>
-						</form>
+								<div class="input-field">
+									<input id="showrl_title" type="text" name="showrl_title" class="validate" length="255" value="<?php echo str_replace('"',"&quot;", $result["video_title"]);?>" />
+									<label for="showrl_title">video title</label>
+								</div>
+								<div class="input-field">
+									<textarea id="showrl_description" name="showrl_description" class="materialize-textarea" length="1000"><?php echo $result["video_descr"];?></textarea>
+									<label id="matr_descrLb" for="showrl_description">video description</label>
+								</div>
+								<div class="input-field">
+									<textarea id="showrl_path" type="text" name="showrl_path" class="materialize-textarea" length="255"><?php echo str_replace('"',"&quot;", $result["video_path"]);?></textarea>
+									<label id="matr_descrLb" for="showrl_path">video path</label>
+								</div>
+								
+								<div id="error"></div>
+							</form>
+						</div>
 					</div>
 <?php
 				} elseif ($group == "cv") {
 ?>
 					<!--CV GROUP-->
 					<div>
-						<h5 class="titleText">Selected Group:<span class="margLeft"><?php  ?></span></h5>
+						<h5 class="titleText margTopX">Selected Group:<span class="margLeft"><?php  ?></span></h5>
 					</div>
 <?php
 				} elseif ($group == "acting_photos") {
@@ -178,15 +184,15 @@
 					//END
 ?>
 					<!--ACTING PHOTOS-->
+					<!--SUBNAV-->
+					<div class="sub_nav">
+						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Add.png" /><span>add new</span></a>
+						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Pencil_2.png" /><span>edit</span></a>
+						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Trash.png" /><span>delete</span></a>
+					</div>
 					<div class="cp_content">
-						
-						<div id="desktop_flex_top">
-							<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Add.png" /><span>add new</span></a>
-							<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Pencil_2.png" /><span>edit</span></a>
-							<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Trash.png" /><span>delete</span></a>
-						</div>
-						
-						<h5 class="margLeft titleText">Selected Group:<span class="margLeft">Acting Photos</span></h5>
+					
+						<h5 class="margLeft margTopX titleText">Selected Group:<span class="margLeft">Acting Photos</span></h5>
 						
 						<div id="cpCont" class="margTop">
 <?php
