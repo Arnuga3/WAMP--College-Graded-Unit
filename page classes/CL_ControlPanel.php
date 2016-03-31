@@ -102,19 +102,12 @@
 				</div>
 			</div>
 			<div id="mainContent" class="col s12 l9 offset-l3">
-				<!--
-				<div id="desktop_flex_top">
-					<a class="waves-effect waves-light" href="#"><img src="img/cpIcons/Add.png" /><span>add new</span></a>
-					<a class="waves-effect waves-light" href="#"><img src="img/cpIcons/Trash.png" /><span>delete</span></a>
-				</div>
-				<hr />
-				-->
 <?php
 				if ($group == "showreel") {
 ?>					<!--SHOWREEL GROUP-->
-					<div>
+					<div class="cp_content">
 						<h5 class="titleText">Selected Group:<span class="margLeft"><?php echo $result["video_group"]; ?></span></h5>
-						
+												
 						<p class="infoText margTop">Video preview</p>
 						<div class="row">
 							<div class="col s12 l10">
@@ -185,21 +178,28 @@
 					//END
 ?>
 					<!--ACTING PHOTOS-->
-					<div class="cp_acting">
-						<h5 class="titleText">Selected Group:<span class="margLeft">Acting Photos</span></h5>
-						<div id="cpCont" class="flexToRows pad15 margTop">
+					<div class="cp_content">
+						
+						<div id="desktop_flex_top">
+							<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Add.png" /><span>add new</span></a>
+							<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Pencil_2.png" /><span>edit</span></a>
+							<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Trash.png" /><span>delete</span></a>
+						</div>
+						
+						<h5 class="margLeft titleText">Selected Group:<span class="margLeft">Acting Photos</span></h5>
+						
+						<div id="cpCont" class="margTop">
 <?php
 							//Display folders
 							foreach ($folders_indexed as $i) {
 ?>
-								<div>
-									<div class="flexVertCenter imgContainer">
-										<input type="checkbox" class="filled-in checkbox-orange" id="<?php echo $i; ?>" />
-										<label for="<?php echo $i; ?>"></label>
-										
-										<a class="waves-effect waves-light flex_col" href="#"><img class="smImage" src="../img/cpIcons/Folder.png" /><span class="infoText textCenter"><?php echo $i; ?></span></a>
+								<!--Folder Row in Control Panel(image, name)-->
+								<a class="flexVertCenter waves-effect waves-light" href="#">
+									<div class="flexVertCenter">
+										<img class="margLeft10" width="40" src="../img/cpIcons/Folder.png" />
+										<span class="margLeft infoText"><?php echo $i; ?></span>
 									</div>
-								</div>
+								</a>
 <?php
 							}
 							mysqli_data_seek($result, 0);
@@ -207,17 +207,18 @@
 							if ($result->num_rows > 0) {
 								while($row = $result->fetch_assoc()) {
 									if (!in_array($row["image_folder"], $folders_indexed)) {
-?>
-										<div>
-											<div class="flexVertCenter imgContainer">
-												<input type="checkbox" class="filled-in checkbox-orange" id="<?php echo $row["image_ID"]; ?>" />
-												<label for="<?php echo $row["image_ID"]; ?>"></label>
-												
-												<div class="flex_col">
-													<img class="materialboxed" data-caption="<?php echo $row["image_descr"]; ?>" width="100" src="<?php echo $row["image_path"]; ?>" />
-													<span class="infoText"><?php echo $row["image_title"]; ?></span>
+										
+?>										<!--Image Row in Control Panel(checkbox, name, image)-->
+										<div class="flexVertCenter imgRow">
+											<input type="checkbox" class="filled-in checkbox-orange" id="<?php echo $row["image_ID"]; ?>" />
+											<label for="<?php echo $row["image_ID"]; ?>">
+												<div class="flexVertCenter">
+													<div>
+														<span class="infoText"><?php echo $row["image_title"]; ?></span>
+													</div>
 												</div>
-											</div>
+											</label>
+											<img class="materialboxed" data-caption="<?php echo $row["image_descr"]; ?>" width="60" src="<?php echo $row["image_path"]; ?>" />
 										</div>
 <?php
 									}
