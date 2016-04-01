@@ -39,20 +39,19 @@ nav span {
     justify-content: center;
 	margin-bottom: 5px;
 	padding: 5px 0;
-	background-color: rgba(255,205,35,1);
+	background-color: #ffc107;
 }
 .sub_nav a {
+	background-color: #ffe082;
 	display: -webkit-flex;
     display: flex;
 	padding: 0 20px;
 	border-radius: 10px;
-	border: 1px dashed #1a237e;
 	height: 35px;
 	margin: 1px;
 }
 .sub_nav a:hover {
 	background-color: #f1f8e9;
-	border: 1px dotted #f1f8e9;
 }
 .sub_nav img {
 	height: 25px;
@@ -78,7 +77,7 @@ nav span {
 	padding: 0;
 }
 #slide-out li:hover {
-    background-color: #bbdefb;
+    background-color: #ffe082;
 	padding: 0;
 }
 #slide-out a {
@@ -126,7 +125,7 @@ hr {
 	border-bottom-right-radius: 30px;
 }
 #desktop_flex a:hover {
-	background-color: #bbdefb;
+	background-color: #ffe082;
 }
 #desktop_flex span {
 	padding-left: 10px;

@@ -59,19 +59,19 @@
 						
 						<!--Mobile sliding menu-->
 						<ul id="slide-out" class="side-nav">
-							<li><a class="menu_link waves-effect waves-light" href="cp_showreel.php"><img src="../img/cpIcons/movie-clapperboard-icon.png" />Showreel</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="cp_showreel.php"><img src="../img/cpIcons/movies.png" />Showreel</a></li>
 							<hr />
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/File_Text.png" />CV</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" />CV</a></li>
 							<hr />
 							<p class="lightText">ACTING SHOTS:</p>
-							<li><a class="menu_link waves-effect waves-light" href="cp_acting_photos.php"><img src="../img/cpIcons/Photo-icon.png" />Acting photos</a></li>
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/movies-icon.png" />Acting videos</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="cp_acting_photos.php"><img src="../img/cpIcons/photos.png" />Acting photos</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" />Acting videos</a></li>
 							<hr />
 							<p class="lightText">GIG SHOTS:</p>
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/Photo-icon.png" />Gig photos</a></li>
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/movies-icon.png" />Gig videos</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/photos.png" />Gig photos</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" />Gig videos</a></li>
 							<hr />
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/song_icon.png" />Songs</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" />Songs</a></li>
 						</ul>
 						<a href="../php tasks/close_session.php" class="hide-on-large-only right"><i class="material-icons">input</i></a>
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
@@ -86,19 +86,19 @@
 		<div class="row">
 			<div id="contField" class="col l3 hide-on-med-and-down">
 				<div id="desktop_flex">
-					<a class="waves-effect waves-light" href="cp_showreel.php"><img src="../img/cpIcons/movie-clapperboard-icon.png" /><span>Showreel</span></a>
+					<a class="waves-effect waves-light" href="cp_showreel.php"><img src="../img/cpIcons/movies.png" /><span>Showreel</span></a>
 					<hr />
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/File_Text.png" /><span>CV</span></a>
+					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
 					<hr />
 					<p class="lightText">ACTING SHOTS:</p>
-					<a class="waves-effect waves-light" href="cp_acting_photos.php"><img src="../img/cpIcons/Photo-icon.png" /><span>Acting photos</span></a>
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/movies-icon.png" /><span>Acting videos</span></a>
+					<a class="waves-effect waves-light" href="cp_acting_photos.php"><img src="../img/cpIcons/photos.png" /><span>Acting photos</span></a>
+					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Acting videos</span></a>
 					<hr />
 					<p class="lightText">GIG SHOTS:</p>
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Photo-icon.png" /><span>Gig photos</span></a>
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/movies-icon.png" /><span>Gig videos</span></a>
+					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/photos.png" /><span>Gig photos</span></a>
+					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
 					<hr />
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/song_icon.png" /><span>Songs</span></a>
+					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
 				</div>
 			</div>
 			<div id="mainContent" class="col s12 l9 offset-l3">
@@ -113,7 +113,7 @@
 						<a class="waves-effect waves-light" onclick="Materialize.toast('Saved', 2500, 'rounded', 
 							function() {
 								saveChanges('../php tasks/showreel_update.php', getShowreelData());
-							})"><img src="../img/cpIcons/Checkmark.png" /><span>save</span></a>
+							})"><img src="../img/cpIcons/diskette.png" /><span>save</span></a>
 					</div>
 					
 					<div class="cp_content">
@@ -130,8 +130,8 @@
 								</div>
 							</div>
 							
-							<p class="helperText"><img id="shwrl_warn" src="../img/cpIcons/Warning_2.png" />Only 1 video is allowed in this group.</p>
-							<p class="helperText"><img id="shwrl_pencil" src="../img/cpIcons/Pencil_2.png" />Just add, change or remove the information below and click a "save" button.</p>
+							<p class="helperText"><img id="shwrl_warn" src="../img/cpIcons/information.png" />Only 1 video is allowed in this group.</p>
+							<p class="helperText"><img id="shwrl_pencil" src="../img/cpIcons/pencil.png" />Just add, change or remove the information below and click a "save" button.</p>
 							
 							<p class="infoText margTop">Video information</p>
 							
@@ -186,9 +186,9 @@
 					<!--ACTING PHOTOS-->
 					<!--SUBNAV-->
 					<div class="sub_nav">
-						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Add.png" /><span>add new</span></a>
-						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Pencil_2.png" /><span>edit</span></a>
-						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/Trash.png" /><span>delete</span></a>
+						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/pencil_add.png" /><span>add new</span></a>
+						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/pencil.png" /><span>edit</span></a>
+						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/pencil_delete.png" /><span>delete</span></a>
 					</div>
 					<div class="cp_content">
 					
@@ -202,7 +202,7 @@
 								<!--Folder Row in Control Panel(image, name)-->
 								<a class="flexVertCenter waves-effect waves-light" href="#">
 									<div class="flexVertCenter">
-										<img class="margLeft10" width="40" src="../img/cpIcons/Folder.png" />
+										<img class="margLeft10" width="40" src="../img/cpIcons/folder_picture.png" />
 										<span class="margLeft infoText"><?php echo $i; ?></span>
 									</div>
 								</a>
