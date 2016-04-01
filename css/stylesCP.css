@@ -146,8 +146,7 @@ hr {
 #showreel img {
 	width: 20px;
 }
-#shwrl_warn, 
-#shwrl_pencil {
+.sm_info {
 	width: 15px;
 	margin: 0 5px;
 }

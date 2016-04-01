@@ -85,7 +85,9 @@
 ?>
 		<div class="row">
 			<div id="contField" class="col l3 hide-on-med-and-down">
+				<h5 class="margLeft margTopX titleText"><span class="margLeft">Menu:</span></h5>
 				<div id="desktop_flex">
+					<hr />
 					<a class="waves-effect waves-light" href="cp_showreel.php"><img src="../img/cpIcons/movies.png" /><span>Showreel</span></a>
 					<hr />
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
@@ -99,6 +101,7 @@
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
 					<hr />
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
+					<hr />
 				</div>
 			</div>
 			<div id="mainContent" class="col s12 l9 offset-l3">
@@ -118,8 +121,10 @@
 					
 					<div class="cp_content">
 					
-						<h5 class="margLeft margTopX titleText">Selected Group:<span class="margLeft"><?php echo $result["video_group"]; ?></span></h5>
+						<h5 class="margLeft margTopX titleText">selected:<span class="margLeft">Showreel</span></h5>
 							
+						<p class="helperText"><img class="sm_info" src="../img/cpIcons/information.png" />Only one video is available here. It will be displayed on a showreel page.</p>
+						
 						<div class="pad10">
 							<p class="infoText margTop">Video preview</p>
 							<div class="row">
@@ -129,9 +134,6 @@
 									</div>
 								</div>
 							</div>
-							
-							<p class="helperText"><img id="shwrl_warn" src="../img/cpIcons/information.png" />Only 1 video is allowed in this group.</p>
-							<p class="helperText"><img id="shwrl_pencil" src="../img/cpIcons/pencil.png" />Just add, change or remove the information below and click a "save" button.</p>
 							
 							<p class="infoText margTop">Video information</p>
 							
@@ -159,7 +161,7 @@
 ?>
 					<!--CV GROUP-->
 					<div>
-						<h5 class="titleText margTopX">Selected Group:<span class="margLeft"><?php  ?></span></h5>
+						<h5 class="titleText margTopX">selected:<span class="margLeft"><?php  ?></span></h5>
 					</div>
 <?php
 				} elseif ($group == "acting_photos") {
@@ -192,7 +194,9 @@
 					</div>
 					<div class="cp_content">
 					
-						<h5 class="margLeft margTopX titleText">Selected Group:<span class="margLeft">Acting Photos</span></h5>
+						<h5 class="margLeft margTopX titleText">selected:<span class="margLeft">Acting Photos</span></h5>
+						
+						<p class="helperText"><img class="sm_info" src="../img/cpIcons/information.png" />Add, Edit or Remove albums or images.</p>
 						
 						<div id="cpCont" class="margTop">
 <?php
