@@ -47,29 +47,39 @@ nav span {
 	z-index: 100;
 	display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: center;
-    justify-content: center;
 	padding: 5px 0;
 	background-color: #aaa;
 }
-.sub_nav a {
-	background-color: #ffe082;
+.sub_nav_shwrl {
+	width: 100%;
+	z-index: 100;
 	display: -webkit-flex;
     display: flex;
-	padding: 0 20px;
-	border-radius: 10px;
-	height: 35px;
-	margin: 1px;
+	padding: 5px 0;
+	background-color: #aaa;
 }
-.sub_nav a:hover {
+.sub_nav a,
+.sub_nav_shwrl a {
+	background-color: white;
+	display: -webkit-flex;
+    display: flex;
+	padding: 0 15px;
+	border-radius: 5px;
+	height: 35px;
+	margin-left: 5px;
+}
+.sub_nav a:hover,
+.sub_nav_shwrl a:hover {
 	background-color: #f1f8e9;
 }
-.sub_nav img {
+.sub_nav img,
+.sub_nav_shwrl img {
 	height: 25px;
 	-webkit-align-self: center;
     align-self: center;
 }
-.sub_nav span {
+.sub_nav span,
+.sub_nav_shwrl span {
 	padding: 0 7px;
 	-webkit-align-self: center;
     align-self: center;
@@ -201,30 +211,29 @@ form {
 }
 
 
-/*added to fix an unknown bug - used in a_act_folders.php*/
+/*margin top for the content after fixed navbar and subnavbar, added to fix an unknown bug 
+as different output is displayed in a_act_photos.php and a_act_folders.php
+that settings a different in media queries*/
 .infoMargin {
-	margin-top: 110px;
+	margin-top: 75px;
 }
 .infoMargin2 {
-	margin-top: 89px;
+	margin-top: 54px;
 }
 
+.btn-floating img {
+	height: 25px;
+	position: absolute;
+	top: 7px;
+	left: 7px;
+}
 
 /*------------Media queries-------------*/
 
 
 /*small*/
 @media screen and (max-width: 600px) {
-	.sub_nav span {
-		font-size: .9em;
-	}
-	.sub_nav a {
-		padding: 0 10px;
-		height: 30px;
-	}
-	.sub_nav img {
-		height: 20px;
-	}
+	
 }
 /*medium*/
 @media screen and (max-width: 992px) and (min-width: 600px) {
@@ -232,20 +241,14 @@ form {
 		position: fixed;
 		top: 64px;
 	}
-	.sub_nav {
-		position: fixed;
-		top: 128px;
-		width: 100%;
-		z-index: 100;
-	}
 	.cp_content {
 		padding: 0 25px;
 	}
 	.infoMargin {
-		margin-top: 125px;
+		margin-top: 90px;
 	}
 	.infoMargin2 {
-		margin-top: 104px;
+		margin-top: 69px;
 	}
 }
 /*large*/

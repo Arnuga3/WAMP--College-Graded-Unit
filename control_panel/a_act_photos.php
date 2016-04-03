@@ -43,12 +43,25 @@ if (isset($_SESSION["mrBoss"])) {
 		</div>
 	</nav>
 	
-	<div class=\"sub_nav\">
-		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/pencil_add.png\" /><span>add new</span></a>
-		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/pencil.png\" /><span>edit</span></a>
-		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/pencil_delete.png\" /><span>delete</span></a>
+	<div class=\"sub_nav hide-on-med-and-down\">
+		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/folder_add.png\" /><span>new folder</span></a>
+		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo</span></a>
+		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
+		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
 	</div>
 
+	<div class=\"fixed-action-btn horizontal click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
+		<a class=\"btn-floating btn-large red\">
+			<i class=\"large mdi-navigation-menu\"></i>
+		</a>
+		<ul>
+			<li><a class=\"btn-floating blue\"><img src=\"../img/cpIcons/folder_add.png\" /></a></li>
+			<li><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
+			<li><a class=\"btn-floating green\"><i class=\"material-icons\">publish</i></a></li>
+			<li><a class=\"btn-floating blue\"><i class=\"material-icons\">attach_file</i></a></li>
+		</ul>
+	</div>
+	
 	<div class=\"cp_content margTopXL\">
 
 		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Add, Edit or Remove albums or images.</p>
@@ -61,7 +74,7 @@ if (isset($_SESSION["mrBoss"])) {
 			echo "<!--Folder Row in Control Panel(image, name)-->
 				<a class=\"folder flexVertCenter waves-effect waves-light\" href=\"#\">
 					<div class=\"flexVertCenter\">
-						<img class=\"margLeft10\" width=\"40\" src=\"../img/cpIcons/folder_picture.png\" />
+						<img class=\"margLeft10\" width=\"40\" src=\"../img/cpIcons/folder_image.png\" />
 						<span class=\"margLeft infoText\">".$val."</span>
 					</div>
 				</a>";

@@ -22,11 +22,18 @@ if (isset($_SESSION["mrBoss"])) {
 		echo "<!--SHOWREEL GROUP-->
 			<!--SUBNAV-->
 			<!-- Showreel SAVE button, LOGIC: Toast is shown on a screen for 2 sec with SAVED message, AJAX is updating a record in DB, page is refreshed to apply changes-->
-			<div class=\"sub_nav\">
+			<div class=\"sub_nav_shwrl hide-on-med-and-down\">
 				<a class=\"waves-effect waves-light\" onclick=\"Materialize.toast('Saved', 2500, 'rounded', 
 					function() {
 						saveChanges('../php tasks/showreel_update.php', getShowreelData());
 					})\"><img src=\"../img/cpIcons/diskette.png\" /><span>save</span></a>
+			</div>
+			
+			<div class=\"fixed-action-btn hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
+				<a class=\"btn-floating btn waves-effect waves-light orange\" onclick=\"Materialize.toast('Saved', 2500, 'rounded', 
+						function() {
+							saveChanges('../php tasks/showreel_update.php', getShowreelData());
+						})\"><img src=\"../img/cpIcons/diskette.png\" /></a>
 			</div>
 			
 			<div class=\"cp_content\">
