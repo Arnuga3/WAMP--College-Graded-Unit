@@ -37,7 +37,6 @@ nav span {
     display: flex;
     -webkit-justify-content: center;
     justify-content: center;
-	margin-bottom: 5px;
 	padding: 5px 0;
 	background-color: #ffc107;
 }
@@ -306,6 +305,12 @@ form {
 	border: 2px solid orange;
     background-color: orange;
 }
+.bread {
+	background-color: #999;
+}
+.breadcrumb {
+	color: black;
+}
 
 /*------------Help classes-------------*/
 
@@ -360,6 +365,9 @@ form {
 }
 .margTop {
 	margin-top: 15px;
+}
+.margTopL {
+	margin-top: 40px;
 }
 .margTopX {
 	margin-top: 70px;

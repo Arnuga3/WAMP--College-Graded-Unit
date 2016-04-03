@@ -24,7 +24,7 @@ session_start();
 				if ($row["usr_name"] == $userName and crypt($userPassword, $row["usr_psswd"]) == $row["usr_psswd"]) {
 					//I do transfer to another file here to prevent the form resubmission when back and forward buttons are pressed, like pages A B and C, this is a page B and it is used for this purpose
 					$_SESSION["mrBoss"] = $row;
-					header("Location: ../control panel/cp_showreel.php");
+					header("Location: ../control_panel/cp_showreel.php");
 				} else {
 					echo "Invalid data. Login failed.";
 				}
