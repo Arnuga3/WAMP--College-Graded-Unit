@@ -28,9 +28,21 @@ nav span {
 	font-size: .8em;
 }
 
-.sub_nav {
+.bread_path {
 	position: fixed;
 	top: 56px;
+	z-index: 101;
+}
+.bread {
+	background-color: #ffc107;
+}
+.breadcrumb {
+	color: black;
+}
+
+.sub_nav {
+	position: fixed;
+	top: 111px;
 	width: 100%;
 	z-index: 100;
 	display: -webkit-flex;
@@ -38,7 +50,7 @@ nav span {
     -webkit-justify-content: center;
     justify-content: center;
 	padding: 5px 0;
-	background-color: #ffc107;
+	background-color: #aaa;
 }
 .sub_nav a {
 	background-color: #ffe082;
@@ -188,7 +200,18 @@ form {
 	padding: 0;
 }
 
+
+/*added to fix an unknown bug - used in a_act_folders.php*/
+.infoMargin {
+	margin-top: 110px;
+}
+.infoMargin2 {
+	margin-top: 89px;
+}
+
+
 /*------------Media queries-------------*/
+
 
 /*small*/
 @media screen and (max-width: 600px) {
@@ -205,14 +228,24 @@ form {
 }
 /*medium*/
 @media screen and (max-width: 992px) and (min-width: 600px) {
-	.sub_nav {
+	.bread_path {
 		position: fixed;
 		top: 64px;
+	}
+	.sub_nav {
+		position: fixed;
+		top: 128px;
 		width: 100%;
 		z-index: 100;
 	}
 	.cp_content {
 		padding: 0 25px;
+	}
+	.infoMargin {
+		margin-top: 125px;
+	}
+	.infoMargin2 {
+		margin-top: 104px;
 	}
 }
 /*large*/
@@ -226,14 +259,24 @@ form {
 		position: absolute;
 		border-left: 2px solid #7986cb;
 	}
-	.sub_nav {
+	.bread_path {
 		position: fixed;
 		top: 64px;
+	}
+	.sub_nav {
+		position: fixed;
+		top: 128px;
 		width: 100%;
 		z-index: 100;
 	}
 	.cp_content {
 		padding: 0 25px;
+	}
+	.infoMargin {
+		margin-top: 125px;
+	}
+	.infoMargin2 {
+		margin-top: 103px;
 	}
 }
 
@@ -304,12 +347,6 @@ form {
 .orange-radio[type="radio"]:checked + label:after {
 	border: 2px solid orange;
     background-color: orange;
-}
-.bread {
-	background-color: #999;
-}
-.breadcrumb {
-	color: black;
 }
 
 /*------------Help classes-------------*/

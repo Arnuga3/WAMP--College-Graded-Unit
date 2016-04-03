@@ -26,21 +26,24 @@ if (isset($_SESSION["mrBoss"])) {
 	
 	echo "<!--ACTING PHOTOS-->
 	<!--SUBNAV-->
-	<div class=\"sub_nav\">
-		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/pencil_add.png\" /><span>add new</span></a>
-		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/pencil.png\" /><span>edit</span></a>
-		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/pencil_delete.png\" /><span>delete</span></a>
-	</div>
-	<nav id=\"bread_path\">
-		<div class=\"bread margTopL margBot nav-wrapper\">
+	<nav class=\"bread_path\">
+		<div class=\"bread nav-wrapper\">
 			<div class=\"col s12\">
 				<a href=\"#!\" class=\"a_act_p breadcrumb\">Acting Photos</a>
 				<a href=\"#!\" class=\"breadcrumb\">$folder</a>
 			</div>
 		</div>
 	</nav>
-	<div class=\"cp_content\">
-		<p class=\"helperText\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Add, Edit or Remove albums or images.</p>
+	
+	<div class=\"sub_nav\">
+		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/pencil_add.png\" /><span>add new</span></a>
+		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/pencil.png\" /><span>edit</span></a>
+		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/pencil_delete.png\" /><span>delete</span></a>
+	</div>
+
+	<div class=\"cp_content margTopXL2\">
+	
+		<p class=\"helperText infoMargin2\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Add, Edit or Remove albums or images.</p>
 		
 		<div id=\"cpCont\" class=\"margTop\">";
 
