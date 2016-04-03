@@ -228,7 +228,6 @@ METHODS DESCRIPTION AND USAGE:
 					} else {
 						$query = "UPDATE ".$table." SET ".$colValStr." WHERE ".$targetCol."=".$targetVal;
 					}
-					echo "UpDATEd";
 				}
 			}
 			

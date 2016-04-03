@@ -27,7 +27,7 @@ function saveChanges(url, vars) {
 /*             Custom Functions               */
 
 
-//Showreel variables for ajax post request
+//Showreel variables for ajax post request, to save any changes in showreel group
 function getShowreelData() {
 	var title = $('#showrl_title').val();
 	var description = $('#showrl_description').val();

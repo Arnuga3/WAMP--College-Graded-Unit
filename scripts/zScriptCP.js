@@ -29,7 +29,7 @@ function reloadEvents() {
 //jQuery AJAX function with a callback function to make plugins working with new loaded elements//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-//MENU
+//CONTROL PANEL MENU
 
 $('.a_shwrl').click(function() {
 	$('#mainContent').load('../control_panel/a_showreel.php', function() {

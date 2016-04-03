@@ -38,7 +38,7 @@ if (isset($_SESSION["mrBoss"])) {
 			
 			<div class=\"cp_content\">
 			
-				<h5 class=\"margLeft margTopX titleText\">selected:<span class=\"margLeft\">Showreel</span></h5>
+				<h5 class=\"margLeft margTop titleText\">selected:<span class=\"margLeft\">Showreel</span></h5>
 					
 				<p class=\"helperText\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Only one video is available here. It will be displayed on a showreel page.</p>
 				
