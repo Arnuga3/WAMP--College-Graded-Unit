@@ -87,9 +87,44 @@ nav span {
 	font-size: 1.2em;
 }
 
+#dark {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #263238;
+	opacity: 0;
+	z-index: -1;	/*to control layer*/
+}
+.fixed-action-btn {
+	z-index: 201;	/*to control layer, is on top of darken bg*/
+}
+.fixed-action-btn li {
+	position: relative;
+}
+.fixed-action-btn li > span {
+	position: absolute;
+	left:-100px;
+	bottom: 7px;
+	display: block;
+	width: 105px;
+	padding-left: 7px;
+	border-radius: 10px;
+	background-color: #777;
+	color: white;
+	font-size: 1.1em;
+	text-align: left;
+}
+
 /*Mobile sliding menu panel*/
 .material-icons {
 	padding-right: 15px;
+}
+/*Floating buttons img correction inside*/
+.pencil {
+	margin: 8px;
 }
 #slide-out {
 	height: inherit;
@@ -418,6 +453,9 @@ that settings a different in media queries*/
 .margBotExtra {
 	margin-bottom: 30px;
 }
+.margBotXL {
+	margin-bottom: 75px;
+}
 .textShadow {
 	text-shadow: 3px 3px black;
 }
@@ -426,6 +464,9 @@ that settings a different in media queries*/
 }
 .textCenter {
 	text-align: center;
+}
+.textJustify {
+	text-align: justify;
 }
 .flexVertCenter {
 	display: -webkit-flex;

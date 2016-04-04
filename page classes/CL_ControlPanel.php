@@ -44,6 +44,8 @@
 		
 		public function displayNavbar() {
 ?>	
+			<div id="dark"></div>
+
 			<div class="navbar-fixed">
 				<nav class="indigo darken-4">
 					<div class="nav-wrapper">
@@ -59,11 +61,11 @@
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" />CV</a></li>
 							<hr />
 							<p class="lightText">ACTING SHOTS:</p>
-							<li><a class="a_act_p menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/photos.png" />Acting photos</a></li>
+							<li><a class="a_act_p menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" />Acting photos</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" />Acting videos</a></li>
 							<hr />
 							<p class="lightText">GIG SHOTS:</p>
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/photos.png" />Gig photos</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" />Gig photos</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" />Gig videos</a></li>
 							<hr />
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" />Songs</a></li>
@@ -88,11 +90,11 @@
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
 					<hr />
 					<p class="lightText">ACTING SHOTS:</p>
-					<a class="a_act_p waves-effect waves-light" href="#"><img src="../img/cpIcons/photos.png" /><span>Acting photos</span></a>
+					<a class="a_act_p waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" /><span>Acting photos</span></a>
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Acting videos</span></a>
 					<hr />
 					<p class="lightText">GIG SHOTS:</p>
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/photos.png" /><span>Gig photos</span></a>
+					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" /><span>Gig photos</span></a>
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
 					<hr />
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
@@ -100,7 +102,7 @@
 				</div>
 			</div>
 			<div id="mainContent" class="col s12 l9 offset-l3">
-				<p>select from the menu</p>
+				<div class="pad15 textJustify">Welcome to the Control Panel! Here you can change the content of the ... website. Please read the information below what is providing the detailed documentation. All the content is separated in different groups and is available in the main menu. </div>
 			</div>
 		</div>
 <?php

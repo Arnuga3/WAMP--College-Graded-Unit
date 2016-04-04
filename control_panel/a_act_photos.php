@@ -34,6 +34,7 @@ if (isset($_SESSION["mrBoss"])) {
 
 	echo "<!--ACTING PHOTOS-->
 	<!--SUBNAV-->
+	
 	<nav class=\"bread_path\">
 		<div class=\"bread nav-wrapper\">
 			<div class=\"col s12\">
@@ -44,29 +45,38 @@ if (isset($_SESSION["mrBoss"])) {
 	</nav>
 	
 	<div class=\"sub_nav hide-on-med-and-down\">
+		<a class=\"waves-effect waves-light grey disabled\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
 		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/folder_add.png\" /><span>new folder</span></a>
 		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo</span></a>
 		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
 		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
+		<a class=\"waves-effect waves-light\" href=\"#\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo</span></a>
 	</div>
 
-	<div class=\"fixed-action-btn horizontal click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
-		<a class=\"btn-floating btn-large red\">
-			<i class=\"large mdi-navigation-menu\"></i>
+	<div class=\"fixed-action-btn vertical click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
+		<a class=\"fire_dark btn-floating btn-large deep-orange darken-2\">
+			<img class=\"pencil\" src=\"../img/cpIcons/pencil.png\" />
 		</a>
 		<ul>
-			<li><a class=\"btn-floating blue\"><img src=\"../img/cpIcons/folder_add.png\" /></a></li>
-			<li><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
-			<li><a class=\"btn-floating green\"><i class=\"material-icons\">publish</i></a></li>
-			<li><a class=\"btn-floating blue\"><i class=\"material-icons\">attach_file</i></a></li>
+			<li><span>new folder</span><a class=\"btn-floating blue\"><img src=\"../img/cpIcons/folder_add.png\" /></a></li>
+			<li><span>new photo</span><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
+			<li><span>edit photo</span><a class=\"btn-floating green\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
+			<li><span>delete photo</span><a class=\"btn-floating blue\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
+			<li><span>move photo</span><a class=\"btn-floating red\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
 		</ul>
 	</div>
 	
-	<div class=\"cp_content margTopXL\">
+	<div class=\"fixed-action-btn vertical click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 84px;\">
+		<a class=\"btn-floating btn-large yellow disabled\">
+			<img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" />
+		</a>
+	</div>
+	
+	<div class=\"cp_content\">
 
 		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Add, Edit or Remove albums or images.</p>
 		
-		<div id=\"cpCont\" class=\"margTop\">";
+		<div id=\"cpCont\" class=\"margTop margBotXL\">";
 
 			//Display folders
 			foreach ($folders_indexed as $val) {

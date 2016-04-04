@@ -21,8 +21,18 @@ if (isset($_SESSION["mrBoss"])) {
 			
 		echo "<!--SHOWREEL GROUP-->
 			<!--SUBNAV-->
+			
+			<nav class=\"bread_path\">
+				<div class=\"bread nav-wrapper\">
+					<div class=\"col s12\">
+						<a href=\"#!\" class=\"breadcrumb\">Showreel</a>
+						<a href=\"#!\" class=\"breadcrumb\"></a>
+					</div>
+				</div>
+			</nav>
+			
 			<!-- Showreel SAVE button, LOGIC: Toast is shown on a screen for 2 sec with SAVED message, AJAX is updating a record in DB, page is refreshed to apply changes-->
-			<div class=\"sub_nav_shwrl hide-on-med-and-down\">
+			<div class=\"sub_nav hide-on-med-and-down\">
 				<a class=\"waves-effect waves-light\" onclick=\"Materialize.toast('Saved', 2500, 'rounded', 
 					function() {
 						saveChanges('../php tasks/showreel_update.php', getShowreelData());
@@ -30,17 +40,15 @@ if (isset($_SESSION["mrBoss"])) {
 			</div>
 			
 			<div class=\"fixed-action-btn hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
-				<a class=\"btn-floating btn waves-effect waves-light orange\" onclick=\"Materialize.toast('Saved', 2500, 'rounded', 
+				<a class=\"btn-floating btn-large waves-effect waves-light deep-orange darken-2\" onclick=\"Materialize.toast('Saved', 2500, 'rounded', 
 						function() {
 							saveChanges('../php tasks/showreel_update.php', getShowreelData());
-						})\"><img src=\"../img/cpIcons/diskette.png\" /></a>
+						})\"><img class=\"pencil\" src=\"../img/cpIcons/diskette.png\" /></a>
 			</div>
 			
-			<div class=\"cp_content\">
-			
-				<h5 class=\"margLeft margTop titleText\">selected:<span class=\"margLeft\">Showreel</span></h5>
+			<div class=\"cp_content margBotXL\">
 					
-				<p class=\"helperText\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Only one video is available here. It will be displayed on a showreel page.</p>
+				<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Only one video is available here. It will be displayed on a showreel page.</p>
 				
 				<div class=\"pad10\">
 					<p class=\"infoText margTop\">Video preview</p>
