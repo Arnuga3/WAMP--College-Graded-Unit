@@ -21,6 +21,11 @@ function reloadEvents() {
 	//modal
 	$('.modal-trigger').leanModal();
 	
+	//footer modal in CP
+	$('.foot_mod').click(function() {
+		$('#footer_modal').closeModal();
+	});
+	
 	//characterCounter
 	$('input#showrl_title, textarea#showrl_description, textarea#showrl_path').characterCounter();
 	
@@ -84,6 +89,8 @@ function actionPhotosDo() {
 	});
 }
 actionPhotosDo();
+
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

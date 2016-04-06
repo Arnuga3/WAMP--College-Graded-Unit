@@ -47,9 +47,9 @@
 			<div id="dark"></div>
 
 			<div class="navbar-fixed">
-				<nav class="indigo darken-4">
+				<nav class="blue-grey darken-4">
 					<div class="nav-wrapper">
-						<a href="index.php" class="brand-logo center"><span>Control Panel</span></a>
+						<a href="#" class="brand-logo center"><span>Control Panel</span></a>
 						<ul class="right hide-on-med-and-down">
 							<li><a class="menu_link waves-effect waves-light" href="../php tasks/close_session.php">LOG OUT</a></li>
 						</ul>

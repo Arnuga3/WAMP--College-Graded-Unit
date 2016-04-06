@@ -36,3 +36,27 @@ function getShowreelData() {
 	var combined = "title=" + title + "&description=" + description + "&path=" + path;
 	return combined;
 }
+
+//MOVE PHOTOS FUNCTIONALITY, prepare and send ajax
+function movePhotosAJAX(folder, photos) {
+	var folderName = folder;
+	var folderNoSpace = folderName.replace(" ", "+");
+	
+	alert(folderNoSpace);
+	var photos = photos;
+	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
+	saveChanges("../php tasks/move_photo_update.php", combined);
+}
+//Checked photos
+function getSelectedPhotos() {
+	var checked = [];
+	var toStr = "";
+	$('input:checked').each(function() {
+		checked.push($(this).attr("id"));
+	});
+	for (var i=0; i<checked.length; i++) {
+		toStr += "p" + checked[i];
+	}
+	return toStr;
+}
+

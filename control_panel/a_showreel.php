@@ -33,7 +33,7 @@ if (isset($_SESSION["mrBoss"])) {
 			
 			<!-- Showreel SAVE button, LOGIC: Toast is shown on a screen for 2 sec with SAVED message, AJAX is updating a record in DB, page is refreshed to apply changes-->
 			<div class=\"sub_nav hide-on-med-and-down\">
-				<a class=\"waves-effect waves-light\" onclick=\"Materialize.toast('Saved', 2500, 'rounded', 
+				<a class=\"waves-effect waves-dark z-depth-1\" onclick=\"Materialize.toast('Saved', 2500, 'rounded', 
 					function() {
 						saveChanges('../php tasks/showreel_update.php', getShowreelData());
 					})\"><img src=\"../img/cpIcons/diskette.png\" /><span>save</span></a>

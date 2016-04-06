@@ -34,7 +34,7 @@ nav span {
 	z-index: 101;
 }
 .bread {
-	background-color: #ffc107;
+	background-color: #4db6ac;
 }
 .breadcrumb {
 	color: black;
@@ -47,39 +47,28 @@ nav span {
 	z-index: 100;
 	display: -webkit-flex;
     display: flex;
-	padding: 5px 0;
-	background-color: #aaa;
+	padding: 3px 0;
+	background-color: #607d8b ;
 }
-.sub_nav_shwrl {
-	width: 100%;
-	z-index: 100;
+.sub_nav a {
+	background-color: #cfd8dc;
 	display: -webkit-flex;
     display: flex;
-	padding: 5px 0;
-	background-color: #aaa;
-}
-.sub_nav a,
-.sub_nav_shwrl a {
-	background-color: white;
-	display: -webkit-flex;
-    display: flex;
-	padding: 0 15px;
-	border-radius: 5px;
+	padding: 0 10px;
 	height: 35px;
-	margin-left: 5px;
+	margin-left: 3px;
+	border-radius: 2px;
+	font-size: .7em;
 }
-.sub_nav a:hover,
-.sub_nav_shwrl a:hover {
-	background-color: #f1f8e9;
+.sub_nav a:hover {
+	background-color: white;
 }
-.sub_nav img,
-.sub_nav_shwrl img {
+.sub_nav img {
 	height: 25px;
 	-webkit-align-self: center;
     align-self: center;
 }
-.sub_nav span,
-.sub_nav_shwrl span {
+.sub_nav span {
 	padding: 0 7px;
 	-webkit-align-self: center;
     align-self: center;
@@ -133,7 +122,7 @@ nav span {
 	padding: 0;
 }
 #slide-out li:hover {
-    background-color: #ffe082;
+    background-color: #b2dfdb;
 	padding: 0;
 }
 #slide-out a {
@@ -163,6 +152,7 @@ hr {
 	padding: 0 15px;
 }
 #contField {
+	position: fixed;
 	padding: 20px 5px;
 }
 #desktop_flex {
@@ -181,7 +171,7 @@ hr {
 	border-bottom-right-radius: 30px;
 }
 #desktop_flex a:hover {
-	background-color: #ffe082;
+	background-color: #b2dfdb;
 }
 #desktop_flex span {
 	padding-left: 10px;
@@ -295,7 +285,7 @@ that settings a different in media queries*/
 	}
 	#mainContent {
 		position: absolute;
-		border-left: 2px solid #7986cb;
+		border-left: 2px solid #263238;
 	}
 	.bread_path {
 		position: fixed;
