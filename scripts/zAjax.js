@@ -39,22 +39,22 @@ function saveShowreelData() {
 	var path = $('#showrl_path').val();
 	
 	var combined = "title=" + title + "&description=" + description + "&path=" + path;
-	saveChanges("../php tasks/showreel_update.php", combined);
-	
-	//RELOAD PAGE TO SHOW CHANGES
-	$('#mainContent').load('../control_panel/a_showreel.php', function() {
-		reloadEvents();
-		//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
-		//focus(does the job)
-		$('input:first').focus();
-		//focus and unfocus
-		$('textarea').focus().blur();
-		//scroll to the top of the page
-		$('body').scrollTop(0);
+	saveChanges("../php tasks/showreel_update.php", combined, function() {
+		//RELOAD PAGE TO SHOW CHANGES
+		$('#mainContent').load('../control_panel/a_showreel.php', function() {
+			reloadEvents();
+			//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+			//focus(does the job)
+			$('input:first').focus();
+			//focus and unfocus
+			$('textarea').focus().blur();
+			//scroll to the top of the page
+			$('body').scrollTop(0);
+		});
+		//END RELOAD
+		
+		Materialize.toast('Saved', 1500, 'rounded');
 	});
-	//END RELOAD
-	
-	Materialize.toast('Saved', 1500, 'rounded');
 }
 
 
