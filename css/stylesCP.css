@@ -2,7 +2,7 @@
 /*------------Scrollbar--------------*/
 
 ::-webkit-scrollbar {
-    width: 0.5em;
+    width: 0em;
 }
 ::-webkit-scrollbar-track {
     background-color: #bbdefb;
@@ -262,6 +262,7 @@ that settings a different in media queries*/
 }
 /*medium*/
 @media screen and (max-width: 992px) and (min-width: 600px) {
+	
 	.bread_path {
 		position: fixed;
 		top: 64px;
@@ -275,9 +276,26 @@ that settings a different in media queries*/
 	.infoMargin2 {
 		margin-top: 69px;
 	}
+	
 }
 /*large*/
 @media screen and (min-width: 991px) {
+	/*------------Scrollbar--------------*/
+	::-webkit-scrollbar {
+		width: 0.5em;
+	}
+	::-webkit-scrollbar-track {
+		background-color: #bbdefb;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: #0d47a1;
+	}
+	::-webkit-scrollbar-button {
+		opacity: .7;
+		height: 0em;
+	}
+
+	
 	hr {
 		border: 1px solid #eee;
 		margin: 3px;

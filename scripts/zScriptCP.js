@@ -53,6 +53,7 @@ function reloadEvents() {
 function checkIfChecked() {
 	if ($('input:checked').length > 0) {
 		$('#footer_modal').openModal();
+		enableScroll();
 	} else {
 		alert("Please select photo(s) before moving!");
 	}
