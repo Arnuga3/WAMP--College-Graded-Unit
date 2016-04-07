@@ -89,7 +89,7 @@
 					</div>
 				</nav>
 			</div>
-			
+	
 			<!-- Modal Structure -->
 			<div id="modal1" class="modal">
 				<!-- Form for submission of admin name and password -->

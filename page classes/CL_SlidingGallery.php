@@ -11,6 +11,7 @@
 			$this->connectCSS();
 			echo "</head>\n";
 			echo "<body>\n";
+			$this->displayLoading();
 			$this->displayNavbar();
 			$this->displaySlidingGallery();
 			$this->connectJS();
@@ -39,7 +40,24 @@
 			<link type="text/css" rel="stylesheet" href="css/styles.css" />
 <?php
 		}
-		
+		public function displayLoading() {
+?>
+			<div class="preload345">
+				<div class="preloader-wrapper active">
+					<div class="spinner-layer spinner-red-only">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div><div class="gap-patch">
+							<div class="circle"></div>
+						</div><div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+			  </div>
+		  </div>
+<?php
+		}
+	
 		public function displaySlidingGallery() {
 ?>
 			<div class="sliderContainer">
