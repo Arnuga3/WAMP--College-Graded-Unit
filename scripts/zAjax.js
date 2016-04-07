@@ -1,5 +1,5 @@
 /*            Multiuse Function             */
-function saveChanges(url, vars) {
+function saveChanges(url, vars, callback) {
 
 	var url = url;
 	var vars = vars;
@@ -15,6 +15,11 @@ function saveChanges(url, vars) {
 			
 			//display an error if any, update is working on the background
 			$('#error').html(xmlhttp.responseText);
+			
+			//Callback function is called only after response is get from the server
+			if (typeof callback == "function") {
+				callback();
+			}
 		}
 	}
 
@@ -28,24 +33,72 @@ function saveChanges(url, vars) {
 
 
 //Showreel variables for ajax post request, to save any changes in showreel group
-function getShowreelData() {
+function saveShowreelData() {
 	var title = $('#showrl_title').val();
 	var description = $('#showrl_description').val();
 	var path = $('#showrl_path').val();
 	
 	var combined = "title=" + title + "&description=" + description + "&path=" + path;
-	return combined;
+	saveChanges("../php tasks/showreel_update.php", combined);
+	
+	//RELOAD PAGE TO SHOW CHANGES
+	$('#mainContent').load('../control_panel/a_showreel.php', function() {
+		reloadEvents();
+		//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+		//focus(does the job)
+		$('input:first').focus();
+		//focus and unfocus
+		$('textarea').focus().blur();
+		//scroll to the top of the page
+		$('body').scrollTop(0);
+	});
+	//END RELOAD
+	
+	Materialize.toast('Saved', 1500, 'rounded');
 }
+
 
 //MOVE PHOTOS FUNCTIONALITY, prepare and send ajax
 function movePhotosAJAX(folder, photos) {
 	var folderName = folder;
 	var folderNoSpace = folderName.replace(" ", "+");
-	
-	alert(folderNoSpace);
+
 	var photos = photos;
 	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
-	saveChanges("../php tasks/move_photo_update.php", combined);
+	
+	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
+	saveChanges("../php tasks/move_photo_update.php", combined, function() {
+		if (folderName == "") {
+			$('#mainContent').load('../control_panel/a_act_photos.php', function() {
+				reloadEvents();
+				//FOLDERS add events to the loaded folders
+				$('.folder').click(function() {
+					var selectedFolder = $(this);
+					var url = '../control_panel/a_act_folders.php?folder=';
+					var folderName = selectedFolder.find('span').text();
+					var noSpaceName = folderName.replace(" ", "+");
+					$('#mainContent').load( url + noSpaceName, function() {
+						reloadEvents();
+						actionPhotosDo();
+					});
+				});
+			});
+		} else {
+			//FOLDERS add events to the loaded folders
+			var url = '../control_panel/a_act_folders.php?folder=';
+			$('#mainContent').load( url + folderNoSpace, function() {
+				reloadEvents();
+				actionPhotosDo();
+			});
+		}
+		Materialize.toast('Moved', 1500, 'rounded');
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+	
+	
 }
 //Checked photos
 function getSelectedPhotos() {

@@ -30,6 +30,7 @@ if (isset($_SESSION["mrBoss"])) {
 			$folders_indexed[] = $i;
 		}
 	}
+	$_SESSION["AllAlbums"] = $folders_indexed;
 	//END
 
 	echo "<!--ACTING PHOTOS-->
@@ -50,7 +51,7 @@ if (isset($_SESSION["mrBoss"])) {
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark modal-trigger\" href=\"#footer_modal\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo</span></a>
 	</div>
 
 	<div class=\"fixed-action-btn vertical click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
@@ -62,7 +63,7 @@ if (isset($_SESSION["mrBoss"])) {
 			<li><span>new photo</span><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
 			<li><span>edit photo</span><a class=\"btn-floating green\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
 			<li><span>delete photo</span><a class=\"btn-floating blue\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
-			<li><span>move photo</span><a class=\"btn-floating  modal-trigger red\" href=\"#footer_modal\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
+			<li><span>move photo</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
 		</ul>
 	</div>
 	
@@ -109,6 +110,7 @@ if (isset($_SESSION["mrBoss"])) {
 					}
 				}
 			}
+			echo "<p id=\"error\"></p>";
 	echo "</div>
 	</div>";
 	
@@ -119,11 +121,10 @@ if (isset($_SESSION["mrBoss"])) {
 						<ul>";
 			//Footer modal
 			foreach ($folders_indexed as $val) {
-				echo "		<li><a class=\"foot_mod\" onclick=\"Materialize.toast('Moved', 2500, 'rounded', 
-								function() {
-									movePhotosAJAX('".$val."', getSelectedPhotos());
-								})\" href=\"#\">".$val."</a></li>";
+				echo "		<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('".$val."', getSelectedPhotos())\" href=\"#\">".$val."</a></li>";
 			}
+				echo "		<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('', getSelectedPhotos())\" href=\"#\">OUT OF ALBUM</a></li>
+							<li><a class=\"foot_mod\" href=\"#\">CREATE NEW ALBUM</a></li>";
 			echo "		</ul>
 					</div>
 				</div>";

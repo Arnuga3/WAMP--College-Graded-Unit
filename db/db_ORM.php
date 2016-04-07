@@ -16,11 +16,9 @@ METHODS:
 	insert()
 	update()
 	delete()
+	customQuery()
 	prepareArray()
 	getTableColumns()
-	
-PRIVATE METHODS:
-	
 	escape()
 	
 
@@ -61,6 +59,8 @@ METHODS DESCRIPTION AND USAGE:
 	
 	delete() - delete a record by specific column value
 		Usage: delete(table_name(mandatory), targetColumn(mandatory), targetValue(mandatory));
+		
+	customQuery()
 	
 	prepareArray() - accept values, escape special characters and return them in an array, this method is using private method escape()
 		Usage: prepareArray(val1, val2, .., valn);
@@ -87,7 +87,7 @@ METHODS DESCRIPTION AND USAGE:
 		private $result;
 		
 //ESCAPE SPECIAL CHARACTERS
-		private function escape($str) {
+		public function escape($str) {
 			return mysqli_real_escape_string($this->myConn, $str);
 		}
 		
@@ -252,9 +252,23 @@ METHODS DESCRIPTION AND USAGE:
 			$this->result = $this->myConn->query($query);
 
 			if ($this->result === TRUE) {
-				echo "Deleted";
+				//echo "Deleted";
 			} else {
 				echo "Error deleting record: " . $this->myConn->error;
+			}
+		}
+		
+		
+		
+//CUSTOM
+		public function customQuery($query) {
+
+			$this->result = $this->myConn->query($query);
+
+			if ($this->result === TRUE) {
+				//echo "Complete";
+			} else {
+				echo "Error: " . $this->myConn->error;
 			}
 		}
 		

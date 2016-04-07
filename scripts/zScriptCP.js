@@ -20,6 +20,7 @@ function reloadEvents() {
 	
 	//modal
 	$('.modal-trigger').leanModal();
+	$('.modal-trigger-move').leanModal();
 	
 	//footer modal in CP
 	$('.foot_mod').click(function() {
@@ -49,6 +50,15 @@ function reloadEvents() {
 }
 
 
+function checkIfChecked() {
+	if ($('input:checked').length > 0) {
+		$('#footer_modal').openModal();
+	} else {
+		alert("Please select photo(s) before moving!");
+	}
+}
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //jQuery AJAX function with a callback function to make plugins working with new loaded elements//
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,9 +81,7 @@ $('.a_shwrl').click(function() {
 function actionPhotosDo() {
 	$('.a_act_p').click(function() {
 		$('#mainContent').load('../control_panel/a_act_photos.php', function() {
-			reloadEvents();
-			
-			
+			reloadEvents();	
 			//FOLDERS add events to the loaded folders
 			$('.folder').click(function() {
 				var selectedFolder = $(this);

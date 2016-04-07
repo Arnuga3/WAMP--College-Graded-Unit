@@ -5,6 +5,8 @@
 if (isset($_SESSION["mrBoss"])) {
 	$userID = $_SESSION["mrBoss"]["usr_ID"];
 	
+	$albums = $_SESSION["AllAlbums"];
+	
 	$folder = $_GET["folder"];
 	echo $folder;
 	
@@ -41,7 +43,7 @@ if (isset($_SESSION["mrBoss"])) {
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo</span></a>
 	</div>
 
 	<div class=\"fixed-action-btn vertical click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
@@ -53,7 +55,7 @@ if (isset($_SESSION["mrBoss"])) {
 			<li><span>new photo</span><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
 			<li><span>edit photo</span><a class=\"btn-floating green\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
 			<li><span>delete photo</span><a class=\"btn-floating blue\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
-			<li><span>move photo</span><a class=\"btn-floating red\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
+			<li><span>move photo</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
 		</ul>
 	</div>
 	
@@ -83,8 +85,26 @@ if (isset($_SESSION["mrBoss"])) {
 					<img class=\"materialboxed\" data-caption=\"".$val["image_descr"]."\" width=\"60\" src=\"".$val["image_path"]."\" />
 				</div>";
 		}
+		echo "<p id=\"error\"></p>";
 	echo "</div>
 	</div>";
+	
+			//FOOTER MODAL
+			echo "<div id=\"footer_modal\" class=\"modal bottom-sheet\">
+					<div class=\"modal-content col l8 offset-l2 margBotExtra\">
+						<h5>Select a folder you want to move images to:</h5>
+						<ul>";
+			//Footer modal
+			foreach ($albums as $val) {
+				echo "		<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('".$val."', getSelectedPhotos())\" href=\"#\">".$val."</a></li>";
+			}
+				echo "		<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('', getSelectedPhotos())\" href=\"#\">OUT OF ALBUM</a></li>
+							<li><a class=\"foot_mod\" href=\"#\">CREATE NEW ALBUM</a></li>";
+			echo "		</ul>
+					</div>
+				</div>";
+			//FOOTER MODAL END	
+
 } else {
 	//this is required to avoid a blank page when user is loggin out (session is closed) and press a back button, so user is just transfered to the index page
 	header("Location: ../index.php");

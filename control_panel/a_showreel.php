@@ -33,17 +33,11 @@ if (isset($_SESSION["mrBoss"])) {
 			
 			<!-- Showreel SAVE button, LOGIC: Toast is shown on a screen for 2 sec with SAVED message, AJAX is updating a record in DB, page is refreshed to apply changes-->
 			<div class=\"sub_nav hide-on-med-and-down\">
-				<a class=\"waves-effect waves-dark z-depth-1\" onclick=\"Materialize.toast('Saved', 2500, 'rounded', 
-					function() {
-						saveChanges('../php tasks/showreel_update.php', getShowreelData());
-					})\"><img src=\"../img/cpIcons/diskette.png\" /><span>save</span></a>
+				<a class=\"waves-effect waves-dark z-depth-1\" onclick=\"saveShowreelData()\"><img src=\"../img/cpIcons/diskette.png\" /><span>save</span></a>
 			</div>
 			
 			<div class=\"fixed-action-btn hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
-				<a class=\"btn-floating btn-large waves-effect waves-light deep-orange darken-2\" onclick=\"Materialize.toast('Saved', 2500, 'rounded', 
-						function() {
-							saveChanges('../php tasks/showreel_update.php', getShowreelData());
-						})\"><img class=\"pencil\" src=\"../img/cpIcons/diskette.png\" /></a>
+				<a class=\"btn-floating btn-large waves-effect waves-light deep-orange darken-2\" onclick=\"saveShowreelData()\"><img class=\"pencil\" src=\"../img/cpIcons/diskette.png\" /></a>
 			</div>
 			
 			<div class=\"cp_content margBotXL\">
