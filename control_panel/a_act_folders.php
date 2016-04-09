@@ -32,7 +32,7 @@ if (isset($_SESSION["mrBoss"])) {
 		<div class=\"bread nav-wrapper\">
 			<div class=\"col s12\">
 				<a href=\"#!\" class=\"a_act_p breadcrumb\">Acting Photos</a>
-				<a href=\"#!\" class=\"breadcrumb\">$folder</a>
+				<a href=\"#!\" class=\"breadcrumb relative\" onclick=\"renameAlbumAJAX(prompt('Enter new name for the album:'), '$folder', 'sysRenamearnuga3')\"><span class=\"truncated absolute\">$folder</span><span class=\"aftTrunc absolute grey-text text-darken-2\">Rename</span></a>
 			</div>
 		</div>
 	</nav>

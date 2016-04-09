@@ -47,7 +47,7 @@ if (isset($_SESSION["mrBoss"])) {
 	
 	<div class=\"sub_nav hide-on-med-and-down\">
 		<a class=\"z-depth-1 waves-effect waves-dark blue-grey lighten-1 disabled\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/folder_add.png\" /><span>new album</span></a>
+		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/folder_add.png\" /><span>new album</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
@@ -59,7 +59,7 @@ if (isset($_SESSION["mrBoss"])) {
 			<img class=\"pencil\" src=\"../img/cpIcons/pencil.png\" />
 		</a>
 		<ul>
-			<li><span>new album</span><a class=\"btn-floating blue\"><img src=\"../img/cpIcons/folder_add.png\" /></a></li>
+			<li><span>new album</span><a class=\"sb_upload btn-floating blue\"><img src=\"../img/cpIcons/folder_add.png\" /></a></li>
 			<li><span>new photo</span><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
 			<li><span>edit photo</span><a class=\"btn-floating green\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
 			<li><span>delete photo</span><a class=\"btn-floating blue\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>

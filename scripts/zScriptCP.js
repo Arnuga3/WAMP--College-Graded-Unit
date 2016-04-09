@@ -88,8 +88,19 @@ function actionPhotosDo() {
 				var selectedFolder = $(this);
 				var url = '../control_panel/a_act_folders.php?folder=';
 				var folderName = selectedFolder.find('span').text();
-				var noSpaceName = folderName.replace(" ", "+");
+				var noSpaceName = folderName.replace(/ /g, "+");
 				$('#mainContent').load( url + noSpaceName, function() {
+					reloadEvents();
+					actionPhotosDo();
+				});
+			});
+			//UPLOAD BTN IN SUB MENU EVENT REGISTRATION
+			$('.sb_upload').click(function() {
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				$('#mainContent').load('../control_panel/a_files_upload.php', function() {
 					reloadEvents();
 					actionPhotosDo();
 				});
@@ -98,8 +109,6 @@ function actionPhotosDo() {
 	});
 }
 actionPhotosDo();
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

@@ -38,6 +38,19 @@ nav span {
 }
 .breadcrumb {
 	color: black;
+	font-size: .9em;
+}
+.truncated {
+	top: -1.4em;
+	white-space: nowrap; 
+    width: 115px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+	font-size: 1.1em;
+}
+.aftTrunc {
+	left: 163px;
+	top: -1.8em;
 }
 
 .sub_nav {
@@ -238,7 +251,7 @@ form {
 
 /*margin top for the content after fixed navbar and subnavbar, added to fix an unknown bug 
 as different output is displayed in a_act_photos.php and a_act_folders.php
-that settings a different in media queries*/
+that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT, REASON- ECHO EMPTY STRING IN a_act_folders.php*/
 .infoMargin {
 	margin-top: 75px;
 }
@@ -261,7 +274,7 @@ that settings a different in media queries*/
 	
 }
 /*medium*/
-@media screen and (max-width: 992px) and (min-width: 600px) {
+@media screen and (max-width: 992px) and (min-width: 601px) {
 	
 	.bread_path {
 		position: fixed;
@@ -275,6 +288,18 @@ that settings a different in media queries*/
 	}
 	.infoMargin2 {
 		margin-top: 69px;
+	}
+	.truncated {
+		top: -1.6em;
+		white-space: nowrap; 
+		width: 420px; 
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: 1.1em;
+	}
+	.aftTrunc {
+		left: 468px;
+		top: -2.3em;
 	}
 	
 }
@@ -323,6 +348,18 @@ that settings a different in media queries*/
 	}
 	.infoMargin2 {
 		margin-top: 103px;
+	}
+	.truncated {
+		top: -1.5em;
+		white-space: nowrap; 
+		width: 540px; 
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: 1.1em;
+	}
+	.aftTrunc {
+		left: 588px;
+		top: -2em;
 	}
 }
 
