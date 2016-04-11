@@ -3,6 +3,11 @@ create database jrdb;
 
 use jrdb;
 
+create table ai_images (
+	ai_ID int NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(ai_ID)
+);
+
 create table user (
 	usr_ID int NOT NULL AUTO_INCREMENT,
     cv_ID integer,
@@ -38,7 +43,7 @@ create table media (
 );
 
 create table music (
-	music_ID int NOT NULL AUTO_INCREMENT,
+	music_ID int,
 	music_alloc varchar(255),
 	music_title varchar(255),
 	music_path varchar(255),
@@ -47,7 +52,7 @@ create table music (
 );
 
 create table video (
-	video_ID int NOT NULL AUTO_INCREMENT,
+	video_ID int,
 	video_alloc varchar(255),
 	video_title varchar(255),
 	video_path varchar(255),
@@ -56,11 +61,12 @@ create table video (
 );
 
 create table images (
-	image_ID int NOT NULL AUTO_INCREMENT,
-	image_alloc varchar(255),
+	image_ID int,
 	image_title varchar(255),
-	image_path varchar(255),
 	image_descr varchar(500),
+	image_path varchar(255),
+	image_group varchar(255),
+	image_folder varchar(255),
 	PRIMARY KEY(image_ID)
 );
 
@@ -97,3 +103,5 @@ create table training (
 	training varchar(255),
 	PRIMARY KEY(training_ID)
 );
+
+INSERT INTO user (usr_ID, cv_ID, usr_name, usr_psswd) VALUES (1, 1, '#onlyAdmin', '$2y$15$PYNwHlxwvMkRN3J7QbhlDurjzKNjuS8pAbukg.CTy1vOxjnWHY4Ce');

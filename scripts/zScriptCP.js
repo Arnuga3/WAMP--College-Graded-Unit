@@ -105,6 +105,17 @@ function actionPhotosDo() {
 					actionPhotosDo();
 				});
 			});
+			//DELETE BTN IN SUB MENU EVENT REGISTRATION
+			$('.sb_delete').click(function() {
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				$('#mainContent').load('../control_panel/a_delete_file.php', function() {
+					reloadEvents();
+					actionPhotosDo();
+				});
+			});
 		});
 	});
 }

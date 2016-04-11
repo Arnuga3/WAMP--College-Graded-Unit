@@ -510,6 +510,9 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 .textCenter {
 	text-align: center;
 }
+.textLeft {
+	text-align: left;
+}
 .textJustify {
 	text-align: justify;
 }

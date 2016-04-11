@@ -40,7 +40,11 @@ echo "<!--ACTING PHOTOS-->
 		<div id=\"cpCont\" class=\"margTop margBotXL pad10\">
 
 		
-			<form action=\"create_album.php\" method=\"post\" enctype=\"multipart/form-data\">
+			<form class=\"textCenter\" action=\"../php tasks/file_upload.php\" method=\"post\" enctype=\"multipart/form-data\">
+				<div class=\"input-field\">
+							<input type=\"text\" id=\"file_upl_alb_name\" name=\"album_name\" class=\"validate\" length=\"100\"/>
+							<label for=\"file_upl_alb_name\" class=\"textLeft\">Name of a new album</label>
+						</div>
 				<div class=\"file-field input-field\">
 					<div class=\"btn grey\">
 						<span>choose</span>
@@ -50,7 +54,7 @@ echo "<!--ACTING PHOTOS-->
 						<input class=\"file-path validate\" type=\"text\" placeholder=\"Upload one or more files\">
 					</div>
 				</div>
-				<button class=\"margTop btn waves-effect waves-light orange\" type=\"submit\" name=\"action\">UPLOAD</button>
+				<button class=\"margTop btn waves-effect waves-light\" type=\"submit\" name=\"action\">UPLOAD</button>
 			</form>
 				
 				

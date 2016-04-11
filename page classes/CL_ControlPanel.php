@@ -3,6 +3,8 @@
 	
 	class ControlPanel extends Page {
 		
+		public $uploads = false;
+		
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -12,7 +14,7 @@
 			echo "</head>\n";
 			echo "<body>\n";
 			$this->displayNavbar();
-			$this->displayMain();
+			$this->displayMain($this->uploads);
 			$this->connectJS();
 			echo "</body>\n";
 			echo "</html>";
@@ -78,7 +80,7 @@
 <?php
 		}
 	
-		function displayMain() {
+		function displayMain($uploads) {
 ?>
 		<div class="row">
 			<div id="contField" class="col l3 hide-on-med-and-down">
@@ -102,7 +104,17 @@
 				</div>
 			</div>
 			<div id="mainContent" class="col s12 l9 offset-l3">
+<?php
+			if ($uploads) {
+?>
+				<div class="pad15 textJustify">Files are uploaded.</div>
+<?php
+			} else {
+?>
 				<div class="pad15 textJustify">Welcome to the Control Panel! Here you can change the content of the ... website. Please read the information below what is providing the detailed documentation. All the content is separated in different groups and is available in the main menu. </div>
+<?php
+			}
+?>
 			</div>
 		</div>
 <?php

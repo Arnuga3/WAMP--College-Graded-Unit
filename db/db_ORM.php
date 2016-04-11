@@ -270,6 +270,7 @@ METHODS DESCRIPTION AND USAGE:
 			} else {
 				echo "Error: " . $this->myConn->error;
 			}
+			return $this->result;
 		}
 		
 		
