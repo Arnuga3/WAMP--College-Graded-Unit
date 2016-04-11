@@ -44,7 +44,6 @@ if (isset($_SESSION["mrBoss"])) {
 					while($row = $result->fetch_assoc()) {
 						//Place all folder names into new array
 						$lastID = $row["ai_ID"];
-						echo $row["ai_ID"];
 					}
 					
 					$userIDDB = $db->escape($userID);
@@ -71,7 +70,6 @@ if (isset($_SESSION["mrBoss"])) {
 					while($row = $result->fetch_assoc()) {
 						//Place all folder names into new array
 						$lastID = $row["ai_ID"];
-						echo $row["ai_ID"];
 					}
 					
 					$userIDDB = $db->escape($userID);
@@ -94,7 +92,7 @@ if (isset($_SESSION["mrBoss"])) {
 	
 	$_SESSION["uploaded"] = true;
 	echo "";
-	//header("Location: ../control_panel/cp_showreel.php");
+	header("Location: ../control_panel/cp_showreel.php");
 } else {
 	//this is required to avoid a blank page when user is loggin out (session is closed) and press a back button, so user is just transfered to the index page
 	header("Location: ../index.php");
