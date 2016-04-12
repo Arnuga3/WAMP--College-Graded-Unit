@@ -35,6 +35,8 @@ if (isset($_SESSION["mrBoss"])) {
 			
 			if (!file_exists("../uploaded_photos/".$file_name)) {
 				
+				$filenameNoExt = basename($file_name, ".".$ext);
+				
 				move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key],"../uploaded_photos/".$file_name);
 				
 				$db->customQuery("INSERT INTO ai_images (ai_ID) VALUES ('')");
@@ -49,7 +51,7 @@ if (isset($_SESSION["mrBoss"])) {
 					$userIDDB = $db->escape($userID);
 					$db->customQuery("INSERT INTO media (usr_ID, music_ID, video_ID, image_ID) VALUES ('$userIDDB', 0, 0, $lastID)");
 					
-					$valArr = $db->prepareArray($lastID, $file_name, "", "../uploaded_photos/$file_name", 'acting', $newAlbum);
+					$valArr = $db->prepareArray($lastID, $filenameNoExt, " ", "../uploaded_photos/$file_name", 'acting', $newAlbum);
 					$db->insert("images", "image_ID, image_title, image_descr, image_path, image_group, image_folder", $valArr);
 					
 				} else {
@@ -57,11 +59,12 @@ if (isset($_SESSION["mrBoss"])) {
 				}
 				
 			} else {
-				$filename=basename($file_name,$ext);
+				$filename = basename($file_name, $ext);
 				
-				$newFileName=$filename.time().".".$ext;
+				$newFileName = $filename.time().".".$ext;
 				move_uploaded_file($file_tmp = $_FILES["files"]["tmp_name"][$key],"../uploaded_photos/".$newFileName);
 				
+				$filenameNoExt = basename($file_name, ".".$ext);
 				
 				$db->customQuery("INSERT INTO ai_images (ai_ID) VALUES ('')");
 				
@@ -75,7 +78,7 @@ if (isset($_SESSION["mrBoss"])) {
 					$userIDDB = $db->escape($userID);
 					$db->customQuery("INSERT INTO media (usr_ID, music_ID, video_ID, image_ID) VALUES ('$userIDDB', 0, 0, $lastID)");
 					
-					$valArr = $db->prepareArray($lastID, $newFileName, "", "../uploaded_photos/$newFileName", 'acting', $newAlbum);
+					$valArr = $db->prepareArray($lastID, $filenameNoExt, " ", "../uploaded_photos/$newFileName", 'acting', $newAlbum);
 					$db->insert("images", "image_ID, image_title, image_descr, image_path, image_group, image_folder", $valArr);
 					
 				} else {
