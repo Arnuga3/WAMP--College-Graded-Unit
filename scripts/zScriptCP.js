@@ -88,7 +88,7 @@ function actionPhotosDo() {
 				var selectedFolder = $(this);
 				var url = '../control_panel/a_act_folders.php?folder=';
 				var folderName = selectedFolder.find('span').text();
-				var noSpaceName = folderName.replace(/ /g, "+");
+				var noSpaceName = escape(folderName);
 				$('#mainContent').load( url + noSpaceName, function() {
 					reloadEvents();
 					actionPhotosDo();

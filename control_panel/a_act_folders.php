@@ -8,14 +8,15 @@ if (isset($_SESSION["mrBoss"])) {
 	$albums = $_SESSION["AllAlbums"];
 	
 	$folder = $_GET["folder"];
+	//need to fix that, as it takes space in html
 	echo $folder;
 	
 	include ("../db/db_ORM.php");
 	//Create DB connection and get data from db
 	$db = new dbConnection();
 	$db->connect();
-	//Get a showreel video information
-	$result = $db->select("media, images", "media.*, images.*", "media.usr_ID = $userID AND media.image_ID = images.image_ID AND images.image_folder = '$folder'");
+	$escapedFolder = $db->escape($folder);
+	$result = $db->select("media, images", "media.*, images.*", "media.usr_ID = $userID AND media.image_ID = images.image_ID AND images.image_folder = '$escapedFolder'");
 	$db->close();
 	
 	$photos = array();

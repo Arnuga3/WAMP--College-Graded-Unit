@@ -76,7 +76,7 @@ function movePhotosAJAX(folder, photos) {
 					var selectedFolder = $(this);
 					var url = '../control_panel/a_act_folders.php?folder=';
 					var folderName = selectedFolder.find('span').text();
-					var noSpaceName = folderName.replace(" ", "+");
+					var noSpaceName = escape(folderName);
 					$('#mainContent').load( url + noSpaceName, function() {
 						reloadEvents();
 						actionPhotosDo();
@@ -117,7 +117,7 @@ function getSelectedPhotos() {
 //RENAME ALBUM FUNCTIONALITY, prepare and send ajax
 function renameAlbumAJAX(folder, folderOld, action) {
 	var folderName = folder;
-	var folderNoSpace = folderName.replace(/ /g, "+");
+	var folderNoSpace = escape(folderName);
 
 	var folderOld = folderOld;
 	var action = action;
@@ -135,7 +135,7 @@ function renameAlbumAJAX(folder, folderOld, action) {
 					var selectedFolder = $(this);
 					var url = '../control_panel/a_act_folders.php?folder=';
 					var folderName = selectedFolder.find('span').text();
-					var noSpaceName = folderName.replace(/ /g, "+");
+					var noSpaceName = escape(folderName);
 					$('#mainContent').load( url + noSpaceName, function() {
 						reloadEvents();
 						actionPhotosDo();
