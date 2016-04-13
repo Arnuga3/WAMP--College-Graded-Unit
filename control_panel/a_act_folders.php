@@ -5,9 +5,19 @@
 if (isset($_SESSION["mrBoss"])) {
 	$userID = $_SESSION["mrBoss"]["usr_ID"];
 	
+	//to make work htmlspecialchars() function
+	header('Content-Type: text/plain');
+	
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+	
 	$albums = $_SESSION["AllAlbums"];
 	
-	$folder = $_GET["folder"];
+	$folder = test_input($_GET["folder"]);
 	//need to fix that, as it takes space in html
 	echo $folder;
 	
@@ -15,6 +25,7 @@ if (isset($_SESSION["mrBoss"])) {
 	//Create DB connection and get data from db
 	$db = new dbConnection();
 	$db->connect();
+	
 	$escapedFolder = $db->escape($folder);
 	$result = $db->select("media, images", "media.*, images.*", "media.usr_ID = $userID AND media.image_ID = images.image_ID AND images.image_folder = '$escapedFolder'");
 	$db->close();
@@ -33,7 +44,7 @@ if (isset($_SESSION["mrBoss"])) {
 		<div class=\"bread nav-wrapper\">
 			<div class=\"col s12\">
 				<a href=\"#!\" class=\"a_act_p breadcrumb\">Acting Photos</a>
-				<a href=\"#!\" class=\"breadcrumb relative\" onclick=\"renameAlbumAJAX(prompt('Enter new name for the album:'), '$folder', 'sysRenamearnuga3')\"><span class=\"truncated absolute\">$folder</span><span class=\"aftTrunc absolute grey-text text-darken-2\">Rename</span></a>
+				<a href=\"#!\" class=\"sb_rename breadcrumb relative\"><span class=\"sb_rename_folder truncated absolute\">$folder</span><span class=\"aftTrunc absolute grey-text text-darken-2\">Rename</span></a>
 			</div>
 		</div>
 	</nav>

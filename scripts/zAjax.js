@@ -71,12 +71,13 @@ function movePhotosAJAX(folder, photos) {
 		if (folderName == "") {
 			$('#mainContent').load('../control_panel/a_act_photos.php', function() {
 				reloadEvents();
+				actionPhotosDo();
 				//FOLDERS add events to the loaded folders
 				$('.folder').click(function() {
 					var selectedFolder = $(this);
 					var url = '../control_panel/a_act_folders.php?folder=';
 					var folderName = selectedFolder.find('span').text();
-					var noSpaceName = escape(folderName);
+					var noSpaceName = encodeURIComponent(folderName);
 					$('#mainContent').load( url + noSpaceName, function() {
 						reloadEvents();
 						actionPhotosDo();
@@ -117,8 +118,7 @@ function getSelectedPhotos() {
 //RENAME ALBUM FUNCTIONALITY, prepare and send ajax
 function renameAlbumAJAX(folder, folderOld, action) {
 	var folderName = folder;
-	var folderNoSpace = escape(folderName);
-
+	var folderNoSpace = encodeURIComponent(folderName);
 	var folderOld = folderOld;
 	var action = action;
 	//use 'photos' is just for not breaking the server code instead of writing another script
@@ -127,7 +127,6 @@ function renameAlbumAJAX(folder, folderOld, action) {
 	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
 	saveChanges("../php tasks/move_photo_update.php", combined, function() {
 		if (folderName == "") {
-			alert("empty");
 			$('#mainContent').load('../control_panel/a_act_photos.php', function() {
 				reloadEvents();
 				//FOLDERS add events to the loaded folders
@@ -135,7 +134,7 @@ function renameAlbumAJAX(folder, folderOld, action) {
 					var selectedFolder = $(this);
 					var url = '../control_panel/a_act_folders.php?folder=';
 					var folderName = selectedFolder.find('span').text();
-					var noSpaceName = escape(folderName);
+					var noSpaceName = encodeURIComponent(folderName);
 					$('#mainContent').load( url + noSpaceName, function() {
 						reloadEvents();
 						actionPhotosDo();

@@ -47,6 +47,10 @@ function reloadEvents() {
 			$('#dark').toggle();
 		}
 	});
+	//rename album function event listener
+	$('.sb_rename').click(function() {
+		renameAlbumAJAX(prompt('Enter new name for the album:'), $('.sb_rename_folder').text(), 'sysRenamearnuga3');
+	});
 }
 
 
@@ -79,16 +83,22 @@ $('.a_shwrl').click(function() {
 	});
 });
 
+
 function actionPhotosDo() {
+	//click the acting photos button in the main menu
 	$('.a_act_p').click(function() {
+		//load part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/a_act_photos.php', function() {
+			//assign event listeners to new loaded elements
 			reloadEvents();	
 			//FOLDERS add events to the loaded folders
 			$('.folder').click(function() {
+				//load the images of selected folder using ajax and assign event listeners to them
 				var selectedFolder = $(this);
 				var url = '../control_panel/a_act_folders.php?folder=';
 				var folderName = selectedFolder.find('span').text();
-				var noSpaceName = escape(folderName);
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
 				$('#mainContent').load( url + noSpaceName, function() {
 					reloadEvents();
 					actionPhotosDo();
@@ -96,10 +106,12 @@ function actionPhotosDo() {
 			});
 			//UPLOAD BTN IN SUB MENU EVENT REGISTRATION
 			$('.sb_upload').click(function() {
+				//make sure mobile button is closed and dark bg is hidden
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
 					$('#dark').toggle();
 				}
+				//load the file upload part of the page using ajax and assign event listeners
 				$('#mainContent').load('../control_panel/a_files_upload.php', function() {
 					reloadEvents();
 					actionPhotosDo();
@@ -116,6 +128,29 @@ function actionPhotosDo() {
 					actionPhotosDo();
 				});
 			});
+		});
+	});
+	
+	//UPLOAD BTN IN SUB MENU EVENT REGISTRATION
+	$('.sb_upload').click(function() {
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+		$('#mainContent').load('../control_panel/a_files_upload.php', function() {
+			reloadEvents();
+			actionPhotosDo();
+		});
+	});
+	//DELETE BTN IN SUB MENU EVENT REGISTRATION
+	$('.sb_delete').click(function() {
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+		$('#mainContent').load('../control_panel/a_delete_file.php', function() {
+			reloadEvents();
+			actionPhotosDo();
 		});
 	});
 }
