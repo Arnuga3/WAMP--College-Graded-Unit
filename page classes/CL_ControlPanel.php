@@ -47,7 +47,7 @@
 		public function displayNavbar() {
 ?>	
 			<div id="dark"></div>
-
+		  
 			<div class="navbar-fixed">
 				<nav class="blue-grey darken-4">
 					<div class="nav-wrapper">
@@ -104,6 +104,20 @@
 				</div>
 			</div>
 			<div id="mainContent" class="col s12 l9 offset-l3">
+						
+			<div class="preload346">
+				<div class="preloader-wrapper active">
+					<div class="spinner-layer spinner-red-only">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div><div class="gap-patch">
+							<div class="circle"></div>
+						</div><div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 <?php
 			if ($uploads) {
 ?>

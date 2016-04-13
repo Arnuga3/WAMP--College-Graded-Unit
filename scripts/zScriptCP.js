@@ -10,7 +10,13 @@ $(document).ready(function () {
 	reloadEvents();
 });
 
+
 function reloadEvents() {
+
+
+jQuery(window).load(function() {
+	$('.preload346').fadeOut();
+});
 
 	//parallax
 	$('.parallax').parallax();

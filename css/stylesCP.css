@@ -100,6 +100,25 @@ nav span {
 	opacity: 0;
 	z-index: -1;	/*to control layer*/
 }
+
+
+.preload346 {
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.5);
+	z-index: 1000;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+
 .fixed-action-btn {
 	z-index: 201;	/*to control layer, is on top of darken bg*/
 }
