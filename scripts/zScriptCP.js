@@ -13,6 +13,7 @@ $(document).ready(function () {
 	
 	//reload the main eventlisteners
 	reloadEvents();
+	actionPhotosDo();
 });
 
 //resize the height of the side menu on big screens dynamically as it is fixed and scroll need to be allowed to access all links
@@ -21,6 +22,19 @@ function resize() {
 }
 
 function reloadEvents() {
+	
+	//check/uncheck all checkboxes event
+	$('#selectAllBtn').click(function() {
+		if ($("input[type='checkbox']").is( ":checked" )) {
+			$("input[type='checkbox']").prop({
+			  checked: false
+			});
+		} else {
+			$("input[type='checkbox']").prop({
+			  checked: true
+			});
+		}
+	});
 
 	$('.preload346').hide();
 	
@@ -67,7 +81,6 @@ function reloadEvents() {
 		}
 	});
 }
-
 
 function checkIfChecked() {
 	if ($('input:checked').length > 0) {
@@ -155,7 +168,7 @@ function actPhotosLoad() {
 					
 					//send formdata to server-side
 					$.ajax({
-						url: "../php tasks/file_upload.php", // php file
+						url: "../php_tasks/file_upload.php", // php file
 						type: 'post',
 						data: formData,
 						dataType: 'html', // return html from php file
@@ -175,14 +188,11 @@ function actPhotosLoad() {
 		});
 		//DELETE BTN IN SUB MENU EVENT REGISTRATION
 		$('.sb_delete').click(function() {
+			
 			if ($('#dark').css('display') == 'block') {
 				enableScroll();
 				$('#dark').toggle();
 			}
-			$('#mainContent').load('../control_panel/a_delete_file.php', function() {
-				reloadEvents();
-				actionPhotosDo();
-			});
 		});
 	});
 }
@@ -208,6 +218,7 @@ function actionPhotosDo() {
 					actionPhotosDo();
 				});
 			});
+			
 			//UPLOAD BTN IN SUB MENU EVENT REGISTRATION
 			$('.sb_upload').click(function() {
 				//make sure mobile button is closed and dark bg is hidden
@@ -238,7 +249,7 @@ function actionPhotosDo() {
 						
 						//send formdata to server-side
 						$.ajax({
-							url: "../php tasks/file_upload.php", //php file
+							url: "../php_tasks/file_upload.php", //php file
 							type: 'post',
 							data: formData,
 							dataType: 'html', //return html from php file
@@ -257,42 +268,15 @@ function actionPhotosDo() {
 			});
 			//DELETE BTN IN SUB MENU EVENT REGISTRATION
 			$('.sb_delete').click(function() {
+				
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
 					$('#dark').toggle();
 				}
-				$('#mainContent').load('../control_panel/a_delete_file.php', function() {
-					reloadEvents();
-					actionPhotosDo();
-				});
 			});
 		});
 	});
-	
-	//UPLOAD BTN IN SUB MENU EVENT REGISTRATION
-	$('.sb_upload').click(function() {
-		if ($('#dark').css('display') == 'block') {
-			enableScroll();
-			$('#dark').toggle();
-		}
-		$('#mainContent').load('../control_panel/a_files_upload.php', function() {
-			reloadEvents();
-			actionPhotosDo();
-		});
-	});
-	//DELETE BTN IN SUB MENU EVENT REGISTRATION
-	$('.sb_delete').click(function() {
-		if ($('#dark').css('display') == 'block') {
-			enableScroll();
-			$('#dark').toggle();
-		}
-		$('#mainContent').load('../control_panel/a_delete_file.php', function() {
-			reloadEvents();
-			actionPhotosDo();
-		});
-	});
 }
-actionPhotosDo();
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

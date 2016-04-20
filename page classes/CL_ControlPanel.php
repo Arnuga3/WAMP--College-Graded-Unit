@@ -52,7 +52,7 @@
 					<div class="nav-wrapper">
 						<a href="#" class="brand-logo center"><span>Control Panel</span></a>
 						<ul class="right hide-on-med-and-down">
-							<li><a class="menu_link waves-effect waves-light" href="../php tasks/close_session.php">LOG OUT</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="../php_tasks/close_session.php">LOG OUT</a></li>
 						</ul>
 						
 						<!--Mobile sliding menu-->
@@ -71,7 +71,7 @@
 							<hr />
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" />Songs</a></li>
 						</ul>
-						<a href="../php tasks/close_session.php" class="hide-on-large-only right"><i class="material-icons">input</i></a>
+						<a href="../php_tasks/close_session.php" class="hide-on-large-only right"><i class="material-icons">input</i></a>
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 					</div>
 				</nav>

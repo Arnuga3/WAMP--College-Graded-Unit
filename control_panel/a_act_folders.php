@@ -81,7 +81,8 @@ if (isset($_SESSION["mrBoss"])) {
 	
 		<p class=\"helperText infoMargin2\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Add, Edit or Remove albums or images.</p>
 		
-		<div id=\"cpCont\" class=\"margTop margBotXL\">";
+		<div id=\"cpCont\" class=\"margTop margBotXL\">
+		<a id=\"selectAllBtn\" class=\"waves-effect waves-light btn-flat blue-grey lighten-2 margLeft10 margBot\">check/uncheck all</a>";
 
 		foreach ($photos as $val) {
 			echo "<!--Image Row in Control Panel(checkbox, name, image)-->

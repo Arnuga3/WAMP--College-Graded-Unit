@@ -62,7 +62,7 @@ if (isset($_SESSION["mrBoss"])) {
 			<li><span>new album</span><a class=\"sb_upload btn-floating blue\"><img src=\"../img/cpIcons/folder_add.png\" /></a></li>
 			<li><span>new photo</span><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
 			<li><span>edit photo</span><a class=\"btn-floating green\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
-			<li><span>delete photo</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDel()\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
+			<li><span>delete photo</span><a class=\"sb_delete btn-floating blue\" onclick=\"checkIfCheckedDel()\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
 			<li><span>move photo</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
 		</ul>
 	</div>
@@ -77,7 +77,8 @@ if (isset($_SESSION["mrBoss"])) {
 
 		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Add, Edit or Remove albums or images.</p>
 		
-		<div id=\"cpCont\" class=\"margTop margBotXL\">";
+		<div id=\"cpCont\" class=\"margTop margBotXL\">
+		<a id=\"selectAllBtn\" class=\"waves-effect waves-light btn-flat blue-grey lighten-2 margLeft10 margBot\">check/uncheck all</a>";
 
 			//Display folders
 			foreach ($folders_indexed as $val) {

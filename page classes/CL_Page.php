@@ -93,18 +93,18 @@
 			<!-- Modal Structure -->
 			<div id="modal1" class="modal">
 				<!-- Form for submission of admin name and password -->
-				<form action="php tasks/admin_login.php" method="post">
+				<form action="php_tasks/admin_login.php" method="post">
 					<div class="modal-content">
 						<div class="form col s12">
 							<p>Admin Panel:</p>
 							<div class="row">
 								<div class="input-field col s12">
-									<input placeholder="Name" id="adminName" name="adminName" type="text">
+									<input placeholder="Name" id="adminName" name="adminName" type="text" value="#onlyAdmin">
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<input placeholder="Password" id="adminPass" name="adminPassword" type="password">
+									<input placeholder="Password" id="adminPass" name="adminPassword" type="password" value="cpAdmin01&JR">
 								</div>
 							</div>
 						</div>

@@ -39,7 +39,7 @@ function saveShowreelData() {
 	var path = $('#showrl_path').val();
 	
 	var combined = "title=" + title + "&description=" + description + "&path=" + path;
-	saveChanges("../php tasks/showreel_update.php", combined, function() {
+	saveChanges("../php_tasks/showreel_update.php", combined, function() {
 		//RELOAD PAGE TO SHOW CHANGES
 		$('#mainContent').load('../control_panel/a_showreel.php', function() {
 			reloadEvents();
@@ -58,16 +58,23 @@ function saveShowreelData() {
 }
 
 function deletePhotosAJAX(folder, photos) {
+		
+	$('.preload346').show();
 	
-	var folderName = folder;
+	if (folder == undefined) {
+		var folderName = "";
+	} else {
+		var folderName = folder;
+	}
+	
 	var folderNoSpace = folderName.replace(" ", "+");
 
 	var photos = photos;
 	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
 	
 	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
-	saveChanges("../php tasks/delete_file.php", combined, function() {
-		if (folderName == "" || folderName == undefined) {
+	saveChanges("../php_tasks/delete_file.php", combined, function() {
+		if (folderName == "") {
 			$('#mainContent').load('../control_panel/a_act_photos.php', function() {
 				reloadEvents();
 				actionPhotosDo();
@@ -110,7 +117,7 @@ function movePhotosAJAX(folder, photos) {
 	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
 	
 	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
-	saveChanges("../php tasks/move_photo_update.php", combined, function() {
+	saveChanges("../php_tasks/move_photo_update.php", combined, function() {
 		if (folderName == "") {
 			$('#mainContent').load('../control_panel/a_act_photos.php', function() {
 				reloadEvents();
@@ -168,7 +175,7 @@ function renameAlbumAJAX(folder, folderOld, action) {
 	var combined = "folder=" + folderNoSpace + "&photos=" + folderOld + "&actionStr= " + action;
 	
 	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
-	saveChanges("../php tasks/move_photo_update.php", combined, function() {
+	saveChanges("../php_tasks/move_photo_update.php", combined, function() {
 		if (folderName == "") {
 			$('#mainContent').load('../control_panel/a_act_photos.php', function() {
 				reloadEvents();
