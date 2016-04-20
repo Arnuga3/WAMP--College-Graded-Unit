@@ -10,6 +10,7 @@
 			$this->displayPageInfo();
 			$this->connectCSS();
 			echo "</head>\n";
+			//resize() function is used to reside a side menu on large screens to allow scrolling if not fit in window height
 			echo "<body onresize=\"resize()\">\n";
 			$this->displayNavbar();
 			$this->displayMain();

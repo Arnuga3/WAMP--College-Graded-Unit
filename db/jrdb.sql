@@ -44,19 +44,21 @@ create table media (
 
 create table music (
 	music_ID int,
-	music_alloc varchar(255),
 	music_title varchar(255),
-	music_path varchar(255),
 	music_descr varchar(500),
+	music_path varchar(255),
+	music_group varchar(255),
+	music_folder varchar(255),
 	PRIMARY KEY(music_ID)
 );
 
 create table video (
 	video_ID int,
-	video_alloc varchar(255),
 	video_title varchar(255),
-	video_path varchar(255),
 	video_descr varchar(500),
+	video_path varchar(255),
+	video_group varchar(255),
+	video_folder varchar(255),
 	PRIMARY KEY(video_ID)
 );
 
@@ -105,3 +107,5 @@ create table training (
 );
 
 INSERT INTO user (usr_ID, cv_ID, usr_name, usr_psswd) VALUES (1, 1, '#onlyAdmin', '$2y$15$PYNwHlxwvMkRN3J7QbhlDurjzKNjuS8pAbukg.CTy1vOxjnWHY4Ce');
+INSERT INTO media (usr_ID, music_ID, video_ID, image_ID) VALUES (1, 0, 1, 0);
+INSERT INTO video (video_ID, video_title, video_descr, video_path, video_group, video_folder) VALUES (1, 'title', 'test description', 'https://www.youtube.com/embed/da5rlEZNgXM', 'showreel', ' ');

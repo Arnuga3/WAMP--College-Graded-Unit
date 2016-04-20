@@ -57,6 +57,49 @@ function saveShowreelData() {
 	});
 }
 
+function deletePhotosAJAX(folder, photos) {
+	
+	var folderName = folder;
+	var folderNoSpace = folderName.replace(" ", "+");
+
+	var photos = photos;
+	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
+	
+	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
+	saveChanges("../php tasks/delete_file.php", combined, function() {
+		if (folderName == "" || folderName == undefined) {
+			$('#mainContent').load('../control_panel/a_act_photos.php', function() {
+				reloadEvents();
+				actionPhotosDo();
+				//FOLDERS add events to the loaded folders
+				$('.folder').click(function() {
+					var selectedFolder = $(this);
+					var url = '../control_panel/a_act_folders.php?folder=';
+					var folderName = selectedFolder.find('span').text();
+					var noSpaceName = encodeURIComponent(folderName);
+					$('#mainContent').load( url + noSpaceName, function() {
+						reloadEvents();
+						actionPhotosDo();
+					});
+				});
+			});
+		} else {
+			//FOLDERS add events to the loaded folders
+			var url = '../control_panel/a_act_folders.php?folder=';
+			$('#mainContent').load( url + folderNoSpace, function() {
+				reloadEvents();
+				actionPhotosDo();
+			});
+		}
+		Materialize.toast('Deleted', 1500, 'rounded');
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+	
+	
+}
 
 //MOVE PHOTOS FUNCTIONALITY, prepare and send ajax
 function movePhotosAJAX(folder, photos) {

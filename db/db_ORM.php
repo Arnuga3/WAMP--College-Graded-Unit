@@ -167,7 +167,7 @@ METHODS DESCRIPTION AND USAGE:
 			}
 			
 			if ($this->result === TRUE) {
-				echo "Saved";
+				//echo "Saved";
 			} else {
 				echo "Error inserting record: " . $this->myConn->error;
 			}

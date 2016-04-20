@@ -77,6 +77,13 @@ function checkIfChecked() {
 		alert("Please select photo(s) before moving!");
 	}
 }
+function checkIfCheckedDel() {
+	if ($('input:checked').length > 0) {
+		deletePhotosAJAX($('.bread span').text(), getSelectedPhotos());
+	} else {
+		alert("Please select photo(s) you want to delete!");
+	}
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
