@@ -10,7 +10,7 @@
 			$this->displayPageInfo();
 			$this->connectCSS();
 			echo "</head>\n";
-			echo "<body>\n";
+			echo "<body onresize=\"resize()\">\n";
 			$this->displayNavbar();
 			$this->displayMain();
 			$this->connectJS();

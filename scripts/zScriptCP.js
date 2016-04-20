@@ -7,9 +7,18 @@ $(document).ready(function () {
 	// Initialize collapsible (uncomment the line below if you use the dropdown variation)
 	$('.collapsible').collapsible();
 	
+		
+	//set the height of the side menu once, then changed on window resize event (resize() function)
+	$('#contField').height($(window).height() - 85 );
+	
+	//reload the main eventlisteners
 	reloadEvents();
 });
 
+//resize the height of the side menu on big screens dynamically as it is fixed and scroll need to be allowed to access all links
+function resize() {
+	$('#contField').height($(window).height() - 85 );
+}
 
 function reloadEvents() {
 
@@ -89,6 +98,7 @@ $('.a_shwrl').click(function() {
 	});
 });
 
+//loading the acting pictures part of the page using ajax and assigns eventlisteners to the loaded elements
 function actPhotosLoad() {
 	
 	//load part of the page using ajax (folders with photos and photos without folders)
@@ -121,11 +131,14 @@ function actPhotosLoad() {
 				reloadEvents();
 				actionPhotosDo();
 				
+				//submission of the files to upload, using formData object and jQuery ajax function
 				$('#fileUploadForm').on('submit', function(e) {
+					//prevent default form submission
 					e.preventDefault();
 					
 					var formData = new FormData();
 					
+					//add the album name to the formData object(accessed using $_POST in PHP file)
 					formData.append('album_name', document.getElementById('file_upl_alb_name').value);
 					
 					//for each entry, add to formdata to later access via $_FILES["file" + i]
@@ -135,14 +148,15 @@ function actPhotosLoad() {
 					
 					//send formdata to server-side
 					$.ajax({
-						url: "../php tasks/file_upload.php", // our php file
+						url: "../php tasks/file_upload.php", // php file
 						type: 'post',
 						data: formData,
-						dataType: 'html', // we return html from our php file
+						dataType: 'html', // return html from php file
 						async: true,
 						processData: false,  // tell jQuery not to process the data
 						contentType: false,   // tell jQuery not to set contentType
 						success : function() {
+							//on success load the acting pictures part of the page again with new album and/or files
 							actPhotosLoad();
 						},
 						error : function(request) {
@@ -217,10 +231,10 @@ function actionPhotosDo() {
 						
 						//send formdata to server-side
 						$.ajax({
-							url: "../php tasks/file_upload.php", // our php file
+							url: "../php tasks/file_upload.php", //php file
 							type: 'post',
 							data: formData,
-							dataType: 'html', // we return html from our php file
+							dataType: 'html', //return html from php file
 							async: true,
 							processData: false,  // tell jQuery not to process the data
 							contentType: false,   // tell jQuery not to set contentType
