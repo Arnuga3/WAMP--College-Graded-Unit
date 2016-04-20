@@ -13,11 +13,8 @@ $(document).ready(function () {
 
 function reloadEvents() {
 
-
-jQuery(window).load(function() {
-	$('.preload346').fadeOut();
-});
-
+	$('.preload346').hide();
+	
 	//parallax
 	$('.parallax').parallax();
 	
@@ -55,7 +52,10 @@ jQuery(window).load(function() {
 	});
 	//rename album function event listener
 	$('.sb_rename').click(function() {
-		renameAlbumAJAX(prompt('Enter new name for the album:'), $('.sb_rename_folder').text(), 'sysRenamearnuga3');
+		var newName = prompt('Enter new name for the album:');
+		if (newName != "" && newName != undefined) {
+			renameAlbumAJAX(newName, $('.sb_rename_folder').text(), 'sysRenamearnuga3');
+		}
 	});
 }
 
@@ -89,6 +89,83 @@ $('.a_shwrl').click(function() {
 	});
 });
 
+function actPhotosLoad() {
+	
+	//load part of the page using ajax (folders with photos and photos without folders)
+	$('#mainContent').load('../control_panel/a_act_photos.php', function() {
+		//assign event listeners to new loaded elements
+		reloadEvents();	
+		
+		//FOLDERS add events to the loaded folders
+		$('.folder').click(function() {
+			//load the images of selected folder using ajax and assign event listeners to them
+			var selectedFolder = $(this);
+			var url = '../control_panel/a_act_folders.php?folder=';
+			var folderName = selectedFolder.find('span').text();
+			//escape the string before passing it in url
+			var noSpaceName = encodeURIComponent(folderName);
+			$('#mainContent').load( url + noSpaceName, function() {
+				reloadEvents();
+				actionPhotosDo();
+			});
+		});
+		//UPLOAD BTN IN SUB MENU EVENT REGISTRATION
+		$('.sb_upload').click(function() {
+			//make sure mobile button is closed and dark bg is hidden
+			if ($('#dark').css('display') == 'block') {
+				enableScroll();
+				$('#dark').toggle();
+			}
+			//load the file upload part of the page using ajax and assign event listeners
+			$('#mainContent').load('../control_panel/a_files_upload.php', function() {
+				reloadEvents();
+				actionPhotosDo();
+				
+				$('#fileUploadForm').on('submit', function(e) {
+					e.preventDefault();
+					
+					var formData = new FormData();
+					
+					formData.append('album_name', document.getElementById('file_upl_alb_name').value);
+					
+					//for each entry, add to formdata to later access via $_FILES["file" + i]
+					for (var i = 0, len = document.getElementById('file').files.length; i < len; i++) {
+						formData.append("file" + i, document.getElementById('file').files[i]);
+					}
+					
+					//send formdata to server-side
+					$.ajax({
+						url: "../php tasks/file_upload.php", // our php file
+						type: 'post',
+						data: formData,
+						dataType: 'html', // we return html from our php file
+						async: true,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,   // tell jQuery not to set contentType
+						success : function() {
+							actPhotosLoad();
+						},
+						error : function(request) {
+							console.log(request.responseText);
+						}
+					});
+				});
+			});
+		});
+		//DELETE BTN IN SUB MENU EVENT REGISTRATION
+		$('.sb_delete').click(function() {
+			if ($('#dark').css('display') == 'block') {
+				enableScroll();
+				$('#dark').toggle();
+			}
+			$('#mainContent').load('../control_panel/a_delete_file.php', function() {
+				reloadEvents();
+				actionPhotosDo();
+			});
+		});
+	});
+}
+
 
 function actionPhotosDo() {
 	//click the acting photos button in the main menu
@@ -121,6 +198,40 @@ function actionPhotosDo() {
 				$('#mainContent').load('../control_panel/a_files_upload.php', function() {
 					reloadEvents();
 					actionPhotosDo();
+					
+					$('#submitFormUpl').click(function() {
+						$('.preload346').show();
+					});
+					
+					$('#fileUploadForm').on('submit', function(e) {
+						e.preventDefault();
+						
+						var formData = new FormData();
+						
+						formData.append('album_name', document.getElementById('file_upl_alb_name').value);
+						
+						//for each entry, add to formdata to later access via $_FILES["file" + i]
+						for (var i = 0, len = document.getElementById('file').files.length; i < len; i++) {
+							formData.append("file" + i, document.getElementById('file').files[i]);
+						}
+						
+						//send formdata to server-side
+						$.ajax({
+							url: "../php tasks/file_upload.php", // our php file
+							type: 'post',
+							data: formData,
+							dataType: 'html', // we return html from our php file
+							async: true,
+							processData: false,  // tell jQuery not to process the data
+							contentType: false,   // tell jQuery not to set contentType
+							success : function() {
+								actPhotosLoad();
+							},
+							error : function(request) {
+								console.log(request.responseText);
+							}
+						});
+					});
 				});
 			});
 			//DELETE BTN IN SUB MENU EVENT REGISTRATION

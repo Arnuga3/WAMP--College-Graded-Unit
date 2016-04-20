@@ -26,18 +26,18 @@ if (isset($_SESSION["mrBoss"])) {
 	$db = new dbConnection();
 	$db->connect();
 	
-    foreach ($_FILES["files"]["tmp_name"] as $key => $tmp_name) {
-		$file_name = $_FILES["files"]["name"][$key];
-		$file_tmp = $_FILES["files"]["tmp_name"][$key];
+    foreach ($_FILES as $index => $file) {
+		$file_name = $file["name"];
+		$file_tmp = $file["tmp_name"];
 		$ext = pathinfo($file_name, PATHINFO_EXTENSION);
-
+		echo "<p>new album name $newAlbum</p>";
 		if (in_array($ext, $extension)) {
 			
 			if (!file_exists("../uploaded_photos/".$file_name)) {
 				
 				$filenameNoExt = basename($file_name, ".".$ext);
 				
-				move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key],"../uploaded_photos/".$file_name);
+				move_uploaded_file($file_tmp, "../uploaded_photos/".$file_name);
 				
 				$db->customQuery("INSERT INTO ai_images (ai_ID) VALUES ('')");
 				
@@ -62,7 +62,7 @@ if (isset($_SESSION["mrBoss"])) {
 				$filename = basename($file_name, $ext);
 				
 				$newFileName = $filename.time().".".$ext;
-				move_uploaded_file($file_tmp = $_FILES["files"]["tmp_name"][$key],"../uploaded_photos/".$newFileName);
+				move_uploaded_file($file_tmp, "../uploaded_photos/".$newFileName);
 				
 				$filenameNoExt = basename($file_name, ".".$ext);
 				
@@ -94,8 +94,8 @@ if (isset($_SESSION["mrBoss"])) {
 	$db->close();
 	
 	$_SESSION["uploaded"] = true;
-	echo "";
-	header("Location: ../control_panel/cp_showreel.php");
+	echo "files are uploaded";
+	//header("Location: ../control_panel/cp_showreel.php");
 } else {
 	//this is required to avoid a blank page when user is loggin out (session is closed) and press a back button, so user is just transfered to the index page
 	header("Location: ../index.php");

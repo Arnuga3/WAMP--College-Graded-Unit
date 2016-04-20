@@ -3,8 +3,6 @@
 	
 	class ControlPanel extends Page {
 		
-		public $uploads = false;
-		
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -14,7 +12,7 @@
 			echo "</head>\n";
 			echo "<body>\n";
 			$this->displayNavbar();
-			$this->displayMain($this->uploads);
+			$this->displayMain();
 			$this->connectJS();
 			echo "</body>\n";
 			echo "</html>";
@@ -80,13 +78,11 @@
 <?php
 		}
 	
-		function displayMain($uploads) {
+		function displayMain() {
 ?>
 		<div class="row">
 			<div id="contField" class="col l3 hide-on-med-and-down">
-				<h5 class="margLeft margTopX titleText"><span class="margLeft">Menu:</span></h5>
 				<div id="desktop_flex">
-					<hr />
 					<a class="a_shwrl waves-effect waves-light" href="#"><img src="../img/cpIcons/movies.png" /><span>Showreel</span></a>
 					<hr />
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
@@ -100,11 +96,9 @@
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
 					<hr />
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
-					<hr />
 				</div>
 			</div>
-			<div id="mainContent" class="col s12 l9 offset-l3">
-						
+			
 			<div class="preload346">
 				<div class="preloader-wrapper active">
 					<div class="spinner-layer spinner-red-only">
@@ -118,17 +112,10 @@
 					</div>
 				</div>
 			</div>
-<?php
-			if ($uploads) {
-?>
-				<div class="pad15 textJustify">Files are uploaded.</div>
-<?php
-			} else {
-?>
+			
+			<div id="mainContent" class="col s12 l9 offset-l3">
+
 				<div class="pad15 textJustify">Welcome to the Control Panel! Here you can change the content of the ... website. Please read the information below what is providing the detailed documentation. All the content is separated in different groups and is available in the main menu. </div>
-<?php
-			}
-?>
 			</div>
 		</div>
 <?php
