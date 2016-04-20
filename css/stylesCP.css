@@ -22,6 +22,10 @@
 	font-weight: bold;
 }
 
+label {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
 /*------------Navigation bar--------------*/
 
 nav span {
@@ -168,14 +172,14 @@ nav span {
 #slide-out img {
 	padding-right: 15px;
 	vertical-align: middle;
-	width: 50px;
-	height: 32px;
+	width: 40px;
+	height: 25px;
 }
 .nav-wrapper img {
 	padding-right: 15px;
 	vertical-align: middle;
-	width: 50px;
-	height: 32px;
+	width: 40px;
+	height: 25px;
 }
 hr {
 	border: 1px solid #eee;
@@ -221,7 +225,7 @@ hr {
 	margin-top: 10px;
 }
 #desktop_flex img {
-	width: 45px;
+	width: 40px;
 	height: 40px;
 }
 
@@ -261,6 +265,7 @@ form {
 #cpCont label {
 	width: 100%;
 }
+
 .materialboxed {
 	padding: 10px;
 }
@@ -271,6 +276,9 @@ form {
 	padding: 0;
 }
 
+#fileUploadForm div {
+	height: 45px;
+}
 
 /*margin top for the content after fixed navbar and subnavbar, added to fix an unknown bug 
 as different output is displayed in a_act_photos.php and a_act_folders.php
@@ -288,6 +296,7 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 	top: 7px;
 	left: 7px;
 }
+
 
 /*------------Media queries-------------*/
 
@@ -394,16 +403,11 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 }
 /* label color */
 .input-field label {
-	color: orange;
+	color: #b71c1c;
 }
 /* label focus color */
 .input-field input[type=text]:focus + label {
-	color: orange;
-}
-/* label underline focus color */
-.input-field input[type=text]:focus {
-	border-bottom: 1px solid orange;
-	box-shadow: 0 1px 0 0 orange;
+	color: #b71c1c;
 }
 /* valid color */
 .input-field input[type=text].valid {
@@ -416,9 +420,14 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 	box-shadow: 0 0px 0 0 #000;
 }
 /* label underline focus color */
+.input-field input[type=text]:focus {
+	 border-bottom: 1px solid #b71c1c;
+	 box-shadow: 0 1px 0 0 #000;
+}
+/* label underline focus color */
 .input-field input[type=password]:focus {
-	border-bottom: 1px solid orange;
-	box-shadow: 0 1px 0 0 orange;
+	border-bottom: 1px solid #b71c1c;
+	box-shadow: 0 1px 0 0 #b71c1c;
 }
 /* valid color */
 .input-field input[type=password].valid {
@@ -437,22 +446,22 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 /* textarea, materialize form */
 #showrl_description:focus,
 #showrl_path:focus {
-	border-bottom: 1px solid orange;
-	-webkit-box-shadow: 0 1px 0 0 orange;
-	-moz-box-shadow: 0 1px 0 0 orange;
-	box-shadow: 0 1px 0 0 orange;
+	border-bottom: 1px solid #b71c1c;
+	-webkit-box-shadow: 0 1px 0 0 #b71c1c;
+	-moz-box-shadow: 0 1px 0 0 #b71c1c;
+	box-shadow: 0 1px 0 0 #b71c1c;
 }
 #matr_descrLb {
-	color: orange;
+	color: #b71c1c;
 }
 
 .checkbox-orange[type="checkbox"]:checked + label:after {
-    border: 2px solid orange;
-    background-color: orange;
+    border: 2px solid #b71c1c;
+    background-color: #b71c1c;
 }
 .orange-radio[type="radio"]:checked + label:after {
-	border: 2px solid orange;
-    background-color: orange;
+	border: 2px solid #b71c1c;
+    background-color: #b71c1c;
 }
 
 /*------------Help classes-------------*/
@@ -481,6 +490,7 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 }
 .helperText {
 	color: #bbb;
+	padding: 5px;
 }
 .helperText:hover {
 	color: orange;

@@ -35,26 +35,26 @@ echo "<!--ACTING PHOTOS-->
 	
 	<div class=\"cp_content\">
 
-		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Upload file(s) using the form below.</p>
+		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Upload file(s) using the form below. Type an album name to create a new album or leave blank to upload files to the main gallery.</p>
 		
-		<div id=\"cpCont\" class=\"margTop margBotXL pad10\">
+		<div id=\"cpCont\" class=\"margBotExtra pad10\">
 
 		
 			<form id=\"fileUploadForm\" class=\"textCenter\" action=\"\" method=\"\" enctype=\"multipart/form-data\">
 				<div class=\"input-field\">
-							<input type=\"text\" id=\"file_upl_alb_name\" name=\"album_name\" class=\"validate\" length=\"100\"/>
-							<label for=\"file_upl_alb_name\" class=\"textLeft\">Name of a new album</label>
-						</div>
-				<div class=\"file-field input-field\">
-					<div class=\"btn grey\">
-						<span>choose</span>
+						<input type=\"text\" id=\"file_upl_alb_name\" name=\"album_name\" class=\"validate\" length=\"100\"/>
+						<label for=\"file_upl_alb_name\" class=\"textLeft\">new album</label>
+					</div>
+				<div id=\"ulpBtn\" class=\"file-field input-field margTopX\">
+					<div class=\"btn  brown lighten-2\">
+						<span>choose files</span>
 						<input type=\"file\" name=\"file[]\" id=\"file\" multiple>
 					</div>
 					<div class=\"file-path-wrapper\">
 						<input class=\"file-path validate\" type=\"text\" placeholder=\"Upload one or more files\">
 					</div>
 				</div>
-				<button id=\"submitFormUpl\" class=\"margTop btn waves-effect waves-light\" type=\"submit\" name=\"action\">UPLOAD</button>
+				<button id=\"submitFormUpl\" class=\"margTopX btn waves-effect waves-light teal darken-3\" type=\"submit\" name=\"action\">UPLOAD FILES</button>
 			</form>
 				
 				
