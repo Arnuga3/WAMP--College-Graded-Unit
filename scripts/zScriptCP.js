@@ -151,6 +151,7 @@ function photosLoad(typeNr) {
 	//load part of the page using ajax (folders with photos and photos without folders)
 	$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 		reloadEvents();
+		photosUploadScr(typeNr);
 	});
 }
 
@@ -217,8 +218,6 @@ function fileUploadSubm(typeNr) {
 			success : function() {
 				//on success load the acting pictures part of the page again with new album and/or files
 				photosLoad(typeNr);
-				reloadEvents();
-				photosUploadScr(typeNr);
 			},
 			error : function(request) {
 				console.log(request.responseText);

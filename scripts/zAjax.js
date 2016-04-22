@@ -85,12 +85,10 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 		if (folderName == "") {
 			//acting/gig first ajax screen, depends on typeNr(0-acting, 1-gig)
 			photosLoad(typeNr);
-			reloadEvents();
 			
 		} else {
 			//acting/gig inside folder ajax screen, depends on typeNr(0-acting, 1-gig)
 			photosLoadFolder(typeNr, folderNoSpace);
-			reloadEvents();
 		}
 		
 		Materialize.toast('Deleted', 1500, 'rounded');
