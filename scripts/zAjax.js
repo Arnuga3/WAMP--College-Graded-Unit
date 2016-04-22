@@ -32,8 +32,9 @@ function saveChanges(url, vars, callback) {
 /*             Custom Functions               */
 
 
-//Showreel variables for ajax post request, to save any changes in showreel group
+//SHOWREEL INFORMATION UPDATE FUNCTIONALITY
 function saveShowreelData() {
+	
 	var title = $('#showrl_title').val();
 	var description = $('#showrl_description').val();
 	var path = $('#showrl_path').val();
@@ -57,78 +58,74 @@ function saveShowreelData() {
 	});
 }
 
-function deletePhotosAJAX(folder, photos) {
+
+//DELETE FILES FUNCTIONALITY (PHOTOS)
+function deletePhotosAJAX(folder, photos, typeNr) {
+	
+	//0 is acting, 1 is gig
+	var delTypeURL = ["../php_tasks/delete_photo_act.php", "../php_tasks/delete_photo_gig.php"];
+	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
+	var folderTypeURL = ["../control_panel/a_act_folders.php?folder=", "../control_panel/a_gig_folders.php?folder="];
 		
 	$('.preload346').show();
 	
+	//outside the folder (main gallery), no span element to read the folder name from, so variable is equal to undefined, leave the empry string will push to save photos in main gallery (no album)
 	if (folder == undefined) {
 		var folderName = "";
 	} else {
 		var folderName = folder;
 	}
 	
-	var folderNoSpace = folderName.replace(" ", "+");
-
+	var folderNoSpace = encodeURIComponent(folderName);
 	var photos = photos;
 	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
 	
 	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
-	saveChanges("../php_tasks/delete_file.php", combined, function() {
+	saveChanges(delTypeURL[typeNr], combined, function() {
 		if (folderName == "") {
-			$('#mainContent').load('../control_panel/a_act_photos.php', function() {
-				reloadEvents();
-				actionPhotosDo();
-				//FOLDERS add events to the loaded folders
-				$('.folder').click(function() {
-					var selectedFolder = $(this);
-					var url = '../control_panel/a_act_folders.php?folder=';
-					var folderName = selectedFolder.find('span').text();
-					var noSpaceName = encodeURIComponent(folderName);
-					$('#mainContent').load( url + noSpaceName, function() {
-						reloadEvents();
-						actionPhotosDo();
-					});
-				});
-			});
+			//acting/gig first ajax screen, depends on typeNr(0-acting, 1-gig)
+			photosLoad(typeNr);
+			reloadEvents();
+			
 		} else {
-			//FOLDERS add events to the loaded folders
-			var url = '../control_panel/a_act_folders.php?folder=';
-			$('#mainContent').load( url + folderNoSpace, function() {
-				reloadEvents();
-				actionPhotosDo();
-			});
+			//acting/gig inside folder ajax screen, depends on typeNr(0-acting, 1-gig)
+			photosLoadFolder(typeNr, folderNoSpace);
+			reloadEvents();
 		}
+		
 		Materialize.toast('Deleted', 1500, 'rounded');
 		if ($('#dark').css('display') == 'block') {
 			enableScroll();
 			$('#dark').toggle();
 		}
 	});
-	
-	
 }
 
-//MOVE PHOTOS FUNCTIONALITY, prepare and send ajax
-function movePhotosAJAX(folder, photos) {
+
+//MOVE PHOTOS FUNCTIONALITY (PHOTOS)
+function movePhotosAJAX(folder, photos, typeNr) {
+	
+	var moveTypeURL = ["../php_tasks/move_photo_act.php", "../php_tasks/move_photo_gig.php"];
+	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
+	var folderTypeURL = ["../control_panel/a_act_folders.php?folder=", "../control_panel/a_gig_folders.php?folder="];
+	
 	var folderName = folder;
-	var folderNoSpace = folderName.replace(" ", "+");
+	var folderNoSpace = encodeURIComponent(folderName);
 
 	var photos = photos;
 	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
 	
 	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
-	saveChanges("../php_tasks/move_photo_update.php", combined, function() {
+	saveChanges(moveTypeURL[typeNr], combined, function() {
 		if (folderName == "") {
-			$('#mainContent').load('../control_panel/a_act_photos.php', function() {
+			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 				reloadEvents();
-				actionPhotosDo();
 				//FOLDERS add events to the loaded folders
 				$('.folder').click(function() {
 					var selectedFolder = $(this);
-					var url = '../control_panel/a_act_folders.php?folder=';
 					var folderName = selectedFolder.find('span').text();
 					var noSpaceName = encodeURIComponent(folderName);
-					$('#mainContent').load( url + noSpaceName, function() {
+					$('#mainContent').load(folderTypeURL[typeNr] + noSpaceName, function() {
 						reloadEvents();
 						actionPhotosDo();
 					});
@@ -136,10 +133,8 @@ function movePhotosAJAX(folder, photos) {
 			});
 		} else {
 			//FOLDERS add events to the loaded folders
-			var url = '../control_panel/a_act_folders.php?folder=';
-			$('#mainContent').load( url + folderNoSpace, function() {
+			$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
 				reloadEvents();
-				actionPhotosDo();
 			});
 		}
 		Materialize.toast('Moved', 1500, 'rounded');
@@ -148,10 +143,10 @@ function movePhotosAJAX(folder, photos) {
 			$('#dark').toggle();
 		}
 	});
-	
-	
 }
-//Checked photos
+
+
+//Get checked photos and prepare an URL string for request
 function getSelectedPhotos() {
 	var checked = [];
 	var toStr = "";
@@ -165,8 +160,9 @@ function getSelectedPhotos() {
 }
 
 
-//RENAME ALBUM FUNCTIONALITY, prepare and send ajax
+//RENAME ALBUM FUNCTIONALITY (PHOTOS)
 function renameAlbumAJAX(folder, folderOld, action) {
+	
 	var folderName = folder;
 	var folderNoSpace = encodeURIComponent(folderName);
 	var folderOld = folderOld;
@@ -205,7 +201,5 @@ function renameAlbumAJAX(folder, folderOld, action) {
 			$('#dark').toggle();
 		}
 	});
-	
-	
 }
 
