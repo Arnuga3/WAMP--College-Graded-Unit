@@ -16,6 +16,12 @@ $(document).ready(function () {
 });
 
 
+//resize the height of the side menu on big screens dynamically as it is fixed and scroll need to be allowed to access all links
+function resize() {
+	$('#contField').height($(window).height() - 85 );
+}
+
+
 
 //////////////////////////////
 ////RELOAD EVENT LISTENERS////
@@ -119,6 +125,8 @@ function reloadEvents() {
 				var noSpaceName = encodeURIComponent(folderName);
 				$('#mainContent').load("../control_panel/a_act_folders.php?folder=" + noSpaceName, function() {
 					reloadEvents();
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbum(0);
 				});
 			});
 			
@@ -126,22 +134,19 @@ function reloadEvents() {
 			photosUploadScr(0);
 		});
 	});
-
-	
-///////////////	
-////SUBMENU////
-///////////////
-	
-	//RENAME BTN 
-	$('.sb_rename').click(function() {
-		var newName = prompt('Enter new name for the album:');
-		if (newName != "" && newName != undefined) {
-			renameAlbumAJAX(newName, $('.sb_rename_folder').text(), 'sysRenamearnuga3');
-		}
-	});
-
 }
 
+//RENAME ALBUM OPTION
+function renameAlbum(typeNr) {
+		
+	//RENAME BTN 
+	$('.sb_rename').click(function() {
+		var newName = prompt('Enter a new name for the album:');
+		if (newName != "" && newName != undefined) {
+			renameAlbumAJAX(newName, $('.sb_rename_folder').text(), 'sysRenamearnuga3', typeNr);
+		}
+	});
+}
 
 //LOADS PHOTOS FIRST SCREEN
 function photosLoad(typeNr) {
@@ -152,15 +157,38 @@ function photosLoad(typeNr) {
 	$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 		reloadEvents();
 		photosUploadScr(typeNr);
+		
+		//FOLDERS
+		$('.folder').click(function() {
+			//load the images of selected folder using ajax and assign event listeners to them
+			var selectedFolder = $(this);
+			var folderName = selectedFolder.find('span').text();
+			//escape the string before passing it in url
+			var noSpaceName = encodeURIComponent(folderName);
+			$('#mainContent').load("../control_panel/a_act_folders.php?folder=" + noSpaceName, function() {
+				reloadEvents();
+				//RENAME ALBUM - inside as rename option is available only in the folder
+				renameAlbum(typeNr);
+			});
+		});
 	});
 }
 
 //LOADS PHOTOS IN FOLDER
 function photosLoadFolder(typeNr, folderNoSpace) {
 	
+	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/a_act_folders.php?folder=", "../control_panel/a_gig_folders.php?folder="];
 	
 	$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
+		//if no photos left in a folder load the first screen
+		if ($('#cpCont div').length == false) {
+			//load part of the page using ajax (folders with photos and photos without folders)
+			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
+				reloadEvents();
+				photosUploadScr(typeNr);
+			});
+		}
 		reloadEvents();
 	});
 }
@@ -224,29 +252,6 @@ function fileUploadSubm(typeNr) {
 			}
 		});
 	});
-}
-
-
-//resize the height of the side menu on big screens dynamically as it is fixed and scroll need to be allowed to access all links
-function resize() {
-	$('#contField').height($(window).height() - 85 );
-}
-
-function checkIfChecked() {
-	if ($('input:checked').length > 0) {
-		$('#footer_modal').openModal();
-		enableScroll();
-	} else {
-		alert("Please select photo(s) before moving!");
-	}
-}
-
-function checkIfCheckedDel() {
-	if ($('input:checked').length > 0) {
-		deletePhotosAJAX($('.bread span').text(), getSelectedPhotos(), 0);
-	} else {
-		alert("Please select photo(s) you want to delete!");
-	}
 }
 
 
