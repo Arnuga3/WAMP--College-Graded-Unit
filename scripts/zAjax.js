@@ -72,6 +72,15 @@ function getSelectedPhotos() {
 	return toStr;
 }
 
+function moveToNewAlbum(typeNr) {
+	var newName = prompt('New album name');
+	if (newName != undefined && newName != "") {
+		movePhotosAJAX(newName, getSelectedPhotos(), typeNr);
+		console.log("move to a new album operation successful");
+	} else {
+		console.log("move to a new album operation canceled");
+	}
+}
 
 
 
@@ -161,7 +170,6 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 		if (folderName == "") {
 			//acting/gig first ajax screen, depends on typeNr(0-acting, 1-gig)
 			photosLoad(typeNr);
-			
 		} else {
 			//acting/gig inside folder ajax screen, depends on typeNr(0-acting, 1-gig)
 			photosLoadFolder(typeNr, folderNoSpace);
@@ -201,7 +209,7 @@ function movePhotosAJAX(folder, photos, typeNr) {
 					var noSpaceName = encodeURIComponent(folderName);
 					$('#mainContent').load(folderTypeURL[typeNr] + noSpaceName, function() {
 						reloadEvents();
-						actionPhotosDo();
+						renameAlbum(typeNr);
 					});
 				});
 			});
@@ -209,6 +217,7 @@ function movePhotosAJAX(folder, photos, typeNr) {
 			//FOLDERS add events to the loaded folders
 			$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
 				reloadEvents();
+				renameAlbum(typeNr);
 			});
 		}
 		Materialize.toast('Moved', 1500, 'rounded');

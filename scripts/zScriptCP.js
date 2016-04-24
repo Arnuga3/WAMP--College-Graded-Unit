@@ -131,11 +131,12 @@ function reloadEvents() {
 					reloadEvents();
 					//RENAME ALBUM - inside as rename option is available only in the folder
 					renameAlbum(0);
+					photosUploadScr(0, $('.sb_rename_folder').text());
 				});
 			});
 			
 			//UPLOAD SCREEN
-			photosUploadScr(0);
+			photosUploadScr(0, "");
 		});
 	});
 }
@@ -160,8 +161,8 @@ function photosLoad(typeNr) {
 	//load part of the page using ajax (folders with photos and photos without folders)
 	$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 		reloadEvents();
-		photosUploadScr(typeNr);
-		
+		photosUploadScr(typeNr, "");
+
 		//FOLDERS
 		$('.folder').click(function() {
 			//load the images of selected folder using ajax and assign event listeners to them
@@ -173,6 +174,7 @@ function photosLoad(typeNr) {
 				reloadEvents();
 				//RENAME ALBUM - inside as rename option is available only in the folder
 				renameAlbum(typeNr);
+				photosUploadScr(typeNr, noSpaceName);
 			});
 		});
 	});
@@ -190,22 +192,23 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 			//load part of the page using ajax (folders with photos and photos without folders)
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 				reloadEvents();
-				photosUploadScr(typeNr);
+				photosUploadScr(typeNr, folderNoSpace);
 			});
 		}
 		reloadEvents();
+		photosUploadScr(typeNr, folderNoSpace);
 	});
 }
 
 //LOADS THE UPLOAD SCREEN
-function photosUploadScr(typeNr) {
+function photosUploadScr(typeNr, folderNoSpace) {
 	
-	var uplTypeURL = ["../control_panel/a_files_upload.php", "../control_panel/a_files_upload.php"];
-	
+	var uplTypeURL = ["../control_panel/a_files_upload.php?folder=", "../control_panel/a_files_upload.php"];
+
 	//UPLOAD BTN
 	$('.sb_upload').click(function() {
 		//load the file upload part of the page using ajax and assign event listeners
-		$('#mainContent').load(uplTypeURL[typeNr], function() {
+		$('#mainContent').load(uplTypeURL[typeNr] + folderNoSpace, function() {
 			reloadEvents();
 			
 			$('#submitFormUpl').click(function() {

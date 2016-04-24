@@ -15,8 +15,6 @@ if (isset($_SESSION["mrBoss"])) {
 		return $data;
 	}
 	
-	$albums = $_SESSION["AllAlbums"];
-	
 	$folder = test_input($_GET["folder"]);
 	//need to fix that, as it takes space in html
 	echo $folder;
@@ -26,6 +24,29 @@ if (isset($_SESSION["mrBoss"])) {
 	$db = new dbConnection();
 	$db->connect();
 	
+	//To get existing folders in db
+	$res = $db->select("media, images", "media.*, images.*", "media.usr_ID = $userID AND media.image_ID = images.image_ID AND images.image_group = 'acting'");
+	
+	//THIS CODE GETS UNIQUE NAMES OF FOLDERS AND SAVES THEM INTO INDEXED ARRAY
+	$folders = array();
+	if ($res->num_rows > 0) {
+		while($row = $res->fetch_assoc()) {
+			//Place all folder names into new array
+			$folders[] = $row["image_folder"];
+		}
+	}
+	//Save only unique names of folders
+	$folder_list = array_unique($folders);
+	//Remove all indexes with NULL value and move all unique values to the beginning of the array
+	$folders_indexed = array();
+	foreach ($folder_list as $i) {
+		if ($i != NULL) {
+			$folders_indexed[] = $i;
+		}
+	}
+	$albums = $folders_indexed;
+	
+	//to rename folder
 	$escapedFolder = $db->escape($folder);
 	$result = $db->select("media, images", "media.*, images.*", "media.usr_ID = $userID AND media.image_ID = images.image_ID AND images.image_folder = '$escapedFolder'");
 	$db->close();
@@ -50,8 +71,8 @@ if (isset($_SESSION["mrBoss"])) {
 	</nav>
 	
 	<div class=\"sub_nav hide-on-med-and-down\">
-		<a class=\"z-depth-1 a_act_p waves-effect waves-dark\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo(s)</span></a>
+		<a class=\"a_act_p z-depth-1 waves-effect waves-dark\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
+		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo(s)</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEdit(0)\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo</span></a>
@@ -62,7 +83,7 @@ if (isset($_SESSION["mrBoss"])) {
 			<img class=\"pencil\" src=\"../img/cpIcons/pencil.png\" />
 		</a>
 		<ul>
-			<li><span>new photo(s)</span><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
+			<li><span>new photo(s)</span><a class=\"sb_upload btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
 			<li><span>edit photo</span><a class=\"sb_edit btn-floating green\" onclick=\"checkIfCheckedEdit(0)\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
 			<li><span>delete photo</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
 			<li><span>move photo</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
@@ -114,7 +135,7 @@ if (isset($_SESSION["mrBoss"])) {
 								</div>
 							</a></li>";
 			}
-				echo "		<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX(prompt('Name the album'), getSelectedPhotos(), 0)\" href=\"#\">
+				echo "		<li><a class=\"foot_mod\" onclick=\"moveToNewAlbum(0)\" href=\"#\">
 								<div class=\"flexVertCenter\">
 									<img class=\"margLeft10\" width=\"40\" src=\"../img/cpIcons/folder_add.png\" />
 									<span class=\"margLeft infoText\">CREATE NEW ALBUM</span>

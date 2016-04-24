@@ -5,6 +5,22 @@
 if (isset($_SESSION["mrBoss"])) {
 	$userID = $_SESSION["mrBoss"]["usr_ID"];
 	
+	//to make work htmlspecialchars() function
+	header('Content-Type: text/plain');
+	
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+	
+	if (isset($_GET["folder"])) {
+		$folder = test_input($_GET["folder"]);
+	} else {
+		$folder = "";
+	}
+	
 	include ("../db/db_ORM.php");
 	//Create DB connection and get data from db
 	$db = new dbConnection();
@@ -18,7 +34,7 @@ echo "<!--ACTING PHOTOS-->
 		<div class=\"bread nav-wrapper\">
 			<div class=\"col s12\">
 				<a href=\"#!\" class=\"breadcrumb\">Acting Photos</a>
-				<a href=\"#!\" class=\"breadcrumb\"></a>
+				<a href=\"#!\" class=\"breadcrumb\">$folder</a>
 			</div>
 		</div>
 	</nav>
@@ -35,7 +51,7 @@ echo "<!--ACTING PHOTOS-->
 	
 	<div class=\"cp_content\">
 
-		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Upload file(s) using the form below. Type an album name to place all uploaded photo(s) in a separate album or leave it blank to upload photo(s) to the main gallery.</p>
+		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Upload file(s) using the form below. Type a new name to create a new album or type a name of existing album to upload selected photos into it.</p>
 		
 		<div id=\"cpCont\" class=\"margBotExtra pad10\">
 
@@ -43,7 +59,7 @@ echo "<!--ACTING PHOTOS-->
 			<form id=\"fileUploadForm\" class=\"textCenter\" action=\"\" method=\"\" enctype=\"multipart/form-data\">
 				<div class=\"input-field\">
 						<i class=\"prefix\"><img src=\"../img/cpIcons/folder_add.png\" /></i>
-						<input type=\"text\" id=\"file_upl_alb_name\" name=\"album_name\" class=\"validate\" length=\"100\" placeholder=\"Enter a name to create an album\" />
+						<input type=\"text\" id=\"file_upl_alb_name\" name=\"album_name\" class=\"validate\" length=\"100\" placeholder=\"Enter a name to create an album\" value=\"$folder\"/>
 					</div>
 				<div id=\"ulpBtn\" class=\"file-field input-field margTopL\">
 					<div class=\"btn blue-grey lighten-2\">

@@ -9,7 +9,7 @@ if (isset($_SESSION["mrBoss"])) {
 	//Create DB connection and get data from db
 	$db = new dbConnection();
 	$db->connect();
-	//Get a showreel video information
+
 	$result = $db->select("media, images", "media.*, images.*", "media.usr_ID = $userID AND media.image_ID = images.image_ID AND images.image_group = 'acting'");
 	$db->close();
 	
@@ -30,7 +30,6 @@ if (isset($_SESSION["mrBoss"])) {
 			$folders_indexed[] = $i;
 		}
 	}
-	$_SESSION["AllAlbums"] = $folders_indexed;
 	//END
 
 	echo "<!--ACTING PHOTOS-->
@@ -127,7 +126,7 @@ if (isset($_SESSION["mrBoss"])) {
 								</div>
 							</a></li>";
 			}
-				echo "		<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX(prompt('Name the album'), getSelectedPhotos(), 0)\" href=\"#\">
+				echo "		<li><a class=\"foot_mod\" onclick=\"moveToNewAlbum(0)\" href=\"#\">
 								<div class=\"flexVertCenter\">
 									<img class=\"margLeft10\" width=\"40\" src=\"../img/cpIcons/folder_add.png\" />
 									<span class=\"margLeft infoText\">CREATE NEW ALBUM</span>
