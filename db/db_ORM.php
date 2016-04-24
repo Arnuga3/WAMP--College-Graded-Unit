@@ -264,12 +264,6 @@ METHODS DESCRIPTION AND USAGE:
 		public function customQuery($query) {
 
 			$this->result = $this->myConn->query($query);
-
-			if ($this->result === TRUE) {
-				//echo "Complete";
-			} else {
-				echo "Error: " . $this->myConn->error;
-			}
 			return $this->result;
 		}
 		

@@ -131,10 +131,10 @@ nav span {
 }
 .fixed-action-btn li > span {
 	position: absolute;
-	left:-100px;
+	left:-115px;
 	bottom: 7px;
 	display: block;
-	width: 105px;
+	width: 120px;
 	padding-left: 7px;
 	border-radius: 10px;
 	background-color: #777;
@@ -267,6 +267,13 @@ form {
 	width: 100%;
 }
 
+.truncatedTitle {
+	white-space: nowrap; 
+	width: 200px; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .materialboxed {
 	padding: 10px;
 }
@@ -279,6 +286,13 @@ form {
 
 #fileUploadForm div {
 	height: 45px;
+}
+.photoNr {
+	background-color: #555;
+	color: white;
+	width: 100px;
+	text-align: center;
+	border-radius: 5px;
 }
 
 /*margin top for the content after fixed navbar and subnavbar, added to fix an unknown bug 
@@ -333,6 +347,12 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 	.aftTrunc {
 		left: 468px;
 		top: -2.3em;
+	}
+	.truncatedTitle {
+		white-space: nowrap; 
+		width: 400px; 
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	
 }
@@ -393,6 +413,12 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 	.aftTrunc {
 		left: 588px;
 		top: -2em;
+	}
+	.truncatedTitle {
+		white-space: nowrap; 
+		width: 550px; 
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
 
@@ -495,6 +521,13 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 }
 .helperText:hover {
 	color: orange;
+}
+.helperText2 {
+	color: #ccc;
+	padding: 5px;
+}
+.helperText2:hover {
+	color: #555;
 }
 .infoText {
 	color: #1a237e;

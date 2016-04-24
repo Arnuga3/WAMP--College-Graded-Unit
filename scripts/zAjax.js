@@ -50,6 +50,14 @@ function checkIfCheckedDel(typeNr) {
 	}
 }
 
+function checkIfCheckedEdit(typeNr) {
+	if ($('input:checked').length > 0) {
+		editPhotosAJAX($('.bread span:first').text(), getSelectedPhotos(), typeNr);
+	} else {
+		alert("Please select photo(s) you want to edit!");
+	}
+}
+
 
 //Get checked photos and prepare an URL string for request
 function getSelectedPhotos() {
@@ -94,6 +102,35 @@ function saveShowreelData() {
 		//END RELOAD
 		
 		Materialize.toast('Saved', 1500, 'rounded');
+	});
+}
+
+
+//EDIT PHOTOS FUNCTIONALITY
+function editPhotosAJAX(folder, photos, typeNr) {
+	
+	//0 is acting, 1 is gig
+	var editTypeURL = ["../control_panel/edit_photo_act.php", "../control_panel/edit_photo_gig.php"];
+	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
+	var folderTypeURL = ["../control_panel/a_act_folders.php?folder=", "../control_panel/a_gig_folders.php?folder="];
+		
+	$('.preload346').show();
+	
+	//outside the folder (main gallery), no span element to read the folder name from, so variable is equal to undefined, leave the empry string will push to save photos in main gallery (no album)
+	if (folder == undefined) {
+		var folderName = "";
+	} else {
+		var folderName = folder;
+	}
+	
+	var folderNoSpace = encodeURIComponent(folderName);
+	var photos = photos;
+	var combined = {folder: folderNoSpace, photos: photos};
+	
+	//Sending data via POST using load() function
+	$('#mainContent').load(editTypeURL[typeNr], combined, function() {
+		reloadEvents();
+		
 	});
 }
 

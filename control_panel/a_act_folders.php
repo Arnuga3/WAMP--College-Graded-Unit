@@ -51,9 +51,8 @@ if (isset($_SESSION["mrBoss"])) {
 	
 	<div class=\"sub_nav hide-on-med-and-down\">
 		<a class=\"z-depth-1 a_act_p waves-effect waves-dark\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/folder_delete.png\" /><span>delete album</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo(s)</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEdit(0)\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo</span></a>
 	</div>
@@ -63,9 +62,8 @@ if (isset($_SESSION["mrBoss"])) {
 			<img class=\"pencil\" src=\"../img/cpIcons/pencil.png\" />
 		</a>
 		<ul>
-			<li><span>delete album</span><a class=\"btn-floating blue\"><img src=\"../img/cpIcons/folder_delete.png\" /></a></li>
-			<li><span>new photo</span><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
-			<li><span>edit photo</span><a class=\"btn-floating green\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
+			<li><span>new photo(s)</span><a class=\"btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
+			<li><span>edit photo</span><a class=\"sb_edit btn-floating green\" onclick=\"checkIfCheckedEdit(0)\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
 			<li><span>delete photo</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
 			<li><span>move photo</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
 		</ul>

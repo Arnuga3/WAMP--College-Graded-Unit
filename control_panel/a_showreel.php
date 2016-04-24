@@ -74,7 +74,8 @@ if (isset($_SESSION["mrBoss"])) {
 						<div id=\"error\"></div>
 					</form>
 				</div>
-			</div>";
+			</div>
+			<script type=\"text/javascript\" src=\"../frameworks/materialize-v0.97.5/materialize/js/materialize.min.js\"></script>";
 		
 	} else {
 		echo "Error: one record is expected";

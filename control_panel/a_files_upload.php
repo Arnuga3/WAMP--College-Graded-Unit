@@ -35,26 +35,26 @@ echo "<!--ACTING PHOTOS-->
 	
 	<div class=\"cp_content\">
 
-		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Upload file(s) using the form below. Type an album name to create a new album or leave blank to upload files to the main gallery.</p>
+		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Upload file(s) using the form below. Type an album name to place all uploaded photo(s) in a separate album or leave it blank to upload photo(s) to the main gallery.</p>
 		
 		<div id=\"cpCont\" class=\"margBotExtra pad10\">
 
 		
 			<form id=\"fileUploadForm\" class=\"textCenter\" action=\"\" method=\"\" enctype=\"multipart/form-data\">
 				<div class=\"input-field\">
-						<input type=\"text\" id=\"file_upl_alb_name\" name=\"album_name\" class=\"validate\" length=\"100\"/>
-						<label for=\"file_upl_alb_name\" class=\"textLeft\">new album</label>
+						<i class=\"prefix\"><img src=\"../img/cpIcons/folder_add.png\" /></i>
+						<input type=\"text\" id=\"file_upl_alb_name\" name=\"album_name\" class=\"validate\" length=\"100\" placeholder=\"Enter a name to create an album\" />
 					</div>
-				<div id=\"ulpBtn\" class=\"file-field input-field margTopX\">
-					<div class=\"btn  brown lighten-2\">
-						<span>choose files</span>
+				<div id=\"ulpBtn\" class=\"file-field input-field margTopL\">
+					<div class=\"btn blue-grey lighten-2\">
+						<span>photo(s)</span>
 						<input type=\"file\" name=\"file[]\" id=\"file\" multiple>
 					</div>
 					<div class=\"file-path-wrapper\">
-						<input class=\"file-path validate\" type=\"text\" placeholder=\"Upload one or more files\">
+						<input class=\"file-path validate\" type=\"text\" placeholder=\"Upload one or more photos\">
 					</div>
 				</div>
-				<button id=\"submitFormUpl\" class=\"margTopX btn waves-effect waves-light teal darken-3\" type=\"submit\" name=\"action\">UPLOAD FILES</button>
+				<button id=\"submitFormUpl\" class=\"margTopX btn waves-effect waves-light teal darken-3\" type=\"submit\" name=\"action\">UPLOAD Photo(s)</button>
 			</form>
 				
 				
