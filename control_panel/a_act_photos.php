@@ -48,7 +48,7 @@ if (isset($_SESSION["mrBoss"])) {
 		<a class=\"z-depth-1 waves-effect waves-dark blue-grey lighten-1 disabled\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
 		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>add photo(s)</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEdit(0)\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo(s)</span></a>
-		<a class=\"sb_delete z-depth-1 waves-effect waves-dark\" href=\"#\"  onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo(s)</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"  onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo(s)</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo(s)</span></a>
 	</div>
 
@@ -58,8 +58,8 @@ if (isset($_SESSION["mrBoss"])) {
 		</a>
 		<ul>
 			<li><span>add photo(s)</span><a class=\"sb_upload btn-floating blue\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
-			<li><span>edit photo(s)</span><a class=\"sb_edit btn-floating green\" onclick=\"checkIfCheckedEdit(0)\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
-			<li><span>delete photo(s)</span><a class=\"sb_delete btn-floating blue\" onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
+			<li><span>edit photo(s)</span><a class=\"btn-floating green\" onclick=\"checkIfCheckedEdit(0)\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
+			<li><span>delete photo(s)</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
 			<li><span>move photo(s)</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
 		</ul>
 	</div>

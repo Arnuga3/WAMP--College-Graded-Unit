@@ -42,11 +42,22 @@
 			<a class=\"waves-effect waves-dark z-depth-1\" onclick=\"\"><img src=\"../img/cpIcons/diskette.png\" /><span>save</span></a>
 		</div>
 		
+		<div class=\"sub_nav hide-on-med-and-down\">
+			<a class=\"waves-effect waves-dark z-depth-1\" onclick=\"saveShowreelData()\"><img src=\"../img/cpIcons/diskette.png\" /><span>save</span></a>
+		</div>
+		
+		<!--SAVE BTN MOB-->
+		<div class=\"fixed-action-btn hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
+			<a class=\"btn-floating btn-large waves-effect waves-light deep-orange darken-2\" onclick=\"saveShowreelData()\"><img class=\"pencil\" src=\"../img/cpIcons/diskette.png\" /></a>
+		</div>
+		
+		<!--BACK BTN MOB-->
 		<div class=\"fixed-action-btn vertical click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 84px;\">
 			<a class=\"a_act_p btn-floating btn-large cyan darken-2\">
 				<img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" />
 			</a>
-		</div>
+		</div>		
+		
 		<div class=\"fixed-action-btn hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
 			<a class=\"btn-floating btn-large waves-effect waves-light deep-orange darken-2\" onclick=\"\"><img class=\"pencil\" src=\"../img/cpIcons/diskette.png\" /></a>
 		</div>
@@ -93,8 +104,7 @@
 echo 		"<p id=\"error\"></p>
 			
 			</div>
-		</div>
-		<script type=\"text/javascript\" src=\"../frameworks/materialize-v0.97.5/materialize/js/materialize.min.js\"></script>";
+		</div>";
 	
 		$db->close();
 

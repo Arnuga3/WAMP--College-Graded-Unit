@@ -140,6 +140,18 @@ function editPhotosAJAX(folder, photos, typeNr) {
 	$('#mainContent').load(editTypeURL[typeNr], combined, function() {
 		reloadEvents();
 		
+		//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+		//focus(does the job)
+		$('input').focus().blur();
+		$('input:first').focus();
+		//scroll to the top of the page
+		$('body').scrollTop(0);
+		
+		//to remove dark background
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
 	});
 }
 
