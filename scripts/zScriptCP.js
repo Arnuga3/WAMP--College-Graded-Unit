@@ -192,7 +192,7 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 			//load part of the page using ajax (folders with photos and photos without folders)
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 				reloadEvents();
-				photosUploadScr(typeNr, folderNoSpace);
+				photosUploadScr(typeNr, "");
 			});
 		}
 		reloadEvents();

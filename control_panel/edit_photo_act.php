@@ -43,12 +43,12 @@
 		</div>
 		
 		<div class=\"sub_nav hide-on-med-and-down\">
-			<a class=\"waves-effect waves-dark z-depth-1\" onclick=\"saveShowreelData()\"><img src=\"../img/cpIcons/diskette.png\" /><span>save</span></a>
+			<a class=\"waves-effect waves-dark z-depth-1\" onclick=\"saveChangesEdit(0)\"><img src=\"../img/cpIcons/diskette.png\" /><span>save</span></a>
 		</div>
 		
 		<!--SAVE BTN MOB-->
 		<div class=\"fixed-action-btn hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
-			<a class=\"btn-floating btn-large waves-effect waves-light deep-orange darken-2\" onclick=\"saveShowreelData()\"><img class=\"pencil\" src=\"../img/cpIcons/diskette.png\" /></a>
+			<a class=\"btn-floating btn-large waves-effect waves-light deep-orange darken-2\" onclick=\"saveChangesEdit(0)\"><img class=\"pencil\" src=\"../img/cpIcons/diskette.png\" /></a>
 		</div>
 		
 		<!--BACK BTN MOB-->
@@ -81,6 +81,7 @@
 			}
 		}
 		
+		echo "<form id=\"photoEditForm\" action=\"\" method=\"\">";
 		for ($i=0; $i<count($photoInfo); $i++) {
 			
 			//to remove 1 whitespace
@@ -92,16 +93,17 @@
 			
 			echo "<p class=\"margTopX photoNr\">PHOTO  $counter </p>
 				<div class=\"input-field margTopL\">
-						<input id=\"img_titl\" type=\"text\" value=\"".$photoInfo[$i]["image_title"]."\" \>
-						<label for=\"img_titl\">Image title</label>
+						<input id=\"img_title$i\" type=\"text\" name=\"pName".$photoInfo[$i]["image_ID"]."\" value=\"".$photoInfo[$i]["image_title"]."\" \>
+						<label for=\"img_title$i\">Image title</label>
 					</div>
 				<div class=\"input-field\">
-						<input id=\"img_titl\" type=\"text\" value=\"".$photoInfo[$i]["image_descr"]."\" \>
-						<label for=\"img_titl\">Image description</label>
+						<input id=\"img_descr$i\" type=\"text\" name=\"pDescr".$photoInfo[$i]["image_ID"]."\" value=\"".$photoInfo[$i]["image_descr"]."\" \>
+						<label for=\"img_descr$i\">Image description</label>
 					</div>";
 		}
 		
-echo 		"<p id=\"error\"></p>
+echo 		"</form>
+			<p id=\"error\"></p>
 			
 			</div>
 		</div>";

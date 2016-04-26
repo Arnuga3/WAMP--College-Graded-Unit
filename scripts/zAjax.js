@@ -84,6 +84,7 @@ function moveToNewAlbum(typeNr) {
 
 
 
+
 ////////////////////////
 ////Custom Functions////
 ////////////////////////
@@ -238,6 +239,39 @@ function movePhotosAJAX(folder, photos, typeNr) {
 			$('#dark').toggle();
 		}
 	});
+}
+
+
+//SAVE PHOTO EDITS AJAX
+function saveChangesEdit(typeNr) {
+	
+	var editPhotoDetails = ["../php_tasks/save_edit_act.php", "../php_tasks/save_edit_gig.php"];
+	
+	$('#photoEditForm').on('submit', function(e) {
+		//prevent default form submission
+		e.preventDefault();
+		
+		var formData = new FormData(document.getElementById("photoEditForm"));
+		
+		//send formdata to server-side
+		$.ajax({
+			url: editPhotoDetails[typeNr], // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+				//on success load the acting pictures part of the page again with new album and/or files
+				photosLoad(typeNr);
+			},
+			error : function(request) {
+				console.log(request.responseText);
+			}
+		});
+	});
+	$('#photoEditForm').submit();
 }
 
 
