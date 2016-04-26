@@ -30,14 +30,56 @@ if (isset($_SESSION["mrBoss"])) {
 		$file_name = $file["name"];
 		$file_tmp = $file["tmp_name"];
 		$ext = pathinfo($file_name, PATHINFO_EXTENSION);
-		echo "<p>new album name $newAlbum</p>";
+		
 		if (in_array($ext, $extension)) {
+			
+			
+			
+			// Create image from file
+			switch (strtolower($file['type'])) {
+				case 'image/jpeg':
+					$image = imagecreatefromjpeg($file['tmp_name']);
+					break;
+				case 'image/png':
+					$image = imagecreatefrompng($file['tmp_name']);
+					break;
+				case 'image/gif':
+					$image = imagecreatefromgif($file['tmp_name']);
+					break;
+				default:
+					exit('Unsupported type: '.$file['type']);
+			}
+			
+			
+			$max_width = 1024;
+			$max_height = 768;
+
+			// Get current dimensions
+			$old_width  = imagesx($image);
+			$old_height = imagesy($image);
+
+			// Calculate the scaling we need to do to fit the image inside our frame
+			$scale = min($max_width/$old_width, $max_height/$old_height);
+
+			// Get the new dimensions
+			$new_width  = ceil($scale*$old_width);
+			$new_height = ceil($scale*$old_height);
+			
+			// Create new empty image
+			$new = imagecreatetruecolor($new_width, $new_height);
+
+			// Resize old image into new
+			imagecopyresampled($new, $image, 0, 0, 0, 0, $new_width, $new_height, $old_width, $old_height);
+			
+			
 			
 			if (!file_exists("../uploaded_photos/".$file_name)) {
 				
-				$filenameNoExt = basename($file_name, ".".$ext);
+				// Output
+				imagepng($new, "../uploaded_photos/".$file_name, 100);
+				imagedestroy($new);
 				
-				move_uploaded_file($file_tmp, "../uploaded_photos/".$file_name);
+				$filenameNoExt = basename($file_name, ".".$ext);
 				
 				$db->customQuery("INSERT INTO ai_images (ai_ID) VALUES ('')");
 				
@@ -59,10 +101,16 @@ if (isset($_SESSION["mrBoss"])) {
 				}
 				
 			} else {
+				
+				
+			
 				$filename = basename($file_name, $ext);
 				
 				$newFileName = $filename.time().".".$ext;
-				move_uploaded_file($file_tmp, "../uploaded_photos/".$newFileName);
+				
+				// Output
+				imagejpeg($new, "../uploaded_photos/".$newFileName, 100);
+				imagedestroy($new);
 				
 				$filenameNoExt = basename($file_name, ".".$ext);
 				
@@ -92,9 +140,6 @@ if (isset($_SESSION["mrBoss"])) {
 	}
 	
 	$db->close();
-	
-	$_SESSION["uploaded"] = true;
-	echo "files are uploaded";
 	//header("Location: ../control_panel/cp_showreel.php");
 } else {
 	//this is required to avoid a blank page when user is loggin out (session is closed) and press a back button, so user is just transfered to the index page

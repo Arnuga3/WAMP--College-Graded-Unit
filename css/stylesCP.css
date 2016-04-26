@@ -583,6 +583,9 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 .textJustify {
 	text-align: justify;
 }
+.width100 {
+	width: 100%;
+}
 .flexVertCenter {
 	display: -webkit-flex;
 	display: flex;

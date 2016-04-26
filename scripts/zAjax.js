@@ -265,6 +265,11 @@ function saveChangesEdit(typeNr) {
 			success : function(data) {
 				//on success load the acting pictures part of the page again with new album and/or files
 				photosLoad(typeNr);
+				Materialize.toast('Saved', 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
 			},
 			error : function(request) {
 				console.log(request.responseText);

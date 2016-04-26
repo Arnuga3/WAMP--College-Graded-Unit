@@ -100,7 +100,7 @@ function reloadEvents() {
 		$('#mainContent').load('../control_panel/a_showreel.php', function() {
 			reloadEvents();
 			
-			/*THIS IS SOLVED BY LOADING THE MATERIALIZE MAIN SCRIPT TWICE
+			//THIS IS SOLVED BY LOADING THE MATERIALIZE MAIN SCRIPT TWICE
 			
 			//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
 			//focus(does the job)
@@ -109,7 +109,7 @@ function reloadEvents() {
 			$('textarea').focus().blur();
 			//scroll to the top of the page
 			$('body').scrollTop(0);
-			*/
+		
 		});
 	});
 

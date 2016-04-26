@@ -56,10 +56,6 @@
 			<a class=\"a_act_p btn-floating btn-large cyan darken-2\">
 				<img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" />
 			</a>
-		</div>		
-		
-		<div class=\"fixed-action-btn hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
-			<a class=\"btn-floating btn-large waves-effect waves-light deep-orange darken-2\" onclick=\"\"><img class=\"pencil\" src=\"../img/cpIcons/diskette.png\" /></a>
 		</div>
 		
 		<div class=\"cp_content\">
@@ -73,7 +69,7 @@
 		for ($i=0; $i<count($photosIDs); $i++) {
 			
 			$escapedVal = $db->escape($photosIDs[$i]);
-			$result = $db->customQuery("SELECT image_ID,image_title,image_descr FROM images WHERE image_ID = $escapedVal");
+			$result = $db->customQuery("SELECT image_ID,image_title,image_descr,image_path FROM images WHERE image_ID = $escapedVal");
 			if ($result->num_rows > 0) {
 				while($row = $result->fetch_assoc()) {
 					$photoInfo[] = $row;
@@ -92,6 +88,13 @@
 			$counter = $i + 1;
 			
 			echo "<p class=\"margTopX photoNr\">PHOTO  $counter </p>
+			
+				<div class=\"row\">
+					<div class=\"col s12 m6\">
+						<img class=\"width100\" src=".$photoInfo[$i]["image_path"]." />
+					</div>
+				</div>
+				
 				<div class=\"input-field margTopL\">
 						<input id=\"img_title$i\" type=\"text\" name=\"pName".$photoInfo[$i]["image_ID"]."\" value=\"".$photoInfo[$i]["image_title"]."\" \>
 						<label for=\"img_title$i\">Image title</label>
