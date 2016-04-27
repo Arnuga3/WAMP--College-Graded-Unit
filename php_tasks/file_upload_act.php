@@ -30,6 +30,7 @@ if (isset($_SESSION["mrBoss"])) {
 		$file_name = $file["name"];
 		$file_tmp = $file["tmp_name"];
 		$ext = pathinfo($file_name, PATHINFO_EXTENSION);
+		$size = $file["size"];
 		
 		if (in_array($ext, $extension)) {
 			
@@ -53,6 +54,7 @@ if (isset($_SESSION["mrBoss"])) {
 			// Max sizes for a new photo
 			$max_width = 1024;
 			$max_height = 768;
+			$max_file_size = 500000;
 
 			// Get current dimensions
 			$old_width  = imagesx($image);
@@ -77,9 +79,14 @@ if (isset($_SESSION["mrBoss"])) {
 			
 			if (!file_exists("../uploaded_photos/".$file_name)) {
 				
-				// Output
-				imagepng($new, "../uploaded_photos/".$file_name);
-				imagedestroy($new);
+				if ($size < $max_file_size) {
+					
+					move_uploaded_file($file_tmp, "../uploaded_photos/".$file_name);
+				
+				} else {		
+					// Output			
+					imagepng($new, "../uploaded_photos/".$file_name);
+				}
 				
 				$filenameNoExt = basename($file_name, ".".$ext);
 				
@@ -104,14 +111,17 @@ if (isset($_SESSION["mrBoss"])) {
 				
 			} else {
 				
-				
-			
 				$filename = basename($file_name, $ext);
-				
 				$newFileName = $filename.time().".".$ext;
-				// Output
-				imagepng($new, "../uploaded_photos/".$newFileName);
-				imagedestroy($new);
+				
+				if ($size < $max_file_size) {
+					
+					move_uploaded_file($file_tmp, "../uploaded_photos/".$file_name);
+				
+				} else {		
+					// Output			
+					imagepng($new, "../uploaded_photos/".$file_name);
+				}
 				
 				$filenameNoExt = basename($file_name, ".".$ext);
 				
@@ -135,9 +145,12 @@ if (isset($_SESSION["mrBoss"])) {
 				}					
 
 			}
+			
 		} else {
 			array_push($error,"$file_name, ");
 		}
+					
+		imagedestroy($new);
 	}
 	
 	$db->close();
