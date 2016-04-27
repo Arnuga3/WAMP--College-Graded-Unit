@@ -120,9 +120,9 @@ function saveShowreelData() {
 function editPhotosAJAX(folder, photos, typeNr) {
 	
 	//0 is acting, 1 is gig
-	var editTypeURL = ["../control_panel/edit_photo_act.php", "../control_panel/edit_photo_gig.php"];
-	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
-	var folderTypeURL = ["../control_panel/a_act_folders.php?folder=", "../control_panel/a_gig_folders.php?folder="];
+	var editTypeURL = ["../control_panel/acting/edit_photo_act.php", "../control_panel/gig/edit_photo_gig.php"];
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
+	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 		
 	$('.preload346').show();
 	
@@ -161,9 +161,9 @@ function editPhotosAJAX(folder, photos, typeNr) {
 function deletePhotosAJAX(folder, photos, typeNr) {
 	
 	//0 is acting, 1 is gig
-	var delTypeURL = ["../php_tasks/delete_photo_act.php", "../php_tasks/delete_photo_gig.php"];
-	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
-	var folderTypeURL = ["../control_panel/a_act_folders.php?folder=", "../control_panel/a_gig_folders.php?folder="];
+	var delTypeURL = "../php_tasks/delete_photo.php";
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
+	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 		
 	$('.preload346').show();
 	
@@ -179,7 +179,7 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
 	
 	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
-	saveChanges(delTypeURL[typeNr], combined, function() {
+	saveChanges(delTypeURL, combined, function() {
 		if (folderName == "") {
 			//acting/gig first ajax screen, depends on typeNr(0-acting, 1-gig)
 			photosLoad(typeNr);
@@ -200,9 +200,9 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 //MOVE PHOTOS FUNCTIONALITY (PHOTOS)
 function movePhotosAJAX(folder, photos, typeNr) {
 	
-	var moveTypeURL = ["../php_tasks/move_photo_act.php", "../php_tasks/move_photo_gig.php"];
-	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
-	var folderTypeURL = ["../control_panel/a_act_folders.php?folder=", "../control_panel/a_gig_folders.php?folder="];
+	var moveTypeURL = "../php_tasks/move_photo.php";
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
+	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 	
 	var folderName = folder;
 	var folderNoSpace = encodeURIComponent(folderName);
@@ -211,7 +211,7 @@ function movePhotosAJAX(folder, photos, typeNr) {
 	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
 	
 	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
-	saveChanges(moveTypeURL[typeNr], combined, function() {
+	saveChanges(moveTypeURL, combined, function() {
 		if (folderName == "") {
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 				reloadEvents();
@@ -245,7 +245,7 @@ function movePhotosAJAX(folder, photos, typeNr) {
 //SAVE PHOTO EDITS AJAX
 function saveChangesEdit(typeNr) {
 	
-	var editPhotoDetails = ["../php_tasks/save_edit_act.php", "../php_tasks/save_edit_gig.php"];
+	var editPhotoDetails = "../php_tasks/edit_photo.php";
 	
 	$('#photoEditForm').on('submit', function(e) {
 		//prevent default form submission
@@ -255,7 +255,7 @@ function saveChangesEdit(typeNr) {
 		
 		//send formdata to server-side
 		$.ajax({
-			url: editPhotoDetails[typeNr], // php file
+			url: editPhotoDetails, // php file
 			type: 'post',
 			data: formData,
 			dataType: 'html', // return html from php file
@@ -284,8 +284,8 @@ function saveChangesEdit(typeNr) {
 function renameAlbumAJAX(folder, folderOld, action, typeNr) {
 	
 	var albumRenameURL = ["../php_tasks/move_photo_act.php", "../php_tasks/move_photo_gig.php"];
-	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
-	var folderTypeURL = ["../control_panel/a_act_folders.php?folder=", "../control_panel/a_gig_folders.php?folder="];
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
+	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 	
 	var folderName = folder;
 	var folderNoSpace = encodeURIComponent(folderName);

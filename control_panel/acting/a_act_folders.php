@@ -19,7 +19,7 @@ if (isset($_SESSION["mrBoss"])) {
 	//need to fix that, as it takes space in html
 	echo $folder;
 	
-	include ("../db/db_ORM.php");
+	include ("../../db/db_ORM.php");
 	//Create DB connection and get data from db
 	$db = new dbConnection();
 	$db->connect();
@@ -104,18 +104,18 @@ if (isset($_SESSION["mrBoss"])) {
 		<a id=\"selectAllBtn\" class=\"waves-effect waves-light btn-flat blue-grey lighten-2 margLeft10 margBot\">check/uncheck all</a>";
 
 		foreach ($photos as $val) {
-			echo "<!--Image Row in Control Panel(checkbox, name, image)-->
-				<div class=\"flexVertCenter imgRow\">
-					<input type=\"checkbox\" class=\"filled-in checkbox-orange\" id=\"".$val["image_ID"]."\" />
-					<label for=\"".$val["image_ID"]."\">
-						<div class=\"flexVertCenter\">
-							<div>
-								<span class=\"infoText\">".$val["image_title"]."</span>
-							</div>
-						</div>
-					</label>
-					<img class=\"materialboxed\" data-caption=\"".$val["image_descr"]."\" width=\"60\" src=\"".$val["image_path"]."\" />
-				</div>";
+					echo "<!--Image Row in Control Panel(checkbox, name, image)-->
+						<div class=\"flexVertCenter imgRow\">
+							<input type=\"checkbox\" class=\"filled-in checkbox-orange\" id=\"".$val["image_ID"]."\" />
+							<label for=\"".$val["image_ID"]."\">
+								<div class=\"flexVertCenter\">
+									<div>
+										<span class=\"infoText truncatedTitle absolute\">".$val["image_title"]."<span class=\"helperText2\">".$val["image_descr"]."</span></span>
+									</div>
+								</div>
+							</label>
+							<img class=\"materialboxed\" data-caption=\"".$val["image_descr"]."\" width=\"60\" src=\"".$val["image_path"]."\" />
+						</div>";
 		}
 		echo "<p id=\"error\"></p>";
 	echo "</div>

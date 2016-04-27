@@ -97,7 +97,7 @@ function reloadEvents() {
 
 	//SHOWREEL
 	$('.a_shwrl').click(function() {
-		$('#mainContent').load('../control_panel/a_showreel.php', function() {
+		$('#mainContent').load('../control_panel/acting/a_showreel.php', function() {
 			reloadEvents();
 			
 			//THIS IS SOLVED BY LOADING THE MATERIALIZE MAIN SCRIPT TWICE
@@ -116,7 +116,7 @@ function reloadEvents() {
 	//ACTING PHOTOS
 	$('.a_act_p').click(function() {
 		//load part of the page using ajax (folders with photos and photos without folders)
-		$('#mainContent').load('../control_panel/a_act_photos.php', function() {
+		$('#mainContent').load('../control_panel/acting/a_act_photos.php', function() {
 			//assign event listeners to new loaded elements
 			reloadEvents();
 			
@@ -127,7 +127,7 @@ function reloadEvents() {
 				var folderName = selectedFolder.find('span').text();
 				//escape the string before passing it in url
 				var noSpaceName = encodeURIComponent(folderName);
-				$('#mainContent').load("../control_panel/a_act_folders.php?folder=" + noSpaceName, function() {
+				$('#mainContent').load("../control_panel/acting/a_act_folders.php?folder=" + noSpaceName, function() {
 					reloadEvents();
 					//RENAME ALBUM - inside as rename option is available only in the folder
 					renameAlbum(0);
@@ -137,6 +137,32 @@ function reloadEvents() {
 			
 			//UPLOAD SCREEN
 			photosUploadScr(0, "");
+		});
+	});
+	//ACTING PHOTOS
+	$('.a_gig_p').click(function() {
+		//load part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load('../control_panel/gig/a_gig_photos.php', function() {
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load("../control_panel/gig/a_gig_folders.php?folder=" + noSpaceName, function() {
+					reloadEvents();
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbum(1);
+					photosUploadScr(1, $('.sb_rename_folder').text());
+				});
+			});
+			
+			//UPLOAD SCREEN
+			photosUploadScr(1, "");
 		});
 	});
 }
@@ -156,7 +182,8 @@ function renameAlbum(typeNr) {
 //LOADS PHOTOS FIRST SCREEN
 function photosLoad(typeNr) {
 	
-	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
+	var afterLoadTypeFolder = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 	
 	//load part of the page using ajax (folders with photos and photos without folders)
 	$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
@@ -170,7 +197,7 @@ function photosLoad(typeNr) {
 			var folderName = selectedFolder.find('span').text();
 			//escape the string before passing it in url
 			var noSpaceName = encodeURIComponent(folderName);
-			$('#mainContent').load("../control_panel/a_act_folders.php?folder=" + noSpaceName, function() {
+			$('#mainContent').load(afterLoadTypeFolder[typeNr] + noSpaceName, function() {
 				reloadEvents();
 				//RENAME ALBUM - inside as rename option is available only in the folder
 				renameAlbum(typeNr);
@@ -183,8 +210,8 @@ function photosLoad(typeNr) {
 //LOADS PHOTOS IN FOLDER
 function photosLoadFolder(typeNr, folderNoSpace) {
 	
-	var afterLoadTypeURL = ["../control_panel/a_act_photos.php", "../control_panel/a_gig_photos.php"];
-	var folderTypeURL = ["../control_panel/a_act_folders.php?folder=", "../control_panel/a_gig_folders.php?folder="];
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
+	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 	
 	$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
 		//if no photos left in a folder load the first screen
@@ -203,7 +230,7 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 //LOADS THE UPLOAD SCREEN
 function photosUploadScr(typeNr, folderNoSpace) {
 	
-	var uplTypeURL = ["../control_panel/a_files_upload.php?folder=", "../control_panel/a_files_upload.php"];
+	var uplTypeURL = ["../control_panel/acting/a_act_upload.php?folder=", "../control_panel/gig/a_gig_upload.php"];
 
 	//UPLOAD BTN
 	$('.sb_upload').click(function() {

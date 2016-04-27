@@ -93,7 +93,7 @@ if (isset($_SESSION["mrBoss"])) {
 					$userIDDB = $db->escape($userID);
 					$db->customQuery("INSERT INTO media (usr_ID, music_ID, video_ID, image_ID) VALUES ('$userIDDB', 0, 0, $lastID)");
 					
-					$valArr = $db->prepareArray($lastID, $filenameNoExt, " ", "../uploaded_photos/$file_name", 'acting', $newAlbum);
+					$valArr = $db->prepareArray($lastID, $filenameNoExt, " ", "../uploaded_photos/$file_name", 'gig', $newAlbum);
 					$db->insert("images", "image_ID, image_title, image_descr, image_path, image_group, image_folder", $valArr);
 					
 				} else {
@@ -126,7 +126,7 @@ if (isset($_SESSION["mrBoss"])) {
 					$userIDDB = $db->escape($userID);
 					$db->customQuery("INSERT INTO media (usr_ID, music_ID, video_ID, image_ID) VALUES ('$userIDDB', 0, 0, $lastID)");
 					
-					$valArr = $db->prepareArray($lastID, $filenameNoExt, " ", "../uploaded_photos/$newFileName", 'acting', $newAlbum);
+					$valArr = $db->prepareArray($lastID, $filenameNoExt, " ", "../uploaded_photos/$newFileName", 'gig', $newAlbum);
 					$db->insert("images", "image_ID, image_title, image_descr, image_path, image_group, image_folder", $valArr);
 					
 				} else {

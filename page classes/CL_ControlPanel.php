@@ -66,7 +66,7 @@
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" />Acting videos</a></li>
 							<hr />
 							<p class="lightText">GIG SHOTS:</p>
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" />Gig photos</a></li>
+							<li><a class="a_gig_p menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" />Gig photos</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" />Gig videos</a></li>
 							<hr />
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" />Songs</a></li>
@@ -93,7 +93,7 @@
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Acting videos</span></a>
 					<hr />
 					<p class="lightText">GIG SHOTS:</p>
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" /><span>Gig photos</span></a>
+					<a class="a_gig_p waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" /><span>Gig photos</span></a>
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
 					<hr />
 					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>

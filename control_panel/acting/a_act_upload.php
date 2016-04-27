@@ -21,7 +21,7 @@ if (isset($_SESSION["mrBoss"])) {
 		$folder = "";
 	}
 	
-	include ("../db/db_ORM.php");
+	include ("../../db/db_ORM.php");
 	//Create DB connection and get data from db
 	$db = new dbConnection();
 	$db->connect();

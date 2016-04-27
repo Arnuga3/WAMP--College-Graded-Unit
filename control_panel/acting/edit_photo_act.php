@@ -1,5 +1,5 @@
 <?php
-	include ("../db/db_ORM.php");
+	include ("../../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function
 	header('Content-Type: text/plain');
@@ -64,7 +64,7 @@
 			
 			<div id=\"cp\" class=\"margBotExtra pad10\">";
 
-
+		//get the information of selected images from db using ids
 		$photoInfo = array();
 		for ($i=0; $i<count($photosIDs); $i++) {
 			
@@ -76,7 +76,7 @@
 				}
 			}
 		}
-		
+		//form to submit changes for selected images
 		echo "<form id=\"photoEditForm\" action=\"\" method=\"\">";
 		for ($i=0; $i<count($photoInfo); $i++) {
 			
@@ -87,18 +87,23 @@
 			
 			$counter = $i + 1;
 			
+			//label
 			echo "<p class=\"margTopX photoNr\">PHOTO  $counter </p>
 			
+				<!-- Image preview-->
 				<div class=\"row\">
 					<div class=\"col s12 m6\">
 						<img class=\"width100\" src=".$photoInfo[$i]["image_path"]." />
 					</div>
 				</div>
 				
+				<!-- Image name -->
 				<div class=\"input-field margTopL\">
 						<input id=\"img_title$i\" type=\"text\" name=\"pName".$photoInfo[$i]["image_ID"]."\" value=\"".$photoInfo[$i]["image_title"]."\" \>
 						<label for=\"img_title$i\">Image title</label>
 					</div>
+				
+				<!-- Image description -->
 				<div class=\"input-field\">
 						<input id=\"img_descr$i\" type=\"text\" name=\"pDescr".$photoInfo[$i]["image_ID"]."\" value=\"".$photoInfo[$i]["image_descr"]."\" \>
 						<label for=\"img_descr$i\">Image description</label>
