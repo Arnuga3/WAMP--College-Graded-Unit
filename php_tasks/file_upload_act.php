@@ -116,11 +116,11 @@ if (isset($_SESSION["mrBoss"])) {
 				
 				if ($size < $max_file_size) {
 					
-					move_uploaded_file($file_tmp, "../uploaded_photos/".$file_name);
+					move_uploaded_file($file_tmp, "../uploaded_photos/".$newFileName);
 				
 				} else {		
 					// Output			
-					imagepng($new, "../uploaded_photos/".$file_name);
+					imagepng($new, "../uploaded_photos/".$newFileName);
 				}
 				
 				$filenameNoExt = basename($file_name, ".".$ext);
