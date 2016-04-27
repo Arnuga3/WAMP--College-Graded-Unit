@@ -68,6 +68,8 @@ if (isset($_SESSION["mrBoss"])) {
 			// Create new empty image
 			$new = imagecreatetruecolor($new_width, $new_height);
 
+			imagecolortransparent($new, $black);
+			
 			// Resize old image into new
 			imagecopyresampled($new, $image, 0, 0, 0, 0, $new_width, $new_height, $old_width, $old_height);
 			
@@ -76,7 +78,7 @@ if (isset($_SESSION["mrBoss"])) {
 			if (!file_exists("../uploaded_photos/".$file_name)) {
 				
 				// Output
-				imagejpeg($new, "../uploaded_photos/".$file_name, 100);
+				imagepng($new, "../uploaded_photos/".$file_name);
 				imagedestroy($new);
 				
 				$filenameNoExt = basename($file_name, ".".$ext);
@@ -107,9 +109,8 @@ if (isset($_SESSION["mrBoss"])) {
 				$filename = basename($file_name, $ext);
 				
 				$newFileName = $filename.time().".".$ext;
-				
 				// Output
-				imagejpeg($new, "../uploaded_photos/".$newFileName, 100);
+				imagepng($new, "../uploaded_photos/".$newFileName);
 				imagedestroy($new);
 				
 				$filenameNoExt = basename($file_name, ".".$ext);
