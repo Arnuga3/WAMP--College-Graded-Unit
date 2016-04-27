@@ -97,7 +97,11 @@ function reloadEvents() {
 
 	//SHOWREEL
 	$('.a_shwrl').click(function() {
-		$('#mainContent').load('../control_panel/acting/a_showreel.php', function() {
+		
+		$('*').unbind('load');
+		$('.preload346').show();
+		
+		$('#mainContent').load('../control_panel/a_showreel.php', function() {
 			reloadEvents();
 			
 			//THIS IS SOLVED BY LOADING THE MATERIALIZE MAIN SCRIPT TWICE
@@ -115,6 +119,10 @@ function reloadEvents() {
 
 	//ACTING PHOTOS
 	$('.a_act_p').click(function() {
+		
+		$('*').unbind('load');
+		$('.preload346').show();
+			
 		//load part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/acting/a_act_photos.php', function() {
 			//assign event listeners to new loaded elements
@@ -122,6 +130,11 @@ function reloadEvents() {
 			
 			//FOLDERS
 			$('.folder').click(function() {
+				
+				$('*').unbind('load');
+				$('.preload346').show();
+
+				
 				//load the images of selected folder using ajax and assign event listeners to them
 				var selectedFolder = $(this);
 				var folderName = selectedFolder.find('span').text();
@@ -141,6 +154,10 @@ function reloadEvents() {
 	});
 	//ACTING PHOTOS
 	$('.a_gig_p').click(function() {
+		
+		$('*').unbind('load');
+		$('.preload346').show();
+		
 		//load part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/gig/a_gig_photos.php', function() {
 			//assign event listeners to new loaded elements
@@ -148,6 +165,11 @@ function reloadEvents() {
 			
 			//FOLDERS
 			$('.folder').click(function() {
+				
+				$('*').unbind('load');
+				$('.preload346').show();
+
+				
 				//load the images of selected folder using ajax and assign event listeners to them
 				var selectedFolder = $(this);
 				var folderName = selectedFolder.find('span').text();
@@ -182,6 +204,10 @@ function renameAlbum(typeNr) {
 //LOADS PHOTOS FIRST SCREEN
 function photosLoad(typeNr) {
 	
+	$('*').unbind('load');
+	$('.preload346').show();
+
+	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var afterLoadTypeFolder = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 	
@@ -192,6 +218,11 @@ function photosLoad(typeNr) {
 
 		//FOLDERS
 		$('.folder').click(function() {
+			
+			$('*').unbind('load');
+			$('.preload346').show();
+
+			
 			//load the images of selected folder using ajax and assign event listeners to them
 			var selectedFolder = $(this);
 			var folderName = selectedFolder.find('span').text();
@@ -210,12 +241,21 @@ function photosLoad(typeNr) {
 //LOADS PHOTOS IN FOLDER
 function photosLoadFolder(typeNr, folderNoSpace) {
 	
+	$('*').unbind('load');
+	$('.preload346').show();
+
+	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 	
 	$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
 		//if no photos left in a folder load the first screen
 		if ($('#cpCont div').length == false) {
+			
+			$('*').unbind('load');
+			$('.preload346').show();
+
+			
 			//load part of the page using ajax (folders with photos and photos without folders)
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 				reloadEvents();
@@ -234,6 +274,11 @@ function photosUploadScr(typeNr, folderNoSpace) {
 
 	//UPLOAD BTN
 	$('.sb_upload').click(function() {
+		
+		$('*').unbind('load');
+		$('.preload346').show();
+
+		
 		//load the file upload part of the page using ajax and assign event listeners
 		$('#mainContent').load(uplTypeURL[typeNr] + folderNoSpace, function() {
 			reloadEvents();

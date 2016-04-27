@@ -92,6 +92,10 @@ function moveToNewAlbum(typeNr) {
 //SHOWREEL INFORMATION UPDATE FUNCTIONALITY
 function saveShowreelData() {
 	
+	$('*').unbind('load');
+	$('.preload346').show();
+
+	
 	var title = $('#showrl_title').val();
 	var description = $('#showrl_description').val();
 	var path = $('#showrl_path').val();
@@ -124,7 +128,9 @@ function editPhotosAJAX(folder, photos, typeNr) {
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 		
+	$('*').unbind('load');
 	$('.preload346').show();
+
 	
 	//outside the folder (main gallery), no span element to read the folder name from, so variable is equal to undefined, leave the empry string will push to save photos in main gallery (no album)
 	if (folder == undefined) {
@@ -165,7 +171,9 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 		
+	$('*').unbind('load');
 	$('.preload346').show();
+
 	
 	//outside the folder (main gallery), no span element to read the folder name from, so variable is equal to undefined, leave the empry string will push to save photos in main gallery (no album)
 	if (folder == undefined) {
@@ -200,6 +208,10 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 //MOVE PHOTOS FUNCTIONALITY (PHOTOS)
 function movePhotosAJAX(folder, photos, typeNr) {
 	
+	$('*').unbind('load');
+	$('.preload346').show();
+
+	
 	var moveTypeURL = "../php_tasks/move_photo.php";
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
@@ -217,6 +229,11 @@ function movePhotosAJAX(folder, photos, typeNr) {
 				reloadEvents();
 				//FOLDERS add events to the loaded folders
 				$('.folder').click(function() {
+					
+					$('*').unbind('load');
+					$('.preload346').show();
+
+					
 					var selectedFolder = $(this);
 					var folderName = selectedFolder.find('span').text();
 					var noSpaceName = encodeURIComponent(folderName);
@@ -244,6 +261,10 @@ function movePhotosAJAX(folder, photos, typeNr) {
 
 //SAVE PHOTO EDITS AJAX
 function saveChangesEdit(typeNr) {
+	
+	$('*').unbind('load');
+	$('.preload346').show();
+
 	
 	var editPhotoDetails = "../php_tasks/edit_photo.php";
 	
@@ -283,6 +304,10 @@ function saveChangesEdit(typeNr) {
 //RENAME ALBUM FUNCTIONALITY (PHOTOS)
 function renameAlbumAJAX(folder, folderOld, action, typeNr) {
 	
+	$('*').unbind('load');
+	$('.preload346').show();
+
+	
 	var albumRenameURL = ["../php_tasks/move_photo_act.php", "../php_tasks/move_photo_gig.php"];
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
@@ -297,10 +322,16 @@ function renameAlbumAJAX(folder, folderOld, action, typeNr) {
 	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
 	saveChanges(albumRenameURL[typeNr], combined, function() {
 		if (folderName == "") {
+			
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 				reloadEvents();
 				//FOLDERS add events to the loaded folders
 				$('.folder').click(function() {
+					
+					$('*').unbind('load');
+					$('.preload346').show();
+
+					
 					var selectedFolder = $(this);
 					var folderName = selectedFolder.find('span').text();
 					var noSpaceName = encodeURIComponent(folderName);
