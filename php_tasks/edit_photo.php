@@ -19,6 +19,9 @@
 				$id = filter_var($key, FILTER_SANITIZE_NUMBER_INT);
 				$title = $value;
 				$description = $_POST["pDescr".$id];
+				if ($description == "") {
+					$description = " ";
+				}
 				//update records in db
 				$val = $db->prepareArray($value, $description);
 				$db->update("images", "image_title, image_descr", $val, "image_ID", $id);

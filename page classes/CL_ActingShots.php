@@ -27,6 +27,49 @@
 					<a href="#" class="u_act_p bold"><p>Photos</p></a>
 					<a href="#" class="u_act_v bold"><p>Videos</p></a>
 				</div>
+				
+				<div class="preload333">
+					<div class="preloader-wrapper big active">
+					
+						<div class="spinner-layer spinner-blue">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+						
+						<div class="spinner-layer spinner-red">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+						
+						<div class="spinner-layer spinner-yellow">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+							
+					</div>
+				</div>
+				
 				<div id="contCont" class="col s12 l9 z-depth-1">
 					<p>Select group</p>
 				</div>

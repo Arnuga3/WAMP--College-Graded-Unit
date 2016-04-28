@@ -21,7 +21,8 @@
 }
 
 body {
-	background-image: url('../img/city.jpg');
+	background-image: url('../img/cube.png');
+	background-repeat: repeat;
 }
 
 
@@ -30,6 +31,23 @@ body {
 	width: 100%;
 	height: 100%;
 	background-color: black;
+	z-index: 1000;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.preload333 {
+	display: none;
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255,255,255,.5);
 	z-index: 1000;
 	display: -webkit-flex;
 	display: flex;
@@ -181,6 +199,11 @@ hr {
 }
 #shwrl_ui_title_helper {
 	font-size: 1.5em;
+}
+
+.folder:hover {
+	cursor: pointer;
+	background-color: #eee;
 }
 
 /*------------Media queries-------------*/
