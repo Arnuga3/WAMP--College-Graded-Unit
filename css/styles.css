@@ -201,6 +201,19 @@ hr {
 	font-size: 1.5em;
 }
 
+
+.linkDIVs div a {
+	font-family: 'Great Vibes', cursive;
+	font-size: 5em;
+	color: #333;
+	border: 1px dashed #888;
+	border-radius: 10px;
+	padding: 10px 20px 0 20px;
+}
+.linkDIVs div a:hover {
+	text-shadow:5px 5px 10px #888;
+}
+
 .folder:hover {
 	cursor: pointer;
 	background-color: #eee;
@@ -340,4 +353,12 @@ hr {
 }
 .textShadow {
 	text-shadow: 0 10px 20px black;
+}
+.flexCenter {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+    justify-content: center;
 }

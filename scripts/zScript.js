@@ -6,28 +6,8 @@ $(document).ready(function () {
 			closeOnClick: true
 	});
 
-	$('*').unbind('load');
-	$('.preload333').show();
-	
-	$('#contCont').load('user_views/a_act_photos.php', function() {
-		reloadEvents();
-		
-		//FOLDERS
-		$('.folder').click(function() {
-			
-			$('*').unbind('load');
-			$('.preload333').show();
-			
-			//load the images of selected folder using ajax and assign event listeners to them
-			var selectedFolder = $(this);
-			var folderName = selectedFolder.find('p').text();
-			//escape the string before passing it in url
-			var noSpaceName = encodeURIComponent(folderName);
-			$('#contCont').load("user_views/a_act_folders.php?folder=" + noSpaceName, function() {
-				reloadEvents();
-			});
-		});
-	});
+	reloadEvents();
+
 });
 
 function reloadEvents() {
@@ -55,7 +35,7 @@ function reloadEvents() {
 			$('.folder').click(function() {
 				
 				$('*').unbind('load');
-				//$('.preload346').show();
+				$('.preload333').show();
 
 				
 				//load the images of selected folder using ajax and assign event listeners to them

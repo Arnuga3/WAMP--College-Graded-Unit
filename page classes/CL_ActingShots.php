@@ -71,7 +71,14 @@
 				</div>
 				
 				<div id="contCont" class="col s12 l9 z-depth-1">
-					<p>Select group</p>
+					<div class="row linkDIVs center">
+						<div class="col s12 m6 flexCenter">
+							<a class="u_act_p" href="#">Photos</a>
+						</div>
+						<div class="col s12 m6 flexCenter">
+							<a href="#">Videos</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

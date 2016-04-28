@@ -34,7 +34,7 @@
 	//Display folders
 	foreach ($folders_indexed as $val) {
 		echo "<div class=\"folder col s12 m6 valign-wrapper\">
-				<img width=\"100\" src=\"img/Places-folder-black-icon.png\" />
+				<img width=\"100\" src=\"img/folder.png\" />
 				<p>$val</p>
 			</div>";
 	}
