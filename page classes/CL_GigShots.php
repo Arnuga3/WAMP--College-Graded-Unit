@@ -24,43 +24,59 @@
 			<div id="contField" class="col s12 l10 offset-l1 z-depth-4">
 				<div class="col s12 l3">
 					<span id="actLabel" class="bold">GIG SHOTS</span>
-					<a href="#" class="bold"><p>Photos</p></a>
-					<a href="#" class="bold"><p>Videos</p></a>
+					<a href="#" class="u_gig_p bold"><p>Photos</p></a>
+					<a href="#" class="u_gig_v bold"><p>Videos</p></a>
 				</div>
-				<div id="contCont" class="col s12 l9 z-depth-1">
-					<div class="row">
-						<div class="col s12 m6 valign-wrapper">
-							<img width="100" src="img/Places-folder-black-icon.png" />
-						</div>
-						<div class="col s12 m6 valign-wrapper">
-							<div class="z-depth-2 valign-wrapper">
-								<img class="materialboxed valign" data-caption="Black and white picture!" width="100" src="img/2.jpg" />
+				
+				<div class="preload333">
+					<div class="preloader-wrapper big active">
+					
+						<div class="spinner-layer spinner-blue">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
 							</div>
 						</div>
-						<div class="col s12 m6 valign-wrapper">
-							<div class="z-depth-2 valign-wrapper">
-								<img class="materialboxed valign" width="100" src="img/3.jpg" />
-							</div>	
+						
+						<div class="spinner-layer spinner-red">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
 						</div>
-						<div class="col s12 m6 valign-wrapper">
-							<div class="z-depth-2 valign-wrapper">
-								<img class="materialboxed valign" width="100" src="img/4.jpg" />
-							</div>	
+						
+						<div class="spinner-layer spinner-yellow">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
 						</div>
-						<div class="col s12 m6 valign-wrapper">
-							<div class="z-depth-2 valign-wrapper">
-								<img class="materialboxed valign" width="100" src="img/5.jpg" />
-							</div>	
+							
+					</div>
+				</div>
+				
+				<div id="contCont" class="col s12 l9 z-depth-1">
+					<div class="row linkDIVs">
+						<div class="col s12 m6 flexCenter">
+							<a class="u_gig_p" href="#">Photos</a>
 						</div>
-						<div class="col s12 m6 valign-wrapper">
-							<div class="z-depth-2 valign-wrapper">
-								<img class="materialboxed valign" width="100" src="img/2.jpg" />
-							</div>	
-						</div>
-						<div class="col s12 m6 valign-wrapper">
-							<div class="z-depth-2 valign-wrapper">
-								<img class="materialboxed valign" width="100" src="img/3.jpg" />
-							</div>	
+						<div class="col s12 m6 flexCenter">
+							<a class="u_gig_v" href="#">Videos</a>
 						</div>
 					</div>
 				</div>

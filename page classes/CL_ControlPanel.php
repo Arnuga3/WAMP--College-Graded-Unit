@@ -59,7 +59,7 @@
 						<ul id="slide-out" class="side-nav">
 							<li><a class="a_shwrl menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/movies.png" />Showreel</a></li>
 							<hr />
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" />CV</a></li>
+							<li><a class="a_cv menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" />CV</a></li>
 							<hr />
 							<p class="lightText">ACTING SHOTS:</p>
 							<li><a class="a_act_p menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" />Acting photos</a></li>
@@ -86,7 +86,7 @@
 				<div id="desktop_flex">
 					<a class="a_shwrl waves-effect waves-light" href="#"><img src="../img/cpIcons/movies.png" /><span>Showreel</span></a>
 					<hr />
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
+					<a class="a_cv waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
 					<hr />
 					<p class="lightText">ACTING SHOTS:</p>
 					<a class="a_act_p waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" /><span>Acting photos</span></a>

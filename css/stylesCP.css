@@ -472,7 +472,9 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 }
 /* textarea, materialize form */
 #showrl_description:focus,
-#showrl_path:focus {
+#showrl_path:focus,
+#skills:focus,
+#accents:focus {
 	border-bottom: 1px solid #b71c1c;
 	-webkit-box-shadow: 0 1px 0 0 #b71c1c;
 	-moz-box-shadow: 0 1px 0 0 #b71c1c;

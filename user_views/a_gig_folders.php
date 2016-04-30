@@ -17,7 +17,7 @@
 	$db->connect();
 	
 	//To get existing folders in db
-	$res = $db->select("images", "*", "image_group = 'acting'");
+	$res = $db->select("images", "*", "image_group = 'gig'");
 	
 	//THIS CODE GETS UNIQUE NAMES OF FOLDERS AND SAVES THEM INTO INDEXED ARRAY
 	$folders = array();

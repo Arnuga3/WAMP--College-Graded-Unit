@@ -71,12 +71,12 @@
 				</div>
 				
 				<div id="contCont" class="col s12 l9 z-depth-1">
-					<div class="row linkDIVs center">
+					<div class="row linkDIVs">
 						<div class="col s12 m6 flexCenter">
 							<a class="u_act_p" href="#">Photos</a>
 						</div>
 						<div class="col s12 m6 flexCenter">
-							<a href="#">Videos</a>
+							<a class="u_act_v" href="#">Videos</a>
 						</div>
 					</div>
 				</div>

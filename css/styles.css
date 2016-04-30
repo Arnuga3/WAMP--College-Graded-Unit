@@ -206,17 +206,26 @@ hr {
 	font-family: 'Great Vibes', cursive;
 	font-size: 5em;
 	color: #333;
-	border: 1px dashed #888;
+	border: 1px dashed #ccc;
 	border-radius: 10px;
 	padding: 10px 20px 0 20px;
+	box-shadow: 3px 3px 6px 2px #ccc;
 }
 .linkDIVs div a:hover {
 	text-shadow:5px 5px 10px #888;
+	background-color: rgba(245,235,230,.6);
 }
 
 .folder:hover {
 	cursor: pointer;
 	background-color: #eee;
+}
+
+.backLink {
+	margin: 10px 0 0 10px;
+	color: black;
+	border-bottom: 1px solid #aaa;
+	font-weight: bold;
 }
 
 /*------------Media queries-------------*/

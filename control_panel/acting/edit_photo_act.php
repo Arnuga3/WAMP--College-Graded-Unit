@@ -99,13 +99,15 @@
 				
 				<!-- Image name -->
 				<div class=\"input-field margTopL\">
-						<input id=\"img_title$i\" type=\"text\" name=\"pName".$photoInfo[$i]["image_ID"]."\" value=\"".$photoInfo[$i]["image_title"]."\" \>
+						<input id=\"img_title$i\" type=\"text\" name=\"pName".str_replace('"',"&quot;", $photoInfo[$i]["image_ID"])."\" 
+						value=\"".str_replace('"',"&quot;", $photoInfo[$i]["image_title"])."\" \>
 						<label for=\"img_title$i\">Image title</label>
 					</div>
 				
 				<!-- Image description -->
 				<div class=\"input-field\">
-						<input id=\"img_descr$i\" type=\"text\" name=\"pDescr".$photoInfo[$i]["image_ID"]."\" value=\"".$photoInfo[$i]["image_descr"]."\" \>
+						<input id=\"img_descr$i\" type=\"text\" name=\"pDescr".str_replace('"',"&quot;", $photoInfo[$i]["image_ID"])."\" 
+						value=\"".str_replace('"',"&quot;", $photoInfo[$i]["image_descr"])."\" \>
 						<label for=\"img_descr$i\">Image description</label>
 					</div>";
 		}
