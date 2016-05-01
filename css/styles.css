@@ -316,7 +316,7 @@ hr {
 	box-shadow: 0 1px 0 0 white;
 }
 #labelTextarea {
-	color: white;
+	color: #aaa;
 }
 
 .checkbox-orange[type="checkbox"].filled-in:checked + label:after {

@@ -239,7 +239,6 @@ hr {
 }
 form {
 	margin-top: 15px;
-	border: 1px solid white;
 }
 #radio_flex {
 	display: -webkit-flex;
@@ -257,11 +256,11 @@ form {
 }
 #cpCont > div,
 #cpCont > a {
-	border-top: 1px solid #dcedc8;
+	border-top: 1px solid #aaa;
 }
 #cpCont > div:hover,
 #cpCont > a:hover {
-	background-color: #f1f8e9;
+	background-color: rgba(0,0,0,.1);
 }
 #cpCont label {
 	width: 100%;
@@ -281,7 +280,10 @@ form {
 	padding-left: 10px;
 }
 #mainContent {
-	padding: 0;
+	padding: 0;	
+	background-image: url('../img/cube2.png');
+	background-repeat: repeat;
+	background-color: transparent;
 }
 
 #fileUploadForm div {
@@ -311,7 +313,6 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 	top: 7px;
 	left: 7px;
 }
-
 
 /*------------Media queries-------------*/
 
@@ -474,7 +475,8 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 #showrl_description:focus,
 #showrl_path:focus,
 #skills:focus,
-#accents:focus {
+#accents:focus,
+#trainig:focus {
 	border-bottom: 1px solid #b71c1c;
 	-webkit-box-shadow: 0 1px 0 0 #b71c1c;
 	-moz-box-shadow: 0 1px 0 0 #b71c1c;

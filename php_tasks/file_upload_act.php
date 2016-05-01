@@ -52,9 +52,9 @@ if (isset($_SESSION["mrBoss"])) {
 			}
 			
 			// Max sizes for a new photo
-			$max_width = 1024;
-			$max_height = 768;
-			$max_file_size = 500000;
+			$max_width = 800;
+			$max_height = 600;
+			$max_file_size = 400000;
 
 			// Get current dimensions
 			$old_width  = imagesx($image);
