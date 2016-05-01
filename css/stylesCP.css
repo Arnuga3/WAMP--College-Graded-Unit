@@ -548,6 +548,9 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 .marg15 {
 	margin: 15px;
 }
+.pad5 {
+	padding: 5px;
+}
 .pad10 {
 	padding: 10px;
 }

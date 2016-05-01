@@ -122,7 +122,8 @@ function reloadEvents() {
 		$('.preload346').show();
 		
 		$('#mainContent').load('../control_panel/a_cv.php', function() {
-			reloadEvents();
+			reloadEvents();		
+			CV_events();
 			
 			//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
 			//focus(does the job)
@@ -349,6 +350,82 @@ function fileUploadSubm(typeNr) {
 				console.log(request.responseText);
 			}
 		});
+	});
+}
+
+
+function CV_events() {
+	block1Event();
+	block3Event();
+}
+
+function block1Event() {
+	//CV Block 1 SAVE
+	$('.saveBlock1').click(function() {
+		
+		$('#formblock1').on('submit', function(e) {
+			//prevent default form submission
+			e.preventDefault();
+			
+			var formData = new FormData(document.getElementById("formblock1"));
+			
+			//send formdata to server-side
+			$.ajax({
+				url: "../php_tasks/cv_save_block1.php", // php file
+				type: 'post',
+				data: formData,
+				dataType: 'html', // return html from php file
+				async: true,
+				processData: false,  // tell jQuery not to process the data
+				contentType: false,   // tell jQuery not to set contentType
+				success : function() {
+					Materialize.toast('Saved', 1500, 'rounded');
+					if ($('#dark').css('display') == 'block') {
+						enableScroll();
+						$('#dark').toggle();
+					}
+				},
+				error : function(request) {
+					console.log(request.responseText);
+				}
+			});
+		});
+		$('#formblock1').submit();
+	});
+}
+
+function block3Event() {
+	//CV Block 1 SAVE
+	$('.saveBlock3').click(function() {
+		
+		$('#formblock3').on('submit', function(e) {
+			//prevent default form submission
+			e.preventDefault();
+			
+			var formData = new FormData(document.getElementById("formblock3"));
+			
+			//send formdata to server-side
+			$.ajax({
+				url: "../php_tasks/cv_save_block3.php", // php file
+				type: 'post',
+				data: formData,
+				dataType: 'html', // return html from php file
+				async: true,
+				processData: false,  // tell jQuery not to process the data
+				contentType: false,   // tell jQuery not to set contentType
+				success : function() {
+					Materialize.toast('Saved', 1500, 'rounded');
+					if ($('#dark').css('display') == 'block') {
+						enableScroll();
+						$('#dark').toggle();
+					}
+				},
+				error : function(request) {
+					console.log(request.responseText);
+				}
+			});
+		});
+		$('#formblock3').submit();
 	});
 }
 
