@@ -136,7 +136,7 @@ if (isset($_SESSION["mrBoss"])) {
 							</div>
 							
 							<div class=\"pad5\">
-								<a class=\"saveBlock1 waves-effect waves-light btn light-green darken-2\">save</a>
+								<a class=\"saveBlock1 waves-effect waves-light btn green darken-2\">save</a>
 							</div>
 							
 						</div>
@@ -163,7 +163,7 @@ if (isset($_SESSION["mrBoss"])) {
 										</div>
 										
 										<div class=\"margBot pad15\">
-											<a class=\"saveTraining waves-effect waves-light btn light-green darken-2\">save</a>
+											<a class=\"saveTraining waves-effect waves-light btn green darken-2\">save</a>
 											<a class=\"deleteTraining waves-effect waves-light btn red darken\">delete</a>
 										</div>";
 									}
@@ -173,8 +173,12 @@ if (isset($_SESSION["mrBoss"])) {
 								echo "Error: no records";
 							}
 							
-						echo "<div class=\"pad5\">
-								<a class=\"waves-effect waves-light btn light-blue darken-4\">+ new training</a>
+						echo "<div class=\"addTrainingField z-depth-2 pad5\">
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Training\" name=\"newTraining\" type=\"text\" class=\"validate\" />
+									<label for=\"training\">training</label>
+								</div>
+								<a class=\"newTrainingBtn waves-effect waves-light btn light-blue darken-4\">add new training</a>
 							</div>
 							
 						</div>
@@ -199,7 +203,7 @@ if (isset($_SESSION["mrBoss"])) {
 							</div>
 							
 							<div class=\"\">
-								<a class=\"saveBlock3 waves-effect waves-light btn light-green darken-2\">save</a>
+								<a class=\"saveBlock3 waves-effect waves-light btn green darken-2\">save</a>
 							</div>
 							
 						</div>

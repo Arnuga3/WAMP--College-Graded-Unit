@@ -1,6 +1,6 @@
 <?php
 
-	include ("../db/db_ORM.php");
+	include ("../../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function
 	header('Content-Type: text/plain');
@@ -23,10 +23,11 @@
 		$values = $db->prepareArray($accents, $skills);
 		$db->update("cv", "cv_accents, cv_skills", $values, "cv_ID", 1);
 		$db->close();
+		
+		echo "Saved";
+	} else {
+		//Error message is displayed on the page if there is any
+		echo "Error";
 	}
-
-	
-	//Error message is displayed on the page if there is any
-	echo "";
 	
 ?>

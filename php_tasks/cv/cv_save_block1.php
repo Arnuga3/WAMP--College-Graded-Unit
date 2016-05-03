@@ -1,6 +1,6 @@
 <?php
 
-	include ("../db/db_ORM.php");
+	include ("../../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function
 	header('Content-Type: text/plain');
@@ -32,10 +32,14 @@
 		$values = $db->prepareArray($name, $equity, $email, $height, $chest, $waist, $inside_leg, $eyes, $hair, $build, $playing_age);
 		$db->update("cv", "cv_name, cv_equity, cv_email, cv_height, cv_chest, cv_waist, cv_inside_leg, cv_eyes, cv_hair, cv_build, cv_playing_age", $values, "cv_ID", 1);
 		$db->close();
+		
+		echo "Saved";
+	} else {
+			
+		//Error message is displayed on the page if there is any
+		echo "Error";
 	}
 
-	
-	//Error message is displayed on the page if there is any
-	echo "";
+
 	
 ?>

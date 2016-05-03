@@ -11,6 +11,118 @@ $(document).ready(function () {
 	//set the height of the side menu once, then changed on window resize event (resize() function)
 	$('#contField').height($(window).height() - 85 );
 	
+	
+////////////
+////MENU////
+////////////
+
+	//SHOWREEL
+	$('.a_shwrl').click(function() {
+		
+		$('.preload346').show(200);
+		
+		$('#mainContent').load('../control_panel/a_showreel.php', function() {
+			reloadEvents();
+			
+			//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+			//focus(does the job)
+			$('input:first').focus();
+			//focus and unfocus
+			$('textarea').focus().blur();
+			//scroll to the top of the page
+			$('body').scrollTop(0);
+		
+		});
+	});
+	
+	//CV
+	$('.a_cv').click(function() {
+		
+		$('.preload346').show(200);
+		
+		$('#mainContent').load('../control_panel/a_cv.php', function() {
+			reloadEvents();		
+			CV_events();
+			
+			//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+			//focus(does the job)
+			$('input').focus();
+			//focus and unfocus
+			$('textarea').focus();
+			$('input:first').focus();
+			//scroll to the top of the page
+			$('body').scrollTop(0);
+		
+		});
+	});
+
+	//ACTING PHOTOS
+	$('.a_act_p').click(function() {
+		
+		$('.preload346').show(200);
+			
+		//load part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load('../control_panel/acting/a_act_photos.php', function() {
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+
+				$('.preload346').show(200);
+
+				
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load("../control_panel/acting/a_act_folders.php?folder=" + noSpaceName, function() {
+					reloadEvents();
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbum(0);
+					photosUploadScr(0, $('.sb_rename_folder').text());
+				});
+			});
+			
+			//UPLOAD SCREEN
+			photosUploadScr(0, "");
+		});
+	});
+	//ACTING PHOTOS
+	$('.a_gig_p').click(function() {
+
+		$('.preload346').show(200);
+		
+		//load part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load('../control_panel/gig/a_gig_photos.php', function() {
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+				
+				$('.preload346').show(200);
+
+				
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load("../control_panel/gig/a_gig_folders.php?folder=" + noSpaceName, function() {
+					reloadEvents();
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbum(1);
+					photosUploadScr(1, $('.sb_rename_folder').text());
+				});
+			});
+			
+			//UPLOAD SCREEN
+			photosUploadScr(1, "");
+		});
+	});
+	
 	//reload the main eventlisteners
 	reloadEvents();
 });
@@ -89,124 +201,6 @@ function reloadEvents() {
 			});
 		}
 	});
-
-	
-////////////
-////MENU////
-////////////
-
-	//SHOWREEL
-	$('.a_shwrl').click(function() {
-		
-		$('*').unbind('load');
-		$('.preload346').show();
-		
-		$('#mainContent').load('../control_panel/a_showreel.php', function() {
-			reloadEvents();
-			
-			//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
-			//focus(does the job)
-			$('input:first').focus();
-			//focus and unfocus
-			$('textarea').focus().blur();
-			//scroll to the top of the page
-			$('body').scrollTop(0);
-		
-		});
-	});
-	
-	//CV
-	$('.a_cv').click(function() {
-		
-		$('*').unbind('load');
-		$('.preload346').show();
-		
-		$('#mainContent').load('../control_panel/a_cv.php', function() {
-			reloadEvents();		
-			CV_events();
-			
-			//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
-			//focus(does the job)
-			$('input').focus();
-			//focus and unfocus
-			$('textarea').focus();
-			$('input:first').focus();
-			//scroll to the top of the page
-			$('body').scrollTop(0);
-		
-		});
-	});
-
-	//ACTING PHOTOS
-	$('.a_act_p').click(function() {
-		
-		$('*').unbind('load');
-		$('.preload346').show();
-			
-		//load part of the page using ajax (folders with photos and photos without folders)
-		$('#mainContent').load('../control_panel/acting/a_act_photos.php', function() {
-			//assign event listeners to new loaded elements
-			reloadEvents();
-			
-			//FOLDERS
-			$('.folder').click(function() {
-				
-				$('*').unbind('load');
-				$('.preload346').show();
-
-				
-				//load the images of selected folder using ajax and assign event listeners to them
-				var selectedFolder = $(this);
-				var folderName = selectedFolder.find('span').text();
-				//escape the string before passing it in url
-				var noSpaceName = encodeURIComponent(folderName);
-				$('#mainContent').load("../control_panel/acting/a_act_folders.php?folder=" + noSpaceName, function() {
-					reloadEvents();
-					//RENAME ALBUM - inside as rename option is available only in the folder
-					renameAlbum(0);
-					photosUploadScr(0, $('.sb_rename_folder').text());
-				});
-			});
-			
-			//UPLOAD SCREEN
-			photosUploadScr(0, "");
-		});
-	});
-	//ACTING PHOTOS
-	$('.a_gig_p').click(function() {
-		
-		$('*').unbind('load');
-		$('.preload346').show();
-		
-		//load part of the page using ajax (folders with photos and photos without folders)
-		$('#mainContent').load('../control_panel/gig/a_gig_photos.php', function() {
-			//assign event listeners to new loaded elements
-			reloadEvents();
-			
-			//FOLDERS
-			$('.folder').click(function() {
-				
-				$('*').unbind('load');
-				$('.preload346').show();
-
-				
-				//load the images of selected folder using ajax and assign event listeners to them
-				var selectedFolder = $(this);
-				var folderName = selectedFolder.find('span').text();
-				//escape the string before passing it in url
-				var noSpaceName = encodeURIComponent(folderName);
-				$('#mainContent').load("../control_panel/gig/a_gig_folders.php?folder=" + noSpaceName, function() {
-					reloadEvents();
-					//RENAME ALBUM - inside as rename option is available only in the folder
-					renameAlbum(1);
-					photosUploadScr(1, $('.sb_rename_folder').text());
-				});
-			});
-			
-			//UPLOAD SCREEN
-			photosUploadScr(1, "");
-		});
-	});
 }
 
 //RENAME ALBUM OPTION
@@ -223,9 +217,8 @@ function renameAlbum(typeNr) {
 
 //LOADS PHOTOS FIRST SCREEN
 function photosLoad(typeNr) {
-	
-	$('*').unbind('load');
-	$('.preload346').show();
+
+	$('.preload346').show(200);
 
 	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
@@ -238,9 +231,8 @@ function photosLoad(typeNr) {
 
 		//FOLDERS
 		$('.folder').click(function() {
-			
-			$('*').unbind('load');
-			$('.preload346').show();
+
+			$('.preload346').show(200);
 
 			
 			//load the images of selected folder using ajax and assign event listeners to them
@@ -261,8 +253,7 @@ function photosLoad(typeNr) {
 //LOADS PHOTOS IN FOLDER
 function photosLoadFolder(typeNr, folderNoSpace) {
 	
-	$('*').unbind('load');
-	$('.preload346').show();
+	$('.preload346').show(200);
 
 	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
@@ -272,8 +263,7 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 		//if no photos left in a folder load the first screen
 		if ($('#cpCont div').length == false) {
 			
-			$('*').unbind('load');
-			$('.preload346').show();
+			$('.preload346').show(200);
 
 			
 			//load part of the page using ajax (folders with photos and photos without folders)
@@ -294,9 +284,8 @@ function photosUploadScr(typeNr, folderNoSpace) {
 
 	//UPLOAD BTN
 	$('.sb_upload').click(function() {
-		
-		$('*').unbind('load');
-		$('.preload346').show();
+
+		$('.preload346').show(200);
 
 		
 		//load the file upload part of the page using ajax and assign event listeners
@@ -304,7 +293,7 @@ function photosUploadScr(typeNr, folderNoSpace) {
 			reloadEvents();
 			
 			$('#submitFormUpl').click(function() {
-				$('.preload346').show();
+				$('.preload346').show(200);
 			});
 			
 			//0 is acting
@@ -358,6 +347,9 @@ function CV_events() {
 	block1Event();
 	block3Event();
 	
+	addTraining();
+	
+	deleteTrainingID();
 	saveTrainingByID();
 }
 
@@ -369,24 +361,21 @@ function block1Event() {
 		
 		//send formdata to server-side
 		$.ajax({
-			url: "../php_tasks/cv_save_block1.php", // php file
+			url: "../php_tasks/cv/cv_save_block1.php", // php file
 			type: 'post',
 			data: formData,
 			dataType: 'html', // return html from php file
 			async: true,
 			processData: false,  // tell jQuery not to process the data
 			contentType: false,   // tell jQuery not to set contentType
-			success : function() {
+			success : function(data) {
 				
-				Materialize.toast('Saved', 1500, 'rounded');
+				Materialize.toast(data, 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
 					$('#dark').toggle();
 				}
 				
-			},
-			error : function(request) {
-				console.log(request.responseText);
 			}
 		});
 		
@@ -401,24 +390,21 @@ function block3Event() {
 		
 		//send formdata to server-side
 		$.ajax({
-			url: "../php_tasks/cv_save_block3.php", // php file
+			url: "../php_tasks/cv/cv_save_block3.php", // php file
 			type: 'post',
 			data: formData,
 			dataType: 'html', // return html from php file
 			async: true,
 			processData: false,  // tell jQuery not to process the data
 			contentType: false,   // tell jQuery not to set contentType
-			success : function() {
+			success : function(data) {
 				
-				Materialize.toast('Saved', 1500, 'rounded');
+				Materialize.toast(data, 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
 					$('#dark').toggle();
 				}
 				
-			},
-			error : function(request) {
-				console.log(request.responseText);
 			}
 		});
 		
@@ -438,7 +424,83 @@ function saveTrainingByID() {
 		
 		//send formdata to server-side
 		$.ajax({
-			url: "../php_tasks/cv_save_traing.php", // php file
+			url: "../php_tasks/cv/cv_save_traing.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+				
+				Materialize.toast(data, 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				
+			}
+		});
+	});
+}
+
+function deleteTrainingID() {
+	$('.deleteTraining').on('click', function() {
+		var input = $(this).parent().prev().find('input');
+		var id = input.attr('ID');
+		
+		var formData = new FormData();
+		formData.append('trainingID', id);
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv/cv_delete_traing.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+				
+				$('#trainingRecords').load("../php_tasks/all_trainings.php", function(){
+					deleteTrainingID();
+					saveTrainingByID();
+					
+					//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+					//focus(does the job)
+					$('input').focus();
+					//focus and unfocus
+					$('textarea').focus();
+					$('input:first').focus().blur();
+					$('body').animate({scrollTop: $('#trainingRecords').offset().top - 300}, 0);
+					$('.addTrainingField div input').val('');
+				});
+				
+				Materialize.toast(data, 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				
+			}
+		});
+	});
+}
+
+function addTraining() {
+	$('.newTrainingBtn').on('click', function() {
+		
+		var input = $(this).prev().find('input');
+		var attr = input.attr('NAME');
+		var value = input.val();
+		
+		var formData = new FormData();
+		formData.append(attr, value);
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv/cv_add_trainig.php", // php file
 			type: 'post',
 			data: formData,
 			dataType: 'html', // return html from php file
@@ -447,7 +509,21 @@ function saveTrainingByID() {
 			contentType: false,   // tell jQuery not to set contentType
 			success : function() {
 				
-				Materialize.toast('Saved', 1500, 'rounded');
+				$('#trainingRecords').load("../php_tasks/all_trainings.php", function(){
+					deleteTrainingID();
+					saveTrainingByID();
+					
+					//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+					//focus(does the job)
+					$('input').focus();
+					//focus and unfocus
+					$('textarea').focus();
+					$('input:first').focus().blur();
+					$('body').animate({scrollTop: $('#trainingRecords').offset().top - 300}, 0);
+					$('.addTrainingField div input').val('');
+				});
+				
+				Materialize.toast('Added', 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
 					$('#dark').toggle();

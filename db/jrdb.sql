@@ -8,6 +8,11 @@ create table ai_images (
     PRIMARY KEY(ai_ID)
 );
 
+create table ai_exp (
+	ai_ID int NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(ai_ID)
+);
+
 create table user (
 	usr_ID int NOT NULL AUTO_INCREMENT,
     cv_ID integer,
@@ -112,7 +117,10 @@ INSERT INTO video (video_ID, video_title, video_descr, video_path, video_group, 
 INSERT INTO cv (cv_ID, cv_name, cv_equity, cv_email, cv_accents, cv_skills, cv_height, cv_chest, cv_waist, cv_inside_leg, cv_eyes, cv_hair, cv_build, cv_playing_age) VALUES (1,"Jamie Rodden","M00312130","jamieroddengigs@hotmail.co.uk","Glasgow, Aberdeen (Doric), Fife, German, Russian, Standard American, New York, Irish, Australian, RP, Liverpool, Yorkshire, London.","Sing, play guitar, (acoustic/electric/read guitar tab/write own music) Full Clean Driving License, Advanced Stage Fighting and Movement skills. Theatre in Education workshop leader.",6.2,42,36,32,"Blue","Brown","Slim","25---35 yrs");
 INSERT INTO training (training_ID, training) VALUES (1, "BA (HONS) PERFORMANCE --- U.W.S.");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 0, 0, 1);
+INSERT INTO ai_exp () VALUES ();
 INSERT INTO training (training_ID, training) VALUES (2, "MASTERCLASS KENNY GLENNAN");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 0, 0, 2);
+INSERT INTO ai_exp () VALUES ();
 INSERT INTO training (training_ID, training) VALUES (3, "HND ACTING & PERFORMANCE --- FIFE COLLEGE");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 0, 0, 3);
+INSERT INTO ai_exp () VALUES ();

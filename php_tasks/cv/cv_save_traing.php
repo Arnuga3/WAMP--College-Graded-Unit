@@ -1,6 +1,6 @@
 <?php
 
-	include ("../db/db_ORM.php");
+	include ("../../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function
 	header('Content-Type: text/plain');
@@ -26,12 +26,12 @@
 		
 		$db->customQuery("UPDATE training SET training = '$escValue' WHERE training_ID = $escID");
 		$db->close();
+		
+		echo "Saved";
+		
 	} else {
-		echo "not POST";
+		//Error message is displayed on the page if there is any
+		echo "Error";
 	}
-
-	
-	//Error message is displayed on the page if there is any
-	echo "";
 	
 ?>
