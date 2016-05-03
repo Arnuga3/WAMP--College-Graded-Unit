@@ -357,75 +357,107 @@ function fileUploadSubm(typeNr) {
 function CV_events() {
 	block1Event();
 	block3Event();
+	
+	saveTrainingByID();
 }
 
 function block1Event() {
 	//CV Block 1 SAVE
 	$('.saveBlock1').click(function() {
 		
-		$('#formblock1').on('submit', function(e) {
-			//prevent default form submission
-			e.preventDefault();
-			
-			var formData = new FormData(document.getElementById("formblock1"));
-			
-			//send formdata to server-side
-			$.ajax({
-				url: "../php_tasks/cv_save_block1.php", // php file
-				type: 'post',
-				data: formData,
-				dataType: 'html', // return html from php file
-				async: true,
-				processData: false,  // tell jQuery not to process the data
-				contentType: false,   // tell jQuery not to set contentType
-				success : function() {
-					Materialize.toast('Saved', 1500, 'rounded');
-					if ($('#dark').css('display') == 'block') {
-						enableScroll();
-						$('#dark').toggle();
-					}
-				},
-				error : function(request) {
-					console.log(request.responseText);
+		var formData = new FormData(document.getElementById("formblock1"));
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv_save_block1.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function() {
+				
+				Materialize.toast('Saved', 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
 				}
-			});
+				
+			},
+			error : function(request) {
+				console.log(request.responseText);
+			}
 		});
-		$('#formblock1').submit();
+		
 	});
 }
 
 function block3Event() {
 	//CV Block 1 SAVE
-	$('.saveBlock3').click(function() {
+	$('.saveBlock3').on('click', function() {
+	
+		var formData = new FormData(document.getElementById("formblock3"));
 		
-		$('#formblock3').on('submit', function(e) {
-			//prevent default form submission
-			e.preventDefault();
-			
-			var formData = new FormData(document.getElementById("formblock3"));
-			
-			//send formdata to server-side
-			$.ajax({
-				url: "../php_tasks/cv_save_block3.php", // php file
-				type: 'post',
-				data: formData,
-				dataType: 'html', // return html from php file
-				async: true,
-				processData: false,  // tell jQuery not to process the data
-				contentType: false,   // tell jQuery not to set contentType
-				success : function() {
-					Materialize.toast('Saved', 1500, 'rounded');
-					if ($('#dark').css('display') == 'block') {
-						enableScroll();
-						$('#dark').toggle();
-					}
-				},
-				error : function(request) {
-					console.log(request.responseText);
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv_save_block3.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function() {
+				
+				Materialize.toast('Saved', 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
 				}
-			});
+				
+			},
+			error : function(request) {
+				console.log(request.responseText);
+			}
 		});
-		$('#formblock3').submit();
+		
+	});
+}
+
+function saveTrainingByID() {
+	
+	$('.saveTraining').on('click', function() {
+		var input = $(this).parent().prev().find('input');
+		var id = input.attr('ID');
+		var value = input.val();
+		
+		var formData = new FormData();
+		formData.append('trainingID', id);
+		formData.append('trainingIDVal', value);
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv_save_traing.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function() {
+				
+				Materialize.toast('Saved', 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				
+			},
+			error : function(request) {
+				console.log(request.responseText);
+			}
+		});
 	});
 }
 

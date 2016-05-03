@@ -148,31 +148,33 @@ if (isset($_SESSION["mrBoss"])) {
 						<div class=\"row\">
 						
 							<p class=\"photoNr margTopX\">Block 2</p>
-							<h4>Training:</h4>";
+							<h4>Training:</h4>
+								<div id=\"trainingRecords\">";
 							
-							if ($result_tr->num_rows > 0) {
-								while($row = $result_tr->fetch_assoc()) {
-									$data_tr = $row;
+								if ($result_tr->num_rows > 0) {
+									while($row = $result_tr->fetch_assoc()) {
+										$data_tr = $row;
+										
+										echo "
+										<div class=\"input-field col s12\">
+											<input placeholder=\"Training\" id=\"".str_replace('"',"&quot;", $data_tr["training_ID"])."\" type=\"text\" class=\"validate\" 
+												value=\"".str_replace('"',"&quot;", $data_tr["training"])."\" />
+											<label for=\"training\">training</label>
+										</div>
+										
+										<div class=\"margBot pad15\">
+											<a class=\"saveTraining waves-effect waves-light btn light-green darken-2\">save</a>
+											<a class=\"deleteTraining waves-effect waves-light btn red darken\">delete</a>
+										</div>";
+									}
+								echo "</div>";
 									
-									echo "
-									<div class=\"input-field col s12\">
-										<input placeholder=\"Training\" id=\"training\" name=\"training\" type=\"text\" class=\"validate\" 
-											value=\"".str_replace('"',"&quot;", $data_tr["training"])."\" />
-										<label for=\"training\">training</label>
-									</div>
-									
-									<div class=\"margBot pad15\">
-										<a class=\"waves-effect waves-light btn light-green darken-2\">save</a>
-										<a class=\"waves-effect waves-light btn red darken\">delete</a>
-									</div>";
-								}
-								
-							} else {
+								} else {
 								echo "Error: no records";
 							}
 							
 						echo "<div class=\"pad5\">
-								<a class=\"waves-effect waves-light btn light-blue darken-4\">add training</a>
+								<a class=\"waves-effect waves-light btn light-blue darken-4\">+ new training</a>
 							</div>
 							
 						</div>
