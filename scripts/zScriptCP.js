@@ -19,7 +19,7 @@ $(document).ready(function () {
 	//SHOWREEL
 	$('.a_shwrl').click(function() {
 		
-		$('.preload346').show(200);
+		$('.preload346').fadeIn(200);
 		
 		$('#mainContent').load('../control_panel/a_showreel.php', function() {
 			reloadEvents();
@@ -38,7 +38,7 @@ $(document).ready(function () {
 	//CV
 	$('.a_cv').click(function() {
 		
-		$('.preload346').show(200);
+		$('.preload346').fadeIn(200);
 		
 		$('#mainContent').load('../control_panel/a_cv.php', function() {
 			reloadEvents();		
@@ -59,7 +59,7 @@ $(document).ready(function () {
 	//ACTING PHOTOS
 	$('.a_act_p').click(function() {
 		
-		$('.preload346').show(200);
+		$('.preload346').fadeIn(200);
 			
 		//load part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/acting/a_act_photos.php', function() {
@@ -69,7 +69,7 @@ $(document).ready(function () {
 			//FOLDERS
 			$('.folder').click(function() {
 
-				$('.preload346').show(200);
+				$('.preload346').fadeIn(200);
 
 				
 				//load the images of selected folder using ajax and assign event listeners to them
@@ -92,7 +92,7 @@ $(document).ready(function () {
 	//ACTING PHOTOS
 	$('.a_gig_p').click(function() {
 
-		$('.preload346').show(200);
+		$('.preload346').fadeIn(200);
 		
 		//load part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/gig/a_gig_photos.php', function() {
@@ -102,7 +102,7 @@ $(document).ready(function () {
 			//FOLDERS
 			$('.folder').click(function() {
 				
-				$('.preload346').show(200);
+				$('.preload346').fadeIn(200);
 
 				
 				//load the images of selected folder using ajax and assign event listeners to them
@@ -218,7 +218,7 @@ function renameAlbum(typeNr) {
 //LOADS PHOTOS FIRST SCREEN
 function photosLoad(typeNr) {
 
-	$('.preload346').show(200);
+	$('.preload346').fadeIn(200);
 
 	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
@@ -232,7 +232,7 @@ function photosLoad(typeNr) {
 		//FOLDERS
 		$('.folder').click(function() {
 
-			$('.preload346').show(200);
+			$('.preload346').fadeIn(200);
 
 			
 			//load the images of selected folder using ajax and assign event listeners to them
@@ -253,7 +253,7 @@ function photosLoad(typeNr) {
 //LOADS PHOTOS IN FOLDER
 function photosLoadFolder(typeNr, folderNoSpace) {
 	
-	$('.preload346').show(200);
+	$('.preload346').fadeIn(200);
 
 	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
@@ -263,7 +263,7 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 		//if no photos left in a folder load the first screen
 		if ($('#cpCont div').length == false) {
 			
-			$('.preload346').show(200);
+			$('.preload346').fadeIn(200);
 
 			
 			//load part of the page using ajax (folders with photos and photos without folders)
@@ -285,7 +285,7 @@ function photosUploadScr(typeNr, folderNoSpace) {
 	//UPLOAD BTN
 	$('.sb_upload').click(function() {
 
-		$('.preload346').show(200);
+		$('.preload346').fadeIn(200);
 
 		
 		//load the file upload part of the page using ajax and assign event listeners
@@ -293,7 +293,7 @@ function photosUploadScr(typeNr, folderNoSpace) {
 			reloadEvents();
 			
 			$('#submitFormUpl').click(function() {
-				$('.preload346').show(200);
+				$('.preload346').fadeIn(200);
 			});
 			
 			//0 is acting
@@ -446,6 +446,7 @@ function saveTrainingByID() {
 
 function deleteTrainingID() {
 	$('.deleteTraining').on('click', function() {
+		var parentDiv = $(this).parent().parent();
 		var input = $(this).parent().prev().find('input');
 		var id = input.attr('ID');
 		
@@ -462,20 +463,9 @@ function deleteTrainingID() {
 			processData: false,  // tell jQuery not to process the data
 			contentType: false,   // tell jQuery not to set contentType
 			success : function(data) {
-				
-				$('#trainingRecords').load("../php_tasks/all_trainings.php", function(){
-					deleteTrainingID();
-					saveTrainingByID();
-					
-					//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
-					//focus(does the job)
-					$('input').focus();
-					//focus and unfocus
-					$('textarea').focus();
-					$('input:first').focus().blur();
-					$('body').animate({scrollTop: $('#trainingRecords').offset().top - 300}, 0);
-					$('.addTrainingField div input').val('');
-				});
+
+				//Hide after deletion in DB
+				parentDiv.fadeOut(1000);
 				
 				Materialize.toast(data, 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {
@@ -490,7 +480,7 @@ function deleteTrainingID() {
 
 function addTraining() {
 	$('.newTrainingBtn').on('click', function() {
-		
+
 		var input = $(this).prev().find('input');
 		var attr = input.attr('NAME');
 		var value = input.val();
@@ -507,21 +497,84 @@ function addTraining() {
 			async: true,
 			processData: false,  // tell jQuery not to process the data
 			contentType: false,   // tell jQuery not to set contentType
-			success : function() {
+			success : function(data) {
+
+				//add new training record with supporting buttons to HTML
+				var newRecord = $(data).insertBefore('.addTrainingField').hide();
+				//slowly appear
+				newRecord.fadeIn(1000);
 				
-				$('#trainingRecords').load("../php_tasks/all_trainings.php", function(){
-					deleteTrainingID();
-					saveTrainingByID();
+				
+				//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+				//focus/focusout(does the job)
+				newRecord.find('input').focus().blur();
+				
+				//add eventlistener to a new save button related to the added record
+				newRecord.find('.saveTraining').on('click', function() {
+					var input = $(this).parent().prev().find('input');
+					var id = input.attr('ID');
+					var value = input.val();
 					
-					//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
-					//focus(does the job)
-					$('input').focus();
-					//focus and unfocus
-					$('textarea').focus();
-					$('input:first').focus().blur();
-					$('body').animate({scrollTop: $('#trainingRecords').offset().top - 300}, 0);
-					$('.addTrainingField div input').val('');
+					var formData = new FormData();
+					formData.append('trainingID', id);
+					formData.append('trainingIDVal', value);
+					
+					//send formdata to server-side
+					$.ajax({
+						url: "../php_tasks/cv/cv_save_traing.php", // php file
+						type: 'post',
+						data: formData,
+						dataType: 'html', // return html from php file
+						async: true,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,   // tell jQuery not to set contentType
+						success : function(data) {
+							
+							Materialize.toast(data, 1500, 'rounded');
+							if ($('#dark').css('display') == 'block') {
+								enableScroll();
+								$('#dark').toggle();
+							}
+							
+						}
+					});
 				});
+				
+				//add eventlistener to a new delete button related to the added record
+				newRecord.find('.deleteTraining').on('click', function() {
+					var parentDiv = $(this).parent().parent();
+					var input = $(this).parent().prev().find('input');
+					var id = input.attr('ID');
+					
+					var formData = new FormData();
+					formData.append('trainingID', id);
+					
+					//send formdata to server-side
+					$.ajax({
+						url: "../php_tasks/cv/cv_delete_traing.php", // php file
+						type: 'post',
+						data: formData,
+						dataType: 'html', // return html from php file
+						async: true,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,   // tell jQuery not to set contentType
+						success : function(data) {
+
+							//Hide after deletion in DB
+							parentDiv.fadeOut(1000);
+							
+							Materialize.toast(data, 1500, 'rounded');
+							if ($('#dark').css('display') == 'block') {
+								enableScroll();
+								$('#dark').toggle();
+							}
+							
+						}
+					});
+				});
+				
+				
+				$('.addTrainingField div input').val('');
 				
 				Materialize.toast('Added', 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {

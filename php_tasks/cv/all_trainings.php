@@ -1,6 +1,6 @@
 <?php
 
-	include ("../db/db_ORM.php");
+	include ("../../db/db_ORM.php");
 
 	$db = new dbConnection();
 	$db->connect();

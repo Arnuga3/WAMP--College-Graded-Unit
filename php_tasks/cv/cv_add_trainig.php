@@ -40,11 +40,24 @@ if (isset($_SESSION["mrBoss"])) {
 			
 			$db->close();
 			
+			echo "<div>
+					<div class=\"input-field col s12\">
+						<input placeholder=\"Training\" id=\"".str_replace('"',"&quot;", $lastID)."\" type=\"text\" class=\"validate\" 
+							value=\"".str_replace('"',"&quot;", $escNewTraining)."\" />
+						<label for=\"training\">training</label>
+					</div>
+					
+					<div class=\"margBot pad15\">
+						<a class=\"saveTraining waves-effect waves-light btn green darken-2\">save</a>
+						<a class=\"deleteTraining waves-effect waves-light btn red darken\">delete</a>
+					</div>
+				</div>";
+			
 		} else {
 			echo "<p>One result is expected</p>";
 		}
 	} else {
-		echo "Not post";
+		echo "POST request is not defined";
 	}
 } else {
 	echo "Session is not defined";

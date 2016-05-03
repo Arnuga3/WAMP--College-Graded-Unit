@@ -161,22 +161,20 @@ nav span {
     background-color: #b2dfdb;
 	padding: 0;
 }
-#slide-out a {
-	padding: 0 25px;
-}
 #slide-out p {
 	font-size: 1.2em;
-	padding-left: 17px;
+	padding-left: 10px;
 	color: #777;
 }
 #slide-out img {
-	padding-right: 15px;
-	vertical-align: middle;
 	width: 40px;
-	height: 25px;
+	height: 40px;
+	margin-right: 10px;
+	border: 2px solid #424242;
+	border-radius: 50%;
+	background-color: orange;
 }
 .nav-wrapper img {
-	padding-right: 15px;
 	vertical-align: middle;
 	width: 40px;
 	height: 25px;
@@ -289,12 +287,18 @@ form {
 #fileUploadForm div {
 	height: 45px;
 }
+
 .photoNr {
 	background-color: #555;
 	color: white;
-	width: 100px;
+	width: 40px;
+	height: 40px;
+	font-size: 1.7em;
 	text-align: center;
-	border-radius: 5px;
+}
+.photoTt {
+	font-size: 1.7em;
+	margin-left: 10px;
 }
 
 /*margin top for the content after fixed navbar and subnavbar, added to fix an unknown bug 
@@ -314,10 +318,12 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 	left: 7px;
 }
 
-.addTrainingField {
-	background-color: #cfd8dc;
+.addTrainingField,
+.addFilmField {
+	background-color: #2196f3;
 	border-radius: 3px;
 }
+
 
 /*------------Media queries-------------*/
 
