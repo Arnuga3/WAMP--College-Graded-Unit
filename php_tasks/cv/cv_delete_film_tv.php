@@ -14,14 +14,14 @@
 	
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
-		$trainingID = test_input($_POST["trainingID"]);
+		$filmID = test_input($_POST["filmID"]);
 		
 		$db = new dbConnection();
 		$db->connect();	
 
-		$db->delete("training", "training_ID", $trainingID);
-		$db->delete("experience", "training_ID", $trainingID);
-		$db->delete("ai_training", "ai_ID", $trainingID);
+		$db->delete("films", "film_tv_ID", $filmID);
+		$db->delete("experience", "film_tv_ID", $filmID);
+		$db->delete("ai_films", "ai_ID", $filmID);
 
 		$db->close();
 		

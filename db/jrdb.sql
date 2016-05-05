@@ -8,7 +8,17 @@ create table ai_images (
     PRIMARY KEY(ai_ID)
 );
 
-create table ai_exp (
+create table ai_training (
+	ai_ID int NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(ai_ID)
+);
+
+create table ai_films(
+	ai_ID int NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(ai_ID)
+);
+
+create table ai_theatre(
 	ai_ID int NOT NULL AUTO_INCREMENT,
     PRIMARY KEY(ai_ID)
 );
@@ -97,7 +107,7 @@ create table films (
 
 create table theatre (
 	theatre_ID int NOT NULL AUTO_INCREMENT,
-	theatre_year date,
+	theatre_year year,
 	theatre_role varchar(255),
 	theatre_production varchar(255),
 	theatre_director varchar(255),
@@ -118,29 +128,36 @@ INSERT INTO cv (cv_ID, cv_name, cv_equity, cv_email, cv_accents, cv_skills, cv_h
 
 INSERT INTO training (training_ID, training) VALUES (1, "BA (HONS) PERFORMANCE --- U.W.S.");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 0, 0, 1);
-INSERT INTO ai_exp () VALUES ();
+INSERT INTO ai_training () VALUES ();
 INSERT INTO training (training_ID, training) VALUES (2, "MASTERCLASS KENNY GLENNAN");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 0, 0, 2);
-INSERT INTO ai_exp () VALUES ();
+INSERT INTO ai_training () VALUES ();
 INSERT INTO training (training_ID, training) VALUES (3, "HND ACTING & PERFORMANCE --- FIFE COLLEGE");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 0, 0, 3);
-INSERT INTO ai_exp () VALUES ();
+INSERT INTO ai_training () VALUES ();
 
 INSERT INTO films (film_tv_ID, film_year, film_role, film_production, film_director, film_company) VALUES (1, 2015, "Brother", "Manifest", "Darren Campbell", "Eternal Video");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 1, 0, 0);
-INSERT INTO ai_exp () VALUES ();
+INSERT INTO ai_films () VALUES ();
 INSERT INTO films (film_tv_ID, film_year, film_role, film_production, film_director, film_company) VALUES (2, 2012, "G. Orwell", "Down and Out in Paris and London", "Graeme Macdonald", "(RGU) Student Film Clanfilms");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 2, 0, 0);
-INSERT INTO ai_exp () VALUES ();
+INSERT INTO ai_films () VALUES ();
 INSERT INTO films (film_tv_ID, film_year, film_role, film_production, film_director, film_company) VALUES (3, 2011, "Soldier", "His Brothers Keeper", "Lee Hutcheon", "");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 3, 0, 0);
-INSERT INTO ai_exp () VALUES ();
+INSERT INTO ai_films () VALUES ();
 INSERT INTO films (film_tv_ID, film_year, film_role, film_production, film_director, film_company) VALUES (4, 2009, "Boyfriend", "Honolulu Honeyz - Music Video", "Adam Geddes", "(UWS) Student Film Clanfilms");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 4, 0, 0);
-INSERT INTO ai_exp () VALUES ();
+INSERT INTO ai_films () VALUES ();
 INSERT INTO films (film_tv_ID, film_year, film_role, film_production, film_director, film_company) VALUES (5, 2007, "Fisherman", "The Clan", "Lee Hutcheon", "");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 5, 0, 0);
-INSERT INTO ai_exp () VALUES ();
+INSERT INTO ai_films () VALUES ();
 INSERT INTO films (film_tv_ID, film_year, film_role, film_production, film_director, film_company) VALUES (6, 2006, "Prison Tatooist", "Forgotten Souls www.tvpfilm.com/forgottensouls.htm", "Ricky Wood Jnr", "TVP Films");
 INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 6, 0, 0);
-INSERT INTO ai_exp () VALUES ();
+INSERT INTO ai_films () VALUES ();
+
+INSERT INTO theatre (theatre_ID, theatre_year, theatre_role, theatre_production, theatre_director, theatre_company) VALUES (1, 2015, "Ma Rooby Tress", "Jack and the Beanstalk", "Wilma Gillanders", "ACT Aberdeen");
+INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 0, 1, 0);
+INSERT INTO ai_theatre () VALUES ();
+INSERT INTO theatre (theatre_ID, theatre_year, theatre_role, theatre_production, theatre_director, theatre_company) VALUES (2, 2015, "Lord George Byron", "Touched By Fire (Ed Fringe)", "Chris Begg", "Quids In Theatre");
+INSERT INTO experience (cv_ID, film_tv_ID, theatre_ID, training_ID) VALUES (1, 0, 2, 0);
+INSERT INTO ai_theatre () VALUES ();

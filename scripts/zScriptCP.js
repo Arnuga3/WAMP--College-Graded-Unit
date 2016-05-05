@@ -82,6 +82,10 @@ $(document).ready(function () {
 					//RENAME ALBUM - inside as rename option is available only in the folder
 					renameAlbum(0);
 					photosUploadScr(0, $('.sb_rename_folder').text());
+					
+					reload_photos('.nav-wrapper', 0);
+					reload_photos('.sub_nav', 0);
+					reload_photos('.fixed-action-btn', 0);
 				});
 			});
 			
@@ -89,7 +93,7 @@ $(document).ready(function () {
 			photosUploadScr(0, "");
 		});
 	});
-	//ACTING PHOTOS
+	//GIG PHOTOS
 	$('.a_gig_p').click(function() {
 
 		$('.preload346').fadeIn(200);
@@ -115,6 +119,10 @@ $(document).ready(function () {
 					//RENAME ALBUM - inside as rename option is available only in the folder
 					renameAlbum(1);
 					photosUploadScr(1, $('.sb_rename_folder').text());
+					
+					reload_photos('.nav-wrapper', 1);
+					reload_photos('.sub_nav', 1);
+					reload_photos('.fixed-action-btn', 1);
 				});
 			});
 			
@@ -132,6 +140,53 @@ $(document).ready(function () {
 function resize() {
 	$('#contField').height($(window).height() - 85 );
 }
+
+
+function reload_photos(elem, nr) {
+	
+	var nr = nr;
+	var type = ['.a_act_p', '.a_gig_p'];
+	var typeURL = ['../control_panel/acting/a_act_photos.php', '../control_panel/gig/a_gig_photos.php'];
+	var typeURLF = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
+	
+	$(elem).find(type[nr]).click(function() {
+		
+		$('.preload346').fadeIn(200);
+			
+		//load part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load(typeURL[nr], function() {
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+
+				$('.preload346').fadeIn(200);
+
+				
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load(typeURLF[nr] + noSpaceName, function() {
+					reloadEvents();
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbum(nr);
+					photosUploadScr(nr, $('.sb_rename_folder').text());
+					
+					reload_photos('.nav-wrapper', nr);
+					reload_photos('.sub_nav', nr);
+					reload_photos('.fixed-action-btn', nr);
+				});
+			});
+			
+			//UPLOAD SCREEN
+			photosUploadScr(nr, "");
+		});
+	});
+}
+
 
 
 
@@ -245,6 +300,10 @@ function photosLoad(typeNr) {
 				//RENAME ALBUM - inside as rename option is available only in the folder
 				renameAlbum(typeNr);
 				photosUploadScr(typeNr, noSpaceName);
+				
+				reload_photos('.nav-wrapper', typeNr);
+				reload_photos('.sub_nav', typeNr);
+				reload_photos('.fixed-action-btn', typeNr);
 			});
 		});
 	});
@@ -270,17 +329,23 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 				reloadEvents();
 				photosUploadScr(typeNr, "");
+				
 			});
+		} else {
+			reloadEvents();
+			photosUploadScr(typeNr, folderNoSpace);
+			
+			reload_photos('.nav-wrapper', typeNr);
+			reload_photos('.sub_nav', typeNr);
+			reload_photos('.fixed-action-btn', typeNr);
 		}
-		reloadEvents();
-		photosUploadScr(typeNr, folderNoSpace);
 	});
 }
 
 //LOADS THE UPLOAD SCREEN
 function photosUploadScr(typeNr, folderNoSpace) {
 	
-	var uplTypeURL = ["../control_panel/acting/a_act_upload.php?folder=", "../control_panel/gig/a_gig_upload.php"];
+	var uplTypeURL = ["../control_panel/acting/a_act_upload.php?folder=", "../control_panel/gig/a_gig_upload.php?folder="];
 
 	//UPLOAD BTN
 	$('.sb_upload').click(function() {
@@ -291,6 +356,10 @@ function photosUploadScr(typeNr, folderNoSpace) {
 		//load the file upload part of the page using ajax and assign event listeners
 		$('#mainContent').load(uplTypeURL[typeNr] + folderNoSpace, function() {
 			reloadEvents();
+			
+			reload_photos('.nav-wrapper', typeNr);
+			reload_photos('.sub_nav', typeNr);
+			reload_photos('.fixed-action-btn', typeNr);
 			
 			$('#submitFormUpl').click(function() {
 				$('.preload346').fadeIn(200);
@@ -347,10 +416,20 @@ function CV_events() {
 	block1Event();
 	block3Event();
 	
+	//Training Block2
 	addTraining();
-	
 	deleteTrainingID();
 	saveTrainingByID();
+	
+	//Film/TV Block4
+	addFilm();
+	deleteFilmID();
+	saveFilmByID();
+	
+	//Theatre Block5
+	addTheatre();
+	deleteTheatreID();
+	saveTheatreByID();
 }
 
 function block1Event() {
@@ -410,6 +489,12 @@ function block3Event() {
 		
 	});
 }
+
+
+//////////////////////
+///////Training///////
+//////////////////////
+
 
 function saveTrainingByID() {
 	
@@ -504,6 +589,11 @@ function addTraining() {
 				//slowly appear
 				newRecord.fadeIn(1000);
 				
+				newRecord.css({
+					'background-color': 'rgba(0,0,0,.1)',
+					'border-radius': '5px'
+				});
+				
 				
 				//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
 				//focus/focusout(does the job)
@@ -582,13 +672,449 @@ function addTraining() {
 					$('#dark').toggle();
 				}
 				
-			},
-			error : function(request) {
-				console.log(request.responseText);
 			}
 		});
 	});
 }
+
+
+///////////////////////////
+/////////Films/TV//////////
+///////////////////////////
+
+
+function saveFilmByID() {
+	
+	$('.saveFilm').on('click', function() {
+		//find a main DIV
+		var parentDiv = $(this).parent().parent();
+		//get data from the main DIV
+		var id = parentDiv.attr('ID');
+		var year = parentDiv.find("input[name*='year']").val();
+		var role = parentDiv.find("input[name*='role']").val();
+		var production = parentDiv.find("input[name*='production']").val();
+		var director = parentDiv.find("input[name*='director']").val();
+		var company = parentDiv.find("input[name*='company']").val();
+		
+		//ad data to the formData object
+		var formData = new FormData();
+		formData.append('filmID', id);
+		formData.append('year', year);
+		formData.append('role', role);
+		formData.append('production', production);
+		formData.append('director', director);
+		formData.append('company', company);
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv/cv_save_film_tv.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+				
+				Materialize.toast(data, 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				
+			}
+		});
+	});
+}
+
+function deleteFilmID() {
+	$('.deleteFilm').on('click', function() {
+		//find a main DIV
+		var parentDiv = $(this).parent().parent();
+		//get data from the main DIV
+		var id = parentDiv.attr('ID');
+		
+		var formData = new FormData();
+		formData.append('filmID', id);
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv/cv_delete_film_tv.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+
+				//Hide after deletion in DB
+				parentDiv.fadeOut(1000);
+				
+				Materialize.toast(data, 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				
+			}
+		});
+	});
+}
+
+function addFilm() {
+	$('.newFilmgBtn').on('click', function() {
+		
+		//find a main DIV
+		var parentDiv = $(this).parent();
+		var year = parentDiv.find("input[name*='year']").val();
+		var role = parentDiv.find("input[name*='role']").val();
+		var production = parentDiv.find("input[name*='production']").val();
+		var director = parentDiv.find("input[name*='director']").val();
+		var company = parentDiv.find("input[name*='company']").val();
+		
+		//ad data to the formData object
+		var formData = new FormData();
+		formData.append('year', year);
+		formData.append('role', role);
+		formData.append('production', production);
+		formData.append('director', director);
+		formData.append('company', company);
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv/cv_add_film_tv.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+
+				//add new training record with supporting buttons to HTML
+				var newRecord = $(data).insertBefore('.addFilmField').hide();
+				//slowly appear
+				newRecord.fadeIn(1000);
+				
+				newRecord.css({
+					'background-color': 'rgba(0,0,0,.1)',
+					'border-radius': '5px'
+				});
+				
+				
+				//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+				//focus/focusout(does the job)
+				newRecord.find('input').focus().blur();
+				
+				//add eventlistener to a new save button related to the added record
+				newRecord.find('.saveFilm').on('click', function() {
+					//find a main DIV
+					var parentDiv = $(this).parent().parent();
+					//get data from the main DIV
+					var id = parentDiv.attr('ID');
+					var year = parentDiv.find("input[name*='year']").val();
+					var role = parentDiv.find("input[name*='role']").val();
+					var production = parentDiv.find("input[name*='production']").val();
+					var director = parentDiv.find("input[name*='director']").val();
+					var company = parentDiv.find("input[name*='company']").val();
+					
+					//ad data to the formData object
+					var formData = new FormData();
+					formData.append('filmID', id);
+					formData.append('year', year);
+					formData.append('role', role);
+					formData.append('production', production);
+					formData.append('director', director);
+					formData.append('company', company);
+					
+					//send formdata to server-side
+					$.ajax({
+						url: "../php_tasks/cv/cv_save_film_tv.php", // php file
+						type: 'post',
+						data: formData,
+						dataType: 'html', // return html from php file
+						async: true,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,   // tell jQuery not to set contentType
+						success : function(data) {
+							
+							Materialize.toast(data, 1500, 'rounded');
+							if ($('#dark').css('display') == 'block') {
+								enableScroll();
+								$('#dark').toggle();
+							}
+							
+						}
+					});
+				});
+				
+				//add eventlistener to a new delete button related to the added record
+				newRecord.find('.deleteFilm').on('click', function() {
+					//find a main DIV
+					var parentDiv = $(this).parent().parent();
+					//get data from the main DIV
+					var id = parentDiv.attr('ID');
+					
+					var formData = new FormData();
+					formData.append('filmID', id);
+					
+					//send formdata to server-side
+					$.ajax({
+						url: "../php_tasks/cv/cv_delete_film_tv.php", // php file
+						type: 'post',
+						data: formData,
+						dataType: 'html', // return html from php file
+						async: true,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,   // tell jQuery not to set contentType
+						success : function(data) {
+
+							//Hide after deletion in DB
+							parentDiv.fadeOut(1000);
+							
+							Materialize.toast(data, 8500, 'rounded');
+							if ($('#dark').css('display') == 'block') {
+								enableScroll();
+								$('#dark').toggle();
+							}
+							
+						}
+					});
+				});
+				
+				//clear form fields here
+				
+				Materialize.toast('Added', 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				
+			}
+		});
+	});
+}
+
+
+
+///////////////////////////
+//////////Theatre//////////
+///////////////////////////
+
+
+function saveTheatreByID() {
+	
+	$('.saveTheatre').on('click', function() {
+		//find a main DIV
+		var parentDiv = $(this).parent().parent();
+		//get data from the main DIV
+		var id = parentDiv.attr('ID');
+		var year = parentDiv.find("input[name*='year']").val();
+		var role = parentDiv.find("input[name*='role']").val();
+		var production = parentDiv.find("input[name*='production']").val();
+		var director = parentDiv.find("input[name*='director']").val();
+		var company = parentDiv.find("input[name*='company']").val();
+		
+		//ad data to the formData object
+		var formData = new FormData();
+		formData.append('theatreID', id);
+		formData.append('year', year);
+		formData.append('role', role);
+		formData.append('production', production);
+		formData.append('director', director);
+		formData.append('company', company);
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv/cv_save_theatre.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+				
+				Materialize.toast(data, 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				
+			}
+		});
+	});
+}
+
+function deleteTheatreID() {
+	$('.deleteTheatre').on('click', function() {
+		//find a main DIV
+		var parentDiv = $(this).parent().parent();
+		//get data from the main DIV
+		var id = parentDiv.attr('ID');
+		
+		var formData = new FormData();
+		formData.append('theatreID', id);
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv/cv_delete_theatre.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+
+				//Hide after deletion in DB
+				parentDiv.fadeOut(1000);
+				
+				Materialize.toast(data, 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				
+			}
+		});
+	});
+}
+
+function addTheatre() {
+	$('.newTheatregBtn').on('click', function() {
+		
+		//find a main DIV
+		var parentDiv = $(this).parent();
+		var year = parentDiv.find("input[name*='year']").val();
+		var role = parentDiv.find("input[name*='role']").val();
+		var production = parentDiv.find("input[name*='production']").val();
+		var director = parentDiv.find("input[name*='director']").val();
+		var company = parentDiv.find("input[name*='company']").val();
+		
+		//ad data to the formData object
+		var formData = new FormData();
+		formData.append('year', year);
+		formData.append('role', role);
+		formData.append('production', production);
+		formData.append('director', director);
+		formData.append('company', company);
+		
+		//send formdata to server-side
+		$.ajax({
+			url: "../php_tasks/cv/cv_add_theatre.php", // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+
+				//add new training record with supporting buttons to HTML
+				var newRecord = $(data).insertBefore('.addTheatreField').hide();
+				//slowly appear
+				newRecord.fadeIn(1000);
+				newRecord.css({
+					'background-color': 'rgba(0,0,0,.1)',
+					'border-radius': '5px'
+				});
+				
+				
+				//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+				//focus/focusout(does the job)
+				newRecord.find('input').focus().blur();
+				
+				//add eventlistener to a new save button related to the added record
+				newRecord.find('.saveTheatre').on('click', function() {
+					//find a main DIV
+					var parentDiv = $(this).parent().parent();
+					//get data from the main DIV
+					var id = parentDiv.attr('ID');
+					var year = parentDiv.find("input[name*='year']").val();
+					var role = parentDiv.find("input[name*='role']").val();
+					var production = parentDiv.find("input[name*='production']").val();
+					var director = parentDiv.find("input[name*='director']").val();
+					var company = parentDiv.find("input[name*='company']").val();
+					
+					//ad data to the formData object
+					var formData = new FormData();
+					formData.append('theatreID', id);
+					formData.append('year', year);
+					formData.append('role', role);
+					formData.append('production', production);
+					formData.append('director', director);
+					formData.append('company', company);
+					
+					//send formdata to server-side
+					$.ajax({
+						url: "../php_tasks/cv/cv_save_theatre.php", // php file
+						type: 'post',
+						data: formData,
+						dataType: 'html', // return html from php file
+						async: true,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,   // tell jQuery not to set contentType
+						success : function(data) {
+							
+							Materialize.toast(data, 1500, 'rounded');
+							if ($('#dark').css('display') == 'block') {
+								enableScroll();
+								$('#dark').toggle();
+							}
+							
+						}
+					});
+				});
+				
+				//add eventlistener to a new delete button related to the added record
+				newRecord.find('.deleteTheatre').on('click', function() {
+					//find a main DIV
+					var parentDiv = $(this).parent().parent();
+					//get data from the main DIV
+					var id = parentDiv.attr('ID');
+					
+					var formData = new FormData();
+					formData.append('theatreID', id);
+					
+					//send formdata to server-side
+					$.ajax({
+						url: "../php_tasks/cv/cv_delete_theatre.php", // php file
+						type: 'post',
+						data: formData,
+						dataType: 'html', // return html from php file
+						async: true,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,   // tell jQuery not to set contentType
+						success : function(data) {
+
+							//Hide after deletion in DB
+							parentDiv.fadeOut(1000);
+							
+							Materialize.toast(data, 8500, 'rounded');
+							if ($('#dark').css('display') == 'block') {
+								enableScroll();
+								$('#dark').toggle();
+							}
+							
+						}
+					});
+				});
+				
+				//clear form fields here
+				
+				Materialize.toast('Added', 1500, 'rounded');
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+				
+			}
+		});
+	});
+}
+
 
 
 

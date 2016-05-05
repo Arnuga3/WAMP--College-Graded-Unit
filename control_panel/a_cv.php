@@ -18,7 +18,11 @@ if (isset($_SESSION["mrBoss"])) {
 	//Get film/tv information (block4)
 	$result_flmtv = $db->select("user, cv, experience, films", 
 							"user.usr_ID, user.cv_ID, cv.cv_ID, experience.cv_ID, experience.film_tv_ID, films.*", 
-							"user.usr_ID = $userID AND user.usr_ID = cv.cv_ID AND cv.cv_ID = experience.cv_ID AND experience.film_tv_ID = films.film_tv_ID");
+							"user.usr_ID = $userID AND user.usr_ID = cv.cv_ID AND cv.cv_ID = experience.cv_ID AND experience.film_tv_ID = films.film_tv_ID ORDER BY films.film_year DESC");
+	//Get theatre information (block5)
+	$result_thre = $db->select("user, cv, experience, theatre", 
+							"user.usr_ID, user.cv_ID, cv.cv_ID, experience.cv_ID, experience.theatre_ID, theatre.*", 
+							"user.usr_ID = $userID AND user.usr_ID = cv.cv_ID AND cv.cv_ID = experience.cv_ID AND experience.theatre_ID = theatre.theatre_ID ORDER BY theatre.theatre_year DESC");
 	
 	$db->close();
 	
@@ -166,7 +170,7 @@ if (isset($_SESSION["mrBoss"])) {
 										$data_tr = $row;
 										
 										echo "
-										<div>
+										<div class=\"z-depth-1\">
 											<div class=\"input-field col s12\">
 												<input placeholder=\"Training\" id=\"".str_replace('"',"&quot;", $data_tr["training_ID"])."\" type=\"text\" class=\"validate\" 
 													value=\"".str_replace('"',"&quot;", $data_tr["training"])."\" />
@@ -240,7 +244,7 @@ if (isset($_SESSION["mrBoss"])) {
 										$data_flmtv = $row;
 										
 										echo "
-										<div class=\"row\" id=\"".str_replace('"',"&quot;", $data_flmtv["film_tv_ID"])."\">
+										<div class=\"row z-depth-1\" id=\"".str_replace('"',"&quot;", $data_flmtv["film_tv_ID"])."\">
 										
 											<div class=\"input-field col s12 m6 l4\">
 												<input placeholder=\"Year\" name=\"year\" type=\"text\" class=\"validate\" 
@@ -273,8 +277,8 @@ if (isset($_SESSION["mrBoss"])) {
 											</div>
 											
 											<div class=\"col s12 margBot pad15\">
-												<a class=\"saveTraining waves-effect waves-light btn green darken-2\">save</a>
-												<a class=\"deleteTraining waves-effect waves-light btn red darken\">delete</a>
+												<a class=\"saveFilm waves-effect waves-light btn green darken-2\">save</a>
+												<a class=\"deleteFilm waves-effect waves-light btn red darken\">delete</a>
 											</div>
 										</div>";
 									}
@@ -285,14 +289,145 @@ if (isset($_SESSION["mrBoss"])) {
 								echo "No records";
 							}
 							
-						echo "<div class=\"addFilmField z-depth-2 pad5\">
+						echo "
+							<div class=\"addFilmField z-depth-2 pad5 row\" id=\"\">
+							
 								<div class=\"input-field col s12\">
-									<input placeholder=\"Film/TV\" name=\"newFilm\" type=\"text\" class=\"validate\" />
-									<label>film/tv</label>
+									<input placeholder=\"Year\" name=\"year\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Year</label>
 								</div>
-								<a class=\"newFilmBtn waves-effect waves-light btn light-blue darken-4\">add new Film/TV</a>
+								
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Role\" name=\"role\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Role</label>
+								</div>
+								
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Production\" name=\"production\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Production</label>
+								</div>
+								
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Director\" name=\"director\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Director</label>
+								</div>
+								
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Company\" name=\"company\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Company</label>
+								</div>
+								
+								<a class=\"newFilmgBtn waves-effect waves-light btn light-blue darken-4\">add new film/tv exp</a>
+								
+							</div>
+					
+						</div>
+						
+					</form>
+					
+					<form class=\"margTop\" action=\"\" method=\"\">
+						
+						<div class=\"row\">
+						
+							<div class=\"flexToRows margTopX margBot\">
+								<div class=\"photoNr\">5</div>
+								<span class=\"photoTt\">Theatre Experience:</span>
 							</div>
 							
+								<div id=\"theatreRecords\">";
+							
+								if ($result_thre->num_rows > 0) {
+									while($row = $result_thre->fetch_assoc()) {
+										$data_thre = $row;
+										
+										echo "
+										<div class=\"row z-depth-1\" id=\"".str_replace('"',"&quot;", $data_thre["theatre_ID"])."\">
+										
+											<div class=\"input-field col s12 m6 l4\">
+												<input placeholder=\"Year\" name=\"year\" type=\"text\" class=\"validate\" 
+													value=\"".str_replace('"',"&quot;", $data_thre["theatre_year"])."\" />
+												<label>Year</label>
+											</div>
+											
+											<div class=\"input-field col s12 m6 l4\">
+												<input placeholder=\"Role\" name=\"role\" type=\"text\" class=\"validate\" 
+													value=\"".str_replace('"',"&quot;", $data_thre["theatre_role"])."\" />
+												<label>Role</label>
+											</div>
+											
+											<div class=\"input-field col s12 m6 l4\">
+												<input placeholder=\"Production\" name=\"production\" type=\"text\" class=\"validate\" 
+													value=\"".str_replace('"',"&quot;", $data_thre["theatre_production"])."\" />
+												<label>Production</label>
+											</div>
+											
+											<div class=\"input-field col s12 m6 l4\">
+												<input placeholder=\"Director\" name=\"director\" type=\"text\" class=\"validate\" 
+													value=\"".str_replace('"',"&quot;", $data_thre["theatre_director"])."\" />
+												<label>Director</label>
+											</div>
+											
+											<div class=\"input-field col s12 m6 l4\">
+												<input placeholder=\"Company\" name=\"company\" type=\"text\" class=\"validate\" 
+													value=\"".str_replace('"',"&quot;", $data_thre["theatre_company"])."\" />
+												<label>Company</label>
+											</div>
+											
+											<div class=\"col s12 margBot pad15\">
+												<a class=\"saveTheatre waves-effect waves-light btn green darken-2\">save</a>
+												<a class=\"deleteTheatre waves-effect waves-light btn red darken\">delete</a>
+											</div>
+										</div>";
+									}
+									echo "</div>";
+									
+								} else {
+									
+								echo "No records";
+							}
+							
+						echo "
+							<div class=\"addTheatreField z-depth-2 pad5 row\" id=\"\">
+							
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Year\" name=\"year\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Year</label>
+								</div>
+								
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Role\" name=\"role\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Role</label>
+								</div>
+								
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Production\" name=\"production\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Production</label>
+								</div>
+								
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Director\" name=\"director\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Director</label>
+								</div>
+								
+								<div class=\"input-field col s12\">
+									<input placeholder=\"Company\" name=\"company\" type=\"text\" class=\"validate\" 
+										value=\"\" />
+									<label>Company</label>
+								</div>
+								
+								<a class=\"newTheatregBtn waves-effect waves-light btn light-blue darken-4\">add new theatre exp</a>
+								
+							</div>
+					
 						</div>
 						
 					</form>

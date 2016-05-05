@@ -88,7 +88,7 @@
 			$counter = $i + 1;
 			
 			//label
-			echo "<p class=\"margTopX photoNr\">PHOTO  $counter </p>
+			echo "<p class=\"margTopX photoNrEdit\">PHOTO  $counter </p>
 			
 				<!-- Image preview-->
 				<div class=\"row\">

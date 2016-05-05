@@ -34,6 +34,7 @@
 ?>
 			<!--GOOGLE Fonts-->
 			<link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+			<link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 			
 			<!--Import materialize.css-->
 			<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

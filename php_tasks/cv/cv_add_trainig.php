@@ -24,9 +24,9 @@ if (isset($_SESSION["mrBoss"])) {
 		$db = new dbConnection();
 		$db->connect();
 				
-		$db->customQuery("INSERT INTO ai_exp (ai_ID) VALUES ('')");
+		$db->customQuery("INSERT INTO ai_training (ai_ID) VALUES ('')");
 					
-		$result = $db->customQuery("SELECT ai_ID FROM ai_exp ORDER BY ai_ID DESC LIMIT 1");
+		$result = $db->customQuery("SELECT ai_ID FROM ai_training ORDER BY ai_ID DESC LIMIT 1");
 		if ($result->num_rows == 1) {
 			while($row = $result->fetch_assoc()) {
 				$lastID = $row["ai_ID"];

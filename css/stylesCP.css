@@ -287,7 +287,13 @@ form {
 #fileUploadForm div {
 	height: 45px;
 }
-
+.photoNrEdit {
+	width: 100px;
+	background-color: #555;
+	color: white;
+	border-radius: 10px;
+	text-align: center;
+}
 .photoNr {
 	background-color: #555;
 	color: white;
@@ -319,9 +325,17 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
 }
 
 .addTrainingField,
-.addFilmField {
-	background-color: #2196f3;
+.addFilmField,
+.addTheatreField {
+	background-color: #b2dfdb;
 	border-radius: 3px;
+}
+
+#filmRecords > div,
+#trainingRecords > div,
+#theatreRecords > div {
+	background-color: rgba(0,0,0,.1);
+	border-radius: 5px;
 }
 
 

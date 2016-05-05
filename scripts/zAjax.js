@@ -91,8 +91,7 @@ function moveToNewAlbum(typeNr) {
 
 //SHOWREEL INFORMATION UPDATE FUNCTIONALITY
 function saveShowreelData() {
-	
-	$('*').unbind('load');
+
 	$('.preload346').show();
 
 	
@@ -128,7 +127,6 @@ function editPhotosAJAX(folder, photos, typeNr) {
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 		
-	$('*').unbind('load');
 	$('.preload346').show();
 
 	
@@ -171,7 +169,6 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 		
-	$('*').unbind('load');
 	$('.preload346').show();
 
 	
@@ -208,7 +205,6 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 //MOVE PHOTOS FUNCTIONALITY (PHOTOS)
 function movePhotosAJAX(folder, photos, typeNr) {
 	
-	$('*').unbind('load');
 	$('.preload346').show();
 
 	
@@ -229,8 +225,7 @@ function movePhotosAJAX(folder, photos, typeNr) {
 				reloadEvents();
 				//FOLDERS add events to the loaded folders
 				$('.folder').click(function() {
-					
-					$('*').unbind('load');
+
 					$('.preload346').show();
 
 					
@@ -248,6 +243,10 @@ function movePhotosAJAX(folder, photos, typeNr) {
 			$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
 				reloadEvents();
 				renameAlbum(typeNr);
+				
+				reload_photos('.nav-wrapper', typeNr);
+				reload_photos('.sub_nav', typeNr);
+				reload_photos('.fixed-action-btn', typeNr);
 			});
 		}
 		Materialize.toast('Moved', 1500, 'rounded');
@@ -262,7 +261,6 @@ function movePhotosAJAX(folder, photos, typeNr) {
 //SAVE PHOTO EDITS AJAX
 function saveChangesEdit(typeNr) {
 	
-	$('*').unbind('load');
 	$('.preload346').show();
 
 	
@@ -303,12 +301,11 @@ function saveChangesEdit(typeNr) {
 
 //RENAME ALBUM FUNCTIONALITY (PHOTOS)
 function renameAlbumAJAX(folder, folderOld, action, typeNr) {
-	
-	$('*').unbind('load');
+
 	$('.preload346').show();
 
 	
-	var albumRenameURL = ["../php_tasks/move_photo_act.php", "../php_tasks/move_photo_gig.php"];
+	var albumRenameURL = ["../php_tasks/move_photo.php", "../php_tasks/move_photo.php"];
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 	
@@ -327,8 +324,7 @@ function renameAlbumAJAX(folder, folderOld, action, typeNr) {
 				reloadEvents();
 				//FOLDERS add events to the loaded folders
 				$('.folder').click(function() {
-					
-					$('*').unbind('load');
+
 					$('.preload346').show();
 
 					
@@ -344,6 +340,10 @@ function renameAlbumAJAX(folder, folderOld, action, typeNr) {
 			//FOLDERS add events to the loaded folders
 			$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
 				reloadEvents();
+				
+				reload_photos('.nav-wrapper', typeNr);
+				reload_photos('.sub_nav', typeNr);
+				reload_photos('.fixed-action-btn', typeNr);
 			});
 		}
 		Materialize.toast('Renamed', 1500, 'rounded');
