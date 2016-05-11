@@ -22,6 +22,9 @@
 		public function connectCSS() {
 ?>
 			<!--GOOGLE Fonts-->
+			<link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+			<link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+			<link href='https://fonts.googleapis.com/css?family=Montez' rel='stylesheet' type='text/css'>
 			
 			<!--Import materialize.css-->
 			<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -62,9 +65,10 @@
 ?>
 			<div class="sliderContainer">
 				<div class="sliderImages">
-					<img id="img1" src="img/1.jpg" />
-					<img id="img2" src="img/2.jpg" />
+					<img id="img5" src="uploaded_photos/6.jpg" />
 					<img id="img3" src="img/3.jpg" />
+					<img id="img1" src="img/1.jpg" />
+					<img id="img5" src="uploaded_photos/7.jpg" />
 					<img id="img4" src="img/4.jpg" />
 				</div>
 				<div class="sliderControl"></div>

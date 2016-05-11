@@ -22,7 +22,8 @@
 
 body {
 	background-image: url('../img/city.jpg');
-	background-repeat: repeat;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 
@@ -78,7 +79,16 @@ nav span {
 	background-color: white;
 }
 
+#logo {
+	color: rgba(235,80,25,1);
+	font-family: 'Montez', cursive;
+}
+
 /*Mobile sliding menu panel*/
+.nav-wrapper .side-nav .fa {
+	font-size: 1.5em;
+	color: rgba(0,0,0,.5);
+}
 .side-nav {
 	height: inherit;
 }
@@ -198,9 +208,11 @@ hr {
 }
 #shwrl_ui_title {
 	font-size: 2.5em;
+	color: rgba(235,80,25,1);
 }
 #shwrl_ui_title_helper {
 	font-size: 1.5em;
+	color: rgba(235,80,25,1);
 }
 
 #cv_img {
@@ -208,13 +220,13 @@ hr {
 }
 
 .u_cv_name {
-	font-size: 4em;
-}
-.u_cv_equity {
 	font-size: 2em;
 }
-.u_cv_email {
+.u_cv_equity {
 	font-size: 1.5em;
+}
+.u_cv_email {
+	font-size: 1em;
 	margin-bottom: 10px;
 }
 .cv_per_det {
@@ -240,7 +252,7 @@ hr {
 }
 .linkDIVs div a:hover {
 	text-shadow:5px 5px 10px #888;
-	background-color: rgba(245,235,230,.6);
+	background-color: rgba(0,0,0,.1);
 }
 
 .folder:hover {
@@ -269,6 +281,16 @@ hr {
 	#shwrl_ui_title_helper {
 		font-size: 1.8em;
 	}
+	.u_cv_name {
+		font-size: 3em;
+	}
+	.u_cv_equity {
+		font-size: 1.8em;
+	}
+	.u_cv_email {
+		font-size: 1.5em;
+		margin-bottom: 10px;
+	}
 }
 /*large*/
 @media screen and (min-width: 991px) {
@@ -285,6 +307,16 @@ hr {
 	}
 	#shwrl_ui_title_helper {
 		font-size: 2em;
+	}
+	.u_cv_name {
+		font-size: 4em;
+	}
+	.u_cv_equity {
+		font-size: 2em;
+	}
+	.u_cv_email {
+		font-size: 1.5em;
+		margin-bottom: 10px;
 	}
 }
 

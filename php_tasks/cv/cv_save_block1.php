@@ -14,7 +14,8 @@
 	}
 	
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+		
+		//Get values from the Personal Details and Contacts sections
 		$name = test_input($_POST["name"]);
 		$equity = test_input($_POST["equity"]);
 		$email = test_input($_POST["email"]);
@@ -27,9 +28,13 @@
 		$build = test_input($_POST["build"]);
 		$playing_age = test_input($_POST["playing_age"]);
 		
+		//create an new db object
 		$db = new dbConnection();
+		//open a db connection
 		$db->connect();
+		//escape, surround in single quotes and save values into array
 		$values = $db->prepareArray($name, $equity, $email, $height, $chest, $waist, $inside_leg, $eyes, $hair, $build, $playing_age);
+		//update record
 		$db->update("cv", "cv_name, cv_equity, cv_email, cv_height, cv_chest, cv_waist, cv_inside_leg, cv_eyes, cv_hair, cv_build, cv_playing_age", $values, "cv_ID", 1);
 		$db->close();
 		

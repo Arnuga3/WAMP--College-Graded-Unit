@@ -35,6 +35,7 @@
 			<!--GOOGLE Fonts-->
 			<link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 			<link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+			<link href='https://fonts.googleapis.com/css?family=Montez' rel='stylesheet' type='text/css'>
 			
 			<!--Import materialize.css-->
 			<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -67,7 +68,7 @@
 					</ul><!-- End of Dropdown -->
 						
 					<div class="nav-wrapper">
-						<a href="index.php" class="brand-logo left"><span class="bold">Jamie Rodden</span></a>
+						<a href="index.php" class="brand-logo left"><span id="logo" class="bold">Jamie Rodden</span></a>
 						<ul class="right hide-on-med-and-down">
 							<li><a class="menu_link waves-effect waves-light" href="showreel.php">SHOWREEL</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="cv.php">CV</a></li>

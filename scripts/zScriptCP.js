@@ -49,7 +49,7 @@ $(document).ready(function () {
 			$('input').focus();
 			//focus and unfocus
 			$('textarea').focus();
-			$('input:first').focus();
+			$('input:first').focus().blur();
 			//scroll to the top of the page
 			$('body').scrollTop(0);
 		
@@ -873,7 +873,7 @@ function addFilm() {
 							//Hide after deletion in DB
 							parentDiv.fadeOut(1000);
 							
-							Materialize.toast(data, 8500, 'rounded');
+							Materialize.toast(data, 1500, 'rounded');
 							if ($('#dark').css('display') == 'block') {
 								enableScroll();
 								$('#dark').toggle();
@@ -1092,7 +1092,7 @@ function addTheatre() {
 							//Hide after deletion in DB
 							parentDiv.fadeOut(1000);
 							
-							Materialize.toast(data, 8500, 'rounded');
+							Materialize.toast(data, 1500, 'rounded');
 							if ($('#dark').css('display') == 'block') {
 								enableScroll();
 								$('#dark').toggle();
