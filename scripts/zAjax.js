@@ -18,7 +18,7 @@ function saveChanges(url, vars, callback) {
 			//display an error if any, update is working on the background
 			$('#error').html(xmlhttp.responseText);
 			
-			//Callback function is called only after response is get from the server
+			//Callback function is called only after response is received from a server
 			if (typeof callback == "function") {
 				callback();
 			}

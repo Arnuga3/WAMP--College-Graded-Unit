@@ -266,6 +266,8 @@ function renameAlbum(typeNr) {
 		var newName = prompt('Enter a new name for the album:');
 		if (newName != "" && newName != undefined) {
 			renameAlbumAJAX(newName, $('.sb_rename_folder').text(), 'sysRenamearnuga3', typeNr);
+		} else {
+			alert("Error. A new name is not provided.");
 		}
 	});
 }
