@@ -1,46 +1,62 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 27/04/2016
 
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Generates an acting photos part of the page
+*/
+
+	//include an Object Related Mapping class for a database
 	include ("../db/db_ORM.php");
-	//Create DB connection and get data from db
+	
+	//create a new instance
 	$db = new dbConnection();
+	
+	//connect to the database
 	$db->connect();
-
+	
+	//get data
 	$result = $db->select("images", "*", "image_group = 'acting'");
+	
+	//close the connection to the database
 	$db->close();
 	
-	//THIS CODE GETS UNIQUE NAMES OF FOLDERS AND SAVES THEM INTO INDEXED ARRAY
+	//that block of code get unique names of folders and save them into an indexed array
 	$folders = array();
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
-			//Place all folder names into new array
+			
+			//place all folder names into new array
 			$folders[] = $row["image_folder"];
 		}
 	}
-	//Save only unique names of folders
+	//save only unique names of folders
 	$folder_list = array_unique($folders);
-	//Remove all indexes with NULL value and move all unique values to the beginning of the array
+	
+	//remove all indexes with NULL value and move all unique values to the beginning of the array
 	$folders_indexed = array();
 	foreach ($folder_list as $i) {
 		if ($i != NULL) {
 			$folders_indexed[] = $i;
 		}
 	}
-	//END
-
-
 	
 	echo "<div class=\"row\">";
 	
-	//Display folders
+	//display folders
 	foreach ($folders_indexed as $val) {
 		echo "<div class=\"folder col s12 m6 valign-wrapper\">
 				<img width=\"100\" src=\"img/folder.png\" />
 				<p>$val</p>
 			</div>";
 	}
-
+	
+	//reset a pointer for allowing to loop the query result again
 	mysqli_data_seek($result, 0);
-	//Display photos without folders
+	
+	//display photos without folders
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
 			if (!in_array($row["image_folder"], $folders_indexed)) {
