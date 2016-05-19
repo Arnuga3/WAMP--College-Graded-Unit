@@ -1,7 +1,19 @@
 <?php
-	session_start();
+/*
+Author: Arnis Zelcs
+Created: 1/04/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Showreel part - generate an HTML and send back as response
+*/
+
+//start session
+session_start();
 ?>
 <?php
+
+//if session is on
 if (isset($_SESSION["mrBoss"])) {
 	$userID = $_SESSION["mrBoss"]["usr_ID"];
 	
@@ -13,12 +25,13 @@ if (isset($_SESSION["mrBoss"])) {
 	$result = $db->select("media, video", "media.*, video.*", "media.usr_ID = $userID AND media.video_ID = video.video_ID AND video.video_group = 'showreel'");
 	$db->close();
 	
-	//Only one record is expected, just another check for error
+	//Only one record is expected, just another check for an error
 	if ($result->num_rows == 1) {
 		while($row = $result->fetch_assoc()) {
 			$data = $row;
 		}
-			
+		
+		//response
 		echo "<!--SHOWREEL GROUP-->
 			<!--SUBNAV-->
 			

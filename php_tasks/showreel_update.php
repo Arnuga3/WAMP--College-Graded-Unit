@@ -1,5 +1,14 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 27/03/2016
 
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: This script save changes of a showreel record
+*/
+
+	//include a database Object-relational mapping class
 	include ("../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function

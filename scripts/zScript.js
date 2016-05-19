@@ -1,3 +1,11 @@
+/*
+Author: Arnis Zelcs
+Created: 12/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: User view, plugin calls and event listeners
+*/
 $(document).ready(function () {
 
 	//collapse menu button for materialize
@@ -14,7 +22,7 @@ function reloadEvents() {
 	
 	$('.preload333').hide();
 		
-	// Initialize collapsible (uncomment the line below if you use the dropdown variation)
+	// Initialize collapsible
 	$('.collapsible').collapsible();
 	
 	//parallax
@@ -26,7 +34,7 @@ function reloadEvents() {
 	//modal
 	$('.modal-trigger').leanModal();
 	
-	
+	//user view acting photo click event listener
 	$('.u_act_p').click(function() {
 		$('#contCont').load('user_views/a_act_photos.php', function() {
 			reloadEvents();
@@ -50,6 +58,7 @@ function reloadEvents() {
 		});
 	});
 	
+	//user view gig photo click event listener
 	$('.u_gig_p').click(function() {
 		$('#contCont').load('user_views/a_gig_photos.php', function() {
 			reloadEvents();

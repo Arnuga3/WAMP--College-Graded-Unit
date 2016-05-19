@@ -1,8 +1,20 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 22/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: ControlPanel class
+*/
+
+	//include a class
 	include("CL_Page.php");
 	
+	//ControlPanel class, inherit from a main page class
 	class ControlPanel extends Page {
 		
+		//main method
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -19,6 +31,7 @@
 			echo "</html>";
 		}
 
+		//add external files and resources
 		public function connectCSS() {
 ?>
 			<!--GOOGLE Fonts-->
@@ -43,8 +56,10 @@
 <?php
 		}
 		
+		//add navigation bar to a page
 		public function displayNavbar() {
 ?>	
+			<!--dark background (mobile view, when fixed toggle button is open)-->
 			<div id="dark"></div>
 		  
 			<div class="navbar-fixed">
@@ -79,8 +94,10 @@
 <?php
 		}
 	
+		//add main content
 		function displayMain() {
 ?>
+		<!--Main menu on the left (large screens)-->
 		<div class="row">
 			<div id="contField" class="col l3 hide-on-med-and-down">
 				<div id="desktop_flex">
@@ -100,6 +117,7 @@
 				</div>
 			</div>
 			
+			<!--Preloader-->
 			<div class="preload346">
 				<div class="preloader-wrapper big active">
 				
@@ -142,6 +160,7 @@
 				</div>
 			</div>
 			
+			<!--a main div for an AJAX response display-->
 			<div id="mainContent" class="col s12 l9 offset-l3">
 
 				<div class="pad15 textJustify">Welcome to the Control Panel! Here you can change the content of the ... website. Please read the information below what is providing the detailed documentation. All the content is separated in different groups and is available in the main menu. </div>
@@ -149,7 +168,7 @@
 		</div>
 <?php
 		}
-		
+		//add script files and libraries
 		public function connectJS() {
 			echo "
 			<!--Materialize requires jQuery, so first to include jQuery, than Materialize js file-->

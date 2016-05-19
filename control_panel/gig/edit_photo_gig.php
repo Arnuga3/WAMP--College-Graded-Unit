@@ -1,4 +1,13 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 23/04/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Create an edit photo(s) screen - gig
+*/
+	//include an Object Related Mapping class for a database
 	include ("../../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function

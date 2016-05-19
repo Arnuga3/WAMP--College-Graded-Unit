@@ -1,10 +1,22 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 12/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Main class
+*/
+
+	//create a class
 	class Page {
 		
+		//properties
 		public $title = "Web Portfolio";
 		public $description = "default";
 		public $keywords = "default";
 		
+		//main method
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -19,9 +31,7 @@
 			echo "</html>";
 		}
 		
-		
-//Functions included in main function
-
+		//add meta data 
 		public function displayPageInfo() {
 			echo "<title>".$this->title."</title>
 			<meta charset=\"UTF-8\">
@@ -30,6 +40,7 @@
 			<meta name=\"author\" content=\"Arnis%20Zelcs\">\n";
 		}
 		
+		//add external files and resources
 		public function connectCSS() {
 ?>
 			<!--GOOGLE Fonts-->
@@ -55,8 +66,8 @@
 			
 <?php
 		}
-		
-		public function displayNavbar() {
+		//add navbar
+		public function displayNavbar() 
 ?>
 			<div class="navbar-fixed">
 				<nav>
@@ -119,7 +130,7 @@
 			</div><!-- End of Modal -->
 <?php
 		}
-		
+		//add scripts and libraries
 		public function connectJS() {
 			echo "
 			<!--Materialize requires jQuery, so first to include jQuery, than Materialize js file-->

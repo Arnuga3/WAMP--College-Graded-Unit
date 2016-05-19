@@ -1,6 +1,7 @@
 <?php
 /*
-Developed by arnuga3
+Developed by Arnis Zelcs
+Created: 21/03/2016
 
 This is a DB Class based on procedural mysqli and is written in php.
 Methods are developed to simplify the work with DB and for automation of some of the parts in PHP/MySQL projects.

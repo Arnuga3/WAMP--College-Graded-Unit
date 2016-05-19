@@ -1,3 +1,11 @@
+/*
+Author: Arnis Zelcs
+Created: 12/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Sliding gallery plugin
+*/
 $.fn.slider_z = function(navbarHeight) {
 
 	$('body').css({'overflow-x': 'hidden'});
@@ -8,10 +16,13 @@ $.fn.slider_z = function(navbarHeight) {
 	var imgAmount = $(this).children().length;
 	var screenWidth = $(window).width();
 	var screenHeight = $(window).height();
+	
 	//Define gallery width variable(.5 is set as there is a strange behaviour in mobile browsers)
 	var galleryWidth = .5;
+	
 	//Height of controller
 	var controllerHeight = 80;
+	
 	//Width of scrollbar (tested in chrome)
 	var scrollBar = 20;
 	var currentOnScreen = 0;

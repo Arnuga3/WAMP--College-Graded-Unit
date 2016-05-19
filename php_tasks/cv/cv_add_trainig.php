@@ -1,4 +1,14 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 3/05/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Add a new theatre record
+*/
+
+//start session
 session_start();
 
 if (isset($_SESSION["mrBoss"])) {
@@ -23,7 +33,8 @@ if (isset($_SESSION["mrBoss"])) {
 				
 		$db = new dbConnection();
 		$db->connect();
-				
+		
+		//create records in database	
 		$db->customQuery("INSERT INTO ai_training (ai_ID) VALUES ('')");
 					
 		$result = $db->customQuery("SELECT ai_ID FROM ai_training ORDER BY ai_ID DESC LIMIT 1");
@@ -40,6 +51,7 @@ if (isset($_SESSION["mrBoss"])) {
 			
 			$db->close();
 			
+			//create an HTML element to insert using AJAX
 			echo "<div>
 					<div class=\"input-field col s12\">
 						<input placeholder=\"Training\" id=\"".str_replace('"',"&quot;", $lastID)."\" type=\"text\" class=\"validate\" 

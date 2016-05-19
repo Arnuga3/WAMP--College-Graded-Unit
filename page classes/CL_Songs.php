@@ -1,8 +1,20 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 13/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Songs class
+*/
+
+	//include a class
 	include("CL_Page.php");
 	
+	//Songs class, inherit from a main page class
 	class Songs extends Page {
 		
+		//main method
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -17,9 +29,10 @@
 			echo "</body>\n";
 			echo "</html>";
 		}
-
+		//view method
 		public function displayMain() {
-?>
+?>	
+			<!--That is just a template of a view-->
 			<div class="row">
 				<div id="contField_s" class="col s12 l10 offset-l1 z-depth-4">
 					<div class="col s12 l3">

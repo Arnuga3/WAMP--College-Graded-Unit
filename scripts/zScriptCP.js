@@ -1,14 +1,23 @@
+/*
+Author: Arnis Zelcs
+Created: 22/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Control Panel view, plugin calls and event listeners
+*/
 $(document).ready(function () {
 	//collapse menu button for materialize
 	$(".button-collapse").sideNav({
 			edge: 'left',
 			closeOnClick: true
 	});	
-	// Initialize collapsible (uncomment the line below if you use the dropdown variation)
+	// Initialize collapsible
 	$('.collapsible').collapsible();
 	
 		
 	//set the height of the side menu once, then changed on window resize event (resize() function)
+	//solve the problem of a menu display
 	$('#contField').height($(window).height() - 85 );
 	
 	
@@ -16,11 +25,12 @@ $(document).ready(function () {
 ////MENU////
 ////////////
 
-	//SHOWREEL
+	//SHOWREEL button click event listener
 	$('.a_shwrl').click(function() {
 		
-		$('.preload346').fadeIn(200);
+		$('.preload346').fadeIn(500);
 		
+		//load a showreel part of a page
 		$('#mainContent').load('../control_panel/a_showreel.php', function() {
 			reloadEvents();
 			
@@ -35,11 +45,12 @@ $(document).ready(function () {
 		});
 	});
 	
-	//CV
+	//CV button click event listener
 	$('.a_cv').click(function() {
 		
 		$('.preload346').fadeIn(200);
 		
+		//load a part of a page
 		$('#mainContent').load('../control_panel/a_cv.php', function() {
 			reloadEvents();		
 			CV_events();
@@ -56,13 +67,14 @@ $(document).ready(function () {
 		});
 	});
 
-	//ACTING PHOTOS
+	//ACTING PHOTOS button click event listener
 	$('.a_act_p').click(function() {
 		
 		$('.preload346').fadeIn(200);
 			
-		//load part of the page using ajax (folders with photos and photos without folders)
+		//load a part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/acting/a_act_photos.php', function() {
+			
 			//assign event listeners to new loaded elements
 			reloadEvents();
 			
@@ -75,14 +87,17 @@ $(document).ready(function () {
 				//load the images of selected folder using ajax and assign event listeners to them
 				var selectedFolder = $(this);
 				var folderName = selectedFolder.find('span').text();
+				
 				//escape the string before passing it in url
 				var noSpaceName = encodeURIComponent(folderName);
 				$('#mainContent').load("../control_panel/acting/a_act_folders.php?folder=" + noSpaceName, function() {
 					reloadEvents();
+					
 					//RENAME ALBUM - inside as rename option is available only in the folder
 					renameAlbum(0);
 					photosUploadScr(0, $('.sb_rename_folder').text());
 					
+					//add event listeners
 					reload_photos('.nav-wrapper', 0);
 					reload_photos('.sub_nav', 0);
 					reload_photos('.fixed-action-btn', 0);
@@ -93,13 +108,14 @@ $(document).ready(function () {
 			photosUploadScr(0, "");
 		});
 	});
-	//GIG PHOTOS
+	//GIG PHOTOS button click event listener
 	$('.a_gig_p').click(function() {
 
 		$('.preload346').fadeIn(200);
 		
-		//load part of the page using ajax (folders with photos and photos without folders)
+		//load a part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/gig/a_gig_photos.php', function() {
+			
 			//assign event listeners to new loaded elements
 			reloadEvents();
 			
@@ -108,18 +124,20 @@ $(document).ready(function () {
 				
 				$('.preload346').fadeIn(200);
 
-				
 				//load the images of selected folder using ajax and assign event listeners to them
 				var selectedFolder = $(this);
 				var folderName = selectedFolder.find('span').text();
+				
 				//escape the string before passing it in url
 				var noSpaceName = encodeURIComponent(folderName);
 				$('#mainContent').load("../control_panel/gig/a_gig_folders.php?folder=" + noSpaceName, function() {
 					reloadEvents();
+					
 					//RENAME ALBUM - inside as rename option is available only in the folder
 					renameAlbum(1);
 					photosUploadScr(1, $('.sb_rename_folder').text());
 					
+					//add event listene
 					reload_photos('.nav-wrapper', 1);
 					reload_photos('.sub_nav', 1);
 					reload_photos('.fixed-action-btn', 1);
@@ -141,7 +159,7 @@ function resize() {
 	$('#contField').height($(window).height() - 85 );
 }
 
-
+//add event listeners to elements
 function reload_photos(elem, nr) {
 	
 	var nr = nr;
@@ -265,6 +283,8 @@ function renameAlbum(typeNr) {
 	$('.sb_rename').click(function() {
 		var newName = prompt('Enter a new name for the album:');
 		if (newName != "" && newName != undefined) {
+			
+			//param 2 - to define action on server
 			renameAlbumAJAX(newName, $('.sb_rename_folder').text(), 'sysRenamearnuga3', typeNr);
 		} else {
 			alert("Error. A new name is not provided.");
@@ -316,7 +336,6 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 	
 	$('.preload346').fadeIn(200);
 
-	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
 	
@@ -326,7 +345,6 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 			
 			$('.preload346').fadeIn(200);
 
-			
 			//load part of the page using ajax (folders with photos and photos without folders)
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
 				reloadEvents();
@@ -354,7 +372,6 @@ function photosUploadScr(typeNr, folderNoSpace) {
 
 		$('.preload346').fadeIn(200);
 
-		
 		//load the file upload part of the page using ajax and assign event listeners
 		$('#mainContent').load(uplTypeURL[typeNr] + folderNoSpace, function() {
 			reloadEvents();
@@ -500,16 +517,22 @@ function block3Event() {
 
 function saveTrainingByID() {
 	
+	//save training button click
 	$('.saveTraining').on('click', function() {
+		
+		//get the parent to find an id
 		var input = $(this).parent().prev().find('input');
 		var id = input.attr('ID');
 		var value = input.val();
 		
+		//new formData object
 		var formData = new FormData();
+		
+		//add values
 		formData.append('trainingID', id);
 		formData.append('trainingIDVal', value);
 		
-		//send formdata to server-side
+		//send formdata to a server
 		$.ajax({
 			url: "../php_tasks/cv/cv_save_traing.php", // php file
 			type: 'post',
@@ -520,6 +543,7 @@ function saveTrainingByID() {
 			contentType: false,   // tell jQuery not to set contentType
 			success : function(data) {
 				
+				//Toast
 				Materialize.toast(data, 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
@@ -532,7 +556,11 @@ function saveTrainingByID() {
 }
 
 function deleteTrainingID() {
+	
+	//delete button click
 	$('.deleteTraining').on('click', function() {
+		
+		//get the parent to find an id
 		var parentDiv = $(this).parent().parent();
 		var input = $(this).parent().prev().find('input');
 		var id = input.attr('ID');
@@ -551,9 +579,10 @@ function deleteTrainingID() {
 			contentType: false,   // tell jQuery not to set contentType
 			success : function(data) {
 
-				//Hide after deletion in DB
+				//Hide after deletion in database
 				parentDiv.fadeOut(1000);
 				
+				//Toast
 				Materialize.toast(data, 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
@@ -566,6 +595,8 @@ function deleteTrainingID() {
 }
 
 function addTraining() {
+	
+	//add a new training button click
 	$('.newTrainingBtn').on('click', function() {
 
 		var input = $(this).prev().find('input');
@@ -588,9 +619,11 @@ function addTraining() {
 
 				//add new training record with supporting buttons to HTML
 				var newRecord = $(data).insertBefore('.addTrainingField').hide();
+				
 				//slowly appear
 				newRecord.fadeIn(1000);
 				
+				//apply styles to a new element
 				newRecord.css({
 					'background-color': 'rgba(0,0,0,.1)',
 					'border-radius': '5px'
@@ -665,9 +698,10 @@ function addTraining() {
 					});
 				});
 				
-				
+				//clear the input field
 				$('.addTrainingField div input').val('');
 				
+				//Toast
 				Materialize.toast('Added', 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
@@ -687,9 +721,12 @@ function addTraining() {
 
 function saveFilmByID() {
 	
+	//save a filt/TV record button click
 	$('.saveFilm').on('click', function() {
+		
 		//find a main DIV
 		var parentDiv = $(this).parent().parent();
+		
 		//get data from the main DIV
 		var id = parentDiv.attr('ID');
 		var year = parentDiv.find("input[name*='year']").val();
@@ -718,6 +755,7 @@ function saveFilmByID() {
 			contentType: false,   // tell jQuery not to set contentType
 			success : function(data) {
 				
+				//Toast
 				Materialize.toast(data, 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
@@ -730,9 +768,13 @@ function saveFilmByID() {
 }
 
 function deleteFilmID() {
+	
+	//delete a filt/TV record button click
 	$('.deleteFilm').on('click', function() {
+		
 		//find a main DIV
 		var parentDiv = $(this).parent().parent();
+		
 		//get data from the main DIV
 		var id = parentDiv.attr('ID');
 		
@@ -753,6 +795,7 @@ function deleteFilmID() {
 				//Hide after deletion in DB
 				parentDiv.fadeOut(1000);
 				
+				//Toast
 				Materialize.toast(data, 1500, 'rounded');
 				if ($('#dark').css('display') == 'block') {
 					enableScroll();
@@ -765,6 +808,8 @@ function deleteFilmID() {
 }
 
 function addFilm() {
+	
+	//add a new filt/TV record button click
 	$('.newFilmgBtn').on('click', function() {
 		
 		//find a main DIV
@@ -796,9 +841,11 @@ function addFilm() {
 
 				//add new training record with supporting buttons to HTML
 				var newRecord = $(data).insertBefore('.addFilmField').hide();
+				
 				//slowly appear
 				newRecord.fadeIn(1000);
 				
+				//apply styles to a new element
 				newRecord.css({
 					'background-color': 'rgba(0,0,0,.1)',
 					'border-radius': '5px'
@@ -811,8 +858,10 @@ function addFilm() {
 				
 				//add eventlistener to a new save button related to the added record
 				newRecord.find('.saveFilm').on('click', function() {
+					
 					//find a main DIV
 					var parentDiv = $(this).parent().parent();
+					
 					//get data from the main DIV
 					var id = parentDiv.attr('ID');
 					var year = parentDiv.find("input[name*='year']").val();
@@ -841,6 +890,7 @@ function addFilm() {
 						contentType: false,   // tell jQuery not to set contentType
 						success : function(data) {
 							
+							//Toast
 							Materialize.toast(data, 1500, 'rounded');
 							if ($('#dark').css('display') == 'block') {
 								enableScroll();
@@ -853,8 +903,10 @@ function addFilm() {
 				
 				//add eventlistener to a new delete button related to the added record
 				newRecord.find('.deleteFilm').on('click', function() {
+					
 					//find a main DIV
 					var parentDiv = $(this).parent().parent();
+					
 					//get data from the main DIV
 					var id = parentDiv.attr('ID');
 					
@@ -908,8 +960,10 @@ function addFilm() {
 function saveTheatreByID() {
 	
 	$('.saveTheatre').on('click', function() {
+		
 		//find a main DIV
 		var parentDiv = $(this).parent().parent();
+		
 		//get data from the main DIV
 		var id = parentDiv.attr('ID');
 		var year = parentDiv.find("input[name*='year']").val();
@@ -951,8 +1005,10 @@ function saveTheatreByID() {
 
 function deleteTheatreID() {
 	$('.deleteTheatre').on('click', function() {
+		
 		//find a main DIV
 		var parentDiv = $(this).parent().parent();
+		
 		//get data from the main DIV
 		var id = parentDiv.attr('ID');
 		
@@ -1016,6 +1072,7 @@ function addTheatre() {
 
 				//add new training record with supporting buttons to HTML
 				var newRecord = $(data).insertBefore('.addTheatreField').hide();
+				
 				//slowly appear
 				newRecord.fadeIn(1000);
 				newRecord.css({
@@ -1072,8 +1129,10 @@ function addTheatre() {
 				
 				//add eventlistener to a new delete button related to the added record
 				newRecord.find('.deleteTheatre').on('click', function() {
+					
 					//find a main DIV
 					var parentDiv = $(this).parent().parent();
+					
 					//get data from the main DIV
 					var id = parentDiv.attr('ID');
 					
@@ -1132,10 +1191,10 @@ spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
 var keys = {37: 1, 38: 1, 39: 1, 40: 1};
 
 function preventDefault(e) {
-  e = e || window.event;
-  if (e.preventDefault)
-      e.preventDefault();
-  e.returnValue = false;  
+	e = e || window.event;
+	if (e.preventDefault)
+		e.preventDefault();
+		e.returnValue = false;  
 }
 
 function preventDefaultForScrollKeys(e) {
@@ -1146,20 +1205,20 @@ function preventDefaultForScrollKeys(e) {
 }
 
 function disableScroll() {
-  if (window.addEventListener) // older FF
-      window.addEventListener('DOMMouseScroll', preventDefault, false);
-  window.onwheel = preventDefault; // modern standard
-  window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-  window.ontouchmove  = preventDefault; // mobile
-  document.onkeydown  = preventDefaultForScrollKeys;
+	if (window.addEventListener) // older FF
+		window.addEventListener('DOMMouseScroll', preventDefault, false);
+		window.onwheel = preventDefault; // modern standard
+		window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+		window.ontouchmove  = preventDefault; // mobile
+		document.onkeydown  = preventDefaultForScrollKeys;
 }
 
 function enableScroll() {
     if (window.removeEventListener)
         window.removeEventListener('DOMMouseScroll', preventDefault, false);
-    window.onmousewheel = document.onmousewheel = null; 
-    window.onwheel = null; 
-    window.ontouchmove = null;  
-    document.onkeydown = null;  
+		window.onmousewheel = document.onmousewheel = null; 
+		window.onwheel = null; 
+		window.ontouchmove = null;  
+		document.onkeydown = null;  
 }
 //End of Disable scrolling

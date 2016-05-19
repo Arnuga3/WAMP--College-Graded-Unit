@@ -1,10 +1,21 @@
 <?php
-	session_start();
+/*
+Author: Arnis Zelcs
+Created: 2/04/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Create a content of a main gallery - acting
+*/
+
+//start session
+session_start();
 ?>
 <?php
 if (isset($_SESSION["mrBoss"])) {
 	$userID = $_SESSION["mrBoss"]["usr_ID"];
 	
+	//include an Object Related Mapping class for a database
 	include ("../../db/db_ORM.php");
 	//Create DB connection and get data from db
 	$db = new dbConnection();

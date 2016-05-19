@@ -1,8 +1,20 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 13/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: ActingShots class
+*/
+
+	//include a class
 	include("CL_Page.php");
 	
+	//ActingShots class, inherit from a main page class
 	class ActingShots extends Page {
 		
+		//main method
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -18,6 +30,7 @@
 			echo "</html>";
 		}
 		
+		//view method, generate a page
 		function displayMain() {
 ?>
 		<div class="row">

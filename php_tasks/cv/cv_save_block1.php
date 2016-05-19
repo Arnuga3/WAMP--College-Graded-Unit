@@ -1,5 +1,14 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 2/05/2016
 
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Delete a training record
+*/
+
+	//include an Object Related Mapping class for a database
 	include ("../../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function

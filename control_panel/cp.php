@@ -1,9 +1,21 @@
 <?php
-	session_start();
+/*
+Author: Arnis Zelcs
+Created: 27/04/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Index page for a Control Panel
+*/
+
+//start session
+session_start();
 ?>
 <?php
+	//add a class
 	include("../page classes/CL_ControlPanel.php");
 	
+	//if session is on
 	if (isset($_SESSION["mrBoss"])) {
 		$userID = $_SESSION["mrBoss"]["usr_ID"];
 

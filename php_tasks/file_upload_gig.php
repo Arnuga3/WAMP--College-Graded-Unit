@@ -1,10 +1,22 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 24/04/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: This script uploades photo(s) on a server and creates records in database about that photo(s) for gig
+*/
+
 session_start();
 ?>
 <?php
 
+//if session is on
 if (isset($_SESSION["mrBoss"])) {
 	$userID = $_SESSION["mrBoss"]["usr_ID"];
+	
+	//include a database Object-relational mapping class
 	include ("../db/db_ORM.php");
 	
 	//to make work htmlspecialchars() function
@@ -16,16 +28,23 @@ if (isset($_SESSION["mrBoss"])) {
 		$data = htmlspecialchars($data);
 		return $data;
 	}
-
-	extract($_POST);
-	$newAlbum = test_input($_POST["album_name"]);
 	
-    $error = array();
+	//get data
+	extract($_POST);
+	
+	if (isset($_POST["album_name"])) {
+		$newAlbum = test_input($_POST["album_name"]);
+	} else {
+		$newAlbum = "";
+	}
+	
+	//allowed file extensions
     $extension = array("jpeg", "JPEG", "jpg", "JPG", "png", "PNG", "gif", "GIF");
 	
 	$db = new dbConnection();
 	$db->connect();
 	
+	//get information about each file
     foreach ($_FILES as $index => $file) {
 		$file_name = $file["name"];
 		$file_tmp = $file["tmp_name"];
@@ -33,8 +52,6 @@ if (isset($_SESSION["mrBoss"])) {
 		$size = $file["size"];
 		
 		if (in_array($ext, $extension)) {
-			
-			
 			
 			// Create image from file
 			switch (strtolower($file['type'])) {
@@ -51,47 +68,49 @@ if (isset($_SESSION["mrBoss"])) {
 					exit('Unsupported type: '.$file['type']);
 			}
 			
-			// Max sizes for a new photo
+			//max sizes for a new photo
 			$max_width = 800;
 			$max_height = 600;
 			$max_file_size = 400000;
 
-			// Get current dimensions
+			//get current dimensions
 			$old_width  = imagesx($image);
 			$old_height = imagesy($image);
 
-			// Calculate the scaling we need to do to fit the image inside our frame
+			//calculate a scaling is needed to fit the image inside a frame
 			$scale = min($max_width/$old_width, $max_height/$old_height);
 
-			// Get the new dimensions
+			//get a new dimensions
 			$new_width  = ceil($scale*$old_width);
 			$new_height = ceil($scale*$old_height);
 			
-			// Create new empty image
+			//create a new empty image
 			$new = imagecreatetruecolor($new_width, $new_height);
 
 			imagecolortransparent($new, $black);
 			
-			// Resize old image into new
+			//resize old image into new
 			imagecopyresampled($new, $image, 0, 0, 0, 0, $new_width, $new_height, $old_width, $old_height);
 			
 			
-			
+			//if a file with the same name is not already existing
 			if (!file_exists("../uploaded_photos/".$file_name)) {
 				
+				//if file size is smaller than the limit, upload original
 				if ($size < $max_file_size) {
-					
 					move_uploaded_file($file_tmp, "../uploaded_photos/".$file_name);
 				
 				} else {		
-					// Output			
+					//upload resized		
 					imagepng($new, "../uploaded_photos/".$file_name);
 				}
 				
 				$filenameNoExt = basename($file_name, ".".$ext);
 				
+				//create a new id for the file (id is used in other tables)
 				$db->customQuery("INSERT INTO ai_images (ai_ID) VALUES ('')");
 				
+				//get that id
 				$result = $db->customQuery("SELECT ai_ID FROM ai_images ORDER BY ai_ID DESC LIMIT 1");
 				if ($result->num_rows == 1) {
 					while($row = $result->fetch_assoc()) {
@@ -99,6 +118,7 @@ if (isset($_SESSION["mrBoss"])) {
 						$lastID = $row["ai_ID"];
 					}
 					
+					//Create a database record about this file
 					$userIDDB = $db->escape($userID);
 					$db->customQuery("INSERT INTO media (usr_ID, music_ID, video_ID, image_ID) VALUES ('$userIDDB', 0, 0, $lastID)");
 					
@@ -108,21 +128,25 @@ if (isset($_SESSION["mrBoss"])) {
 				} else {
 					echo "<p>One result is expected</p>";
 				}
-				
+			
+			//if a file with the same name is already existing
 			} else {
 				
 				$filename = basename($file_name, $ext);
+				
+				//create a new name for the file (using time function, so it is always unique)
 				$newFileName = $filename.time().".".$ext;
 				
+				//if file size is smaller than the limit, upload original
 				if ($size < $max_file_size) {
-					
 					move_uploaded_file($file_tmp, "../uploaded_photos/".$newFileName);
 				
 				} else {		
-					// Output			
+					//upload resized image			
 					imagepng($new, "../uploaded_photos/".$newFileName);
 				}
 				
+				//same logic here as in a first block of if statement
 				$filenameNoExt = basename($file_name, ".".$ext);
 				
 				$db->customQuery("INSERT INTO ai_images (ai_ID) VALUES ('')");
@@ -146,10 +170,8 @@ if (isset($_SESSION["mrBoss"])) {
 
 			}
 			
-		} else {
-			array_push($error,"$file_name, ");
 		}
-					
+		//destroy a temporary image		
 		imagedestroy($new);
 	}
 	

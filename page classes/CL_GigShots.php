@@ -1,8 +1,20 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 16/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: GigShots class
+*/
+
+	//include a class
 	include("CL_Page.php");
 	
+	//GigShots class, inherit from a main page class
 	class GigShots extends Page {
 		
+		//main method
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -18,6 +30,7 @@
 			echo "</html>";
 		}
 		
+		//view method, generate a page
 		function displayMain() {
 ?>
 		<div class="row">

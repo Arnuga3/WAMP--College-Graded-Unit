@@ -1,5 +1,14 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 27/04/2016
 
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: This script delete photo record from a database and delete a photo from a server
+*/
+
+	//include a database Object-relational mapping class
 	include ("../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function
@@ -23,8 +32,11 @@
 		
 		//split into array, use 'p' as separator (as it was passed as a string like p1p2p3p4 ...)
 		$photosIDs = explode('p',$photos);
+		
+		//delete first value (empty value what is created before the first separator)
 		array_shift($photosIDs);
-
+		
+		//to store the location of the files on the server need to be deleted
 		$photoPaths = array();
 		for ($i=0; $i<count($photosIDs); $i++) {
 			
@@ -38,6 +50,7 @@
 			}
 		}
 		
+		//delete records from database and files from a server
 		for ($i=0; $i<count($photosIDs); $i++) {
 			
 			$db->delete("images", "image_ID", $photosIDs[$i]);

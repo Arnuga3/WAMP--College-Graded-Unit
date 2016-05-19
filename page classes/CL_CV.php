@@ -1,9 +1,20 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 13/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: CV class
+*/
+
+	//include a class
 	include("CL_Page.php");
 	
+	//CV class, inherit from a main page class
 	class CV extends Page {		
 	
-	
+		//constructor function to get parameters passed to a class
 		public function __construct($cv_result, $tr_result, $flmtv_result, $th_result) {
 			$this->cv_result = $cv_result;
 			$this->tr_result = $tr_result;
@@ -11,7 +22,7 @@
 			$this->th_result = $th_result;
 		}
 		
-		
+		//main method
 		public function displayPage() {
 			echo "<!DOCTYPE html>";
 			echo "<html>\n";
@@ -27,9 +38,10 @@
 			echo "</html>";
 		}
 
-		
+		//view method, generate the main content of a page using the data fetched from a database
 		function displayMain($cv_result, $tr_result, $flmtv_result, $th_result) {
 			
+			//loop through the mySQLi object
 			if ($cv_result->num_rows == 1) {
 				while($row = $cv_result->fetch_assoc()) {
 					$data_cv = $row;
@@ -58,6 +70,7 @@
 					
 					<div class="col s12"><h4 class="margTopL">Training:</h4></div>
 <?php
+					//loop through the mySQLi object
 					if ($tr_result->num_rows > 0) {
 						while($row = $tr_result->fetch_assoc()) {
 							$data_tr = $row;
@@ -86,6 +99,7 @@
 
 						<tbody>
 <?php
+					//loop through the mySQLi object
 					if ($flmtv_result->num_rows > 0) {
 						while($row = $flmtv_result->fetch_assoc()) {
 							$data_flmtv = $row;
@@ -122,6 +136,7 @@
 
 						<tbody>
 <?php
+					//loop through the mySQLi object
 					if ($th_result->num_rows > 0) {
 						while($row = $th_result->fetch_assoc()) {
 							$data_th = $row;

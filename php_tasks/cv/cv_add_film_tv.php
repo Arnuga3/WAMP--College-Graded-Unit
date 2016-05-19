@@ -1,9 +1,21 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 4/05/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Add a new film/TV record
+*/
+
+//start session
 session_start();
 
+//if session is on
 if (isset($_SESSION["mrBoss"])) {
 	$userID = $_SESSION["mrBoss"]["usr_ID"];
 	
+	//include an Object Related Mapping class for a database
 	include ("../../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function
@@ -19,6 +31,7 @@ if (isset($_SESSION["mrBoss"])) {
 	
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
+		//get values
 		$year = test_input($_POST["year"]);
 		$role = test_input($_POST["role"]);
 		$production = test_input($_POST["production"]);
@@ -36,10 +49,13 @@ if (isset($_SESSION["mrBoss"])) {
 				$lastID = $row["ai_ID"];
 			}
 			
+			//get names of columns in a films table
 			$columnsOfTable = $db->getTableColumns("films");
+			
 			//delete film_tv_ID as It is do not need to be updated
 			array_shift($columnsOfTable);
 			
+			//escape, preapre and put values into an array (prevent injection)
 			$valToUpdate = $db->prepareArray($year, $role, $production, $director, $company);
 			
 			$db->insert("films", $columnsOfTable, $valToUpdate);
@@ -49,6 +65,7 @@ if (isset($_SESSION["mrBoss"])) {
 			
 			$db->close();
 			
+			//create an HTML element to insert using AJAX
 			echo "
 				<div class=\"row\" id=\"".str_replace('"',"&quot;", $lastID)."\">
 				

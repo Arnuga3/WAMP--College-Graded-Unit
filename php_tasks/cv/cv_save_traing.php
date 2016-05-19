@@ -1,5 +1,14 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 3/05/2016
 
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Save a training record
+*/
+
+	//include an Object Related Mapping class for a database
 	include ("../../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function
@@ -15,6 +24,7 @@
 	
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+		//get values
 		$trainingID = test_input($_POST["trainingID"]);
 		$trainingIDVal = test_input($_POST["trainingIDVal"]);
 		

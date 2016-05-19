@@ -1,5 +1,14 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 4/05/2016
 
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Delete a film/TV record
+*/
+
+	//include an Object Related Mapping class for a database
 	include ("../../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function
@@ -14,6 +23,7 @@
 	
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
+		//get id
 		$filmID = test_input($_POST["filmID"]);
 		
 		$db = new dbConnection();

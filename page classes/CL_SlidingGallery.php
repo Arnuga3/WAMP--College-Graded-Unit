@@ -1,8 +1,20 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 13/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: SlidingGallery class
+*/
+
+	//include a class
 	include("CL_Page.php");
 	
+	//SlidingGallery class, inherit from a main page class
 	class SlidingGallery extends Page {
 		
+		//main method
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -19,6 +31,7 @@
 			echo "</html>";
 		}
 		
+		//connect external files and resources
 		public function connectCSS() {
 ?>
 			<!--GOOGLE Fonts-->
@@ -43,6 +56,7 @@
 			<link type="text/css" rel="stylesheet" href="css/styles.css" />
 <?php
 		}
+		//add preloader
 		public function displayLoading() {
 ?>
 			<div class="preload345">
@@ -60,7 +74,7 @@
 		  </div>
 <?php
 		}
-	
+		//add sliding gallery
 		public function displaySlidingGallery() {
 ?>
 			<div class="sliderContainer">
@@ -75,7 +89,7 @@
 			</div>
 <?php
 		}
-		
+		//add scripts and libraries + sliding gallery plugin
 		public function connectJS() {
 			echo "
 			<!--Materialize requires jQuery, so first to include jQuery, than Materialize js file-->

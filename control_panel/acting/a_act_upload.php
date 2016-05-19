@@ -1,5 +1,15 @@
 <?php
-	session_start();
+/*
+Author: Arnis Zelcs
+Created: 9/04/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Create an upload files screen
+*/
+
+//start session
+session_start();
 ?>
 <?php
 if (isset($_SESSION["mrBoss"])) {
@@ -20,8 +30,9 @@ if (isset($_SESSION["mrBoss"])) {
 	} else {
 		$folder = "";
 	}
-	
+	//include an Object Related Mapping class for a database
 	include ("../../db/db_ORM.php");
+	
 	//Create DB connection and get data from db
 	$db = new dbConnection();
 	$db->connect();

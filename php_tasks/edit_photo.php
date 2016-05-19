@@ -1,4 +1,14 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 25/04/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: This script save changes of a photo(s) made in Control Panel
+*/
+
+	//include a database Object-relational mapping class
 	include ("../db/db_ORM.php");
 		
 	//Create DB connection and get data from db

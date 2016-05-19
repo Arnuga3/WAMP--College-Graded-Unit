@@ -1,5 +1,14 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 6/04/2016
 
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: This script move a photo, edit database record
+*/
+
+	//include a database Object-relational mapping class
 	include ("../db/db_ORM.php");
 		
 	//to make work htmlspecialchars() function

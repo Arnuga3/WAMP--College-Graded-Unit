@@ -1,7 +1,18 @@
 <?php
-	session_start();
+/*
+Author: Arnis Zelcs
+Created: 30/04/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: CV part - generate an HTML and send back as response
+*/
+
+//start session
+session_start();
 ?>
 <?php
+//if session is on
 if (isset($_SESSION["mrBoss"])) {
 	$userID = $_SESSION["mrBoss"]["usr_ID"];
 	
@@ -36,7 +47,7 @@ if (isset($_SESSION["mrBoss"])) {
 		echo "Error: one record is expected";
 	}
 	
-	
+	//response
 	if (isset($data_cv)) {
 		echo "<!--CV GROUP-->
 			<!--SUBNAV-->
