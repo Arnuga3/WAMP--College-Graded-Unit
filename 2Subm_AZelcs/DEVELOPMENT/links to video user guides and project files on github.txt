@@ -1,0 +1,11 @@
+Link to video guides:
+http://arnuga3.co.uk/videoguide.html
+
+
+Project can be accessed on:
+http://arnuga3.co.uk/Content/jr/index.php
+
+
+Project files can be accessed on:
+https://github.com/Arnuga3/jr
+Note: There are 2 branches available(master and ajaxDriven). The latest version is in the ajaxDriven branch.

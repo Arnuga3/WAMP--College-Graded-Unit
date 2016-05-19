@@ -1,10 +1,22 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 12/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: Main class
+*/
+
+	//create a class
 	class Page {
 		
+		//properties
 		public $title = "Web Portfolio";
 		public $description = "default";
 		public $keywords = "default";
 		
+		//main method
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -19,9 +31,7 @@
 			echo "</html>";
 		}
 		
-		
-//Functions included in main function
-
+		//add meta data 
 		public function displayPageInfo() {
 			echo "<title>".$this->title."</title>
 			<meta charset=\"UTF-8\">
@@ -30,9 +40,13 @@
 			<meta name=\"author\" content=\"Arnis%20Zelcs\">\n";
 		}
 		
+		//add external files and resources
 		public function connectCSS() {
 ?>
 			<!--GOOGLE Fonts-->
+			<link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+			<link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+			<link href='https://fonts.googleapis.com/css?family=Montez' rel='stylesheet' type='text/css'>
 			
 			<!--Import materialize.css-->
 			<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -52,8 +66,8 @@
 			
 <?php
 		}
-		
-		public function displayNavbar() {
+		//add navbar
+		public function displayNavbar() 
 ?>
 			<div class="navbar-fixed">
 				<nav>
@@ -65,7 +79,7 @@
 					</ul><!-- End of Dropdown -->
 						
 					<div class="nav-wrapper">
-						<a href="index.php" class="brand-logo left"><span class="bold">Jamie Rodden</span></a>
+						<a href="index.php" class="brand-logo left"><span id="logo" class="bold">Jamie Rodden</span></a>
 						<ul class="right hide-on-med-and-down">
 							<li><a class="menu_link waves-effect waves-light" href="showreel.php">SHOWREEL</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="cv.php">CV</a></li>
@@ -89,22 +103,22 @@
 					</div>
 				</nav>
 			</div>
-			
+	
 			<!-- Modal Structure -->
 			<div id="modal1" class="modal">
 				<!-- Form for submission of admin name and password -->
-				<form action="php tasks/admin_login.php" method="post">
+				<form action="php_tasks/admin_login.php" method="post">
 					<div class="modal-content">
 						<div class="form col s12">
 							<p>Admin Panel:</p>
 							<div class="row">
 								<div class="input-field col s12">
-									<input placeholder="Name" id="adminName" name="adminName" type="text">
+									<input placeholder="Name" id="adminName" name="adminName" type="text" value="#onlyAdmin">
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<input placeholder="Password" id="adminPass" name="adminPassword" type="password">
+									<input placeholder="Password" id="adminPass" name="adminPassword" type="password" value="cpAdmin01&JR">
 								</div>
 							</div>
 						</div>
@@ -116,7 +130,7 @@
 			</div><!-- End of Modal -->
 <?php
 		}
-		
+		//add scripts and libraries
 		public function connectJS() {
 			echo "
 			<!--Materialize requires jQuery, so first to include jQuery, than Materialize js file-->

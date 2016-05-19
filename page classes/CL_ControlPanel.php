@@ -1,13 +1,20 @@
 <?php
+/*
+Author: Arnis Zelcs
+Created: 22/03/2016
+
+Graded Unit Project - Web Portfolio for Jamie Rodden
+
+Script: ControlPanel class
+*/
+
+	//include a class
 	include("CL_Page.php");
 	
+	//ControlPanel class, inherit from a main page class
 	class ControlPanel extends Page {
 		
-		public function __construct($result, $group) {
-			$this->result = $result;
-			$this->group = $group;
-		}
-		
+		//main method
 		public function displayPage() {
 			echo "<!DOCTYPE HTML>";
 			echo "<html>\n";
@@ -15,14 +22,16 @@
 			$this->displayPageInfo();
 			$this->connectCSS();
 			echo "</head>\n";
-			echo "<body>\n";
+			//resize() function is used to reside a side menu on large screens to allow scrolling if not fit in window height
+			echo "<body onresize=\"resize()\">\n";
 			$this->displayNavbar();
-			$this->displayMain($this->result, $this->group);
+			$this->displayMain();
 			$this->connectJS();
 			echo "</body>\n";
 			echo "</html>";
 		}
 
+		//add external files and resources
 		public function connectCSS() {
 ?>
 			<!--GOOGLE Fonts-->
@@ -47,33 +56,37 @@
 <?php
 		}
 		
+		//add navigation bar to a page
 		public function displayNavbar() {
 ?>	
+			<!--dark background (mobile view, when fixed toggle button is open)-->
+			<div id="dark"></div>
+		  
 			<div class="navbar-fixed">
-				<nav class="indigo darken-4">
+				<nav class="blue-grey darken-4">
 					<div class="nav-wrapper">
-						<a href="index.php" class="brand-logo center"><span>Control Panel</span></a>
+						<a href="#" class="brand-logo center"><span>Control Panel</span></a>
 						<ul class="right hide-on-med-and-down">
-							<li><a class="menu_link waves-effect waves-light" href="../php tasks/close_session.php">LOG OUT</a></li>
+							<li><a class="menu_link waves-effect waves-light" href="../php_tasks/close_session.php">LOG OUT</a></li>
 						</ul>
 						
 						<!--Mobile sliding menu-->
 						<ul id="slide-out" class="side-nav">
-							<li><a class="menu_link waves-effect waves-light" href="cp_showreel.php"><img src="../img/cpIcons/movies.png" />Showreel</a></li>
+							<li><a class="a_shwrl menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/movies.png" />Showreel</a></li>
 							<hr />
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" />CV</a></li>
+							<li><a class="a_cv menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" />CV</a></li>
 							<hr />
 							<p class="lightText">ACTING SHOTS:</p>
-							<li><a class="menu_link waves-effect waves-light" href="cp_acting_photos.php"><img src="../img/cpIcons/photos.png" />Acting photos</a></li>
+							<li><a class="a_act_p menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" />Acting photos</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" />Acting videos</a></li>
 							<hr />
 							<p class="lightText">GIG SHOTS:</p>
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/photos.png" />Gig photos</a></li>
+							<li><a class="a_gig_p menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" />Gig photos</a></li>
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" />Gig videos</a></li>
 							<hr />
 							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" />Songs</a></li>
 						</ul>
-						<a href="../php tasks/close_session.php" class="hide-on-large-only right"><i class="material-icons">input</i></a>
+						<a href="../php_tasks/close_session.php" class="hide-on-large-only right"><i class="material-icons">input</i></a>
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 					</div>
 				</nav>
@@ -81,199 +94,81 @@
 <?php
 		}
 	
-		function displayMain($result, $group) {
+		//add main content
+		function displayMain() {
 ?>
+		<!--Main menu on the left (large screens)-->
 		<div class="row">
 			<div id="contField" class="col l3 hide-on-med-and-down">
-				<h5 class="margLeft margTopX titleText"><span class="margLeft">Menu:</span></h5>
 				<div id="desktop_flex">
+					<a class="a_shwrl waves-effect waves-yellow" href="#"><img src="../img/cpIcons/movies.png" /><span>Showreel</span></a>
 					<hr />
-					<a class="waves-effect waves-light" href="cp_showreel.php"><img src="../img/cpIcons/movies.png" /><span>Showreel</span></a>
-					<hr />
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
+					<a class="a_cv waves-effect waves-yellow" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
 					<hr />
 					<p class="lightText">ACTING SHOTS:</p>
-					<a class="waves-effect waves-light" href="cp_acting_photos.php"><img src="../img/cpIcons/photos.png" /><span>Acting photos</span></a>
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Acting videos</span></a>
+					<a class="a_act_p waves-effect waves-yellow" href="#"><img src="../img/cpIcons/images.png" /><span>Acting photos</span></a>
+					<a class="waves-effect waves-yellow" href="#"><img src="../img/cpIcons/video.png" /><span>Acting videos</span></a>
 					<hr />
 					<p class="lightText">GIG SHOTS:</p>
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/photos.png" /><span>Gig photos</span></a>
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
+					<a class="a_gig_p waves-effect waves-yellow" href="#"><img src="../img/cpIcons/images.png" /><span>Gig photos</span></a>
+					<a class="waves-effect waves-yellow" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
 					<hr />
-					<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
-					<hr />
+					<a class="waves-effect waves-yellow" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
 				</div>
 			</div>
+			
+			<!--Preloader-->
+			<div class="preload346">
+				<div class="preloader-wrapper big active">
+				
+					<div class="spinner-layer spinner-blue">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div>
+						<div class="gap-patch">
+							<div class="circle"></div>
+						</div>
+						<div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+					
+					<div class="spinner-layer spinner-red">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div>
+						<div class="gap-patch">
+							<div class="circle"></div>
+						</div>
+						<div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+					
+					<div class="spinner-layer spinner-yellow">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div>
+						<div class="gap-patch">
+							<div class="circle"></div>
+						</div>
+						<div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+						
+				</div>
+			</div>
+			
+			<!--a main div for an AJAX response display-->
 			<div id="mainContent" class="col s12 l9 offset-l3">
-<?php
-				if ($group == "showreel") {
-?>					
-					
-					<!--SHOWREEL GROUP-->
-					<!--SUBNAV-->
-					<!-- Showreel SAVE button, LOGIC: Toast is shown on a screen for 2 sec with SAVED message, AJAX is updating a record in DB, page is refreshed to apply changes-->
-					<div class="sub_nav">
-						<a class="waves-effect waves-light" onclick="Materialize.toast('Saved', 2500, 'rounded', 
-							function() {
-								saveChanges('../php tasks/showreel_update.php', getShowreelData());
-							})"><img src="../img/cpIcons/diskette.png" /><span>save</span></a>
-					</div>
-					
-					<div class="cp_content">
-					
-						<h5 class="margLeft margTopX titleText">selected:<span class="margLeft">Showreel</span></h5>
-							
-						<p class="helperText"><img class="sm_info" src="../img/cpIcons/information.png" />Only one video is available here. It will be displayed on a showreel page.</p>
-						
-						<div class="pad10">
-							<p class="infoText margTop">Video preview</p>
-							<div class="row">
-								<div class="col s12 l10">
-									<div class="video-container margTop">
-										<iframe width="853" height="480" src="<?php echo $result["video_path"]; ?>" frameborder="0" allowfullscreen></iframe>
-									</div>
-								</div>
-							</div>
-							
-							<p class="infoText margTop">Video information</p>
-							
-							<form id="showreel">
 
-								<div class="input-field">
-									<input id="showrl_title" type="text" name="showrl_title" class="validate" length="255" value="<?php echo str_replace('"',"&quot;", $result["video_title"]);?>" />
-									<label for="showrl_title">video title</label>
-								</div>
-								<div class="input-field">
-									<textarea id="showrl_description" name="showrl_description" class="materialize-textarea" length="1000"><?php echo $result["video_descr"];?></textarea>
-									<label id="matr_descrLb" for="showrl_description">video description</label>
-								</div>
-								<div class="input-field">
-									<textarea id="showrl_path" type="text" name="showrl_path" class="materialize-textarea" length="255"><?php echo str_replace('"',"&quot;", $result["video_path"]);?></textarea>
-									<label id="matr_descrLb" for="showrl_path">video path</label>
-								</div>
-								
-								<div id="error"></div>
-							</form>
-						</div>
-					</div>
-<?php
-				} elseif ($group == "cv") {
-?>
-					<!--CV GROUP-->
-					<div>
-						<h5 class="titleText margTopX">selected:<span class="margLeft"><?php  ?></span></h5>
-					</div>
-<?php
-				} elseif ($group == "acting_photos") {
-					
-					//THIS CODE GETS UNIQUE NAMES OF FOLDERS AND SAVES THEM INTO INDEXED ARRAY
-					$folders = array();
-					if ($result->num_rows > 0) {
-						while($row = $result->fetch_assoc()) {
-							//Place all folder names into new array
-							$folders[] = $row["image_folder"];
-						}
-					}
-					//Save only unique names of folders
-					$folder_list = array_unique($folders);
-					//Remove all indexes with NULL value and move all unique values to the beginning of the array
-					$folders_indexed = array();
-					foreach ($folder_list as $i) {
-						if ($i != NULL) {
-							$folders_indexed[] = $i;
-						}
-					}
-					//END
-?>
-					<!--ACTING PHOTOS-->
-					<!--SUBNAV-->
-					<div class="sub_nav">
-						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/pencil_add.png" /><span>add new</span></a>
-						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/pencil.png" /><span>edit</span></a>
-						<a class="waves-effect waves-light" href="#"><img src="../img/cpIcons/pencil_delete.png" /><span>delete</span></a>
-					</div>
-					<div class="cp_content">
-					
-						<h5 class="margLeft margTopX titleText">selected:<span class="margLeft">Acting Photos</span></h5>
-						
-						<p class="helperText"><img class="sm_info" src="../img/cpIcons/information.png" />Add, Edit or Remove albums or images.</p>
-						
-						<div id="cpCont" class="margTop">
-<?php
-							//Display folders
-							foreach ($folders_indexed as $i) {
-?>
-								<!--Folder Row in Control Panel(image, name)-->
-								<a class="flexVertCenter waves-effect waves-light" href="#">
-									<div class="flexVertCenter">
-										<img class="margLeft10" width="40" src="../img/cpIcons/folder_picture.png" />
-										<span class="margLeft infoText"><?php echo $i; ?></span>
-									</div>
-								</a>
-<?php
-							}
-							mysqli_data_seek($result, 0);
-							//Display photos without folders
-							if ($result->num_rows > 0) {
-								while($row = $result->fetch_assoc()) {
-									if (!in_array($row["image_folder"], $folders_indexed)) {
-										
-?>										<!--Image Row in Control Panel(checkbox, name, image)-->
-										<div class="flexVertCenter imgRow">
-											<input type="checkbox" class="filled-in checkbox-orange" id="<?php echo $row["image_ID"]; ?>" />
-											<label for="<?php echo $row["image_ID"]; ?>">
-												<div class="flexVertCenter">
-													<div>
-														<span class="infoText"><?php echo $row["image_title"]; ?></span>
-													</div>
-												</div>
-											</label>
-											<img class="materialboxed" data-caption="<?php echo $row["image_descr"]; ?>" width="60" src="<?php echo $row["image_path"]; ?>" />
-										</div>
-<?php
-									}
-								}
-							}
-?>
-						</div>
-					</div>
-<?php					
-				} elseif ($group == "acting_videos") {
-
-					if ($result->num_rows > 0) {
-						while($row = $result->fetch_assoc()) {
-
-						}
-					}
-?>
-					<!--ACTING VIDEOS-->
-					<div>
-						<h5 class="titleText">Selected Group:<span class="margLeft"><?php  ?></span></h5>
-					</div>
-<?php					
-				} elseif ($group == "gig") {
-?>
-					<!--GIG GROUP-->
-					<div>
-						<h5 class="titleText">Selected Group:<span class="margLeft"><?php  ?></span></h5>
-					</div>
-<?php					
-				} elseif ($group == "songs") {
-?>
-					<!--SONGS GROUP-->
-					<div>
-						<h5 class="titleText">Selected Group:<span class="margLeft"><?php  ?></span></h5>
-					</div>
-<?php					
-				} else {
-					echo "Error, undefined group.";
-				}
-?>			
+				<div class="pad15 textJustify">Welcome to the Control Panel! Here you can change the content of the ... website. Please read the information below what is providing the detailed documentation. All the content is separated in different groups and is available in the main menu. </div>
 			</div>
 		</div>
 <?php
 		}
-		
+		//add script files and libraries
 		public function connectJS() {
 			echo "
 			<!--Materialize requires jQuery, so first to include jQuery, than Materialize js file-->
