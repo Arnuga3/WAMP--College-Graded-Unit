@@ -108,6 +108,7 @@ $(document).ready(function () {
 			photosUploadScr(0, "");
 		});
 	});
+	
 	//GIG PHOTOS button click event listener
 	$('.a_gig_p').click(function() {
 
@@ -148,6 +149,93 @@ $(document).ready(function () {
 			photosUploadScr(1, "");
 		});
 	});
+	
+	
+	
+	
+	//ACTING VIDEOS button click event listener
+	$('.a_act_v').click(function() {
+		
+		$('.preload346').fadeIn(200);
+		
+		//load a part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load('../control_panel/acting/a_act_videos.php', function() {
+			
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+
+				$('.preload346').fadeIn(200);
+
+				
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load("../control_panel/acting/a_act_folders_v.php?folder=" + noSpaceName, function() {
+					reloadEvents();
+					
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbum(0);
+					videoUploadScr(0, $('.sb_rename_folder').text());
+					
+					//add event listeners
+					reload_photos('.nav-wrapper', 0);
+					reload_photos('.sub_nav', 0);
+					reload_photos('.fixed-action-btn', 0);
+				});
+			});
+			
+			//UPLOAD SCREEN
+			videoUploadScr(0, "");
+		});
+	});
+	//GIG PHOTOS button click event listener
+	$('.a_gig_v').click(function() {
+
+		$('.preload346').fadeIn(200);
+		
+		//load a part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load('../control_panel/gig/a_gig_videos.php', function() {
+			
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+				
+				$('.preload346').fadeIn(200);
+
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load("../control_panel/gig/a_gig_folders_v.php?folder=" + noSpaceName, function() {
+					reloadEvents();
+					
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbum(1);
+					videoUploadScr(1, $('.sb_rename_folder').text());
+					
+					//add event listene
+					reload_photos('.nav-wrapper', 1);
+					reload_photos('.sub_nav', 1);
+					reload_photos('.fixed-action-btn', 1);
+				});
+			});
+			
+			//UPLOAD SCREEN
+			videoUploadScr(1, "");
+		});
+	});
+	
+	
 	
 	//reload the main eventlisteners
 	reloadEvents();
@@ -205,6 +293,53 @@ function reload_photos(elem, nr) {
 	});
 }
 
+
+
+//add event listeners to elements
+function reload_videos(elem, nr) {
+	
+	var nr = nr;
+	var type = ['.a_act_v', '.a_gig_v'];
+	var typeURL = ['../control_panel/acting/a_act_videos.php', '../control_panel/gig/a_gig_videos.php'];
+	var typeURLF = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
+	
+	$(elem).find(type[nr]).click(function() {
+		
+		$('.preload346').fadeIn(200);
+			
+		//load part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load(typeURL[nr], function() {
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+
+				$('.preload346').fadeIn(200);
+
+				
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load(typeURLF[nr] + noSpaceName, function() {
+					reloadEvents();
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbum(nr);
+					videoUploadScr(nr, $('.sb_rename_folder').text());
+					
+					reload_videos('.nav-wrapper', nr);
+					reload_videos('.sub_nav', nr);
+					reload_videos('.fixed-action-btn', nr);
+				});
+			});
+			
+			//UPLOAD SCREEN
+			videoUploadScr(nr, "");
+		});
+	});
+}
 
 
 
@@ -331,6 +466,48 @@ function photosLoad(typeNr) {
 	});
 }
 
+
+
+//LOADS VIDEOS FIRST SCREEN
+function videosLoad(typeNr) {
+
+	$('.preload346').fadeIn(200);
+
+	
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_videos.php", "../control_panel/gig/a_gig_videos.php"];
+	var afterLoadTypeFolder = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
+	
+	//load part of the page using ajax (folders with photos and photos without folders)
+	$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
+		reloadEvents();
+		videoUploadScr(typeNr, "");
+
+		//FOLDERS
+		$('.folder').click(function() {
+
+			$('.preload346').fadeIn(200);
+
+			
+			//load the images of selected folder using ajax and assign event listeners to them
+			var selectedFolder = $(this);
+			var folderName = selectedFolder.find('span').text();
+			//escape the string before passing it in url
+			var noSpaceName = encodeURIComponent(folderName);
+			$('#mainContent').load(afterLoadTypeFolder[typeNr] + noSpaceName, function() {
+				reloadEvents();
+				//RENAME ALBUM - inside as rename option is available only in the folder
+				renameAlbum(typeNr);
+				videoUploadScr(typeNr, noSpaceName);
+				
+				reload_videos('.nav-wrapper', typeNr);
+				reload_videos('.sub_nav', typeNr);
+				reload_videos('.fixed-action-btn', typeNr);
+			});
+		});
+	});
+}
+
+
 //LOADS PHOTOS IN FOLDER
 function photosLoadFolder(typeNr, folderNoSpace) {
 	
@@ -362,6 +539,40 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 	});
 }
 
+
+
+//LOADS VIDEOS IN FOLDER
+function photosLoadFolder(typeNr, folderNoSpace) {
+	
+	$('.preload346').fadeIn(200);
+
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_videos.php", "../control_panel/gig/a_gig_videos.php"];
+	var folderTypeURL = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
+	
+	$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
+		//if no photos left in a folder load the first screen
+		if ($('#cpCont div').length == false) {
+			
+			$('.preload346').fadeIn(200);
+
+			//load part of the page using ajax (folders with photos and photos without folders)
+			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
+				reloadEvents();
+				videoUploadScr(typeNr, "");
+				
+			});
+		} else {
+			reloadEvents();
+			videoUploadScr(typeNr, folderNoSpace);
+			
+			reload_videos('.nav-wrapper', typeNr);
+			reload_videos('.sub_nav', typeNr);
+			reload_videos('.fixed-action-btn', typeNr);
+		}
+	});
+}
+
+
 //LOADS THE UPLOAD SCREEN
 function photosUploadScr(typeNr, folderNoSpace) {
 	
@@ -386,6 +597,34 @@ function photosUploadScr(typeNr, folderNoSpace) {
 			
 			//0 is acting
 			fileUploadSubm(typeNr);
+		});
+	});
+}
+
+//LOADS THE UPLOAD SCREEN
+function videoUploadScr(typeNr, folderNoSpace) {
+	
+	var uplTypeURL = ["../control_panel/acting/a_act_upload_v.php?folder=", "../control_panel/gig/a_gig_upload_v.php?folder="];
+
+	//UPLOAD BTN
+	$('.sb_upload').click(function() {
+
+		$('.preload346').fadeIn(200);
+
+		//load the file upload part of the page using ajax and assign event listeners
+		$('#mainContent').load(uplTypeURL[typeNr] + folderNoSpace, function() {
+			reloadEvents();
+			
+			reload_videos('.nav-wrapper', typeNr);
+			reload_videos('.sub_nav', typeNr);
+			reload_videos('.fixed-action-btn', typeNr);
+			
+			$('#submitVideoAddForm').click(function() {
+				$('.preload346').fadeIn(200);
+			});
+			
+			//0 is acting
+			videoUploadSubm(typeNr);
 		});
 	});
 }
@@ -422,6 +661,39 @@ function fileUploadSubm(typeNr) {
 			success : function() {
 				//on success load the acting pictures part of the page again with new album and/or files
 				photosLoad(typeNr);
+			},
+			error : function(request) {
+				console.log(request.responseText);
+			}
+		});
+	});
+}
+
+
+//VIDEO UPLOAD
+function videoUploadSubm(typeNr) {
+	
+	var uplTypeURL = ["../php_tasks/video_add_act.php", "../php_tasks/video_add_gig.php"];
+	
+	//submission of the files to upload, using formData object and jQuery ajax function
+	$('#videoAddForm').on('submit', function(e) {
+		//prevent default form submission
+		e.preventDefault();
+		
+		var formData = new FormData();
+		
+		//send formdata to server-side
+		$.ajax({
+			url: uplTypeURL[typeNr], // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function() {
+				//on success load the acting pictures part of the page again with new album and/or files
+				videosLoad(typeNr);
 			},
 			error : function(request) {
 				console.log(request.responseText);
