@@ -184,9 +184,9 @@ $(document).ready(function () {
 					videoUploadScr(0, $('.sb_rename_folder').text());
 					
 					//add event listeners
-					reload_photos('.nav-wrapper', 0);
-					reload_photos('.sub_nav', 0);
-					reload_photos('.fixed-action-btn', 0);
+					reload_videos('.nav-wrapper', 0);
+					reload_videos('.sub_nav', 0);
+					reload_videos('.fixed-action-btn', 0);
 				});
 			});
 			
@@ -542,7 +542,7 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 
 
 //LOADS VIDEOS IN FOLDER
-function photosLoadFolder(typeNr, folderNoSpace) {
+function videosLoadFolder(typeNr, folderNoSpace) {
 	
 	$('.preload346').fadeIn(200);
 

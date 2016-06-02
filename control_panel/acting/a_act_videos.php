@@ -114,7 +114,9 @@ if (isset($_SESSION["mrBoss"])) {
 									</div>
 								</div>
 							</label>
-							<img class=\"materialboxed\" data-caption=\"".$row["video_descr"]."\" width=\"60\" src=\"".$row["video_path"]."\" />
+							<div class=\"video-container\">
+								<iframe width=\"60\" height=\"40\" src='".$row["video_path"]."' frameborder=\"0\" ></iframe>
+							</div>
 						</div>";
 					}
 				}

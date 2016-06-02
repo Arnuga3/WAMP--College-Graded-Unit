@@ -127,7 +127,7 @@ if (isset($_SESSION["mrBoss"])) {
 									</div>
 								</div>
 							</label>
-							<img class=\"materialboxed\" data-caption=\"".$val["video_descr"]."\" width=\"60\" src=\"".$val["video_path"]."\" />
+							<a href='".$val["video_path"]."'>preview</a>
 						</div>";
 		}
 		echo "<p id=\"error\"></p>";
