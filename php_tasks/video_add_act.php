@@ -32,13 +32,13 @@ if (isset($_SESSION["mrBoss"])) {
 	$newAlbum = isset($_POST["album_name"]) ? test_input($_POST["album_name"]) : "";
 	$title = isset($_POST["add_video_title"]) ?  test_input($_POST["add_video_title"]) : "";
 	$description = isset($_POST["add_video_descr"]) ? test_input($_POST["add_video_descr"]) : "";
-	$path = isset($_POST["add_video_path"]) ? test_input$_POST["add_video_path"]) : "";
+	$path = isset($_POST["add_video_path"]) ? test_input($_POST["add_video_path"]) : "";
 
 	$db = new dbConnection();
 	$db->connect();
 		
 	//create a new id for the file (id is used in other tables)
-	$db->customQuery("INSERT INTO ai_video (ai_ID) VALUES ('')");
+	$db->customQuery("INSERT INTO ai_video () VALUES ()");
 				
 	//get that id
 	$result = $db->customQuery("SELECT ai_ID FROM ai_video ORDER BY ai_ID DESC LIMIT 1");

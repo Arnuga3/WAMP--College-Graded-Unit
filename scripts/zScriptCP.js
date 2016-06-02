@@ -224,9 +224,9 @@ $(document).ready(function () {
 					videoUploadScr(1, $('.sb_rename_folder').text());
 					
 					//add event listene
-					reload_photos('.nav-wrapper', 1);
-					reload_photos('.sub_nav', 1);
-					reload_photos('.fixed-action-btn', 1);
+					reload_videos('.nav-wrapper', 1);
+					reload_videos('.sub_nav', 1);
+					reload_videos('.fixed-action-btn', 1);
 				});
 			});
 			
@@ -471,7 +471,7 @@ function photosLoad(typeNr) {
 //LOADS VIDEOS FIRST SCREEN
 function videosLoad(typeNr) {
 
-	$('.preload346').fadeIn(200);
+	//$('.preload346').fadeIn(200);
 
 	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_videos.php", "../control_panel/gig/a_gig_videos.php"];
@@ -658,9 +658,10 @@ function fileUploadSubm(typeNr) {
 			async: true,
 			processData: false,  // tell jQuery not to process the data
 			contentType: false,   // tell jQuery not to set contentType
-			success : function() {
+			success : function(data) {
 				//on success load the acting pictures part of the page again with new album and/or files
 				photosLoad(typeNr);
+				$('.preload346').fadeOut();
 			},
 			error : function(request) {
 				console.log(request.responseText);
@@ -680,7 +681,7 @@ function videoUploadSubm(typeNr) {
 		//prevent default form submission
 		e.preventDefault();
 		
-		var formData = new FormData();
+		var formData = new FormData(document.getElementById("videoAddForm"));
 		
 		//send formdata to server-side
 		$.ajax({
@@ -694,6 +695,7 @@ function videoUploadSubm(typeNr) {
 			success : function() {
 				//on success load the acting pictures part of the page again with new album and/or files
 				videosLoad(typeNr);
+				$('.preload346').fadeOut();
 			},
 			error : function(request) {
 				console.log(request.responseText);

@@ -123,6 +123,10 @@ nav span {
 	justify-content: center;
 }
 
+.videoPreview {
+	margin-right: 20px;
+}
+
 .fixed-action-btn {
 	z-index: 201;	/*to control layer, is on top of darken bg*/
 }

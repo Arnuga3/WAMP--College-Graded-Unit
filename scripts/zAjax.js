@@ -66,6 +66,20 @@ function checkIfCheckedDel(typeNr) {
 	}
 }
 
+//check if any videos are selected to delete
+function checkIfCheckedDelVideo(typeNr) {
+	
+	if ($('input:checked').length > 0) {
+		
+		//param 1 - folder name or "" if main gallery
+		//param 2 - ids of selected photos
+		//param 3 - acting is 0, gig is 1
+		deleteVideoAJAX($('.bread span:first').text(), getSelectedPhotos(), typeNr);
+	} else {
+		alert("Please select photo(s) you want to delete!");
+	}
+}
+
 //check if any photos are selected to edit
 function checkIfCheckedEdit(typeNr) {
 	
@@ -206,9 +220,7 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 	//index 0 is acting, index 1 is gig
 	//urls to php scripts
 	var delTypeURL = "../php_tasks/delete_photo.php";
-	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
-	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
-		
+	
 	$('.preload346').show();
 
 	
@@ -244,6 +256,52 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 		}
 	});
 }
+
+
+
+//DELETE FUNCTIONALITY (VIDEOS)
+function deleteVideoAJAX(folder, videos, typeNr) {
+	
+	//index 0 is acting, index 1 is gig
+	//urls to php scripts
+	var delTypeURL = "../php_tasks/delete_video.php";
+
+	$('.preload346').show();
+
+	
+	//outside the folder (main gallery), no span element to read the folder name from, so variable is equal to undefined, leave the empry string will push to save photos in main gallery (no album)
+	if (folder == undefined) {
+		var folderName = "";
+	} else {
+		var folderName = folder;
+	}
+	
+	//prepare for GET request
+	var folderNoSpace = encodeURIComponent(folderName);
+	var videos = videos;
+	var combined = "folder=" + folderNoSpace + "&videos=" + videos;
+	
+	//Third parameter is a callback function and is called only after the browser gets a response from server, similar to jQuery approach
+	saveChanges(delTypeURL, combined, function() {
+		if (folderName == "") {
+			//acting/gig first ajax screen, depends on typeNr(0-acting, 1-gig)
+			videosLoad(typeNr);
+		} else {
+			//acting/gig inside folder ajax screen, depends on typeNr(0-acting, 1-gig)
+			videosLoadFolder(typeNr, folderNoSpace);
+		}
+		
+		//Toast
+		Materialize.toast('Deleted', 1500, 'rounded');
+		
+		//Mobile view (small screens), remove dark background and enable scrolling
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+}
+
 
 
 //MOVE PHOTOS FUNCTIONALITY (PHOTOS)

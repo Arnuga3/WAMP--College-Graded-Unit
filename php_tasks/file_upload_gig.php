@@ -108,7 +108,7 @@ if (isset($_SESSION["mrBoss"])) {
 				$filenameNoExt = basename($file_name, ".".$ext);
 				
 				//create a new id for the file (id is used in other tables)
-				$db->customQuery("INSERT INTO ai_images (ai_ID) VALUES ('')");
+				$db->customQuery("INSERT INTO ai_images () VALUES ()");
 				
 				//get that id
 				$result = $db->customQuery("SELECT ai_ID FROM ai_images ORDER BY ai_ID DESC LIMIT 1");

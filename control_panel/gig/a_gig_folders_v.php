@@ -38,7 +38,7 @@ if (isset($_SESSION["mrBoss"])) {
 	$db->connect();
 	
 	//To get existing folders in db
-	$res = $db->select("media, video", "media.*, video.*", "media.usr_ID = $userID AND media.video_ID = video.video_ID AND video.video_group = 'acting'");
+	$res = $db->select("media, video", "media.*, video.*", "media.usr_ID = $userID AND media.video_ID = video.video_ID AND video.video_group = 'gig'");
 	
 	//THIS CODE GETS UNIQUE NAMES OF FOLDERS AND SAVES THEM INTO INDEXED ARRAY
 	$folders = array();
@@ -77,17 +77,17 @@ if (isset($_SESSION["mrBoss"])) {
 	<nav class=\"bread_path\">
 		<div class=\"bread nav-wrapper\">
 			<div class=\"col s12\">
-				<a href=\"#!\" class=\"a_act_v breadcrumb\">Acting Videos</a>
+				<a href=\"#!\" class=\"a_gig_v breadcrumb\">Gig Videos</a>
 				<a href=\"#!\" class=\"sb_rename breadcrumb relative\"><span class=\"sb_rename_folder truncated absolute\">$folder</span><span class=\"aftTrunc absolute grey-text text-darken-2\">Rename</span></a>
 			</div>
 		</div>
 	</nav>
 	
 	<div class=\"sub_nav hide-on-med-and-down\">
-		<a class=\"a_act_v z-depth-1 waves-effect waves-dark\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
+		<a class=\"a_gig_v z-depth-1 waves-effect waves-dark\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
 		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo(s)</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEdit(0)\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedDelVideo(0)\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
 		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo</span></a>
 	</div>
 
@@ -98,13 +98,13 @@ if (isset($_SESSION["mrBoss"])) {
 		<ul>
 			<li><span>new photo(s)</span><a class=\"sb_upload btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
 			<li><span>edit photo</span><a class=\"btn-floating green\" onclick=\"checkIfCheckedEdit(0)\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
-			<li><span>delete photo</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDelVideo(0)\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
+			<li><span>delete photo</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDel(0)\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
 			<li><span>move photo</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
 		</ul>
 	</div>
 	
 	<div class=\"fixed-action-btn vertical click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 84px;\">
-		<a class=\"a_act_v btn-floating btn-large cyan darken-2\">
+		<a class=\"a_gig_v btn-floating btn-large cyan darken-2\">
 			<img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" />
 		</a>
 	</div>
