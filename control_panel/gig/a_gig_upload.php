@@ -38,7 +38,7 @@ if (isset($_SESSION["mrBoss"])) {
 	$db->connect();
 
 	$db->close();
-echo "<!--ACTING PHOTOS-->
+echo "<!--Gig PHOTOS-->
 	<!--SUBNAV-->
 	
 	<nav class=\"bread_path\">

@@ -71,7 +71,7 @@ if (isset($_SESSION["mrBoss"])) {
 		}
 	}
 	
-	echo "<!--ACTING PHOTOS-->
+	echo "<!--Gig PHOTOS-->
 	<!--SUBNAV-->
 	<nav class=\"bread_path\">
 		<div class=\"bread nav-wrapper\">

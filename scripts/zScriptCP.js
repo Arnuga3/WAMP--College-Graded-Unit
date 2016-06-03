@@ -28,7 +28,7 @@ $(document).ready(function () {
 	//SHOWREEL button click event listener
 	$('.a_shwrl').click(function() {
 		
-		$('.preload346').fadeIn(500);
+		$('.preload346').show(500);
 		
 		//load a showreel part of a page
 		$('#mainContent').load('../control_panel/a_showreel.php', function() {
@@ -48,7 +48,7 @@ $(document).ready(function () {
 	//CV button click event listener
 	$('.a_cv').click(function() {
 		
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 		
 		//load a part of a page
 		$('#mainContent').load('../control_panel/a_cv.php', function() {
@@ -70,7 +70,7 @@ $(document).ready(function () {
 	//ACTING PHOTOS button click event listener
 	$('.a_act_p').click(function() {
 		
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 			
 		//load a part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/acting/a_act_photos.php', function() {
@@ -81,7 +81,7 @@ $(document).ready(function () {
 			//FOLDERS
 			$('.folder').click(function() {
 
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 
 				
 				//load the images of selected folder using ajax and assign event listeners to them
@@ -112,7 +112,7 @@ $(document).ready(function () {
 	//GIG PHOTOS button click event listener
 	$('.a_gig_p').click(function() {
 
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 		
 		//load a part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/gig/a_gig_photos.php', function() {
@@ -123,7 +123,7 @@ $(document).ready(function () {
 			//FOLDERS
 			$('.folder').click(function() {
 				
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 
 				//load the images of selected folder using ajax and assign event listeners to them
 				var selectedFolder = $(this);
@@ -156,7 +156,7 @@ $(document).ready(function () {
 	//ACTING VIDEOS button click event listener
 	$('.a_act_v').click(function() {
 		
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 		
 		//load a part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/acting/a_act_videos.php', function() {
@@ -167,7 +167,7 @@ $(document).ready(function () {
 			//FOLDERS
 			$('.folder').click(function() {
 
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 
 				
 				//load the images of selected folder using ajax and assign event listeners to them
@@ -180,7 +180,7 @@ $(document).ready(function () {
 					reloadEvents();
 					
 					//RENAME ALBUM - inside as rename option is available only in the folder
-					renameAlbum(0);
+					renameAlbumVideo(0);
 					videoUploadScr(0, $('.sb_rename_folder').text());
 					
 					//add event listeners
@@ -197,7 +197,7 @@ $(document).ready(function () {
 	//GIG PHOTOS button click event listener
 	$('.a_gig_v').click(function() {
 
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 		
 		//load a part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/gig/a_gig_videos.php', function() {
@@ -208,7 +208,7 @@ $(document).ready(function () {
 			//FOLDERS
 			$('.folder').click(function() {
 				
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 
 				//load the images of selected folder using ajax and assign event listeners to them
 				var selectedFolder = $(this);
@@ -220,7 +220,7 @@ $(document).ready(function () {
 					reloadEvents();
 					
 					//RENAME ALBUM - inside as rename option is available only in the folder
-					renameAlbum(1);
+					renameAlbumVideo(1);
 					videoUploadScr(1, $('.sb_rename_folder').text());
 					
 					//add event listene
@@ -257,7 +257,7 @@ function reload_photos(elem, nr) {
 	
 	$(elem).find(type[nr]).click(function() {
 		
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 			
 		//load part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load(typeURL[nr], function() {
@@ -267,7 +267,7 @@ function reload_photos(elem, nr) {
 			//FOLDERS
 			$('.folder').click(function() {
 
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 
 				
 				//load the images of selected folder using ajax and assign event listeners to them
@@ -305,7 +305,7 @@ function reload_videos(elem, nr) {
 	
 	$(elem).find(type[nr]).click(function() {
 		
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 			
 		//load part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load(typeURL[nr], function() {
@@ -315,7 +315,7 @@ function reload_videos(elem, nr) {
 			//FOLDERS
 			$('.folder').click(function() {
 
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 
 				
 				//load the images of selected folder using ajax and assign event listeners to them
@@ -427,10 +427,28 @@ function renameAlbum(typeNr) {
 	});
 }
 
+
+//RENAME ALBUM OPTION
+function renameAlbumVideo(typeNr) {
+		
+	//RENAME BTN 
+	$('.sb_rename').click(function() {
+		var newName = prompt('Enter a new name for the album:');
+		if (newName != "" && newName != undefined) {
+			
+			//param 2 - to define action on server
+			renameAlbumAJAXVideo(newName, $('.sb_rename_folder').text(), 'sysRenamearnuga3', typeNr);
+		} else {
+			alert("Error. A new name is not provided.");
+		}
+	});
+}
+
+
 //LOADS PHOTOS FIRST SCREEN
 function photosLoad(typeNr) {
 
-	$('.preload346').fadeIn(200);
+	$('.preload346').show();
 
 	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
@@ -444,7 +462,7 @@ function photosLoad(typeNr) {
 		//FOLDERS
 		$('.folder').click(function() {
 
-			$('.preload346').fadeIn(200);
+			$('.preload346').show();
 
 			
 			//load the images of selected folder using ajax and assign event listeners to them
@@ -471,8 +489,7 @@ function photosLoad(typeNr) {
 //LOADS VIDEOS FIRST SCREEN
 function videosLoad(typeNr) {
 
-	//$('.preload346').fadeIn(200);
-
+	//$('.preload346').show();
 	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_videos.php", "../control_panel/gig/a_gig_videos.php"];
 	var afterLoadTypeFolder = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
@@ -484,8 +501,8 @@ function videosLoad(typeNr) {
 
 		//FOLDERS
 		$('.folder').click(function() {
-
-			$('.preload346').fadeIn(200);
+			
+			$('.preload346').show();
 
 			
 			//load the images of selected folder using ajax and assign event listeners to them
@@ -511,7 +528,7 @@ function videosLoad(typeNr) {
 //LOADS PHOTOS IN FOLDER
 function photosLoadFolder(typeNr, folderNoSpace) {
 	
-	$('.preload346').fadeIn(200);
+	$('.preload346').show();
 
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
@@ -520,7 +537,7 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 		//if no photos left in a folder load the first screen
 		if ($('#cpCont div').length == false) {
 			
-			$('.preload346').fadeIn(200);
+			$('.preload346').show();
 
 			//load part of the page using ajax (folders with photos and photos without folders)
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
@@ -544,7 +561,7 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 //LOADS VIDEOS IN FOLDER
 function videosLoadFolder(typeNr, folderNoSpace) {
 	
-	$('.preload346').fadeIn(200);
+	$('.preload346').show();
 
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_videos.php", "../control_panel/gig/a_gig_videos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
@@ -553,7 +570,7 @@ function videosLoadFolder(typeNr, folderNoSpace) {
 		//if no photos left in a folder load the first screen
 		if ($('#cpCont div').length == false) {
 			
-			$('.preload346').fadeIn(200);
+			$('.preload346').show();
 
 			//load part of the page using ajax (folders with photos and photos without folders)
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
@@ -581,7 +598,7 @@ function photosUploadScr(typeNr, folderNoSpace) {
 	//UPLOAD BTN
 	$('.sb_upload').click(function() {
 
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 
 		//load the file upload part of the page using ajax and assign event listeners
 		$('#mainContent').load(uplTypeURL[typeNr] + folderNoSpace, function() {
@@ -592,7 +609,7 @@ function photosUploadScr(typeNr, folderNoSpace) {
 			reload_photos('.fixed-action-btn', typeNr);
 			
 			$('#submitFormUpl').click(function() {
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 			});
 			
 			//0 is acting
@@ -609,7 +626,7 @@ function videoUploadScr(typeNr, folderNoSpace) {
 	//UPLOAD BTN
 	$('.sb_upload').click(function() {
 
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 
 		//load the file upload part of the page using ajax and assign event listeners
 		$('#mainContent').load(uplTypeURL[typeNr] + folderNoSpace, function() {
@@ -620,7 +637,7 @@ function videoUploadScr(typeNr, folderNoSpace) {
 			reload_videos('.fixed-action-btn', typeNr);
 			
 			$('#submitVideoAddForm').click(function() {
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 			});
 			
 			//0 is acting
@@ -895,7 +912,7 @@ function addTraining() {
 				var newRecord = $(data).insertBefore('.addTrainingField').hide();
 				
 				//slowly appear
-				newRecord.fadeIn(1000);
+				newRecord.show(1000);
 				
 				//apply styles to a new element
 				newRecord.css({
@@ -1117,7 +1134,7 @@ function addFilm() {
 				var newRecord = $(data).insertBefore('.addFilmField').hide();
 				
 				//slowly appear
-				newRecord.fadeIn(1000);
+				newRecord.show(1000);
 				
 				//apply styles to a new element
 				newRecord.css({
@@ -1348,7 +1365,7 @@ function addTheatre() {
 				var newRecord = $(data).insertBefore('.addTheatreField').hide();
 				
 				//slowly appear
-				newRecord.fadeIn(1000);
+				newRecord.show(1000);
 				newRecord.css({
 					'background-color': 'rgba(0,0,0,.1)',
 					'border-radius': '5px'

@@ -131,7 +131,7 @@ if (isset($_SESSION["mrBoss"])) {
 						<ul>";
 			//Footer modal
 			foreach ($folders_indexed as $val) {
-				echo "		<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('".$val."', getSelectedPhotos(), 1)\" href=\"#\">
+				echo "		<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('".$val."', getSelectedItems(), 1)\" href=\"#\">
 								<div class=\"flexVertCenter\">
 									<img class=\"margLeft10\" width=\"40\" src=\"../img/cpIcons/folder.png\" />
 									<span class=\"margLeft infoText\">".$val."</span>
@@ -144,7 +144,7 @@ if (isset($_SESSION["mrBoss"])) {
 									<span class=\"margLeft infoText\">CREATE NEW ALBUM</span>
 								</div>
 							</a></li>
-							<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('', getSelectedPhotos(), 1)\" href=\"#\">
+							<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('', getSelectedItems(), 1)\" href=\"#\">
 								<div class=\"flexVertCenter\">
 									<img class=\"margLeft10\" width=\"40\" src=\"../img/cpIcons/folder_go.png\" />
 									<span class=\"margLeft infoText\">MAIN GALLERY (without album)</span>
