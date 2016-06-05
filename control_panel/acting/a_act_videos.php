@@ -114,7 +114,7 @@ if (isset($_SESSION["mrBoss"])) {
 									</div>
 								</div>
 							</label>
-							<a class=\"videoPreview\" href='".$row["video_path"]."'>preview</a>
+							<div class=\"videoPreview\" onclick=\"addModal(".$row["video_ID"].")\">preview</div>
 						</div>";
 					}
 				}
@@ -122,6 +122,8 @@ if (isset($_SESSION["mrBoss"])) {
 			echo "<p id=\"error\"></p>";
 	echo "</div>
 	</div>";
+	
+			echo '<div id="previewModal"></div>';
 	
 			//FOOTER MODAL
 			echo "<div id=\"footer_modal\" class=\"modal bottom-sheet\">

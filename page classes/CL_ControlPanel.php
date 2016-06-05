@@ -101,19 +101,19 @@ Script: ControlPanel class
 		<div class="row">
 			<div id="contField" class="col l3 hide-on-med-and-down">
 				<div id="desktop_flex">
-					<a class="a_shwrl waves-effect waves-yellow" href="#"><img src="../img/cpIcons/movies.png" /><span>Showreel</span></a>
+					<a class="a_shwrl" href="#"><img src="../img/cpIcons/movies.png" /><span>Showreel</span></a>
 					<hr />
-					<a class="a_cv waves-effect waves-yellow" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
+					<a class="a_cv" href="#"><img src="../img/cpIcons/document_yellow.png" /><span>CV</span></a>
 					<hr />
 					<p class="lightText">ACTING SHOTS:</p>
-					<a class="a_act_p waves-effect waves-yellow" href="#"><img src="../img/cpIcons/images.png" /><span>Acting photos</span></a>
-					<a class="a_act_v waves-effect waves-yellow" href="#"><img src="../img/cpIcons/video.png" /><span>Acting videos</span></a>
+					<a class="a_act_p" href="#"><img src="../img/cpIcons/images.png" /><span>Acting photos</span></a>
+					<a class="a_act_v" href="#"><img src="../img/cpIcons/video.png" /><span>Acting videos</span></a>
 					<hr />
 					<p class="lightText">GIG SHOTS:</p>
-					<a class="a_gig_p waves-effect waves-yellow" href="#"><img src="../img/cpIcons/images.png" /><span>Gig photos</span></a>
-					<a class="a_gig_v waves-effect waves-yellow" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
+					<a class="a_gig_p" href="#"><img src="../img/cpIcons/images.png" /><span>Gig photos</span></a>
+					<a class="a_gig_v" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
 					<hr />
-					<a class="waves-effect waves-yellow" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
+					<a class="" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
 				</div>
 			</div>
 			

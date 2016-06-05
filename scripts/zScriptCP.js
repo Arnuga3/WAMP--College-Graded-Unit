@@ -1469,6 +1469,39 @@ function addTheatre() {
 
 
 
+function addModal(id) {
+	
+	var videoId = new FormData();
+	videoId.append("id", id);
+	
+	$.ajax({
+		url: "../php_tasks/video_add_modal.php", // php file
+		type: 'post',
+		data: videoId,
+		dataType: 'html', // return html from php file
+		async: true,
+		processData: false,  // tell jQuery not to process the data
+		contentType: false,   // tell jQuery not to set contentType
+		success : function(data) {
+			$('#previewModal').html(data);
+			var modalID = $('#previewModal').find('.modal').attr("id");
+			$('#' + modalID).leanModal();
+			$('#' + modalID).openModal();
+			
+			if ($('#dark').css('display') == 'block') {
+				enableScroll();
+				$('#dark').toggle();
+			}
+			
+			$('.ytp-thumbnail-overlay .ytp-cued-thumbnail-overlay').on("click", function() {
+				console.log("fired");
+				$('.ytp-fullscreen-button ytp-button').hide();
+			});
+		}
+	});
+}
+
+
 
 ///////////////////////////
 /////Disable scrolling/////

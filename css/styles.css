@@ -152,16 +152,25 @@ hr {
 	height: 180px;
 	margin: 10px 0;
 }
-#contCont > div > div p {
+#contCont > div > div p,
+#contCont > div > div span {
+	margin-left: 20px;
+	color: #333;
+	font-weight: bold;
+}
+#contCont > div > div span.descr {
 	margin-left: 20px;
 	color: #777;
-	font-weight: bold;
+	font-size: .6em;
 }
 #contCont > div > div > div {
 	height: 180px;
 	width: 100px;
 	background-color: #ddd;
 	border-radius: 1px;
+}
+.videoCont {
+	border: 1px solid red;
 }
 
 /*----------------Songs-----------------*/
