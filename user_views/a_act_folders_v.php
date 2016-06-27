@@ -78,23 +78,21 @@ Script: Generates an acting folder view part of the page
 	}
 	
 	//back button to leave an album and go to a main gallery
-	echo "<a class=\"u_act_v backLink\" href=\"#\">back</a>";
+	echo '<a class="u_act_v backLink" href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>back</a>';
 	echo "<div class=\"row\">";
 
 	//display all the photos of the selected album
 	foreach ($photos as $val) {
-		echo "
-		<div class=\"col s12 m6 videoCont\">
-			<div class=\"z-depth-2 valign-wrapper\">
-						
-				<img src=\"img/play.png\" />
-				
-			</div>
-			<span>".$val["video_title"]."<span class=\"descr\">".$val["video_descr"]."</span></span>
-		</div>";
+		
+		echo '<span class="videoTitle col s12"><i class="fa fa-play" aria-hidden="true"></i>'.$val["video_title"].'</span>
+					<br>
+					<span class="videoDescr">'.$val["video_descr"].'</span>
+					<div class="video-container">
+						<div class="video col s12">
+							<iframe width="250" src="'.$val["video_path"].'" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>';
 	}
-	echo "
-		<div>
-		<p id=\"error\"></p>";
+	echo "<p id=\"error\"></p>";
 	
 ?>

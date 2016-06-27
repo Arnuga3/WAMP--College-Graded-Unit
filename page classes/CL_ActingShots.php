@@ -35,10 +35,10 @@ Script: ActingShots class
 ?>
 		<div class="row">
 			<div id="contField" class="col s12 l10 offset-l1 z-depth-4">
-				<div class="col s12 l3">
+				<div class="col s12 l3 center">
 					<span id="actLabel" class="bold">ACTING SHOTS</span>
-					<a href="#" class="u_act_p bold"><p>Photos</p></a>
-					<a href="#" class="u_act_v bold"><p>Videos</p></a>
+					<a href="#" class="u_act_p bold"><p class="z-depth-2"><i class="fa fa-camera" aria-hidden="true"></i>Photos</p></a>
+					<a href="#" class="u_act_v bold"><p class="z-depth-2"><i class="fa fa-youtube-play" aria-hidden="true"></i>Videos</p></a>
 				</div>
 				
 				<div class="preload333">
@@ -84,14 +84,7 @@ Script: ActingShots class
 				</div>
 				
 				<div id="contCont" class="col s12 l9 z-depth-1">
-					<div class="row linkDIVs">
-						<div class="col s12 m6 flexCenter">
-							<a class="u_act_p" href="#">Photos</a>
-						</div>
-						<div class="col s12 m6 flexCenter">
-							<a class="u_act_v" href="#">Videos</a>
-						</div>
-					</div>
+					<img class="poster" src="img/acting.jpg" />
 				</div>
 			</div>
 		</div>

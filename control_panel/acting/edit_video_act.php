@@ -99,13 +99,6 @@ Script: Create an edit photo(s) screen - acting
 			//label
 			echo "<p class=\"margTopX photoNrEdit\">VIDEO  $counter </p>
 			
-				<!-- Video preview-->
-				<div class=\"row\">
-					<div class=\"col s12 m6\">
-						<a class=\"videoPreview\" href='".$videoInfo[$i]["video_path"]."'>preview</a>
-					</div>
-				</div>
-				
 				<!-- Video name -->
 				<div class=\"input-field margTopL\">
 						<input id=\"img_title$i\" type=\"text\" name=\"pName".str_replace('"',"&quot;", $videoInfo[$i]["video_ID"])."\" 

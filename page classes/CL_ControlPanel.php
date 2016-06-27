@@ -84,7 +84,7 @@ Script: ControlPanel class
 							<li><a class="a_gig_p menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/images.png" />Gig photos</a></li>
 							<li><a class="a_gig_v menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/video.png" />Gig videos</a></li>
 							<hr />
-							<li><a class="menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" />Songs</a></li>
+							<li><a class="a_songs menu_link waves-effect waves-light" href="#"><img src="../img/cpIcons/music.png" />Songs</a></li>
 						</ul>
 						<a href="../php_tasks/close_session.php" class="hide-on-large-only right"><i class="material-icons">input</i></a>
 						<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
@@ -113,7 +113,7 @@ Script: ControlPanel class
 					<a class="a_gig_p" href="#"><img src="../img/cpIcons/images.png" /><span>Gig photos</span></a>
 					<a class="a_gig_v" href="#"><img src="../img/cpIcons/video.png" /><span>Gig videos</span></a>
 					<hr />
-					<a class="" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
+					<a class="a_songs" href="#"><img src="../img/cpIcons/music.png" /><span>Songs</span></a>
 				</div>
 			</div>
 			

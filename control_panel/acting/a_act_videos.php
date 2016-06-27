@@ -57,10 +57,10 @@ if (isset($_SESSION["mrBoss"])) {
 	
 	<div class=\"sub_nav hide-on-med-and-down\">
 		<a class=\"z-depth-1 waves-effect waves-dark blue-grey lighten-1 disabled\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
-		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>add photo(s)</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEditVideo(0)\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo(s)</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"  onclick=\"checkIfCheckedDelVideo(0)\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo(s)</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo(s)</span></a>
+		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/film_add.png\" /><span>add video(s)</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEditVideo(0)\"><img src=\"../img/cpIcons/film_edit.png\" /><span>edit video(s)</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"  onclick=\"checkIfCheckedDelVideo(0)\"><img src=\"../img/cpIcons/film_delete.png\" /><span>delete video(s)</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/film_go.png\" /><span>move video(s)</span></a>
 	</div>
 
 	<div class=\"fixed-action-btn vertical click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
@@ -68,10 +68,10 @@ if (isset($_SESSION["mrBoss"])) {
 			<img class=\"pencil\" src=\"../img/cpIcons/pencil.png\" />
 		</a>
 		<ul>
-			<li><span>add photo(s)</span><a class=\"sb_upload btn-floating blue\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
-			<li><span>edit photo(s)</span><a class=\"btn-floating green\" onclick=\"checkIfCheckedEditVideo(0)\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
-			<li><span>delete photo(s)</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDelVideo(0)\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
-			<li><span>move photo(s)</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
+			<li><span>add video(s)</span><a class=\"sb_upload btn-floating blue\"><img src=\"../img/cpIcons/film_add.png\" /></a></li>
+			<li><span>edit video(s)</span><a class=\"btn-floating green\" onclick=\"checkIfCheckedEditVideo(0)\"><img src=\"../img/cpIcons/film_edit.png\" /></a></li>
+			<li><span>delete video(s)</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDelVideo(0)\"><img src=\"../img/cpIcons/film_delete.png\" /></a></li>
+			<li><span>move video(s)</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/film_go.png\" /></a></li>
 		</ul>
 	</div>
 	
@@ -98,6 +98,7 @@ if (isset($_SESSION["mrBoss"])) {
 						</div>
 					</a>";
 			}
+			
 			mysqli_data_seek($result, 0);
 			//Display photos without folders
 			if ($result->num_rows > 0) {

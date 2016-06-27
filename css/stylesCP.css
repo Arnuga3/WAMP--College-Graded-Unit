@@ -70,12 +70,20 @@ nav span {
 .sub_nav a {
 	background-color: #cfd8dc;
 	display: -webkit-flex;
-    display: flex;
+   display: flex;
+   -webkit-flex-direction: row /* works with row or column */
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
 	padding: 0 10px;
 	height: 35px;
 	margin-left: 3px;
 	border-radius: 2px;
 	font-size: .7em;
+	width: 150px;
+	text-align: center;
 }
 .sub_nav a:hover {
 	background-color: white;
@@ -640,4 +648,14 @@ that settings a different in media queries - FOUND A BUG(NEED TO BE FIGURED OUT,
    display: flex;
    -webkit-flex-wrap: wrap;
    flex-wrap: wrap;
+}
+.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row /* works with row or column */
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
 }

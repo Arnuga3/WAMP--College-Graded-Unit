@@ -85,10 +85,10 @@ if (isset($_SESSION["mrBoss"])) {
 	
 	<div class=\"sub_nav hide-on-med-and-down\">
 		<a class=\"a_gig_v z-depth-1 waves-effect waves-dark\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
-		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>new photo(s)</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEditVideo(1)\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedDelVideo(1)\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo</span></a>
+		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/film_add.png\" /><span>new video(s)</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEditVideo(1)\"><img src=\"../img/cpIcons/film_edit.png\" /><span>edit video</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedDelVideo(1)\"><img src=\"../img/cpIcons/film_delete.png\" /><span>delete video</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/film_go.png\" /><span>move video</span></a>
 	</div>
 
 	<div class=\"fixed-action-btn vertical click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
@@ -96,10 +96,10 @@ if (isset($_SESSION["mrBoss"])) {
 			<img class=\"pencil\" src=\"../img/cpIcons/pencil.png\" />
 		</a>
 		<ul>
-			<li><span>new photo(s)</span><a class=\"sb_upload btn-floating orange\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
-			<li><span>edit photo</span><a class=\"btn-floating green\" onclick=\"checkIfCheckedEditVideo(1)\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
-			<li><span>delete photo</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDelVideo(1)\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
-			<li><span>move photo</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
+			<li><span>new video(s)</span><a class=\"sb_upload btn-floating orange\"><img src=\"../img/cpIcons/film_add.png\" /></a></li>
+			<li><span>edit video</span><a class=\"btn-floating green\" onclick=\"checkIfCheckedEditVideo(1)\"><img src=\"../img/cpIcons/film_edit.png\" /></a></li>
+			<li><span>delete video</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDelVideo(1)\"><img src=\"../img/cpIcons/film_delete.png\" /></a></li>
+			<li><span>move video</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/film_go.png\" /></a></li>
 		</ul>
 	</div>
 	

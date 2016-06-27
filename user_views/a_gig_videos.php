@@ -47,7 +47,7 @@ Script: Generates a gig photos part of the page
 	
 	//display folders
 	foreach ($folders_indexed as $val) {
-		echo "<div class=\"folder col s12 m6 valign-wrapper\">
+		echo "<div class=\"folder valign-wrapper\">
 				<img width=\"100\" src=\"img/folder.png\" />
 				<p>$val</p>
 			</div>";
@@ -61,13 +61,14 @@ Script: Generates a gig photos part of the page
 		while($row = $result->fetch_assoc()) {
 			if (!in_array($row["image_folder"], $folders_indexed)) {
 				
-				echo "
-				<div class=\"col s12 m6 valign-wrapper\">
-					<div class=\"z-depth-2 valign-wrapper\">
-						<img class=\"materialboxed valign\" width=\"100\" data-caption=\"".$row["image_descr"]."\" src=\"user_views/".$row["image_path"]."\" />
-					</div>
-					<p>".$row["image_title"]."</p>
-				</div>";
+				echo '<span class="videoTitle col s12"><i class="fa fa-play" aria-hidden="true"></i>'.$row["video_title"].'</span>
+					<br>
+					<span class="videoDescr">'.$row["video_descr"].'</span>
+					<div class="video-container">
+						<div class="video col s12">
+							<iframe width="250" src="'.$row["video_path"].'" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>';
 			}
 		}
 	}

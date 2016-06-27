@@ -138,15 +138,25 @@ hr {
 }
 #contField a > p {
 	font-size: 1.2em;
-	margin: 10px;
+	background-color: white;
+	margin: 20px;
 	color: #333;
+	padding: 5px 15px;
+	border: 1px solid black;
+	border-radius: 5px;
+	
+}
+#contField a > p:hover {
+	color: white;
+	background-color: #333;
 }
 #actLabel {
-	font-size: 1.6em;
+	font-size: 2em;
 }
 #contCont {
 	border-radius: 20px;
 	background-color: rgba(255,255,255,1);
+	padding: 10px;
 }
 #contCont > div > div {
 	height: 180px;
@@ -169,8 +179,36 @@ hr {
 	background-color: #ddd;
 	border-radius: 1px;
 }
+#contCont .video {
+	height: 180px;
+	width: 250px;
+	background-color: #ddd;
+	border-radius: 1px;
+	padding: 0;
+}
 .videoCont {
 	border: 1px solid red;
+}
+.videoDescr {
+	margin-left: 10px;
+	font-size: .8em;
+}
+.videoTitle {
+	margin: 10px;
+	font-weight: bold;
+}
+.video-container {
+	border-radius: 5px; 
+}
+.error {
+	margin-bottom: 30px;
+}
+.fa-camera {
+	font-size: .9em;
+}
+.poster {
+	width: 100%;
+	border-radius: 5px;
 }
 
 /*----------------Songs-----------------*/
@@ -264,15 +302,19 @@ hr {
 	background-color: rgba(0,0,0,.1);
 }
 
+.folder {
+	padding-left: 15px;
+}
+
 .folder:hover {
 	cursor: pointer;
 	background-color: #eee;
 }
 
 .backLink {
-	margin: 10px 0 0 10px;
-	color: black;
-	border-bottom: 1px solid #aaa;
+	margin: 10px 10px 0 0;
+	float: right;
+	color: #555;
 	font-weight: bold;
 }
 
