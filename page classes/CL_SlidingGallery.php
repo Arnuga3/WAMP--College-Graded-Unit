@@ -79,10 +79,9 @@ Script: SlidingGallery class
 ?>
 			<div class="sliderContainer">
 				<div class="sliderImages">
-					<img id="img5" src="uploaded_photos/6.jpg" />
-					<img id="img3" src="img/3.jpg" />
 					<img id="img1" src="img/1.jpg" />
-					<img id="img5" src="uploaded_photos/7.jpg" />
+					<img id="img3" src="img/3.jpg" />
+					<img id="img5" src="uploaded_photos/6.jpg" />
 					<img id="img4" src="img/4.jpg" />
 				</div>
 				<div class="sliderControl"></div>

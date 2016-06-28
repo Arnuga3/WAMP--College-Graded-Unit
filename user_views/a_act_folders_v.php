@@ -1,11 +1,11 @@
 <?php
 /*
 Author: Arnis Zelcs
-Created: 29/04/2016
+Created: 28/04/2016
 
 Graded Unit Project - Web Portfolio for Jamie Rodden
 
-Script: Generates a gig folder view part of the page
+Script: Generates an acting folder view part of the page
 */
 
 	//to make htmlspecialchars() function work
@@ -37,7 +37,7 @@ Script: Generates a gig folder view part of the page
 	$db->connect();
 
 	//get existing folders in db
-	$res = $db->select("images", "*", "image_group = 'gig'");
+	$res = $db->select("video", "*", "video_group = 'acting'");
 	
 	//that block of code get unique names of folders and save them into an indexed array
 	$folders = array();
@@ -45,7 +45,7 @@ Script: Generates a gig folder view part of the page
 		while($row = $res->fetch_assoc()) {
 			
 			//place all folder names into a new array
-			$folders[] = $row["image_folder"];
+			$folders[] = $row["video_folder"];
 		}
 	}
 	//save only unique names of folders
@@ -64,7 +64,7 @@ Script: Generates a gig folder view part of the page
 	$escapedFolder = $db->escape($folder);
 	
 	//get all the photos of the selected album
-	$result = $db->select("images", "*", "image_folder = '$escapedFolder'");
+	$result = $db->select("video", "*", "video_folder = '$escapedFolder'");
 	
 	//close the connection to the database
 	$db->close();
@@ -72,14 +72,13 @@ Script: Generates a gig folder view part of the page
 	$photos = array();
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
-			
-			//place all photos into a new array
+			//Place all folder names into new array
 			$photos[] = $row;
 		}
 	}
 	
 	//back button to leave an album and go to a main gallery
-	echo '<a class="u_act_p backLink" href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>back</a>';
+	echo '<a class="u_act_v backLink" href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>back</a>';
 	echo "<div class=\"row\">";
 
 	//display all the photos of the selected album

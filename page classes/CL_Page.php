@@ -67,7 +67,7 @@ Script: Main class
 <?php
 		}
 		//add navbar
-		public function displayNavbar() 
+		public function displayNavbar() {
 ?>
 			<div class="navbar-fixed">
 				<nav>

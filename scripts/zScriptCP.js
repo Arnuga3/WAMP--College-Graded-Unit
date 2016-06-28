@@ -28,7 +28,7 @@ $(document).ready(function () {
 	//SHOWREEL button click event listener
 	$('.a_shwrl').click(function() {
 		
-		$('.preload346').fadeIn(500);
+		$('.preload346').show(500);
 		
 		//load a showreel part of a page
 		$('#mainContent').load('../control_panel/a_showreel.php', function() {
@@ -48,7 +48,7 @@ $(document).ready(function () {
 	//CV button click event listener
 	$('.a_cv').click(function() {
 		
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 		
 		//load a part of a page
 		$('#mainContent').load('../control_panel/a_cv.php', function() {
@@ -70,7 +70,7 @@ $(document).ready(function () {
 	//ACTING PHOTOS button click event listener
 	$('.a_act_p').click(function() {
 		
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 			
 		//load a part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/acting/a_act_photos.php', function() {
@@ -81,7 +81,7 @@ $(document).ready(function () {
 			//FOLDERS
 			$('.folder').click(function() {
 
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 
 				
 				//load the images of selected folder using ajax and assign event listeners to them
@@ -108,10 +108,11 @@ $(document).ready(function () {
 			photosUploadScr(0, "");
 		});
 	});
+	
 	//GIG PHOTOS button click event listener
 	$('.a_gig_p').click(function() {
 
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 		
 		//load a part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load('../control_panel/gig/a_gig_photos.php', function() {
@@ -122,7 +123,7 @@ $(document).ready(function () {
 			//FOLDERS
 			$('.folder').click(function() {
 				
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 
 				//load the images of selected folder using ajax and assign event listeners to them
 				var selectedFolder = $(this);
@@ -149,6 +150,137 @@ $(document).ready(function () {
 		});
 	});
 	
+	
+	
+	
+	//ACTING VIDEOS button click event listener
+	$('.a_act_v').click(function() {
+		
+		$('.preload346').show();
+		
+		//load a part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load('../control_panel/acting/a_act_videos.php', function() {
+			
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+
+				$('.preload346').show();
+
+				
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load("../control_panel/acting/a_act_folders_v.php?folder=" + noSpaceName, function() {
+					reloadEvents();
+					
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbumVideo(0);
+					videoUploadScr(0, $('.sb_rename_folder').text());
+					
+					//add event listeners
+					reload_videos('.nav-wrapper', 0);
+					reload_videos('.sub_nav', 0);
+					reload_videos('.fixed-action-btn', 0);
+				});
+			});
+			
+			//UPLOAD SCREEN
+			videoUploadScr(0, "");
+		});
+	});
+	
+	//GIG PHOTOS button click event listener
+	$('.a_gig_v').click(function() {
+
+		$('.preload346').show();
+		
+		//load a part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load('../control_panel/gig/a_gig_videos.php', function() {
+			
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+				
+				$('.preload346').show();
+
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load("../control_panel/gig/a_gig_folders_v.php?folder=" + noSpaceName, function() {
+					reloadEvents();
+					
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbumVideo(1);
+					videoUploadScr(1, $('.sb_rename_folder').text());
+					
+					//add event listene
+					reload_videos('.nav-wrapper', 1);
+					reload_videos('.sub_nav', 1);
+					reload_videos('.fixed-action-btn', 1);
+				});
+			});
+			
+			//UPLOAD SCREEN
+			videoUploadScr(1, "");
+		});
+	});
+	
+	
+	
+	//SONGS button click event listener
+	$('.a_songs').click(function() {
+		
+		$('.preload346').show();
+		
+		//load a part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load('../control_panel/songs/a_songs.php', function() {
+			
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+
+				$('.preload346').show();
+
+				
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load("../control_panel/songs/a_songs_folders.php?folder=" + noSpaceName, function() {
+					reloadEvents();
+					
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbumSongs();
+					songsUploadScr($('.sb_rename_folder').text());
+					
+					//add event listeners
+					reload_songs('.nav-wrapper');
+					reload_songs('.sub_nav');
+					reload_songs('.fixed-action-btn');
+				});
+			});
+			
+			//UPLOAD SCREEN
+			songsUploadScr("");
+		});
+	});
+	
+	
 	//reload the main eventlisteners
 	reloadEvents();
 });
@@ -169,7 +301,7 @@ function reload_photos(elem, nr) {
 	
 	$(elem).find(type[nr]).click(function() {
 		
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 			
 		//load part of the page using ajax (folders with photos and photos without folders)
 		$('#mainContent').load(typeURL[nr], function() {
@@ -179,7 +311,7 @@ function reload_photos(elem, nr) {
 			//FOLDERS
 			$('.folder').click(function() {
 
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 
 				
 				//load the images of selected folder using ajax and assign event listeners to them
@@ -205,6 +337,101 @@ function reload_photos(elem, nr) {
 	});
 }
 
+
+
+//add event listeners to elements
+function reload_videos(elem, nr) {
+	
+	var nr = nr;
+	var type = ['.a_act_v', '.a_gig_v'];
+	var typeURL = ['../control_panel/acting/a_act_videos.php', '../control_panel/gig/a_gig_videos.php'];
+	var typeURLF = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
+	
+	$(elem).find(type[nr]).click(function() {
+		
+		$('.preload346').show();
+			
+		//load part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load(typeURL[nr], function() {
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+
+				$('.preload346').show();
+
+				
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load(typeURLF[nr] + noSpaceName, function() {
+					reloadEvents();
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbum(nr);
+					videoUploadScr(nr, $('.sb_rename_folder').text());
+					
+					reload_videos('.nav-wrapper', nr);
+					reload_videos('.sub_nav', nr);
+					reload_videos('.fixed-action-btn', nr);
+				});
+			});
+			
+			//UPLOAD SCREEN
+			videoUploadScr(nr, "");
+		});
+	});
+}
+
+
+
+//add event listeners to elements
+function reload_songs(elem) {
+	
+	var nr = nr;
+	var type = ".a_songs";
+	var typeURL = "../control_panel/songs/a_songs.php";
+	var typeURLF = "../control_panel/songs/a_songs_folders.php?folder=";
+	
+	$(elem).find(type).click(function() {
+		
+		$('.preload346').show();
+			
+		//load part of the page using ajax (folders with photos and photos without folders)
+		$('#mainContent').load(typeURL, function() {
+			//assign event listeners to new loaded elements
+			reloadEvents();
+			
+			//FOLDERS
+			$('.folder').click(function() {
+
+				$('.preload346').show();
+
+				
+				//load the images of selected folder using ajax and assign event listeners to them
+				var selectedFolder = $(this);
+				var folderName = selectedFolder.find('span').text();
+				//escape the string before passing it in url
+				var noSpaceName = encodeURIComponent(folderName);
+				$('#mainContent').load(typeURLF + noSpaceName, function() {
+					reloadEvents();
+					//RENAME ALBUM - inside as rename option is available only in the folder
+					renameAlbumSongs();
+					songsUploadScr($('.sb_rename_folder').text());
+					
+					reload_songs('.nav-wrapper');
+					reload_songs('.sub_nav');
+					reload_songs('.fixed-action-btn');
+				});
+			});
+			
+			//UPLOAD SCREEN
+			songsUploadScr("");
+		});
+	});
+}
 
 
 
@@ -292,10 +519,45 @@ function renameAlbum(typeNr) {
 	});
 }
 
+
+//RENAME ALBUM OPTION
+function renameAlbumVideo(typeNr) {
+		
+	//RENAME BTN 
+	$('.sb_rename').click(function() {
+		var newName = prompt('Enter a new name for the album:');
+		if (newName != "" && newName != undefined) {
+			
+			//param 2 - to define action on server
+			renameAlbumAJAXVideo(newName, $('.sb_rename_folder').text(), 'sysRenamearnuga3', typeNr);
+		} else {
+			alert("Error. A new name is not provided.");
+		}
+	});
+}
+
+
+//RENAME ALBUM OPTION
+function renameAlbumSongs() {
+		
+	//RENAME BTN 
+	$('.sb_rename').click(function() {
+		var newName = prompt('Enter a new name for the album:');
+		if (newName != "" && newName != undefined) {
+			
+			//param 2 - to define action on server
+			renameAlbumAJAXSongs(newName, $('.sb_rename_folder').text(), 'sysRenamearnuga3');
+		} else {
+			alert("Error. A new name is not provided.");
+		}
+	});
+}
+
+
 //LOADS PHOTOS FIRST SCREEN
 function photosLoad(typeNr) {
 
-	$('.preload346').fadeIn(200);
+	$('.preload346').show();
 
 	
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
@@ -309,7 +571,7 @@ function photosLoad(typeNr) {
 		//FOLDERS
 		$('.folder').click(function() {
 
-			$('.preload346').fadeIn(200);
+			$('.preload346').show();
 
 			
 			//load the images of selected folder using ajax and assign event listeners to them
@@ -331,10 +593,92 @@ function photosLoad(typeNr) {
 	});
 }
 
+
+
+//LOADS VIDEOS FIRST SCREEN
+function videosLoad(typeNr) {
+
+	//$('.preload346').show();
+	
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_videos.php", "../control_panel/gig/a_gig_videos.php"];
+	var afterLoadTypeFolder = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
+	
+	//load part of the page using ajax (folders with photos and photos without folders)
+	$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
+		reloadEvents();
+		videoUploadScr(typeNr, "");
+
+		//FOLDERS
+		$('.folder').click(function() {
+			
+			$('.preload346').show();
+
+			
+			//load the images of selected folder using ajax and assign event listeners to them
+			var selectedFolder = $(this);
+			var folderName = selectedFolder.find('span').text();
+			//escape the string before passing it in url
+			var noSpaceName = encodeURIComponent(folderName);
+			$('#mainContent').load(afterLoadTypeFolder[typeNr] + noSpaceName, function() {
+				reloadEvents();
+				//RENAME ALBUM - inside as rename option is available only in the folder
+				renameAlbum(typeNr);
+				videoUploadScr(typeNr, noSpaceName);
+				
+				reload_videos('.nav-wrapper', typeNr);
+				reload_videos('.sub_nav', typeNr);
+				reload_videos('.fixed-action-btn', typeNr);
+			});
+		});
+	});
+}
+
+
+
+//LOADS SONGS FIRST SCREEN
+function songsLoad() {
+
+	//$('.preload346').show();
+	
+	var afterLoadTypeURL = "../control_panel/songs/a_songs.php";
+	var afterLoadTypeFolder = "../control_panel/songs/a_songs_folders.php?folder=";
+	
+	//load part of the page using ajax (folders with photos and photos without folders)
+	$('#mainContent').load(afterLoadTypeURL, function() {
+		reloadEvents();
+		songsUploadScr("");
+
+		//FOLDERS
+		$('.folder').click(function() {
+			
+			$('.preload346').show();
+
+			
+			//load the images of selected folder using ajax and assign event listeners to them
+			var selectedFolder = $(this);
+			var folderName = selectedFolder.find('span').text();
+			//escape the string before passing it in url
+			var noSpaceName = encodeURIComponent(folderName);
+			$('#mainContent').load(afterLoadTypeFolder + noSpaceName, function() {
+				reloadEvents();
+				//RENAME ALBUM - inside as rename option is available only in the folder
+				renameAlbumSongs();
+				songsUploadScr(noSpaceName);
+				
+				reload_songs('.nav-wrapper');
+				reload_songs('.sub_nav');
+				reload_songs('.fixed-action-btn');
+			});
+		});
+	});
+}
+
+
+
 //LOADS PHOTOS IN FOLDER
 function photosLoadFolder(typeNr, folderNoSpace) {
 	
-	$('.preload346').fadeIn(200);
+	$('.preload346').show();
 
 	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
 	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
@@ -343,7 +687,7 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 		//if no photos left in a folder load the first screen
 		if ($('#cpCont div').length == false) {
 			
-			$('.preload346').fadeIn(200);
+			$('.preload346').show();
 
 			//load part of the page using ajax (folders with photos and photos without folders)
 			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
@@ -362,6 +706,73 @@ function photosLoadFolder(typeNr, folderNoSpace) {
 	});
 }
 
+
+
+//LOADS VIDEOS IN FOLDER
+function videosLoadFolder(typeNr, folderNoSpace) {
+	
+	$('.preload346').show();
+
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_videos.php", "../control_panel/gig/a_gig_videos.php"];
+	var folderTypeURL = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
+	
+	$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
+		//if no photos left in a folder load the first screen
+		if ($('#cpCont div').length == false) {
+			
+			$('.preload346').show();
+
+			//load part of the page using ajax (folders with photos and photos without folders)
+			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
+				reloadEvents();
+				videoUploadScr(typeNr, "");
+				
+			});
+		} else {
+			reloadEvents();
+			videoUploadScr(typeNr, folderNoSpace);
+			
+			reload_videos('.nav-wrapper', typeNr);
+			reload_videos('.sub_nav', typeNr);
+			reload_videos('.fixed-action-btn', typeNr);
+		}
+	});
+}
+
+
+
+//LOADS SONGS IN FOLDER
+function songsLoadFolder(folderNoSpace) {
+	
+	$('.preload346').show();
+
+	var afterLoadTypeURL = "../control_panel/songs/a_songs.php";
+	var folderTypeURL = "../control_panel/songs/a_songs_folders.php?folder=";
+	
+	$('#mainContent').load(folderTypeURL + folderNoSpace, function() {
+		//if no photos left in a folder load the first screen
+		if ($('#cpCont div').length == false) {
+			
+			$('.preload346').show();
+
+			//load part of the page using ajax (folders with photos and photos without folders)
+			$('#mainContent').load(afterLoadTypeURL, function() {
+				reloadEvents();
+				songsUploadScr("");
+				
+			});
+		} else {
+			reloadEvents();
+			songsUploadScr(folderNoSpace);
+			
+			reload_songs('.nav-wrapper');
+			reload_songs('.sub_nav');
+			reload_songs('.fixed-action-btn');
+		}
+	});
+}
+
+
 //LOADS THE UPLOAD SCREEN
 function photosUploadScr(typeNr, folderNoSpace) {
 	
@@ -370,7 +781,7 @@ function photosUploadScr(typeNr, folderNoSpace) {
 	//UPLOAD BTN
 	$('.sb_upload').click(function() {
 
-		$('.preload346').fadeIn(200);
+		$('.preload346').show();
 
 		//load the file upload part of the page using ajax and assign event listeners
 		$('#mainContent').load(uplTypeURL[typeNr] + folderNoSpace, function() {
@@ -381,7 +792,7 @@ function photosUploadScr(typeNr, folderNoSpace) {
 			reload_photos('.fixed-action-btn', typeNr);
 			
 			$('#submitFormUpl').click(function() {
-				$('.preload346').fadeIn(200);
+				$('.preload346').show();
 			});
 			
 			//0 is acting
@@ -389,6 +800,63 @@ function photosUploadScr(typeNr, folderNoSpace) {
 		});
 	});
 }
+
+//LOADS THE UPLOAD SCREEN
+function videoUploadScr(typeNr, folderNoSpace) {
+	
+	var uplTypeURL = ["../control_panel/acting/a_act_upload_v.php?folder=", "../control_panel/gig/a_gig_upload_v.php?folder="];
+
+	//UPLOAD BTN
+	$('.sb_upload').click(function() {
+
+		$('.preload346').show();
+
+		//load the file upload part of the page using ajax and assign event listeners
+		$('#mainContent').load(uplTypeURL[typeNr] + folderNoSpace, function() {
+			reloadEvents();
+			
+			reload_videos('.nav-wrapper', typeNr);
+			reload_videos('.sub_nav', typeNr);
+			reload_videos('.fixed-action-btn', typeNr);
+			
+			$('#submitVideoAddForm').click(function() {
+				$('.preload346').show();
+			});
+			
+			//0 is acting
+			videoUploadSubm(typeNr);
+		});
+	});
+}
+
+
+//LOADS THE UPLOAD SCREEN
+function songsUploadScr(folderNoSpace) {
+	
+	var uplTypeURL = "../control_panel/songs/a_songs_upload.php?folder=";
+
+	//UPLOAD BTN
+	$('.sb_upload').click(function() {
+
+		$('.preload346').show();
+
+		//load the file upload part of the page using ajax and assign event listeners
+		$('#mainContent').load(uplTypeURL + folderNoSpace, function() {
+			reloadEvents();
+			
+			reload_songs('.nav-wrapper');
+			reload_songs('.sub_nav');
+			reload_songs('.fixed-action-btn');
+			
+			$('#submitSongsAddForm').click(function() {
+				$('.preload346').show();
+			});
+			
+			songsUploadSubm();
+		});
+	});
+}
+
 
 //PHOTOS UPLOAD
 function fileUploadSubm(typeNr) {
@@ -419,9 +887,86 @@ function fileUploadSubm(typeNr) {
 			async: true,
 			processData: false,  // tell jQuery not to process the data
 			contentType: false,   // tell jQuery not to set contentType
-			success : function() {
+			success : function(data) {
 				//on success load the acting pictures part of the page again with new album and/or files
 				photosLoad(typeNr);
+				$('.preload346').fadeOut();
+			},
+			error : function(request) {
+				console.log(request.responseText);
+			}
+		});
+	});
+}
+
+
+//VIDEO UPLOAD
+function videoUploadSubm(typeNr) {
+	
+	var uplTypeURL = ["../php_tasks/video_add_act.php", "../php_tasks/video_add_gig.php"];
+	
+	//submission of the files to upload, using formData object and jQuery ajax function
+	$('#videoAddForm').on('submit', function(e) {
+		//prevent default form submission
+		e.preventDefault();
+		
+		var formData = new FormData(document.getElementById("videoAddForm"));
+		
+		//send formdata to server-side
+		$.ajax({
+			url: uplTypeURL[typeNr], // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function() {
+				//on success load the acting pictures part of the page again with new album and/or files
+				videosLoad(typeNr);
+				$('.preload346').fadeOut();
+			},
+			error : function(request) {
+				console.log(request.responseText);
+			}
+		});
+	});
+}
+
+
+//SONGS UPLOAD
+function songsUploadSubm() {
+	
+	var uplTypeURL = "../php_tasks/file_upload_songs.php";
+	
+	//submission of the files to upload, using formData object and jQuery ajax function
+	$('#songsAddForm').on('submit', function(e) {
+		//prevent default form submission
+		e.preventDefault();
+		
+		var formData = new FormData();
+		
+		//add the album name to the formData object(accessed using $_POST in PHP file)
+		formData.append('album_name', document.getElementById('file_upl_alb_name').value);
+		
+		//for each entry, add to formdata to later access via $_FILES["file" + i]
+		for (var i = 0, len = document.getElementById('file').files.length; i < len; i++) {
+			formData.append("file" + i, document.getElementById('file').files[i]);
+		}
+		
+		//send formdata to server-side
+		$.ajax({
+			url: uplTypeURL, // php file
+			type: 'post',
+			data: formData,
+			dataType: 'html', // return html from php file
+			async: true,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success : function(data) {
+				//on success load the acting pictures part of the page again with new album and/or files
+				songsLoad();
+				$('.preload346').fadeOut();
 			},
 			error : function(request) {
 				console.log(request.responseText);
@@ -621,7 +1166,7 @@ function addTraining() {
 				var newRecord = $(data).insertBefore('.addTrainingField').hide();
 				
 				//slowly appear
-				newRecord.fadeIn(1000);
+				newRecord.show(1000);
 				
 				//apply styles to a new element
 				newRecord.css({
@@ -843,7 +1388,7 @@ function addFilm() {
 				var newRecord = $(data).insertBefore('.addFilmField').hide();
 				
 				//slowly appear
-				newRecord.fadeIn(1000);
+				newRecord.show(1000);
 				
 				//apply styles to a new element
 				newRecord.css({
@@ -1074,7 +1619,7 @@ function addTheatre() {
 				var newRecord = $(data).insertBefore('.addTheatreField').hide();
 				
 				//slowly appear
-				newRecord.fadeIn(1000);
+				newRecord.show(1000);
 				newRecord.css({
 					'background-color': 'rgba(0,0,0,.1)',
 					'border-radius': '5px'
@@ -1176,6 +1721,39 @@ function addTheatre() {
 	});
 }
 
+
+
+function addModal(id) {
+	
+	var videoId = new FormData();
+	videoId.append("id", id);
+	
+	$.ajax({
+		url: "../php_tasks/video_add_modal.php", // php file
+		type: 'post',
+		data: videoId,
+		dataType: 'html', // return html from php file
+		async: true,
+		processData: false,  // tell jQuery not to process the data
+		contentType: false,   // tell jQuery not to set contentType
+		success : function(data) {
+			$('#previewModal').html(data);
+			var modalID = $('#previewModal').find('.modal').attr("id");
+			$('#' + modalID).leanModal();
+			$('#' + modalID).openModal();
+			
+			if ($('#dark').css('display') == 'block') {
+				enableScroll();
+				$('#dark').toggle();
+			}
+			
+			$('.ytp-thumbnail-overlay .ytp-cued-thumbnail-overlay').on("click", function() {
+				console.log("fired");
+				$('.ytp-fullscreen-button ytp-button').hide();
+			});
+		}
+	});
+}
 
 
 

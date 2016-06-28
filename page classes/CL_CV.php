@@ -56,7 +56,7 @@ Script: CV class
 					<div class="col s12 m5 u_cv_equity">Equity: &nbsp <?php echo $data_cv["cv_equity"]; ?></div>
 					<div class="col s12 u_cv_email">Email: &nbsp <?php echo $data_cv["cv_email"]; ?></div>
 					
-					<div class="col s12 m7"><img id="cv_img" src="img/cv_img.png" /></div>
+					<div class="col s12 m7"><img id="cv_img" src="img/cv_img.PNG" /></div>
 					
 					<div class="col s12 m5"><h4 class="margTopL">Personal Details:</h4></div>
 					<div class="col s12 m5"><span class="cv_per_det">Height:</span><?php echo $data_cv["cv_height"]; ?></div>

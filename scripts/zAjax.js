@@ -26,7 +26,6 @@ function saveChanges(url, vars, callback) {
 			
 			//display an error if any, update is working on the background
 			$('#error').html(xmlhttp.responseText);
-			
 			//Callback function is called only after response is received from a server
 			if (typeof callback == "function") {
 				callback();
@@ -48,9 +47,11 @@ function checkIfChecked() {
 		$('#footer_modal').openModal();
 		enableScroll();
 	} else {
-		alert("Please select photo(s) before moving!");
+		alert("Please select item(s) before moving!");
 	}
 }
+
+//----------------------------------------------------------
 
 //check if any photos are selected to delete
 function checkIfCheckedDel(typeNr) {
@@ -60,11 +61,40 @@ function checkIfCheckedDel(typeNr) {
 		//param 1 - folder name or "" if main gallery
 		//param 2 - ids of selected photos
 		//param 3 - acting is 0, gig is 1
-		deletePhotosAJAX($('.bread span:first').text(), getSelectedPhotos(), typeNr);
+		deletePhotosAJAX($('.bread span:first').text(), getSelectedItems(), typeNr);
 	} else {
 		alert("Please select photo(s) you want to delete!");
 	}
 }
+
+//check if any videos are selected to delete
+function checkIfCheckedDelVideo(typeNr) {
+	
+	if ($('input:checked').length > 0) {
+		
+		//param 1 - folder name or "" if main gallery
+		//param 2 - ids of selected photos
+		//param 3 - acting is 0, gig is 1
+		deleteVideoAJAX($('.bread span:first').text(), getSelectedItems(), typeNr);
+	} else {
+		alert("Please select video(s) you want to delete!");
+	}
+}
+
+//check if any songs are selected to delete
+function checkIfCheckedDelSongs() {
+	
+	if ($('input:checked').length > 0) {
+		
+		//param 1 - folder name or "" if main gallery
+		//param 2 - ids of selected photos
+		deleteSongsAJAX($('.bread span:first').text(), getSelectedItems());
+	} else {
+		alert("Please select song(s) you want to delete!");
+	}
+}
+
+//----------------------------------------------------------
 
 //check if any photos are selected to edit
 function checkIfCheckedEdit(typeNr) {
@@ -74,15 +104,46 @@ function checkIfCheckedEdit(typeNr) {
 		//param 1 - folder name or "" if main gallery
 		//param 2 - ids of selected photos
 		//param 3 - acting is 0, gig is 1
-		editPhotosAJAX($('.bread span:first').text(), getSelectedPhotos(), typeNr);
+		editPhotosAJAX($('.bread span:first').text(), getSelectedItems(), typeNr);
 	} else {
 		alert("Please select photo(s) you want to edit!");
 	}
 }
 
 
+
+//check if any videos are selected to edit
+function checkIfCheckedEditVideo(typeNr) {
+	
+	if ($('input:checked').length > 0) {
+		
+		//param 1 - folder name or "" if main gallery
+		//param 2 - ids of selected photos
+		//param 3 - acting is 0, gig is 1
+		editVideosAJAX($('.bread span:first').text(), getSelectedItems(), typeNr);
+	} else {
+		alert("Please select video(s) you want to edit!");
+	}
+}
+
+
+//check if any songs are selected to edit
+function checkIfCheckedEditSongs() {
+	
+	if ($('input:checked').length > 0) {
+		
+		//param 1 - folder name or "" if main gallery
+		//param 2 - ids of selected photos
+		editSongsAJAX($('.bread span:first').text(), getSelectedItems());
+	} else {
+		alert("Please select song(s) you want to edit!");
+	}
+}
+
+//----------------------------------------------------------
+
 //get checked photos and prepare an URL string for a request
-function getSelectedPhotos() {
+function getSelectedItems() {
 	
 	//to store checked element ids
 	var checked = [];
@@ -99,7 +160,7 @@ function getSelectedPhotos() {
 	return toStr;
 }
 
-
+//----------------------------------------------------------
 
 //MOVE TO NEW ALBUM FUNCTIONALITY
 function moveToNewAlbum(typeNr) {
@@ -111,13 +172,50 @@ function moveToNewAlbum(typeNr) {
 		//param 1 - a new folder name
 		//param 2 - ids of selected photos
 		//param 3 - acting is 0, gig is 1
-		movePhotosAJAX(newName, getSelectedPhotos(), typeNr);
+		movePhotosAJAX(newName, getSelectedItems(), typeNr);
 		console.log("move to a new album operation successful");
 	} else {
 		console.log("move to a new album operation canceled");
 	}
 }
 
+
+
+//MOVE TO NEW ALBUM FUNCTIONALITY
+function moveToNewAlbumVideo(typeNr) {
+	var newName = prompt('New album name');
+	
+	//if a name is given
+	if (newName != undefined && newName != "") {
+
+		//param 1 - a new folder name
+		//param 2 - ids of selected photos
+		//param 3 - acting is 0, gig is 1
+		moveVideosAJAX(newName, getSelectedItems(), typeNr);
+		console.log("move to a new album operation successful");
+	} else {
+		console.log("move to a new album operation canceled");
+	}
+}
+
+
+//MOVE TO NEW ALBUM FUNCTIONALITY
+function moveToNewAlbumSongs() {
+	var newName = prompt('New album name');
+	
+	//if a name is given
+	if (newName != undefined && newName != "") {
+
+		//param 1 - a new folder name
+		//param 2 - ids of selected photos
+		moveSongsAJAX(newName, getSelectedItems());
+		console.log("move to a new album operation successful");
+	} else {
+		console.log("move to a new album operation canceled");
+	}
+}
+
+//----------------------------------------------------------
 
 //SHOWREEL INFORMATION UPDATE FUNCTIONALITY
 function saveShowreelData() {
@@ -154,6 +252,7 @@ function saveShowreelData() {
 	});
 }
 
+//----------------------------------------------------------
 
 //EDIT PHOTOS FUNCTIONALITY
 function editPhotosAJAX(folder, photos, typeNr) {
@@ -200,40 +299,101 @@ function editPhotosAJAX(folder, photos, typeNr) {
 }
 
 
+
+
+//EDIT VIDEOS FUNCTIONALITY
+function editVideosAJAX(folder, videos, typeNr) {
+	
+	//index 0 is acting, index 1 is gig
+	//urls to php scripts
+	var editTypeURL = ["../control_panel/acting/edit_video_act.php", "../control_panel/gig/edit_video_gig.php"];
+		
+	$('.preload346').show();
+	
+	//prepare for GET request
+	var folderNoSpace = encodeURIComponent(folder);
+	var videos = videos;
+	
+	//prepare data need to be send
+	var combined = {folder: folderNoSpace, videos: videos};
+	
+	//Sending data via POST using load() function
+	$('#mainContent').load(editTypeURL[typeNr], combined, function() {
+		reloadEvents();
+		
+		//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+		//focus(does the job)
+		$('input').focus().blur();
+		$('input:first').focus();
+		//scroll to the top of the page
+		$('body').scrollTop(0);
+		
+		//to remove dark background
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+}
+
+
+//EDIT SONGS FUNCTIONALITY
+function editSongsAJAX(folder, songs) {
+	
+	//index 0 is acting, index 1 is gig
+	//urls to php scripts
+	var editTypeURL = "../control_panel/songs/edit_songs.php";
+		
+	$('.preload346').show();
+	
+	//prepare for GET request
+	var folderNoSpace = encodeURIComponent(folder);
+	var songs = songs;
+	
+	//prepare data need to be send
+	var combined = {folder: folderNoSpace, songs: songs};
+	
+	//Sending data via POST using load() function
+	$('#mainContent').load(editTypeURL, combined, function() {
+		reloadEvents();
+		
+		//This hardcoding is used to fix unexpected result with the materialize forms loaded using AJAX
+		//focus(does the job)
+		$('input').focus().blur();
+		$('input:first').focus();
+		//scroll to the top of the page
+		$('body').scrollTop(0);
+		
+		//to remove dark background
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+}
+
+//----------------------------------------------------------
+
 //DELETE FILES FUNCTIONALITY (PHOTOS)
 function deletePhotosAJAX(folder, photos, typeNr) {
 	
 	//index 0 is acting, index 1 is gig
 	//urls to php scripts
 	var delTypeURL = "../php_tasks/delete_photo.php";
-	var afterLoadTypeURL = ["../control_panel/acting/a_act_photos.php", "../control_panel/gig/a_gig_photos.php"];
-	var folderTypeURL = ["../control_panel/acting/a_act_folders.php?folder=", "../control_panel/gig/a_gig_folders.php?folder="];
-		
-	$('.preload346').show();
-
 	
-	//outside the folder (main gallery), no span element to read the folder name from, so variable is equal to undefined, leave the empry string will push to save photos in main gallery (no album)
-	if (folder == undefined) {
-		var folderName = "";
-	} else {
-		var folderName = folder;
-	}
+	$('.preload346').show();
 	
 	//prepare for GET request
-	var folderNoSpace = encodeURIComponent(folderName);
+	var folderNoSpace = encodeURIComponent(folder);
 	var photos = photos;
 	var combined = "folder=" + folderNoSpace + "&photos=" + photos;
 	
 	//Third parameter is a callback function and is called only after the browser gets a response from server, similar to jQuery approach
 	saveChanges(delTypeURL, combined, function() {
-		if (folderName == "") {
-			//acting/gig first ajax screen, depends on typeNr(0-acting, 1-gig)
-			photosLoad(typeNr);
-		} else {
-			//acting/gig inside folder ajax screen, depends on typeNr(0-acting, 1-gig)
-			photosLoadFolder(typeNr, folderNoSpace);
-		}
-		
+
+		//acting/gig first ajax screen, depends on typeNr(0-acting, 1-gig)
+		photosLoad(typeNr);
+
 		//Toast
 		Materialize.toast('Deleted', 1500, 'rounded');
 		
@@ -245,6 +405,70 @@ function deletePhotosAJAX(folder, photos, typeNr) {
 	});
 }
 
+
+
+//DELETE FUNCTIONALITY (VIDEOS)
+function deleteVideoAJAX(folder, videos, typeNr) {
+	
+	//index 0 is acting, index 1 is gig
+	//urls to php scripts
+	var delTypeURL = "../php_tasks/delete_video.php";
+
+	$('.preload346').show();
+
+	//prepare for GET request
+	var folderNoSpace = encodeURIComponent(folder);
+	var videos = videos;
+	var combined = "folder=" + folderNoSpace + "&videos=" + videos;
+	
+	//Third parameter is a callback function and is called only after the browser gets a response from server, similar to jQuery approach
+	saveChanges(delTypeURL, combined, function() {
+	
+		videosLoad(typeNr);
+
+		//Toast
+		Materialize.toast('Deleted', 1500, 'rounded');
+		
+		//Mobile view (small screens), remove dark background and enable scrolling
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+}
+
+
+//DELETE FUNCTIONALITY (SONGS)
+function deleteSongsAJAX(folder, songs) {
+	
+	//index 0 is acting, index 1 is gig
+	//urls to php scripts
+	var delTypeURL = "../php_tasks/delete_songs.php";
+
+	$('.preload346').show();
+
+	//prepare for GET request
+	var folderNoSpace = encodeURIComponent(folder);
+	var songs = songs;
+	var combined = "folder=" + folderNoSpace + "&songs=" + songs;
+	
+	//Third parameter is a callback function and is called only after the browser gets a response from server, similar to jQuery approach
+	saveChanges(delTypeURL, combined, function() {
+	
+		sonsgLoad();
+
+		//Toast
+		Materialize.toast('Deleted', 1500, 'rounded');
+		
+		//Mobile view (small screens), remove dark background and enable scrolling
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+}
+
+//----------------------------------------------------------
 
 //MOVE PHOTOS FUNCTIONALITY (PHOTOS)
 function movePhotosAJAX(folder, photos, typeNr) {
@@ -316,6 +540,152 @@ function movePhotosAJAX(folder, photos, typeNr) {
 }
 
 
+
+
+//MOVE VIDEOS FUNCTIONALITY
+function moveVideosAJAX(folder, videos, typeNr) {
+	
+	$('.preload346').show();
+	
+	//index 0 is acting, index 1 is gig
+	//urls to php scripts
+	var moveTypeURL = "../php_tasks/move_video.php";
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_videos.php", "../control_panel/gig/a_gig_videos.php"];
+	var folderTypeURL = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
+
+	//prepare for GET request	
+	var folderName = folder;
+	var folderNoSpace = encodeURIComponent(folderName);
+
+	var videos = videos;
+	var combined = "folder=" + folderNoSpace + "&videos=" + videos;
+	
+	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
+	saveChanges(moveTypeURL, combined, function() {
+		if (folderName == "") {
+			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
+				reloadEvents();
+				//FOLDERS add events to the loaded folders
+				$('.folder').click(function() {
+
+					$('.preload346').show();
+					
+					//get folder name
+					var selectedFolder = $(this);
+					var folderName = selectedFolder.find('span').text();
+					
+					//prepare for GET request
+					var noSpaceName = encodeURIComponent(folderName);
+				
+					//load content
+					$('#mainContent').load(folderTypeURL[typeNr] + noSpaceName, function() {
+						
+						//add event listeners
+						reloadEvents();
+						renameAlbumVideo(typeNr);
+					});
+				});
+			});
+		} else {
+			//FOLDERS add events to the loaded folders
+			$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
+				
+				//add event listeners
+				reloadEvents();
+				renameAlbumVideo(typeNr);
+				
+				reload_videos('.nav-wrapper', typeNr);
+				reload_videos('.sub_nav', typeNr);
+				reload_videos('.fixed-action-btn', typeNr);
+			});
+		}
+		
+		//Toast
+		Materialize.toast('Moved', 1500, 'rounded');
+		
+		//Mobile view (small screens), remove dark background and enable scrolling
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+}
+
+
+//MOVE SONGS FUNCTIONALITY
+function moveSongsAJAX(folder, songs) {
+	
+	$('.preload346').show();
+	
+	//index 0 is acting, index 1 is gig
+	//urls to php scripts
+	var moveTypeURL = "../php_tasks/move_songs.php";
+	var afterLoadTypeURL = "../control_panel/songs/a_songs.php";
+	var folderTypeURL = "../control_panel/songs/a_songs_folders.php?folder=";
+
+	//prepare for GET request	
+	var folderName = folder;
+	var folderNoSpace = encodeURIComponent(folderName);
+
+	var songs = songs;
+	var combined = "folder=" + folderNoSpace + "&songs=" + songs;
+	
+	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
+	saveChanges(moveTypeURL, combined, function() {
+		if (folderName == "") {
+			$('#mainContent').load(afterLoadTypeURL, function() {
+				reloadEvents();
+				//FOLDERS add events to the loaded folders
+				$('.folder').click(function() {
+
+					$('.preload346').show();
+					
+					//get folder name
+					var selectedFolder = $(this);
+					var folderName = selectedFolder.find('span').text();
+					
+					//prepare for GET request
+					var noSpaceName = encodeURIComponent(folderName);
+				
+					//load content
+					$('#mainContent').load(folderTypeURL + noSpaceName, function() {
+						
+						//add event listeners
+						reloadEvents();
+						renameAlbumSongs();
+					});
+				});
+			});
+		} else {
+			//FOLDERS add events to the loaded folders
+			$('#mainContent').load(folderTypeURL + folderNoSpace, function() {
+				
+				//add event listeners
+				reloadEvents();
+				renameAlbumSongs();
+				
+				reload_songs('.nav-wrapper');
+				reload_songs('.sub_nav');
+				reload_songs('.fixed-action-btn');
+			});
+		}
+		
+		//Toast
+		Materialize.toast('Moved', 1500, 'rounded');
+		
+		//Mobile view (small screens), remove dark background and enable scrolling
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+}
+
+
+
+//----------------------------------------------------------
+
+
 //SAVE PHOTO EDITS AJAX
 function saveChangesEdit(typeNr) {
 	
@@ -368,6 +738,115 @@ function saveChangesEdit(typeNr) {
 	$('#photoEditForm').submit();
 }
 
+
+
+//SAVE VIDEO EDITS AJAX
+function saveChangesEditVideo(typeNr) {
+	
+	$('.preload346').show();
+	
+	//script for editing a photo(s)
+	var editVideoDetails = "../php_tasks/edit_video.php";
+	
+	$('#videoEditForm').on('submit', function(e) {
+		//prevent default form submission
+		e.preventDefault();
+		
+		//create a new formData object with values of the form
+		var formData = new FormData(document.getElementById("videoEditForm"));
+		
+		//send formdata to a server
+		$.ajax({
+			//a php file
+			url: editVideoDetails,
+			type: 'post',
+			data: formData,
+			//return html from a php file
+			dataType: 'html',
+			async: true,
+			//tell jQuery not to process the data
+			processData: false,
+			//tell jQuery not to set contentType
+			contentType: false,
+			success : function(data) {
+				
+				//on success load the acting pictures part of the page again with new album and/or files
+				videosLoad(typeNr);
+				
+				//Toast
+				Materialize.toast('Saved', 1500, 'rounded');
+				
+				//Mobile view (small screens), remove dark background and enable scrolling		
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+			},
+			error : function(request) {
+				console.log(request.responseText);
+			}
+		});
+	});
+	
+	//submit a form
+	$('#videoEditForm').submit();
+}
+
+
+//SAVE SONGS EDITS AJAX
+function saveChangesEditSongs() {
+	
+	$('.preload346').show();
+	
+	//script for editing a photo(s)
+	var editVideoDetails = "../php_tasks/edit_songs.php";
+	
+	$('#songsEditForm').on('submit', function(e) {
+		//prevent default form submission
+		e.preventDefault();
+		
+		//create a new formData object with values of the form
+		var formData = new FormData(document.getElementById("songsEditForm"));
+		
+		//send formdata to a server
+		$.ajax({
+			//a php file
+			url: editVideoDetails,
+			type: 'post',
+			data: formData,
+			//return html from a php file
+			dataType: 'html',
+			async: true,
+			//tell jQuery not to process the data
+			processData: false,
+			//tell jQuery not to set contentType
+			contentType: false,
+			success : function(data) {
+				
+				//on success load the acting pictures part of the page again with new album and/or files
+				songsLoad();
+				
+				//Toast
+				Materialize.toast('Saved', 1500, 'rounded');
+				
+				//Mobile view (small screens), remove dark background and enable scrolling		
+				if ($('#dark').css('display') == 'block') {
+					enableScroll();
+					$('#dark').toggle();
+				}
+			},
+			error : function(request) {
+				console.log(request.responseText);
+			}
+		});
+	});
+	
+	//submit a form
+	$('#songsEditForm').submit();
+}
+
+
+//----------------------------------------------------------
 
 //RENAME ALBUM FUNCTIONALITY (PHOTOS)
 function renameAlbumAJAX(folder, folderOld, action, typeNr) {
@@ -431,3 +910,127 @@ function renameAlbumAJAX(folder, folderOld, action, typeNr) {
 	});
 }
 
+
+//RENAME ALBUM FUNCTIONALITY (VIDEOS)
+function renameAlbumAJAXVideo(folder, folderOld, action, typeNr) {
+
+	$('.preload346').show();
+
+	//index 0 is acting, index 1 is gig
+	//urls to php scripts
+	var albumRenameURL = ["../php_tasks/move_video.php", "../php_tasks/move_video.php"];
+	var afterLoadTypeURL = ["../control_panel/acting/a_act_videos.php", "../control_panel/gig/a_gig_videos.php"];
+	var folderTypeURL = ["../control_panel/acting/a_act_folders_v.php?folder=", "../control_panel/gig/a_gig_folders_v.php?folder="];
+	
+	//prepare for GET request
+	var folderName = folder;
+	var folderNoSpace = encodeURIComponent(folderName);
+	var folderOld = folderOld;
+	var action = action;
+	//use 'videos' is just for not breaking the server code instead of writing another script
+	var combined = "folder=" + folderNoSpace + "&videos=" + folderOld + "&actionStr= " + action;
+	
+	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
+	saveChanges(albumRenameURL[typeNr], combined, function() {
+		if (folderName == "") {
+			
+			$('#mainContent').load(afterLoadTypeURL[typeNr], function() {
+				reloadEvents();
+				//FOLDERS add events to the loaded folders
+				$('.folder').click(function() {
+
+					$('.preload346').show();
+
+					var selectedFolder = $(this);
+					var folderName = selectedFolder.find('span').text();
+					var noSpaceName = encodeURIComponent(folderName);
+					
+					//load content
+					$('#mainContent').load(folderTypeURL[typeNr] + noSpaceName, function() {
+						reloadEvents();
+					});
+				});
+			});
+		} else {
+			//FOLDERS add events to the loaded folders
+			$('#mainContent').load(folderTypeURL[typeNr] + folderNoSpace, function() {
+				
+				//add event listeners
+				reloadEvents();
+				
+				reload_videos('.nav-wrapper', typeNr);
+				reload_videos('.sub_nav', typeNr);
+				reload_videos('.fixed-action-btn', typeNr);
+			});
+		}
+		
+		//Toast
+		Materialize.toast('Renamed', 1500, 'rounded');
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+}
+
+
+//RENAME ALBUM FUNCTIONALITY (SONGS)
+function renameAlbumAJAXSongs(folder, folderOld, action) {
+
+	$('.preload346').show();
+
+	//urls to php scripts
+	var albumRenameURL = "../php_tasks/move_songs.php";
+	var afterLoadTypeURL = "../control_panel/songs/a_songs.php";
+	var folderTypeURL = "../control_panel/songs/a_songs_folders.php?folder=";
+	
+	//prepare for GET request
+	var folderName = folder;
+	var folderNoSpace = encodeURIComponent(folderName);
+	var folderOld = folderOld;
+	var action = action;
+	//use 'songs' is just for not breaking the server code instead of writing another script
+	var combined = "folder=" + folderNoSpace + "&songs=" + folderOld + "&actionStr= " + action;
+	
+	//Third parameter is a callback function and is called only after the browser gets a response from server, jQuery approach
+	saveChanges(albumRenameURL, combined, function() {
+		if (folderName == "") {
+			
+			$('#mainContent').load(afterLoadTypeURL, function() {
+				reloadEvents();
+				//FOLDERS add events to the loaded folders
+				$('.folder').click(function() {
+
+					$('.preload346').show();
+
+					var selectedFolder = $(this);
+					var folderName = selectedFolder.find('span').text();
+					var noSpaceName = encodeURIComponent(folderName);
+					
+					//load content
+					$('#mainContent').load(folderTypeURL + noSpaceName, function() {
+						reloadEvents();
+					});
+				});
+			});
+		} else {
+			//FOLDERS add events to the loaded folders
+			$('#mainContent').load(folderTypeURL + folderNoSpace, function() {
+				
+				//add event listeners
+				reloadEvents();
+				
+				reload_songs('.nav-wrapper');
+				reload_songs('.sub_nav');
+				reload_songs('.fixed-action-btn');
+			});
+		}
+		
+		//Toast
+		Materialize.toast('Renamed', 1500, 'rounded');
+		if ($('#dark').css('display') == 'block') {
+			enableScroll();
+			$('#dark').toggle();
+		}
+	});
+}

@@ -81,9 +81,9 @@ METHODS DESCRIPTION AND USAGE:
 	class dbConnection {
 		
 		private $servername = "localhost";
-		private $db = "jrdb";
-		private $username = "arnuga3";
-		private $password = "codeStudent3";
+		private $db = "jr";
+		private $username = "root";
+		private $password = "";
 		private $myConn;
 		private $result;
 		

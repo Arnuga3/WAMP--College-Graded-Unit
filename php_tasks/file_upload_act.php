@@ -149,7 +149,7 @@ if (isset($_SESSION["mrBoss"])) {
 				//same logic here as in a first block of if statement
 				$filenameNoExt = basename($file_name, ".".$ext);
 				
-				$db->customQuery("INSERT INTO ai_images (ai_ID) VALUES ('')");
+				$db->customQuery("INSERT INTO ai_images () VALUES ()");
 				
 				$result = $db->customQuery("SELECT ai_ID FROM ai_images ORDER BY ai_ID DESC LIMIT 1");
 				if ($result->num_rows == 1) {

@@ -22,7 +22,7 @@ if (isset($_SESSION["mrBoss"])) {
 	$db = new dbConnection();
 	$db->connect();
 	//Get a showreel video information
-	$result = $db->select("media, video", "media.*, video.*", "media.usr_ID = $userID AND media.video_ID = video.video_ID AND video.video_group = 'showreel'");
+	$result = $db->select("media, video", "media.*, video.*", "media.usr_ID = $userID AND media.video_ID = video.video_ID AND video.video_group = 'showreel' LIMIT 1");
 	$db->close();
 	
 	//Only one record is expected, just another check for an error

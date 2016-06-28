@@ -1,18 +1,17 @@
 <?php
 /*
 Author: Arnis Zelcs
-Created: 27/04/2016
+Created: 2/04/2016
 
 Graded Unit Project - Web Portfolio for Jamie Rodden
 
-Script: Create a content of a main gallery - gig
+Script: Create a content of a main gallery - acting
 */
 
 //start session
 session_start();
 ?>
 <?php
-//if session is on
 if (isset($_SESSION["mrBoss"])) {
 	$userID = $_SESSION["mrBoss"]["usr_ID"];
 	
@@ -22,7 +21,7 @@ if (isset($_SESSION["mrBoss"])) {
 	$db = new dbConnection();
 	$db->connect();
 
-	$result = $db->select("media, images", "media.*, images.*", "media.usr_ID = $userID AND media.image_ID = images.image_ID AND images.image_group = 'gig'");
+	$result = $db->select("media, video", "media.*, video.*", "media.usr_ID = $userID AND media.video_ID = video.video_ID AND video.video_group = 'gig'");
 	$db->close();
 	
 	//THIS CODE GETS UNIQUE NAMES OF FOLDERS AND SAVES THEM INTO INDEXED ARRAY
@@ -30,7 +29,7 @@ if (isset($_SESSION["mrBoss"])) {
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
 			//Place all folder names into new array
-			$folders[] = $row["image_folder"];
+			$folders[] = $row["video_folder"];
 		}
 	}
 	//Save only unique names of folders
@@ -44,13 +43,13 @@ if (isset($_SESSION["mrBoss"])) {
 	}
 	//END
 
-	echo "<!--ACTING PHOTOS-->
+	echo "<!--Gig PHOTOS-->
 	<!--SUBNAV-->
 	
 	<nav class=\"bread_path\">
 		<div class=\"bread nav-wrapper\">
 			<div class=\"col s12\">
-				<a href=\"#!\" class=\"breadcrumb\">Gig Photos</a>
+				<a href=\"#!\" class=\"breadcrumb\">Gig Videos</a>
 				<a href=\"#!\" class=\"breadcrumb\"></a>
 			</div>
 		</div>
@@ -58,10 +57,10 @@ if (isset($_SESSION["mrBoss"])) {
 	
 	<div class=\"sub_nav hide-on-med-and-down\">
 		<a class=\"z-depth-1 waves-effect waves-dark blue-grey lighten-1 disabled\" href=\"#\"><img class=\"pencil\" src=\"../img/cpIcons/arrow_undo.png\" /><span>back</span></a>
-		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/image_add.png\" /><span>add photo(s)</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEdit(1)\"><img src=\"../img/cpIcons/image_edit.png\" /><span>edit photo(s)</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"  onclick=\"checkIfCheckedDel(1)\"><img src=\"../img/cpIcons/image_delete.png\" /><span>delete photo(s)</span></a>
-		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /><span>move photo(s)</span></a>
+		<a class=\"sb_upload z-depth-1 waves-effect waves-dark\" href=\"#\"><img src=\"../img/cpIcons/film_add.png\" /><span>add video(s)</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\" onclick=\"checkIfCheckedEditVideo(1)\"><img src=\"../img/cpIcons/film_edit.png\" /><span>edit video(s)</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark\" href=\"#\"  onclick=\"checkIfCheckedDelVideo(1)\"><img src=\"../img/cpIcons/film_delete.png\" /><span>delete video(s)</span></a>
+		<a class=\"z-depth-1 waves-effect waves-dark .modal-trigger-move\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/film_go.png\" /><span>move video(s)</span></a>
 	</div>
 
 	<div class=\"fixed-action-btn vertical click-to-toggle hide-on-large-only\" style=\"bottom: 24px; right: 24px;\">
@@ -69,10 +68,10 @@ if (isset($_SESSION["mrBoss"])) {
 			<img class=\"pencil\" src=\"../img/cpIcons/pencil.png\" />
 		</a>
 		<ul>
-			<li><span>add photo(s)</span><a class=\"sb_upload btn-floating blue\"><img src=\"../img/cpIcons/image_add.png\" /></a></li>
-			<li><span>edit photo(s)</span><a class=\"btn-floating green\" onclick=\"checkIfCheckedEdit(1)\"><img src=\"../img/cpIcons/image_edit.png\" /></a></li>
-			<li><span>delete photo(s)</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDel(1)\"><img src=\"../img/cpIcons/image_delete.png\" /></a></li>
-			<li><span>move photo(s)</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/scale_image.png\" /></a></li>
+			<li><span>add video(s)</span><a class=\"sb_upload btn-floating blue\"><img src=\"../img/cpIcons/film_add.png\" /></a></li>
+			<li><span>edit video(s)</span><a class=\"btn-floating green\" onclick=\"checkIfCheckedEditVideo(1)\"><img src=\"../img/cpIcons/film_edit.png\" /></a></li>
+			<li><span>delete video(s)</span><a class=\"btn-floating blue\" onclick=\"checkIfCheckedDelVideo(1)\"><img src=\"../img/cpIcons/film_delete.png\" /></a></li>
+			<li><span>move video(s)</span><a class=\"btn-floating  .modal-trigger-move red\" href=\"#footer_modal\" onclick=\"checkIfChecked()\"><img src=\"../img/cpIcons/film_go.png\" /></a></li>
 		</ul>
 	</div>
 	
@@ -84,7 +83,7 @@ if (isset($_SESSION["mrBoss"])) {
 	
 	<div class=\"cp_content\">
 
-		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Add, Edit or Remove albums or images.</p>
+		<p class=\"helperText infoMargin\"><img class=\"sm_info\" src=\"../img/cpIcons/information.png\" />Add, Edit or Remove albums or videos.</p>
 		
 		<div id=\"cpCont\" class=\"margTop margBotXL\">
 		<a id=\"selectAllBtn\" class=\"waves-effect waves-light btn-flat blue-grey lighten-2 margLeft10 margBot\">check/uncheck all</a>";
@@ -99,23 +98,24 @@ if (isset($_SESSION["mrBoss"])) {
 						</div>
 					</a>";
 			}
+			
 			mysqli_data_seek($result, 0);
 			//Display photos without folders
 			if ($result->num_rows > 0) {
 				while($row = $result->fetch_assoc()) {
-					if (!in_array($row["image_folder"], $folders_indexed)) {
+					if (!in_array($row["video_folder"], $folders_indexed)) {
 						
 					echo "<!--Image Row in Control Panel(checkbox, name, image)-->
 						<div class=\"flexVertCenter imgRow\">
-							<input type=\"checkbox\" class=\"filled-in checkbox-orange\" id=\"".$row["image_ID"]."\" />
-							<label for=\"".$row["image_ID"]."\">
+							<input type=\"checkbox\" class=\"filled-in checkbox-orange\" id=\"".$row["video_ID"]."\" />
+							<label for=\"".$row["video_ID"]."\">
 								<div class=\"flexVertCenter\">
 									<div>
-										<span class=\"infoText truncatedTitle absolute\">".$row["image_title"]."<span class=\"helperText2\">".$row["image_descr"]."</span></span>
+										<span class=\"infoText truncatedTitle absolute\">".$row["video_title"]."<span class=\"helperText2\">".$row["video_descr"]."</span></span>
 									</div>
 								</div>
 							</label>
-							<img class=\"materialboxed\" data-caption=\"".$row["image_descr"]."\" width=\"60\" src=\"".$row["image_path"]."\" />
+							<div class=\"videoPreview\" onclick=\"addModal(".$row["video_ID"].")\">preview</div>
 						</div>";
 					}
 				}
@@ -123,7 +123,8 @@ if (isset($_SESSION["mrBoss"])) {
 			echo "<p id=\"error\"></p>";
 	echo "</div>
 	</div>";
-	
+			echo '<div id="previewModal"></div>';
+			
 			//FOOTER MODAL
 			echo "<div id=\"footer_modal\" class=\"modal bottom-sheet\">
 					<div class=\"modal-content col l8 offset-l2 margBotExtra\">
@@ -131,20 +132,20 @@ if (isset($_SESSION["mrBoss"])) {
 						<ul>";
 			//Footer modal
 			foreach ($folders_indexed as $val) {
-				echo "		<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('".$val."', getSelectedItems(), 1)\" href=\"#\">
+				echo "		<li><a class=\"foot_mod\" onclick=\"moveVideosAJAX('".$val."', getSelectedItems(), 1)\" href=\"#\">
 								<div class=\"flexVertCenter\">
 									<img class=\"margLeft10\" width=\"40\" src=\"../img/cpIcons/folder.png\" />
 									<span class=\"margLeft infoText\">".$val."</span>
 								</div>
 							</a></li>";
 			}
-				echo "		<li><a class=\"foot_mod\" onclick=\"moveToNewAlbum(1)\" href=\"#\">
+				echo "		<li><a class=\"foot_mod\" onclick=\"moveToNewAlbumVideo(1)\" href=\"#\">
 								<div class=\"flexVertCenter\">
 									<img class=\"margLeft10\" width=\"40\" src=\"../img/cpIcons/folder_add.png\" />
 									<span class=\"margLeft infoText\">CREATE NEW ALBUM</span>
 								</div>
 							</a></li>
-							<li><a class=\"foot_mod\" onclick=\"movePhotosAJAX('', getSelectedItems(), 1)\" href=\"#\">
+							<li><a class=\"foot_mod\" onclick=\"moveVideosAJAX('', getSelectedItems(), 1)\" href=\"#\">
 								<div class=\"flexVertCenter\">
 									<img class=\"margLeft10\" width=\"40\" src=\"../img/cpIcons/folder_go.png\" />
 									<span class=\"margLeft infoText\">MAIN GALLERY (without album)</span>
