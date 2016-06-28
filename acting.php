@@ -5,7 +5,7 @@ Created: 16/03/2016
 
 Graded Unit Project - Web Portfolio for Jamie Rodden
 
-Script: Generates an acting shots page
+Script: Generates an acting shots page (commmit)
 */
 
 	//include a class
