@@ -1,6 +1,7 @@
 <?php
 /*
-Developed by arnuga3
+Developed by Arnis Zelcs
+Created: 21/03/2016
 
 This is a DB Class based on procedural mysqli and is written in php.
 Methods are developed to simplify the work with DB and for automation of some of the parts in PHP/MySQL projects.
@@ -16,11 +17,9 @@ METHODS:
 	insert()
 	update()
 	delete()
+	customQuery()
 	prepareArray()
 	getTableColumns()
-	
-PRIVATE METHODS:
-	
 	escape()
 	
 
@@ -61,6 +60,8 @@ METHODS DESCRIPTION AND USAGE:
 	
 	delete() - delete a record by specific column value
 		Usage: delete(table_name(mandatory), targetColumn(mandatory), targetValue(mandatory));
+		
+	customQuery()
 	
 	prepareArray() - accept values, escape special characters and return them in an array, this method is using private method escape()
 		Usage: prepareArray(val1, val2, .., valn);
@@ -80,14 +81,14 @@ METHODS DESCRIPTION AND USAGE:
 	class dbConnection {
 		
 		private $servername = "localhost";
-		private $db = "jrdb";
-		private $username = "arnuga3";
-		private $password = "codeStudent3";
+		private $db = "jr";
+		private $username = "root";
+		private $password = "";
 		private $myConn;
 		private $result;
 		
 //ESCAPE SPECIAL CHARACTERS
-		private function escape($str) {
+		public function escape($str) {
 			return mysqli_real_escape_string($this->myConn, $str);
 		}
 		
@@ -167,7 +168,7 @@ METHODS DESCRIPTION AND USAGE:
 			}
 			
 			if ($this->result === TRUE) {
-				echo "Saved";
+				//echo "Saved";
 			} else {
 				echo "Error inserting record: " . $this->myConn->error;
 			}
@@ -228,7 +229,6 @@ METHODS DESCRIPTION AND USAGE:
 					} else {
 						$query = "UPDATE ".$table." SET ".$colValStr." WHERE ".$targetCol."=".$targetVal;
 					}
-					echo "UpDATEd";
 				}
 			}
 			
@@ -253,10 +253,19 @@ METHODS DESCRIPTION AND USAGE:
 			$this->result = $this->myConn->query($query);
 
 			if ($this->result === TRUE) {
-				echo "Deleted";
+				//echo "Deleted";
 			} else {
 				echo "Error deleting record: " . $this->myConn->error;
 			}
+		}
+		
+		
+		
+//CUSTOM
+		public function customQuery($query) {
+
+			$this->result = $this->myConn->query($query);
+			return $this->result;
 		}
 		
 		
