@@ -3,7 +3,7 @@
 Author: Arnis Zelcs
 Created: 16/03/2016
 
-Graded Unit Project - Web Portfolio for Jamie Rodden uiououioui
+Graded Unit Project - Web Portfolio for Jamie Rodden
 
 Script: Generates an acting shots page
 */
