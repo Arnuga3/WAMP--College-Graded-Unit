@@ -74,7 +74,7 @@ echo "<!--SONGS-->
 					</div>
 				<div id=\"ulpBtn\" class=\"file-field input-field margTopL\">
 					<div class=\"btn blue-grey lighten-2\">
-						<span>songs(s)</span>
+						<span>song(s)</span>
 						<input type=\"file\" name=\"file[]\" id=\"file\" multiple>
 					</div>
 					<div class=\"file-path-wrapper\">

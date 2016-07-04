@@ -129,5 +129,27 @@ function reloadEvents() {
 			});
 		});
 	});
+	
+	
+	
+	//FOLDERS
+	$('.folder').click(function() {
+		
+		
+		$('.preload333').show();
+
+		
+		//load the images of selected folder using ajax and assign event listeners to them
+		var selectedFolder = $(this);
+		var folderName = selectedFolder.find('p').text();
+		//escape the string before passing it in url
+		var noSpaceName = encodeURIComponent(folderName);
+		$('#contCont_s').load("user_views/a_songs_folders.php?folder=" + noSpaceName, function() {
+			reloadEvents();
+		});
+	});
+	
+	
+	
 }
 

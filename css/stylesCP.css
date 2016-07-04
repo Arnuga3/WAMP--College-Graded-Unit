@@ -303,7 +303,8 @@ form {
 	background-color: transparent;
 }
 
-#fileUploadForm div {
+#fileUploadForm div,
+#songsAddForm div {
 	height: 45px;
 }
 .photoNrEdit {

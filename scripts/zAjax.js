@@ -455,7 +455,7 @@ function deleteSongsAJAX(folder, songs) {
 	//Third parameter is a callback function and is called only after the browser gets a response from server, similar to jQuery approach
 	saveChanges(delTypeURL, combined, function() {
 	
-		sonsgLoad();
+		songsLoad();
 
 		//Toast
 		Materialize.toast('Deleted', 1500, 'rounded');

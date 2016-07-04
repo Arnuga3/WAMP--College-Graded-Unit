@@ -213,9 +213,15 @@ hr {
 
 /*----------------Songs-----------------*/
 
+audio {
+	margin-top: 5px;
+}
+
 #contField_s {
 	padding: 20px 5px;
 	color: black;
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 1.2em;
 	background-color: rgba(255,255,255,.9);
 }
 #contField_s a > p {
@@ -232,20 +238,17 @@ hr {
 	border-radius: 20px;
 	background-color: rgba(255,255,255,1);	
 }
-#contCont_s > div > div > div img {
-	width: 80px;
-	height: 80px;
+#contCont_s > div > div > div {
+	height: 180px;
 	margin-top: 15px;
-	text-align: center;
+}
+#contCont_s > div > div > div img {
+	width: 100px;
 }
 #contCont_s > div > div > div p {
-	color: #777;
-	font-weight: bold;
-	margin-top: 20px;
-}
-#contCont_s > div > div > div audio {
-	margin-top: 10px;
-	background: white;
+	margin: 10px;
+    color: #333;
+    font-weight: bold;
 }
 .song_icon {
 	float: left;

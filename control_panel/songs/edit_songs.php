@@ -115,8 +115,8 @@ Script: Create an edit photo(s) screen - acting
 					
 					
 				<audio id=\"music\" controls=\"controls\">
-					<source src='audio/'".$songsInfo[$i]["music_path"]." type='audio/mpeg' />
-					<source src='audio/'".$songsInfo[$i]["music_path"]." type='audio/ogg' />
+					<source src='audio/".$songsInfo[$i]["music_path"]."' type='audio/mpeg' />
+					<source src='audio/".$songsInfo[$i]["music_path"]."' type='audio/ogg' />
 				</audio>";
 		}
 		

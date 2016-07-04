@@ -115,8 +115,8 @@ if (isset($_SESSION["mrBoss"])) {
 								</div>
 							</label>
 							<audio id="music" controls="controls">
-								<source src="audio/'.$row["image_path"].'" type="audio/mpeg" />
-								<source src="audio/'.$row["image_path"].'" type="audio/ogg" />
+								<source src="audio/'.$row["music_path"].'" type="audio/mpeg" />
+								<source src="audio/'.$row["music_path"].'" type="audio/ogg" />
 							</audio>
 						</div>';
 					}
